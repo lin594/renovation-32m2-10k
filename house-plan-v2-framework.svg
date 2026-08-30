@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+  <title id="title">32平方米旧房整体框架图 v2</title>
+  <desc id="desc">北向上、东向右，表示房间、门窗、公共走廊、阳台和修正后的卧室门位置。</desc>
+  <defs>
+    <pattern id="public" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+    </pattern>
+    <style>
+      text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+      .wall{fill:none;stroke:#1f2937;stroke-width:8;stroke-linecap:square;stroke-linejoin:miter}
+      .iw{fill:none;stroke:#334155;stroke-width:6;stroke-linecap:square}
+      .win{stroke:#0284c7;stroke-width:10}.winc{stroke:#e0f2fe;stroke-width:3}
+      .door{fill:none;stroke:#7c3aed;stroke-width:3}.slide{fill:none;stroke:#d97706;stroke-width:4}
+      .rl{font-size:24px;font-weight:750;fill:#172033;text-anchor:middle}.rs{font-size:14px;fill:#526175;text-anchor:middle}
+      .note{font-size:15px;fill:#334155}.tiny{font-size:12px;fill:#526175}.dim{font-size:13px;fill:#475569;text-anchor:middle}
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  </defs>
+  <rect width="1400" height="850" fill="#fbfaf7"/>
+  <text x="70" y="52" font-size="30" font-weight="750" fill="#172033">整体框架与门窗 · v2</text>
+  <text x="70" y="78" font-size="14" fill="#64748b">坐标换算：北↑、东→｜1m = 100px｜卧室门较旧图整体北移约5cm</text>
+
+  <!-- room fills -->
+  <rect x="100" y="130" width="300" height="400" fill="#f7ead7"/>
+  <rect x="100" y="530" width="300" height="100" fill="#e6f3e8"/>
+  <rect x="400" y="130" width="200" height="200" fill="#f9efd0"/>
+  <rect x="400" y="330" width="100" height="120" fill="#dff3f7"/>
+  <rect x="500" y="330" width="100" height="120" fill="#edf1f5"/>
+  <rect x="400" y="450" width="200" height="80" fill="#edf1f5"/>
+  <rect x="600" y="130" width="300" height="300" fill="#ece8f7"/>
+  <rect x="600" y="430" width="300" height="100" fill="url(#public)"/>
+
+  <!-- structural walls -->
+  <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
+  <path class="iw" d="M400 130V450"/>
+  <path class="iw" d="M400 330H520 M520 330H600"/>
+  <path class="iw" d="M500 330V450"/>
+  <path class="iw" d="M400 450H405 M475 450H600"/>
+  <path class="iw" d="M600 130V345 M600 425V530"/>
+  <path class="iw" d="M600 430H900"/>
+  <path class="iw" d="M100 530H250"/>
+
+  <!-- windows -->
+  <g>
+    <path class="win" d="M200 130H300"/><path class="winc" d="M200 130H300"/>
+    <path class="win" d="M450 130H550"/><path class="winc" d="M450 130H550"/>
+    <path class="win" d="M700 130H800"/><path class="winc" d="M700 130H800"/>
+    <path class="win" d="M100 535V625"/><path class="winc" d="M100 535V625"/>
+    <path class="win" d="M110 630H390"/><path class="winc" d="M110 630H390"/>
+    <path class="win" d="M435 330H485"/><path class="winc" d="M435 330H485"/>
+  </g>
+
+  <!-- doors -->
+  <g>
+    <!-- passage opening y=3, x=3.2..4 -->
+    <path d="M400 450V530" stroke="#fbfaf7" stroke-width="10"/>
+    <text class="tiny" x="386" y="493" text-anchor="end">客厅通道 0.8m</text>
+    <!-- kitchen slider -->
+    <path d="M520 330H600" stroke="#f9efd0" stroke-width="10"/>
+    <path class="slide" d="M520 323H600M440 318H510"/>
+    <text class="tiny" x="560" y="310">隐藏滑门</text>
+    <!-- bath slider -->
+    <path d="M405 450H475" stroke="#edf1f5" stroke-width="10"/>
+    <path class="slide" d="M405 443H475M475 443H545" stroke-dasharray="7 5"/>
+    <text class="tiny" x="440" y="474" text-anchor="middle">卫浴滑门 0.70m</text>
+    <!-- bedroom door shifted 5cm north: x[2.15,2.95] -->
+    <path d="M600 345V425" stroke="#ece8f7" stroke-width="10"/>
+    <path class="door" d="M600 425H680"/>
+    <path class="door" d="M600 345A80 80 0 0 1 680 425"/>
+    <circle cx="600" cy="425" r="4" fill="#7c3aed"/>
+    <text x="646" y="338" font-size="12" fill="#7c3aed">卧室门北移5cm</text>
+    <!-- entry, opens out -->
+    <path d="M600 450V530" stroke="#f1f5f9" stroke-width="10"/>
+    <path class="door" d="M600 530H680"/>
+    <path class="door" d="M600 450A80 80 0 0 1 680 530"/>
+    <text class="tiny" x="645" y="553">入户门外开</text>
+    <!-- balcony slider -->
+    <path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
+    <path class="slide" d="M250 523H325M325 537H400"/>
+    <path d="M250 530H320" stroke="#16a34a" stroke-width="6"/>
+    <path d="M335 512L390 548M390 512L335 548" stroke="#dc2626" stroke-width="2"/>
+    <text class="tiny" x="282" y="511">有效≈0.7m</text>
+  </g>
+
+  <!-- room labels -->
+  <g>
+    <text class="rl" x="250" y="285">客厅</text><text class="rs" x="250" y="307">净 4.0×3.0m</text>
+    <text class="rl" x="500" y="224">厨房</text><text class="rs" x="500" y="246">东西2.0 × 南北&lt;2.0m</text>
+    <text x="450" y="385" font-size="17" font-weight="750" fill="#172033" text-anchor="middle">卫生间</text><text class="rs" x="450" y="406">净约1.05×0.75m</text>
+    <text class="rl" x="750" y="275">卧室</text><text class="rs" x="750" y="297">净 3.0×3.0m</text>
+    <text x="550" y="393" font-size="17" font-weight="700" fill="#475569" text-anchor="middle">走廊B</text>
+    <text x="500" y="493" font-size="17" font-weight="700" fill="#475569" text-anchor="middle">走廊A / 玄关</text><text class="rs" x="500" y="514">净宽0.8m</text>
+    <text x="250" y="588" font-size="19" font-weight="750" fill="#172033" text-anchor="middle">转角阳台</text>
+    <text x="750" y="487" font-size="18" font-weight="700" fill="#64748b" text-anchor="middle">公共走廊（非套内）</text>
+  </g>
+
+  <!-- dimensions -->
+  <g stroke="#64748b" stroke-width="1.4" fill="none">
+    <path d="M100 112V98M400 112V98M600 112V98M900 112V98M100 102H900"/>
+    <path d="M100 98l8-4v8zM400 98l-8-4v8zM400 98l8-4v8zM600 98l-8-4v8zM600 98l8-4v8zM900 98l-8-4v8z" fill="#64748b"/>
+  </g>
+  <text class="dim" x="250" y="94">3.0m 客厅</text><text class="dim" x="500" y="94">2.0m 厨房/走廊</text><text class="dim" x="750" y="94">3.0m 卧室</text>
+  <g transform="translate(1030 105)">
+    <circle cx="45" cy="45" r="38" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+    <path d="M45 71V18" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="45" y="0" font-size="17" font-weight="750" text-anchor="middle">北 N</text><text x="92" y="51" font-size="15">东 E</text>
+  </g>
+
+  <!-- side notes -->
+  <g transform="translate(1010 205)">
+    <rect width="330" height="430" rx="14" fill="#fff" stroke="#d6dae1" stroke-width="1.5"/>
+    <text x="24" y="40" font-size="21" font-weight="750" fill="#172033">框架更新</text>
+    <text class="note" x="24" y="79">• 卧室门整体向北约5cm</text>
+    <text class="note" x="24" y="108">  名义门洞：x[2.15, 2.95]</text>
+    <text class="note" x="24" y="148">• 阳台西、南两面为高窗+窗下实墙</text>
+    <text class="note" x="24" y="188">• 所有外窗均列入防猫纱窗 TODO</text>
+    <text class="note" x="24" y="228">• 厨卫间高窗保留，用于辅助通风</text>
+    <text class="note" x="24" y="268">• 卫浴滑门仍只能向东开启</text>
+    <text class="note" x="24" y="308">• 阳台推拉门仍只有西扇可开启</text>
+    <line x1="24" y1="340" x2="306" y2="340" stroke="#e2e8f0"/>
+    <path class="win" d="M28 373H62"/><path class="winc" d="M28 373H62"/><text class="tiny" x="76" y="377">窗 / 高窗</text>
+    <path class="slide" d="M174 373H208"/><text class="tiny" x="220" y="377">滑门</text>
+    <path class="door" d="M28 405H62"/><text class="tiny" x="76" y="409">平开门及开启方向</text>
+  </g>
+  <text x="100" y="680" font-size="13" fill="#64748b">用途：确认空间框架和门窗关系；不作为施工放样图。墙厚、窗台高度和阳台净宽仍以现场复测为准。</text>
+</svg>

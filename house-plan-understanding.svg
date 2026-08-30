@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">32平方米旧房平面理解示意图</title>
+  <desc id="desc">依据 house.yaml 坐标与名义尺寸绘制，北向上、东向右，包含房间、门窗、家具、公共走廊以及关键通行瓶颈。</desc>
+  <defs>
+    <pattern id="corridorHatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#f3f4f6"/>
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#cbd5e1" stroke-width="4"/>
+    </pattern>
+    <pattern id="wetHatch" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#dff3f7"/>
+      <path d="M0 10 L10 0" stroke="#b8e3eb" stroke-width="1.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      text { font-family: "Source Han Sans SC", "Heiti SC", "Arial Unicode MS", sans-serif !important; }
+      .room-label { font: 700 23px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; text-anchor: middle; }
+      .room-sub { font: 14px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #526175; text-anchor: middle; }
+      .item { fill: #fffdf8; stroke: #697386; stroke-width: 2; }
+      .item-wet { fill: #effafd; stroke: #36869a; stroke-width: 2; }
+      .item-label { font: 13px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #263449; text-anchor: middle; dominant-baseline: middle; }
+      .tiny { font: 11px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #526175; }
+      .note { font: 14px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .wall { stroke: #1f2937; stroke-width: 8; fill: none; stroke-linecap: square; stroke-linejoin: miter; }
+      .inner-wall { stroke: #334155; stroke-width: 6; fill: none; stroke-linecap: square; }
+      .window { stroke: #0284c7; stroke-width: 9; stroke-linecap: butt; }
+      .window-core { stroke: #e0f2fe; stroke-width: 3; stroke-linecap: butt; }
+      .slider { stroke: #d97706; stroke-width: 4; fill: none; }
+      .door { stroke: #8b5cf6; stroke-width: 3; fill: none; }
+      .dim { stroke: #64748b; stroke-width: 1.5; fill: none; }
+      .dim-text { font: 13px -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #475569; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="1500" height="900" fill="#fbfaf7"/>
+  <text x="70" y="48" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="29" font-weight="750" fill="#172033">32㎡旧房 · 平面理解示意图</text>
+  <text x="70" y="74" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#64748b">依据 house.yaml v4 名义坐标绘制｜北↑ 东→｜墙厚与局部家具为示意，实测约有 ±0.1m 误差</text>
+
+  <!-- room fields: screen horizontal = source y, vertical = source x -->
+  <rect x="100" y="110" width="360" height="480" fill="#f7ead7"/>
+  <rect x="100" y="590" width="360" height="120" fill="#e6f3e8"/>
+  <rect x="460" y="110" width="240" height="240" fill="#f9efd0"/>
+  <rect x="460" y="350" width="120" height="144" fill="url(#wetHatch)"/>
+  <rect x="700" y="110" width="360" height="360" fill="#ece8f7"/>
+  <path d="M580 350 H700 V494 H580 Z M460 494 H700 V590 H460 Z" fill="#edf1f5"/>
+  <rect x="700" y="470" width="360" height="120" fill="url(#corridorHatch)"/>
+
+  <!-- key circulation route -->
+  <path d="M1060 545 H355 V625 M640 545 V410 H760 M660 410 V330" fill="none" stroke="#22a06b" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.20"/>
+  <path d="M1020 545 H355" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M355 545 V625" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M640 545 V410 H760" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+  <path d="M660 410 V330" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+
+  <!-- main and partition walls, deliberately interrupted at openings -->
+  <path class="wall" d="M100 110 H1060 V470 H700 V590 H460 V710 H100 Z"/>
+  <!-- living / east-side wall y=3, passage opening at x=3.2..4 -->
+  <path class="inner-wall" d="M460 110 V494"/>
+  <!-- kitchen south wall x=2; kitchen door gap y=4.2..5 -->
+  <path class="inner-wall" d="M460 350 H580 M580 350 H604"/>
+  <!-- nominal edge of bath / hall B -->
+  <path class="inner-wall" d="M580 350 V494"/>
+  <!-- bath south wall with sliding-door opening y=3.05..3.75 -->
+  <path class="inner-wall" d="M460 494 H466 M550 494 H700"/>
+  <!-- kitchen / bedroom wall y=5; bedroom-door opening x=2.2..3 -->
+  <path class="inner-wall" d="M700 110 V374 M700 470 V590"/>
+  <!-- bedroom south boundary to public corridor -->
+  <path class="inner-wall" d="M700 470 H1060"/>
+  <!-- living / balcony boundary, opening y=1.5..3 -->
+  <path class="inner-wall" d="M100 590 H280"/>
+
+  <!-- windows -->
+  <g>
+    <path class="window" d="M220 110 H340"/><path class="window-core" d="M220 110 H340"/>
+    <path class="window" d="M520 110 H640"/><path class="window-core" d="M520 110 H640"/>
+    <path class="window" d="M820 110 H940"/><path class="window-core" d="M820 110 H940"/>
+    <path class="window" d="M100 596 V704"/><path class="window-core" d="M100 596 V704"/>
+    <path class="window" d="M112 710 H448"/><path class="window-core" d="M112 710 H448"/>
+    <path class="window" d="M502 350 H562"/><path class="window-core" d="M502 350 H562"/>
+  </g>
+
+  <!-- sliding doors -->
+  <g>
+    <!-- balcony double slider: west leaf is usable, east leaf blocked -->
+    <path class="slider" d="M280 583 H370 M370 597 H460"/>
+    <path d="M280 590 H364" stroke="#16a34a" stroke-width="7" opacity="0.8"/>
+    <text class="tiny" x="322" y="579">有效开口≈0.7m</text>
+    <path d="M380 573 L450 607 M450 573 L380 607" stroke="#dc2626" stroke-width="2"/>
+    <!-- kitchen hidden slider + parked panel -->
+    <path class="slider" d="M604 343 H700 M508 337 H592"/>
+    <text class="tiny" x="652" y="334">厨房滑门</text>
+    <!-- bath hidden slider: closed opening + open overhang -->
+    <path class="slider" d="M466 487 H550"/>
+    <path d="M550 487 H634" stroke="#d97706" stroke-width="4" stroke-dasharray="7 5"/>
+    <text class="tiny" x="548" y="518">卫浴滑门向东开 →</text>
+  </g>
+
+  <!-- swing doors -->
+  <g>
+    <!-- entry: outward into public corridor -->
+    <path class="door" d="M700 590 H796"/>
+    <path class="door" d="M700 494 A96 96 0 0 1 796 590"/>
+    <text class="tiny" x="738" y="615">入户门外开</text>
+    <!-- bedroom: opens into bedroom and parks along south wall -->
+    <path class="door" d="M700 470 H796"/>
+    <path class="door" d="M700 374 A96 96 0 0 1 796 470"/>
+  </g>
+
+  <!-- living furniture -->
+  <g>
+    <rect class="item" x="106" y="118" width="102" height="184" rx="10"/>
+    <path d="M129 124 V296 M185 124 V296" stroke="#c6a77d" stroke-width="2"/>
+    <text class="item-label" x="157" y="210" transform="rotate(-90 157 210)">双人沙发</text>
+
+    <rect class="item" x="124" y="410" width="156" height="84" rx="4"/>
+    <text class="item-label" x="202" y="452">书桌 1.3×0.7</text>
+    <circle cx="202" cy="395" r="20" fill="#fff" stroke="#697386" stroke-width="2"/>
+    <text class="tiny" x="187" y="399">座椅</text>
+
+    <rect class="item" x="196" y="506" width="96" height="84" rx="3"/>
+    <text class="item-label" x="244" y="548">冰箱</text>
+    <path class="door" d="M292 506 A84 84 0 0 1 376 590" opacity="0.75"/>
+    <path class="door" d="M292 590 L376 590" opacity="0.75"/>
+
+    <rect x="112" y="506" width="84" height="84" rx="8" fill="#e6f6df" stroke="#4d8b45" stroke-width="2" stroke-dasharray="6 4"/>
+    <text class="item-label" x="154" y="542">猫爬架</text>
+    <text class="tiny" x="126" y="563">人手难达</text>
+
+    <rect class="item" x="364" y="398" width="96" height="96" rx="4"/>
+    <text class="item-label" x="412" y="441">洗衣机</text>
+    <circle cx="412" cy="467" r="17" fill="none" stroke="#94a3b8" stroke-width="2"/>
+
+    <rect class="item" x="364" y="302" width="96" height="96" rx="4"/>
+    <text class="item-label" x="412" y="347">餐桌</text>
+    <text class="tiny" x="386" y="367">0.8×0.8</text>
+
+    <rect x="452" y="146" width="9" height="168" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+    <text class="tiny" x="447" y="230" text-anchor="end">投影幕墙 100–110″</text>
+    <circle cx="112" cy="284" r="7" fill="#334155"/>
+    <path d="M119 284 L451 230" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 5"/>
+  </g>
+
+  <!-- kitchen furniture -->
+  <g>
+    <rect class="item" x="466" y="116" width="228" height="90" rx="3"/>
+    <text class="item-label" x="580" y="150">保留水泥台面</text>
+    <text class="tiny" x="552" y="173">约 2.0×0.8m</text>
+    <rect x="604" y="119" width="86" height="82" rx="3" fill="#fee2e2" stroke="#b45309" stroke-width="2"/>
+    <circle cx="625" cy="144" r="10" fill="none" stroke="#b45309" stroke-width="2"/>
+    <circle cx="668" cy="144" r="10" fill="none" stroke="#b45309" stroke-width="2"/>
+    <text class="tiny" x="625" y="188">灶台</text>
+    <rect class="item-wet" x="466" y="254" width="44" height="90" rx="3"/>
+    <ellipse cx="488" cy="298" rx="14" ry="25" fill="none" stroke="#36869a" stroke-width="2"/>
+    <text class="tiny" x="487" y="330" text-anchor="middle">水槽</text>
+  </g>
+
+  <!-- bathroom fixtures -->
+  <g>
+    <circle cx="468" cy="358" r="9" fill="#64748b"/>
+    <text class="tiny" x="482" y="369">立管</text>
+    <rect class="item-wet" x="472" y="356" width="48" height="80" rx="18"/>
+    <ellipse cx="496" cy="379" rx="15" ry="11" fill="none" stroke="#36869a" stroke-width="2"/>
+    <text class="tiny" x="483" y="429">马桶</text>
+    <path d="M466 410 H526 V488 H466" fill="#d8f2f6" fill-opacity="0.65" stroke="#0e7490" stroke-width="2" stroke-dasharray="5 4"/>
+    <text class="tiny" x="494" y="466">淋浴</text>
+    <path d="M492 410 C492 436 512 436 512 410" fill="none" stroke="#0e7490" stroke-width="2"/>
+    <rect class="item-wet" x="544" y="446" width="36" height="48" rx="2"/>
+    <text class="tiny" x="562" y="462" text-anchor="middle">小</text>
+    <text class="tiny" x="562" y="476" text-anchor="middle">浴柜</text>
+    <path d="M520 430 L544 446" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+    <text x="526" y="420" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="10.5" fill="#dc2626">前距≈0.3m</text>
+  </g>
+
+  <!-- bedroom furniture -->
+  <g>
+    <rect class="item" x="706" y="116" width="240" height="156" rx="6"/>
+    <rect x="712" y="122" width="52" height="144" rx="8" fill="#f7f0e7" stroke="#c7b39a" stroke-width="1.5"/>
+    <line x1="772" y1="116" x2="772" y2="272" stroke="#c7b39a" stroke-width="2"/>
+    <text class="item-label" x="852" y="194">双人床 1.3×2.0</text>
+    <text class="tiny" x="720" y="287">床头贴西墙；床沿北窗下</text>
+
+    <rect x="952" y="116" width="102" height="348" rx="3" fill="#e4dfef" stroke="#665c7a" stroke-width="2"/>
+    <line x1="1003" y1="118" x2="1003" y2="462" stroke="#9488aa" stroke-width="1.5"/>
+    <text class="item-label" x="1003" y="326" transform="rotate(-90 1003 326)">整墙推拉衣柜 深0.9m</text>
+    <rect x="952" y="116" width="102" height="156" fill="#ef4444" fill-opacity="0.12" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="1003" y="207" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="12" fill="#b91c1c" text-anchor="middle">床挡住北段</text>
+  </g>
+
+  <!-- balcony -->
+  <g>
+    <path d="M112 608 H396" stroke="#4b9b6b" stroke-width="3" stroke-dasharray="10 6"/>
+    <text class="item-label" x="250" y="651">晾衣区（建议顶装升降杆）</text>
+    <rect class="item" x="400" y="596" width="58" height="108" rx="3"/>
+    <text class="item-label" x="429" y="650" transform="rotate(-90 429 650)">阳台收纳柜</text>
+  </g>
+
+  <!-- labels, kept away from furniture where possible -->
+  <g>
+    <text class="room-label" x="310" y="228">客厅</text>
+    <text class="room-sub" x="310" y="250">净 4.0×3.0m</text>
+    <text class="room-label" x="580" y="244">厨房</text>
+    <text class="room-sub" x="580" y="264">东西2.0 × 南北&lt;2.0m</text>
+    <text class="room-label" x="520" y="392" font-size="17">卫生间</text>
+    <text class="room-sub" x="520" y="408">净约1.05×0.75</text>
+    <text class="room-label" x="826" y="334">卧室</text>
+    <text class="room-sub" x="826" y="356">净 3.0×3.0m</text>
+    <text x="638" y="421" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="16" font-weight="700" fill="#475569" text-anchor="middle">走廊B</text>
+    <text x="620" y="550" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="16" font-weight="700" fill="#475569" text-anchor="middle">走廊A / 玄关</text>
+    <text class="room-sub" x="620" y="570">净宽 0.8m</text>
+    <text class="room-label" x="248" y="690" font-size="19">转角阳台</text>
+    <text x="880" y="535" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="19" font-weight="700" fill="#64748b" text-anchor="middle">公共走廊（非套内）</text>
+  </g>
+
+  <!-- bottleneck -->
+  <rect x="280" y="410" width="84" height="84" rx="6" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="8 5"/>
+  <path d="M322 404 V376" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <rect x="224" y="342" width="196" height="35" rx="7" fill="#fff7ed" stroke="#fb923c"/>
+  <text x="322" y="364" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="13" font-weight="700" fill="#b91c1c" text-anchor="middle">关键通道：净宽约 0.7m</text>
+
+  <!-- dimensions -->
+  <g>
+    <path class="dim" d="M100 96 V82 M460 96 V82 M700 96 V82 M1060 96 V82 M100 86 H1060"/>
+    <path d="M100 82 l8 -4 v8 z M460 82 l-8 -4 v8 z M460 82 l8 -4 v8 z M700 82 l-8 -4 v8 z M700 82 l8 -4 v8 z M1060 82 l-8 -4 v8 z" fill="#64748b"/>
+    <text class="dim-text" x="280" y="78">3.0m</text>
+    <text class="dim-text" x="580" y="78">2.0m</text>
+    <text class="dim-text" x="880" y="78">3.0m</text>
+
+    <path class="dim" d="M84 110 H68 M84 590 H68 M84 710 H68 M72 110 V710"/>
+    <path d="M68 110 l-4 8 h8 z M68 590 l-4 -8 h8 z M68 590 l-4 8 h8 z M68 710 l-4 -8 h8 z" fill="#64748b"/>
+    <text class="dim-text" x="48" y="350" transform="rotate(-90 48 350)">主屋南北 4.0m</text>
+    <text class="dim-text" x="48" y="650" transform="rotate(-90 48 650)">阳台 1.0m（名义）</text>
+  </g>
+
+  <!-- compass -->
+  <g transform="translate(1160 105)">
+    <circle cx="42" cy="42" r="35" fill="#fff" stroke="#94a3b8" stroke-width="2"/>
+    <path d="M42 68 V18" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="42" y="4" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#172033">北 N</text>
+    <text x="87" y="47" font-family="sans-serif" font-size="14" fill="#475569">东 E</text>
+  </g>
+
+  <!-- human-readable interpretation panel -->
+  <g transform="translate(1120 200)">
+    <rect x="0" y="0" width="330" height="510" rx="14" fill="#ffffff" stroke="#d6dae1" stroke-width="1.5"/>
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="20" font-weight="750" fill="#172033">我对户型的理解</text>
+    <text class="note" x="24" y="75">① 主体是 4×8m 长方形；东南角</text>
+    <text class="note" x="42" y="98">3㎡为公共走廊，西南加 3㎡阳台，</text>
+    <text class="note" x="42" y="121">所以建筑面积校核仍为 32㎡。</text>
+
+    <text class="note" x="24" y="159">② 入户后先到 L 形走廊：</text>
+    <text class="note" x="42" y="182">北侧进卫生间，向西进客厅，</text>
+    <text class="note" x="42" y="205">转入走廊B后到厨房和卧室。</text>
+
+    <text class="note" x="24" y="243">③ 客厅同时承担会客、工作、就餐、</text>
+    <text class="note" x="42" y="266">洗衣、冰箱和去阳台的交通功能。</text>
+    <text class="note" x="42" y="289">书桌—洗衣机之间约0.7m是唯一主通道。</text>
+
+    <text class="note" x="24" y="327">④ 卫生间极小且唯一立管在西北角：</text>
+    <text class="note" x="42" y="350">整间湿区，马桶前距约0.3m，</text>
+    <text class="note" x="42" y="373">浴柜压门洞5cm，门净宽约0.65m。</text>
+
+    <text class="note" x="24" y="411">⑤ 两个已知“够不到”问题：</text>
+    <text class="note" x="42" y="434">猫爬架角四面围合；衣柜北段被床挡。</text>
+
+    <line x1="24" y1="462" x2="306" y2="462" stroke="#e2e8f0"/>
+    <line x1="28" y1="489" x2="55" y2="489" class="window"/><text class="tiny" x="68" y="493">窗 / 高窗</text>
+    <line x1="170" y1="489" x2="197" y2="489" class="slider"/><text class="tiny" x="208" y="493">滑门</text>
+  </g>
+
+  <g transform="translate(1120 735)">
+    <rect width="330" height="100" rx="12" fill="#fff7ed" stroke="#fdba74"/>
+    <text x="18" y="29" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="14" font-weight="700" fill="#9a3412">图面优先表达空间关系，不作为施工放样图</text>
+    <text x="18" y="54" class="tiny">阳台净宽、墙体厚度、排风井与热水器位置仍待实测/确认。</text>
+    <text x="18" y="77" class="tiny">蓝=窗；橙=滑门；紫=平开门；红虚线=冲突/瓶颈。</text>
+  </g>
+</svg>
