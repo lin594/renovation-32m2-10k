@@ -1,0 +1,54 @@
+version: 1
+updated: 2026-08-31
+
+items:
+  - id: INV-0001
+    category: electrical_material
+    item: "6平方毫米蓝色铜线"
+    original_quantity: 100
+    used_quantity: 40
+    remaining_quantity: 60
+    unit: m
+    quantity_accuracy: estimated
+    location: "现场，具体存放位置待补"
+    condition: usable
+    planned_use: "配电箱到各房间的主线"
+    note: "计划用改色电工胶布标识用途；是否可按该方案施工需安全核验"
+    risk_ref: SAF-0002
+
+  - id: INV-0002
+    category: recyclable
+    item: "拆除的旧铁门"
+    quantity: 4
+    unit: 扇
+    location: "现场，具体存放位置待补"
+    condition: removed_pending_sale
+    planned_use: "废品回收"
+    expected_income_cny: null
+    task_ref: TASK-0004
+
+  - id: INV-0003
+    category: reusable_furniture
+    item: "与原厨房台面平齐的二层木柜"
+    quantity: 1
+    unit: 个
+    location: 厨房
+    condition: moisture_damaged
+    planned_use: "保留、修复或更换待定"
+
+  - id: INV-0004
+    category: fixed_fixture
+    item: "阳台升降晾衣架（靠客厅）"
+    quantity: 1
+    unit: 条
+    location: 阳台
+    condition: functional
+
+  - id: INV-0005
+    category: fixed_fixture
+    item: "阳台升降晾衣架（另一条）"
+    quantity: 1
+    unit: 条
+    location: 阳台
+    condition: broken_cannot_lift
+    planned_use: "维修、固定使用或拆除待定"

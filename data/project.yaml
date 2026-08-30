@@ -1,0 +1,76 @@
+version: 1
+updated: 2026-08-31
+project: "32㎡二手房翻新至可入住"
+owner_role: "业主兼实际策划人"
+status: in_progress
+priority: "低成本、高性价比；安全项不降级"
+
+phases:
+  - id: survey_design
+    name: "复测与方案设计"
+    status: in_progress
+  - id: demolition
+    name: "拆旧与清运"
+    status: in_progress
+  - id: utilities
+    name: "水电燃气"
+    status: in_progress
+  - id: waterproof_surfaces
+    name: "防水与墙顶地面"
+    status: todo
+  - id: doors_windows
+    name: "门窗与防猫纱窗"
+    status: todo
+  - id: fixtures_appliances
+    name: "洁具、厨具、家电与收纳"
+    status: todo
+  - id: commissioning
+    name: "检测、验收、保洁与入住"
+    status: todo
+
+completed_work:
+  - id: WORK-0001
+    phase: utilities
+    item: "入户线及配电箱重新铺设"
+    status: done
+    cost_ref: EXP-0001
+  - id: WORK-0002
+    phase: utilities
+    item: "卫生间、热水器及洗衣机相关给排水改造"
+    status: done
+    cost_refs: [EXP-0002, EXP-0003, EXP-0004]
+  - id: WORK-0003
+    phase: demolition
+    item: "卫生间、卧室、厨房和客厅通道旧门拆除"
+    status: done
+    cost_ref: EXP-0005
+  - id: WORK-0004
+    phase: demolition
+    item: "屋内原有电路全部拆除"
+    status: done
+
+active_tasks:
+  - id: TASK-0001
+    phase: survey_design
+    item: "复测厨房原台面、上层台面和燃气管净空"
+    status: todo
+  - id: TASK-0002
+    phase: utilities
+    item: "设计配电箱至各房间的明装线路和回路"
+    status: todo
+  - id: TASK-0003
+    phase: doors_windows
+    item: "为全部外窗选择三猫家庭防逃纱窗"
+    status: todo
+  - id: TASK-0004
+    phase: demolition
+    item: "回收四扇已拆旧铁门并登记收入"
+    status: todo
+  - id: TASK-0005
+    phase: survey_design
+    item: "核验卫生间浴霸位置及安全条件"
+    status: blocked_by_safety_review
+  - id: TASK-0006
+    phase: utilities
+    item: "确认老小区无地线条件下的合规供电方案"
+    status: blocked_by_safety_review
