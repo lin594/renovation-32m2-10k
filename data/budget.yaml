@@ -1,0 +1,22 @@
+version: 1
+updated: 2026-08-31
+currency: CNY
+
+# 总预算尚未由业主确定；实际支出只从 ledger.csv 计算，禁止在此手写累计值。
+overall_budget_cny: null
+contingency_cny: null
+actuals_source: "data/ledger.csv"
+
+categories:
+  - { id: demolition, name: "拆旧与清运", planned_cny: null }
+  - { id: electrical, name: "强电与照明", planned_cny: null }
+  - { id: plumbing, name: "给排水", planned_cny: null }
+  - { id: gas, name: "燃气与热水器", planned_cny: null }
+  - { id: bathroom, name: "卫生间", planned_cny: null }
+  - { id: kitchen, name: "厨房", planned_cny: null }
+  - { id: doors_windows, name: "门窗与防猫纱窗", planned_cny: null }
+  - { id: surfaces, name: "墙顶地面", planned_cny: null }
+  - { id: furniture_storage, name: "家具与收纳", planned_cny: null }
+  - { id: appliances, name: "家电", planned_cny: null }
+  - { id: pet_safety, name: "猫咪安全与设施", planned_cny: null }
+  - { id: contingency, name: "不可预见费", planned_cny: null }

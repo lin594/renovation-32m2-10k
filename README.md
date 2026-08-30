@@ -15,6 +15,7 @@
 ├── house.yaml              # 户型、点位、家具和现场事实的主数据
 ├── data/
 │   ├── ledger.csv          # 所有支出、收入、退款和待收款
+│   ├── budget.yaml         # 总预算和分类预算目标
 │   ├── project.yaml        # 阶段、任务和项目状态
 │   ├── inventory.yaml      # 已有材料、余料和可复用物品
 │   └── risks.yaml          # 安全、质量、成本和工期风险
@@ -59,6 +60,7 @@ git log --oneline --decorate
 |---|---|
 | 空间、门窗、固定点位 | `house.yaml` |
 | 实际收支 | `data/ledger.csv` |
+| 总预算和分类目标 | `data/budget.yaml` |
 | 材料余量 | `data/inventory.yaml` |
 | 阶段和任务 | `data/project.yaml` |
 | 风险及处置状态 | `data/risks.yaml` |
