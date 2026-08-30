@@ -19,6 +19,7 @@
 │   ├── project.yaml        # 阶段、任务和项目状态
 │   ├── inventory.yaml      # 已有材料、余料和可复用物品
 │   ├── procurement.yaml    # 待购、询价、下单、到货与验收状态
+│   ├── finishes.yaml       # 墙顶地面、涂装体系和风格方向
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
 │   ├── v4/                 # 当前六类专业图及职责说明
@@ -67,6 +68,7 @@ git log --oneline --decorate
 | 总预算和分类目标 | `data/budget.yaml` |
 | 材料余量 | `data/inventory.yaml` |
 | 采购状态 | `data/procurement.yaml` |
+| 墙顶地面与涂装 | `data/finishes.yaml` |
 | 阶段和任务 | `data/project.yaml` |
 | 风险及处置状态 | `data/risks.yaml` |
 | 方案取舍原因 | `docs/decisions/` |

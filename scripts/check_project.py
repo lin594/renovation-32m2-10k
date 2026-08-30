@@ -17,6 +17,7 @@ REQUIRED = (
     "AGENTS.md",
     "house.yaml",
     "data/budget.yaml",
+    "data/finishes.yaml",
     "data/inventory.yaml",
     "data/ledger.csv",
     "data/project.yaml",

@@ -74,3 +74,14 @@ items:
     location: "卫生间洗衣机排水地漏"
     condition: installed
     note: "洗衣机排水低位穿墙后接入该地漏"
+
+  - id: INV-0008
+    category: soft_furnishing
+    item: "罗马杆+窗帘"
+    quantity: 3
+    unit: 套
+    locations: ["客厅", "卧室", "阳台门前"]
+    condition: existing_usable_style_conflict
+    planned_use: "改造、换布、染色、拆分利用或回收待定"
+    note: "当前风格与宋氏美学/侘寂中古方向冲突"
+    task_ref: TASK-0016

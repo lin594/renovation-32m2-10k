@@ -17,7 +17,7 @@ phases:
     status: in_progress
   - id: waterproof_surfaces
     name: "防水与墙顶地面"
-    status: todo
+    status: in_progress
   - id: doors_windows
     name: "门窗与防猫纱窗"
     status: todo
@@ -47,6 +47,10 @@ completed_work:
   - id: WORK-0004
     phase: demolition
     item: "屋内原有电路全部拆除"
+    status: done
+  - id: WORK-0005
+    phase: waterproof_surfaces
+    item: "全屋旧墙皮基本铲平"
     status: done
 
 active_tasks:
@@ -90,3 +94,9 @@ active_tasks:
     phase: doors_windows
     item: "选择并购买卧室门"
     status: todo
+  - { id: TASK-0011, phase: waterproof_surfaces, item: "检查并修复厨房水槽铁质排水管疑似渗漏", status: todo }
+  - { id: TASK-0012, phase: waterproof_surfaces, item: "核对防水/墙固/腻子/底漆/面漆产品体系与用量", status: todo }
+  - { id: TASK-0013, phase: waterproof_surfaces, item: "查明客厅西墙南部及东墙南部疑似受潮来源", status: todo }
+  - { id: TASK-0014, phase: waterproof_surfaces, item: "复测石塑地板叠铺后的门槛和门扇净高", status: todo }
+  - { id: TASK-0015, phase: waterproof_surfaces, item: "对厨卫白色瓷砖改色体系做小样测试", status: todo }
+  - { id: TASK-0016, phase: fixtures_appliances, item: "制定三套罗马杆窗帘的改造或旧物利用方案", status: todo }

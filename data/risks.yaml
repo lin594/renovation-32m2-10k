@@ -86,3 +86,50 @@ risks:
     concern: "猫抓板会增加猫到达窗台的便利性，普通防蚊纱窗可能不能防推开或抓破"
     next_action: "把纱网、框体固定、锁扣、防钻缝和应急开启方式作为同一套验收项"
     task_ref: TASK-0003
+
+  - id: SAF-0009
+    domain: moisture
+    title: "疑似受潮墙面来源尚未确认"
+    severity: high
+    status: open
+    confirmed_fact: "客厅西墙南部疑似受潮；东墙南部可能受卫生间水影响"
+    concern: "未解决水源就批腻子和刷漆，可能再次起皮、发霉或返碱"
+    next_action: "在连续干燥天气和用水条件下检查含水/渗水路径，先修复来源再封闭基层"
+    task_ref: TASK-0013
+
+  - id: SAF-0010
+    domain: waterproofing
+    title: "卫生间地面防水与自铺瓷砖体系尚未确认"
+    severity: critical
+    status: open
+    concern: "候选防水涂料、墙固、旧基层、瓷砖胶/砂浆和闭水验收之间的兼容性未知"
+    guardrail: "不得把装饰性防水漆名称直接等同于卫生间地面瓷砖下防水系统"
+    next_action: "核对准确产品型号和技术资料，确定基层处理、涂刷遍数/厚度、节点加强、闭水和贴砖体系"
+    task_ref: TASK-0012
+
+  - id: SAF-0011
+    domain: drainage
+    title: "厨房水槽铁质排水管疑似渗漏"
+    severity: high
+    status: open
+    concern: "渗漏可能持续影响水槽墙和后续腻子/涂层"
+    next_action: "清洁擦干后做满水与连续排水测试，定位接口、锈蚀或管体漏点并修复"
+    task_ref: TASK-0011
+
+  - id: SAF-0012
+    domain: flooring
+    title: "现有瓷砖上叠铺石塑地板的标高和基层条件未复测"
+    severity: medium
+    status: open
+    concern: "可能影响门扇、门槛、滑门、柜体和局部潮气排出"
+    next_action: "测量平整度、含水/空鼓、成品厚度和所有门口净高后再采购"
+    task_ref: TASK-0014
+
+  - id: SAF-0013
+    domain: tile_coating
+    title: "厨卫既有白色瓷砖刷漆改色耐久性未知"
+    severity: medium
+    status: open
+    concern: "湿热、油污、清洁摩擦和基层附着可能导致起皮；地面还涉及防滑"
+    next_action: "确认只做墙砖还是包含地砖，在隐蔽区域完成清洁、底涂、面涂小样并做附着/耐水测试"
+    task_ref: TASK-0015

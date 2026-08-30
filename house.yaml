@@ -14,6 +14,8 @@ meta:
   owner_role: "业主兼实际策划人"
   lifecycle_scope: "二手房购入后 → 设计/拆旧/采购/施工/验收 → 可入住"
   top_goals: ["低成本高性价比", "小空间最大化", "卫生间极限布局", "全屋收纳", "三猫家庭安全"]
+  design_style: { primary: "宋氏美学", supporting: ["侘寂", "中古"], color: "偏暖黄色" }
+  finishes_ref: "data/finishes.yaml"
 
 coordinate_system:
   origin: "客厅西北角 (0,0)"
@@ -226,8 +228,14 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "浴室柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
-    - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", note: "东墙整面；北段仍被床挡（见issues）" }
+    - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "全部尚未购买；东墙整面；北段仍被床挡（见issues）" }
     - { item: "长窄柜/书桌", rect_nominal: [1.3, 1.7, 5, 7], orient: "位于床南侧、与床平行，西端靠墙", use: ["床头柜", "书桌"], status: "尺寸待定" }
+
+surface_finishes:
+  source: "data/finishes.yaml"
+  wall_old_skin: "已基本铲平"
+  floor_existing: "瓷砖"
+  style: "宋氏美学 + 侘寂中古，偏暖黄色"
 
 circulation:
   paths:

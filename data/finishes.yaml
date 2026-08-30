@@ -1,0 +1,67 @@
+version: 1
+updated: 2026-08-31
+status: planning
+
+design_direction:
+  primary: "宋氏美学"
+  supporting: ["侘寂", "中古"]
+  color_temperature: "偏暖、偏黄色"
+  avoid: ["冷白", "高亮塑料感", "与整体冲突的现有窗帘风格"]
+
+existing_substrate:
+  wall_old_skin: "已基本铲平"
+  bathroom_walls: "已有白色瓷砖"
+  kitchen_tiles: "已有白色瓷砖"
+  floors: "全屋现有瓷砖地板"
+
+preconditions:
+  - { item: "修复厨房水槽铁质排水管疑似渗漏", task_ref: TASK-0011, risk_ref: SAF-0011 }
+  - { item: "确认客厅西墙南部和东墙南部受潮来源", task_ref: TASK-0013, risk_ref: SAF-0009 }
+  - { item: "核对防水涂料、墙固、腻子、底漆和面漆的产品体系兼容性", task_ref: TASK-0012, risk_ref: SAF-0010 }
+
+proposed_sequence:
+  - "完成渗漏修复和潮湿来源诊断"
+  - "基层清理、除尘和必要修补"
+  - "按确认后的产品体系施工墙固/界面剂与防水层"
+  - "线下购买腻子并找平墙面"
+  - "底漆一遍（暂按产品标称约50㎡/桶）"
+  - "偏暖黄色面漆两遍（暂按产品标称约30㎡/桶）"
+
+waterproof_or_moisture_zones:
+  - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: planned, risk_ref: SAF-0010 }
+  - { zone: "阳台", scope: "除窗户外的墙面/顶面等区域", status: planned }
+  - { zone: "客厅顶部", scope: "具体边界待量", status: planned }
+  - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
+  - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
+  - { zone: "厨房水槽墙壁", reason: "邻近水点且铁质排水管疑似渗漏", status: blocked_by_repair, risk_ref: SAF-0011 }
+
+product_candidates:
+  - { item: "防水涂料", candidate: "三棵树S2（用户暂称，准确产品名/用途待核对）", procurement_ref: BUY-0010 }
+  - { item: "墙固/界面剂", procurement_ref: BUY-0011 }
+  - { item: "腻子", purchase_channel: offline, procurement_ref: BUY-0012 }
+  - { item: "底漆", candidate: "小建刷新S2相关产品（准确名称待核）", price_cny: 149, stated_coverage: "约50㎡一遍", procurement_ref: BUY-0013 }
+  - { item: "面漆", candidate: "小建刷新S2相关产品（准确名称待核）", price_cny: 299, stated_coverage: "约30㎡两遍", color: "偏暖黄色", procurement_ref: BUY-0014 }
+  - { item: "刷漆工具套装", price_cny: 70, procurement_ref: BUY-0015 }
+
+floor_plan:
+  existing: "瓷砖地板"
+  zones:
+    - { zone: "客厅/卧室/厨房/走廊等干区", finish: "现有瓷砖上铺石塑木纹地板", procurement_ref: BUY-0016, risk_ref: SAF-0012 }
+    - { zone: "卫生间", finish: "业主自行铺设瓷砖", procurement_ref: BUY-0017, risk_ref: SAF-0010 }
+    - { zone: "阳台", finish: "菠萝格地板+鹅卵石", procurement_ref: BUY-0018 }
+
+refinishing:
+  - item: "书桌"
+    plan: "改成暗色木头效果"
+    status: "方案待定；此前记录为尚未购买，需先确认材质和来源"
+    procurement_ref: BUY-0020
+  - item: "厨房和卫生间既有白色瓷砖"
+    plan: "刷漆改色"
+    color: todo
+    procurement_ref: BUY-0019
+    risk_ref: SAF-0013
+  - item: "罗马杆和窗帘"
+    plan: "改造、处理或旧物利用"
+    reason: "现有风格与宋氏美学冲突"
+    inventory_ref: INV-0008
+    task_ref: TASK-0016
