@@ -26,6 +26,7 @@ end
 
 ledger_ids = CSV.read(File.join(ROOT, "data", "ledger.csv"), headers: true).map { |row| row["id"] }.compact.to_set
 inventory_ids = Array(documents.dig("inventory.yaml", "items")).map { |item| item["id"] }.compact.to_set
+procurement_ids = Array(documents.dig("procurement.yaml", "items")).map { |item| item["id"] }.compact.to_set
 risk_ids = Array(documents.dig("risks.yaml", "risks")).map { |risk| risk["id"] }.compact.to_set
 project = documents.fetch("project.yaml", {})
 task_ids = Array(project["active_tasks"]).map { |task| task["id"] }.compact.to_set
@@ -35,6 +36,7 @@ targets = {
   "cost_ref" => ledger_ids,
   "cost_refs" => ledger_ids,
   "inventory_ref" => inventory_ids,
+  "procurement_ref" => procurement_ids,
   "risk_ref" => risk_ids,
   "risk_refs" => risk_ids,
   "task_ref" => task_ids,

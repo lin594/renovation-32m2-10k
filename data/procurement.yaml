@@ -1,0 +1,62 @@
+version: 1
+updated: 2026-08-31
+
+status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
+
+items:
+  - id: BUY-0001
+    category: door
+    room: kitchen
+    item: "厨房隐藏移门"
+    status: pending_custom_order
+    requirements: ["门洞约0.8m", "停泊位与高窗/水槽台面协调", "可检修"]
+
+  - id: BUY-0002
+    category: door
+    room: bathroom
+    item: "卫生间隐藏移门"
+    status: pending_custom_order
+    requirements: ["门洞约0.7m", "有效净宽目标约0.65m", "开启门扇不得遮挡正常通道", "耐潮"]
+    note: "先完成门详图再下单"
+
+  - id: BUY-0003
+    category: appliance
+    room: living_room
+    item: "洗烘一体滚筒洗衣机"
+    status: not_purchased
+    planned_location: "客厅东南角"
+    requirements: ["匹配现有进排水", "确认外形尺寸", "确认开门和检修空间"]
+
+  - id: BUY-0004
+    category: sanitary_fixture
+    room: bathroom
+    item: "马桶"
+    status: not_purchased
+    requirements:
+      rough_in_mm: 350
+      target_depth_mm: 580
+      placement: "背靠北墙、朝南"
+    note: "购买前以完成面复测坑距，并核对法兰、排污口和实际总深"
+
+  - id: BUY-0005
+    category: sanitary_fixture
+    room: bathroom
+    item: "壁挂浴室柜"
+    status: not_purchased
+    target_size_m: [0.3, 0.4]
+    requirements: ["耐水", "压门洞不超过已接受的约5cm", "保留阀门和存水弯检修"]
+
+  - id: BUY-0006
+    category: furniture
+    room: living_room
+    item: "双人沙发"
+    status: not_purchased
+    target_footprint_m: [1.6, 0.9]
+
+  - id: BUY-0007
+    category: furniture
+    room: living_room
+    item: "书桌和椅子"
+    status: not_purchased
+    desk_target_size_m: [1.3, 0.7]
+    requirements: ["书桌西侧贴墙", "东侧与冰箱东侧平齐", "椅子不得长期阻断主通道"]

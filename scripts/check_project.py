@@ -20,6 +20,7 @@ REQUIRED = (
     "data/inventory.yaml",
     "data/ledger.csv",
     "data/project.yaml",
+    "data/procurement.yaml",
     "data/risks.yaml",
     "diagrams/house-plan-v2-framework.svg",
     "diagrams/house-plan-v3-furniture.svg",

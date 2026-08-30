@@ -18,6 +18,7 @@
 │   ├── budget.yaml         # 总预算和分类预算目标
 │   ├── project.yaml        # 阶段、任务和项目状态
 │   ├── inventory.yaml      # 已有材料、余料和可复用物品
+│   ├── procurement.yaml    # 待购、询价、下单、到货与验收状态
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
 │   └── archive/            # 已被替代但需要保留的历史图纸
@@ -62,6 +63,7 @@ git log --oneline --decorate
 | 实际收支 | `data/ledger.csv` |
 | 总预算和分类目标 | `data/budget.yaml` |
 | 材料余量 | `data/inventory.yaml` |
+| 采购状态 | `data/procurement.yaml` |
 | 阶段和任务 | `data/project.yaml` |
 | 风险及处置状态 | `data/risks.yaml` |
 | 方案取舍原因 | `docs/decisions/` |
