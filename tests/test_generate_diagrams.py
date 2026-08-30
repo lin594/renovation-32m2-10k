@@ -1,0 +1,57 @@
+from __future__ import annotations
+
+import tempfile
+from pathlib import Path
+import unittest
+import xml.etree.ElementTree as ET
+
+from scripts import generate_diagrams
+
+
+EXPECTED = {
+    "00-existing-survey.svg": ("existing-survey", "现状测量图"),
+    "10-furniture-circulation.svg": ("furniture-circulation", "家具与动线图"),
+    "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
+    "30-electrical-low-voltage.svg": ("electrical-low-voltage", "强弱电点位图"),
+    "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
+    "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
+}
+
+
+class GenerateDiagramsTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.output_dir = Path(self.temp_dir.name)
+        generate_diagrams.generate_all(self.output_dir)
+
+    def tearDown(self) -> None:
+        self.temp_dir.cleanup()
+
+    def test_generates_exactly_six_svg_files(self) -> None:
+        actual = {path.name for path in self.output_dir.glob("*.svg")}
+        self.assertEqual(actual, set(EXPECTED))
+
+    def test_each_svg_has_role_title_and_valid_xml(self) -> None:
+        for filename, (role, title) in EXPECTED.items():
+            path = self.output_dir / filename
+            root = ET.parse(path).getroot()
+            self.assertEqual(root.attrib["data-diagram-role"], role)
+            self.assertIn(title, path.read_text(encoding="utf-8"))
+
+    def test_furniture_plan_does_not_draw_bath_slider_in_passage(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
+        self.assertNotIn('data-state="bath-slider-open-in-passage"', furniture)
+        self.assertIn('data-detail="bath-slider-constraint"', doors)
+
+    def test_status_and_specialty_layers_are_present(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")
+        electrical = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
+        self.assertIn('data-status="not-purchased"', furniture)
+        self.assertIn("燃气灶直连支路", plumbing)
+        self.assertIn("光猫 / Wi-Fi", electrical)
+
+
+if __name__ == "__main__":
+    unittest.main()
