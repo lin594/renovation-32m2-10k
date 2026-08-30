@@ -1,0 +1,88 @@
+version: 1
+updated: 2026-08-31
+
+severity_order: [critical, high, medium, low]
+status_values: [open, investigating, mitigated, accepted, closed]
+
+risks:
+  - id: SAF-0001
+    domain: electrical
+    title: "老小区据称无保护地线"
+    severity: critical
+    status: open
+    confirmed_fact: "业主口述老小区没有地线；配电箱含总空开、延时送电器、3个漏保和2个空开"
+    concern: "卫生间浴霸、空调、热水器及厨房设备包含高功率或潮湿环境用电"
+    guardrail: "漏保和延时送电设备不自动视为保护接地替代；不得仅凭配电箱器件数量关闭风险"
+    next_action: "由合格电工现场检测入户系统、PE/等电位条件、绝缘和回路保护，并记录检测结果"
+    blocks: ["浴霸继续使用结论", "全屋电路施工图", "最终通电验收"]
+
+  - id: SAF-0002
+    domain: electrical
+    title: "蓝色6平方铜线拟通过胶布改色后承担不同导体功能"
+    severity: high
+    status: open
+    confirmed_fact: "100m蓝色6平方铜线约使用40m，余约60m，计划作为配电箱至各房间主线"
+    concern: "导体识别、全路径可辨识性、端接一致性和所在地施工验收要求尚未确认"
+    guardrail: "该计划当前是材料利用提案，不是已批准施工方案"
+    next_action: "确定供电系统、回路用途和当地要求后，由电工书面确认线色/重新标识方案；必要时购买正确颜色导线"
+    inventory_ref: INV-0001
+
+  - id: SAF-0003
+    domain: bathroom_electrical
+    title: "卫生间东墙偏北的现有浴霸可能受水"
+    severity: critical
+    status: open
+    confirmed_fact: "浴霸位于卫生间东墙偏北；卫生间按全间湿区设计"
+    unknowns: ["型号", "防护等级", "安装高度", "距淋浴出水范围", "供电回路", "接地/等电位条件"]
+    guardrail: "在上述条件完成专业核验前，不把现位置标记为可继续使用"
+    next_action: "拍摄铭牌和全景，测量位置关系，由电工核验回路、防护和安装位置；比较移位、更换或取消方案"
+    task_ref: TASK-0005
+
+  - id: SAF-0004
+    domain: gas
+    title: "厨房北墙燃气管计划位于架空瓷砖台面下"
+    severity: critical
+    status: open
+    confirmed_fact: "燃气从厨房东墙入户，沿北墙向西约2m，再向南接燃气热水器"
+    concern: "架空台面可能影响管道可见性、通风、检修、阀门操作或燃气验收"
+    guardrail: "不得先封盖后询问验收；图纸中的台面仅为待核验方案"
+    next_action: "补充燃气管、阀门、接头、灶台和瓷砖层的立面尺寸，向所在地燃气服务方确认可接受做法"
+
+  - id: SAF-0005
+    domain: gas_water_heater
+    title: "燃气热水器位于厨房西墙靠南、水槽上方"
+    severity: high
+    status: open
+    unknowns: ["热水器型号", "烟管路径", "电源与插座位置", "距水槽和可燃物距离", "厨房通风条件"]
+    concern: "水汽、飞溅、排烟和检修空间需与实际设备共同校核"
+    next_action: "确定型号后按厂家资料和所在地燃气验收要求完成设备立面图"
+
+  - id: SAF-0006
+    domain: drainage
+    title: "洗衣机地漏与马桶最终共用排水管道"
+    severity: medium
+    status: open
+    confirmed_fact: "洗衣机排水低位穿墙接卫生间防臭地漏，最终与马桶共用排水路径"
+    concern: "排水能力、返水、异味和检修条件尚未经过实际排水测试"
+    next_action: "封闭饰面前进行洗衣机最大排水量与马桶连续排水测试，记录是否返水或冒泡"
+
+  - id: SAF-0007
+    domain: kitchen_fixture
+    title: "伸缩杆和三块瓷砖组成的架空台面拟承载灶台"
+    severity: high
+    status: open
+    confirmed_fact: "拟用3块0.4×0.6m瓷砖在0.5×2m原台面上方形成夹层，夹层放锅具，灶台位于上层"
+    unknowns: ["伸缩杆数量", "固定方式", "高度", "瓷砖厚度", "灶台重量", "锅具荷载", "耐热与防滑措施"]
+    concern: "存在倾倒、滑移、局部破裂、热影响及与燃气管冲突的可能"
+    guardrail: "未完成稳定性和燃气净空校核前，不按该方案采购或安装"
+    next_action: "先画带尺寸立面并做总荷载清单，再比较伸缩杆、角钢/支架和成品置物架三种低成本方案"
+
+  - id: SAF-0008
+    domain: pet_safety
+    title: "三只猫环境下全部外窗尚未更换防逃纱窗"
+    severity: high
+    status: open
+    confirmed_fact: "全屋有三只猫；阳台窗下还计划安装猫抓板"
+    concern: "猫抓板会增加猫到达窗台的便利性，普通防蚊纱窗可能不能防推开或抓破"
+    next_action: "把纱网、框体固定、锁扣、防钻缝和应急开启方式作为同一套验收项"
+    task_ref: TASK-0003
