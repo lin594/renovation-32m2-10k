@@ -67,3 +67,9 @@ git log --oneline --decorate
 | 方案取舍原因 | `docs/decisions/` |
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
+
+当前图纸：
+
+- `diagrams/house-plan-v2-framework.svg`：空间框架与门窗；
+- `diagrams/house-plan-v3-furniture.svg`：家具、厨房台面与阳台设施；
+- `diagrams/house-plan-v3-services.svg`：燃气、电气、空调、浴霸和穿墙点位。

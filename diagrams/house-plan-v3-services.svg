@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" role="img" aria-labelledby="title desc">
+  <title id="title">32平方米旧房机电和明线点位图 v3</title>
+  <desc id="desc">表示燃气入口和管道、燃气热水器、浴霸、空调、吊扇、暗盒、配电箱和四个明线穿墙洞；尚未设计具体回路。</desc>
+  <defs>
+    <pattern id="public" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/></pattern>
+    <style>
+      text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}.wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square}.iw{fill:none;stroke:#475569;stroke-width:5}.win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+      .gas{fill:#fff7ed;stroke:#ea580c;stroke-width:3}.elec{fill:#fff;stroke:#2563eb;stroke-width:3}.hvac{fill:#eff6ff;stroke:#0284c7;stroke-width:2.5}.ceil{fill:#f5f3ff;stroke:#7c3aed;stroke-width:2.5}
+      .note{font-size:15px;fill:#334155}.tiny{font-size:11.5px;fill:#526175}.pt{font-size:12px;font-weight:700;fill:#fff;text-anchor:middle;dominant-baseline:middle}.room{font-size:17px;font-weight:750;fill:#64748b;text-anchor:middle}
+    </style>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="1400" height="850" fill="#fbfaf7"/>
+  <text x="70" y="52" font-size="30" font-weight="750" fill="#172033">机电设备与明线点位 · v3</text>
+  <text x="70" y="78" font-size="14" fill="#64748b">这是“现有/计划点位图”，不是完整电路施工图；未擅自补画回路、插座数量或线径</text>
+
+  <!-- subdued room base -->
+  <rect x="100" y="130" width="300" height="400" fill="#f8f3ea"/>
+  <rect x="100" y="530" width="300" height="100" fill="#eef7ef"/>
+  <rect x="400" y="130" width="200" height="200" fill="#fbf3d9"/>
+  <rect x="400" y="330" width="100" height="120" fill="#e7f5f8"/>
+  <rect x="500" y="330" width="100" height="120" fill="#f1f4f7"/>
+  <rect x="400" y="450" width="200" height="80" fill="#f1f4f7"/>
+  <rect x="600" y="130" width="300" height="300" fill="#f1eef8"/>
+  <rect x="600" y="430" width="300" height="100" fill="url(#public)"/>
+  <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
+  <path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H600M600 130V345M600 425V530M600 430H900M100 530H250"/>
+  <path d="M400 450V530" stroke="#f8f3ea" stroke-width="9"/><path d="M520 330H600" stroke="#f1f4f7" stroke-width="9"/><path d="M405 450H475" stroke="#f1f4f7" stroke-width="9"/><path d="M600 345V425" stroke="#f1eef8" stroke-width="9"/><path d="M600 450V530" stroke="#f1f5f9" stroke-width="9"/><path d="M250 530H400" stroke="#eef7ef" stroke-width="9"/>
+  <g><path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/></g>
+  <text class="room" x="250" y="220">客厅</text><text class="room" x="500" y="230">厨房</text><text class="room" x="450" y="385">卫生间</text><text class="room" x="750" y="315">卧室</text><text class="room" x="500" y="493">玄关/走廊</text><text class="room" x="250" y="590">阳台</text>
+
+  <!-- gas inlet on east wall of kitchen, near north -->
+  <g>
+    <circle class="gas" cx="598" cy="165" r="13"/><text x="598" y="170" font-size="15" font-weight="800" fill="#c2410c" text-anchor="middle">燃</text>
+    <path d="M611 165H676" stroke="#ea580c" stroke-width="2"/>
+    <text x="684" y="160" font-size="13" font-weight="700" fill="#c2410c">燃气入户点</text><text class="tiny" x="684" y="179">厨房东墙、靠北、灶台上方</text>
+    <!-- heater on west wall, near south, above sink -->
+    <rect class="gas" x="405" y="255" width="46" height="64" rx="4"/>
+    <path d="M414 270H442M414 280H442M428 290V309" stroke="#ea580c" stroke-width="2"/>
+    <text x="460" y="279" font-size="13" font-weight="700" fill="#c2410c">燃气热水器</text><text class="tiny" x="460" y="298">厨房西墙靠南；水槽上方</text>
+    <path d="M428 319V327" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 3"/>
+    <ellipse cx="425" cy="322" rx="17" ry="6" fill="#dff3f7" stroke="#16829a" stroke-width="2"/>
+    <path d="M585 165V145H420V255" fill="none" stroke="#ea580c" stroke-width="4" stroke-linejoin="round"/>
+    <text class="tiny" x="500" y="137" text-anchor="middle" fill="#c2410c">北墙燃气管约2m；计划位于架空瓷砖台面下</text>
+  </g>
+
+  <!-- existing bath heater on east wall, north side -->
+  <g>
+    <rect x="485" y="345" width="15" height="40" rx="2" fill="#fee2e2" stroke="#dc2626" stroke-width="2.5"/>
+    <path d="M489 352H496M489 360H496M489 368H496" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="478" y="343" font-size="12" font-weight="700" fill="#b91c1c" text-anchor="end">现有浴霸</text>
+    <text class="tiny" x="478" y="360" text-anchor="end" fill="#b91c1c">东墙偏北</text>
+    <text class="tiny" x="478" y="377" text-anchor="end" fill="#b91c1c">触水/漏电待核验</text>
+  </g>
+
+  <!-- wall-mounted AC units -->
+  <g>
+    <!-- living south wall above fridge -->
+    <rect class="hvac" x="160" y="507" width="74" height="22" rx="6"/>
+    <path d="M170 520H224" stroke="#0284c7" stroke-width="2"/>
+    <text x="197" y="495" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">客厅壁挂空调</text><text class="tiny" x="197" y="550" text-anchor="middle">南墙、冰箱上方</text>
+    <!-- bedroom west wall above head -->
+    <rect class="hvac" x="602" y="155" width="22" height="74" rx="6"/>
+    <path d="M613 165V219" stroke="#0284c7" stroke-width="2"/>
+    <text x="640" y="151" font-size="13" font-weight="700" fill="#0369a1">卧室壁挂空调</text><text class="tiny" x="640" y="169">西墙、床头上方</text>
+  </g>
+
+  <!-- ceiling fan and hook -->
+  <g>
+    <!-- living hook only -->
+    <circle class="ceil" cx="250" cy="330" r="15"/><circle cx="250" cy="330" r="4" fill="#7c3aed"/>
+    <text x="250" y="360" font-size="13" font-weight="700" fill="#6d28d9" text-anchor="middle">客厅中心：吊扇钩</text><text class="tiny" x="250" y="378" text-anchor="middle">目前没有吊扇</text>
+    <!-- bedroom existing fan -->
+    <circle class="ceil" cx="750" cy="280" r="16"/>
+    <path d="M750 280C703 256 703 240 726 242C746 244 752 261 750 280M750 280C797 256 797 240 774 242C754 244 748 261 750 280M750 280C750 330 735 337 729 314C724 294 737 282 750 280" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="750" y="345" font-size="13" font-weight="700" fill="#6d28d9" text-anchor="middle">卧室中心：现有吊扇</text>
+  </g>
+
+  <!-- distribution box and four named wall holes -->
+  <g>
+    <rect class="elec" x="575" y="430" width="44" height="25" rx="3"/>
+    <path d="M584 438H610M584 446H610" stroke="#2563eb" stroke-width="2"/>
+    <text x="625" y="421" font-size="13" font-weight="700" fill="#1d4ed8">入户配电箱</text><text class="tiny" x="625" y="439">入户门与卧室门之间墙面上方</text>
+
+    <!-- P1 bedroom door northmost: (x=2.15,y=5) => (600,345) -->
+    <circle cx="600" cy="345" r="12" fill="#2563eb"/><text class="pt" x="600" y="345">1</text>
+    <!-- P2 kitchen door westmost: (x=2,y=4.2) => (520,330) -->
+    <circle cx="520" cy="330" r="12" fill="#2563eb"/><text class="pt" x="520" y="330">2</text>
+    <!-- P3 bathroom door eastmost: (x=3.2,y=3.75) => (475,450) -->
+    <circle cx="475" cy="450" r="12" fill="#2563eb"/><text class="pt" x="475" y="450">3</text>
+    <!-- P4 living passage northmost: (x=3.2,y=3) => (400,450) -->
+    <circle cx="400" cy="450" r="12" fill="#2563eb"/><text class="pt" x="400" y="450">4</text>
+
+    <!-- only schematic relation to DB, not cable-route commitment -->
+    <path d="M590 442L600 345M590 442L520 330M590 442L475 450M590 442L400 450" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="7 6" opacity=".55"/>
+    <text class="tiny" x="505" y="407">虚线仅表示与配电箱的点位关系，不代表最终走线</text>
+
+    <!-- existing recessed switch/socket boxes to reuse first -->
+    <rect x="190" y="518" width="11" height="11" fill="#1e3a8a"/><text class="tiny" x="180" y="567">暗盒A：冰箱南侧</text>
+    <rect x="394" y="402" width="11" height="11" fill="#1e3a8a"/><text class="tiny" x="314" y="398">暗盒B：洗衣机东侧</text>
+    <rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text class="tiny" x="610" y="321">暗盒C：卧室门北侧</text>
+  </g>
+
+  <!-- side panel -->
+  <g transform="translate(980 105)">
+    <rect width="360" height="575" rx="14" fill="#fff" stroke="#d6dae1" stroke-width="1.5"/>
+    <text x="24" y="40" font-size="21" font-weight="750" fill="#172033">明线穿墙洞编号</text>
+    <circle cx="35" cy="78" r="12" fill="#2563eb"/><text class="pt" x="35" y="78">1</text><text class="note" x="58" y="83">卧室门洞最北端</text>
+    <circle cx="35" cy="116" r="12" fill="#2563eb"/><text class="pt" x="35" y="116">2</text><text class="note" x="58" y="121">厨房门洞最西端</text>
+    <circle cx="35" cy="154" r="12" fill="#2563eb"/><text class="pt" x="35" y="154">3</text><text class="note" x="58" y="159">卫生间门洞最东端</text>
+    <circle cx="35" cy="192" r="12" fill="#2563eb"/><text class="pt" x="35" y="192">4</text><text class="note" x="58" y="197">客厅通道口最北端</text>
+    <line x1="24" y1="228" x2="336" y2="228" stroke="#e2e8f0"/>
+    <text x="24" y="264" font-size="17" font-weight="700" fill="#172033">已知电气状态 / 仍需设计</text>
+    <text class="note" x="24" y="300">• 室内旧线路已全部拆除，计划全屋明装</text>
+    <text class="note" x="24" y="331">• 据称无地线；仍需现场检测确认</text>
+    <text class="note" x="24" y="362">• 约余60m蓝色6mm²线，拟作房间主线</text>
+    <text class="note" x="24" y="393">• 回路、线色、线槽路径和设备功率待定</text>
+    <line x1="24" y1="429" x2="336" y2="429" stroke="#e2e8f0"/>
+    <text x="24" y="466" font-size="17" font-weight="700" fill="#b45309">安全边界</text>
+    <text class="note" x="24" y="500">浴霸、无地线、蓝线改色及燃气管被</text>
+    <text class="note" x="24" y="526">架空台面覆盖均已登记为风险；需现场</text>
+    <text class="note" x="24" y="552">检测和所在地验收要求确认后才能施工。</text>
+  </g>
+  <g transform="translate(100 690)">
+    <rect width="820" height="74" rx="11" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="18" y="29" font-size="14" font-weight="700" fill="#1e40af">图例：橙=燃气｜浅蓝=空调｜紫=吊扇｜蓝圆=穿墙洞｜深蓝方块=现有暗盒｜红=安全待核验</text>
+    <text x="18" y="53" class="tiny">本图不决定线径、空开、漏保、回路或线槽路径；这些需要设备功率、现有线路检测和所在地规范信息。</text>
+  </g>
+</svg>

@@ -18,8 +18,8 @@ REQUIRED = (
     "house.yaml",
     "data/ledger.csv",
     "diagrams/house-plan-v2-framework.svg",
-    "diagrams/house-plan-v2-furniture.svg",
-    "diagrams/house-plan-v2-services.svg",
+    "diagrams/house-plan-v3-furniture.svg",
+    "diagrams/house-plan-v3-services.svg",
 )
 LEDGER_COLUMNS = (
     "id",
