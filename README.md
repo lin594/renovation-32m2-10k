@@ -21,6 +21,7 @@
 │   ├── procurement.yaml    # 待购、询价、下单、到货与验收状态
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
+│   ├── v4/                 # 当前六类专业图及职责说明
 │   └── archive/            # 已被替代但需要保留的历史图纸
 ├── docs/
 │   ├── decisions/          # 类 ADR 的装修决策记录
@@ -33,6 +34,8 @@
 
 ```bash
 make check      # 校验必需文件、CSV 金额和 SVG/XML
+make diagrams   # 从公共生成器重新生成六张 v4 SVG
+make test       # 验证图纸职责、关键图层和生成物一致性
 make summary    # 输出当前收支摘要
 git log --oneline --decorate
 ```
@@ -70,8 +73,4 @@ git log --oneline --decorate
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
 
-当前图纸：
-
-- `diagrams/house-plan-v2-framework.svg`：空间框架与门窗；
-- `diagrams/house-plan-v3-furniture.svg`：家具、厨房台面与阳台设施；
-- `diagrams/house-plan-v3-services.svg`：燃气、电气、空调、浴霸和穿墙点位。
+当前图纸采用六类 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电、门窗猫安全、厨卫详图。

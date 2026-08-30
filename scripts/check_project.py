@@ -22,9 +22,12 @@ REQUIRED = (
     "data/project.yaml",
     "data/procurement.yaml",
     "data/risks.yaml",
-    "diagrams/house-plan-v2-framework.svg",
-    "diagrams/house-plan-v3-furniture.svg",
-    "diagrams/house-plan-v3-services.svg",
+    "diagrams/v4/00-existing-survey.svg",
+    "diagrams/v4/10-furniture-circulation.svg",
+    "diagrams/v4/20-plumbing-gas.svg",
+    "diagrams/v4/30-electrical-low-voltage.svg",
+    "diagrams/v4/40-doors-windows-cats.svg",
+    "diagrams/v4/50-kitchen-bath-details.svg",
 )
 LEDGER_COLUMNS = (
     "id",
@@ -78,7 +81,7 @@ def read_ledger(errors: list[str]) -> list[dict[str, str]]:
 
 
 def validate_svgs(errors: list[str]) -> None:
-    for path in sorted((ROOT / "diagrams").glob("*.svg")):
+    for path in sorted((ROOT / "diagrams").rglob("*.svg")):
         try:
             ET.parse(path)
         except ET.ParseError as exc:

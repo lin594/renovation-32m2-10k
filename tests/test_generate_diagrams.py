@@ -52,6 +52,15 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("燃气灶直连支路", plumbing)
         self.assertIn("光猫 / Wi-Fi", electrical)
 
+    def test_checked_in_outputs_match_generator(self) -> None:
+        checked_in = Path(__file__).resolve().parents[1] / "diagrams" / "v4"
+        for filename in EXPECTED:
+            self.assertEqual(
+                (checked_in / filename).read_text(encoding="utf-8"),
+                (self.output_dir / filename).read_text(encoding="utf-8"),
+                f"{filename} 已过期，请运行 make diagrams",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -285,8 +285,9 @@ def doors_windows_cats() -> str:
 <!-- Balcony slider -->
 <path d="M250 523H325M325 537H400" fill="none" stroke="#7c3aed" stroke-width="4"/><text x="300" y="511" class="small purple">阳台推拉门｜西扇有效约0.7m</text>
 <!-- Cat screens and scratch boards -->
-<path d="M200 126H300M450 126H550M700 126H800M96 535V625M110 634H390" class="cat"/>
-<path d="M106 542V622M112 624H388" class="cat"/>
+<path d="M200 126H300" class="cat"/><path d="M450 126H550" class="cat"/><path d="M700 126H800" class="cat"/>
+<path d="M96 535V625" class="cat"/><path d="M110 634H390" class="cat"/>
+<path d="M106 542V622" class="cat"/><path d="M112 624H388" class="cat"/>
 <text x="250" y="650" class="small green center">阳台西墙+南墙窗下猫抓板</text>
 <!-- Bathroom slider customization inset: no open leaf in passage -->
 <g data-detail="bath-slider-constraint">
@@ -294,7 +295,7 @@ def doors_windows_cats() -> str:
   <text x="998" y="389" class="note bold">卫生间移门定制约束</text>
   <line x1="1000" y1="430" x2="1080" y2="430" stroke="#f97316" stroke-width="5" stroke-dasharray="8 5"/>
   <text x="1040" y="450" class="small center">关闭门扇约0.70m</text>
-  <rect x="1090" y="410" width="190" height="55" fill="url(#danger)" stroke="#dc2626" stroke-width="2"/>
+  <rect x="1090" y="410" width="190" height="55" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
   <text x="1185" y="436" class="small red center">正常通道控制区</text>
   <text x="1185" y="453" class="micro center">定制门扇不得进入</text>
   <text x="998" y="494" class="small">门洞有效净宽目标约0.65m；停泊方式现场复测后确定。</text>
@@ -348,7 +349,7 @@ def kitchen_bath_details() -> str:
 <circle cx="895" cy="515" r="10" fill="#0f766e"/><text x="910" y="520" class="small green">扬子防臭地漏</text>
 <path class="dim" d="M830 195H812M830 573H812M818 195V573"/><text x="790" y="385" class="dimtext" transform="rotate(-90 790 385)">设计基准净长约1.05m</text>
 <path class="dim" d="M850 595V613M1120 595V613M850 607H1120"/><text x="985" y="630" class="dimtext">净宽约0.75m</text>
-<rect x="800" y="650" width="490" height="50" fill="url(#danger)" stroke="#dc2626"/><text x="1045" y="680" class="small red center">南侧门洞/通道：定制移门不得占用正常通行空间</text>
+<rect x="800" y="650" width="490" height="50" fill="#fff1f2" stroke="#dc2626"/><text x="1045" y="680" class="small red center">南侧门洞/通道：定制移门不得占用正常通行空间</text>
 '''
     return document("kitchen-bath-details", "50 厨卫详图", "厨房台面叠层、燃气关系及卫生间洁具关键尺寸", kitchen + bath)
 
