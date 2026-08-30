@@ -62,3 +62,15 @@ items:
     condition: owned
     requirements: ["常电插座", "回充前方净空", "无需上下水"]
     task_ref: TASK-0009
+
+  - id: INV-0007
+    category: installed_fixture
+    item: "超薄纯铜防臭地漏"
+    brand: "扬子"
+    quantity: 1
+    unit: 个
+    included_value_cny: 70
+    acquisition: "包含在EXP-0002的500元水路服务中，不重复计费"
+    location: "卫生间洗衣机排水地漏"
+    condition: installed
+    note: "洗衣机排水低位穿墙后接入该地漏"

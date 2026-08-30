@@ -38,7 +38,7 @@ completed_work:
     phase: utilities
     item: "卫生间、热水器及洗衣机相关给排水改造"
     status: done
-    cost_refs: [EXP-0002, EXP-0003, EXP-0004]
+    cost_refs: [EXP-0002, EXP-0003, EXP-0004, EXP-0006]
   - id: WORK-0003
     phase: demolition
     item: "卫生间、卧室、厨房和客厅通道旧门拆除"
@@ -85,4 +85,8 @@ active_tasks:
   - id: TASK-0009
     phase: fixtures_appliances
     item: "确定扫地机器人停靠与供电位置"
+    status: todo
+  - id: TASK-0010
+    phase: doors_windows
+    item: "选择并购买卧室门"
     status: todo

@@ -53,6 +53,8 @@ doors:
     opening: { x: [2.15, 2.95] }
     width: 0.8
     type: "平开，内开进卧室，顺时针"
+    procurement_status: not_purchased
+    procurement_ref: BUY-0008
     hinge: "x≈2.95"
     note: "较旧图整体向北修正约0.05m；旧铁门已拆，计划门型保留"
     old_door_status: removed

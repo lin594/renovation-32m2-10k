@@ -60,3 +60,11 @@ items:
     status: not_purchased
     desk_target_size_m: [1.3, 0.7]
     requirements: ["书桌西侧贴墙", "东侧与冰箱东侧平齐", "椅子不得长期阻断主通道"]
+
+  - id: BUY-0008
+    category: door
+    room: bedroom
+    item: "卧室门"
+    status: not_purchased
+    requirements: ["匹配约0.8m门洞", "按北移约5cm后的实测门洞下单", "开启后不影响卧室主通行"]
+    task_ref: TASK-0010
