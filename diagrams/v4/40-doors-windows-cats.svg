@@ -44,7 +44,8 @@
 <rect x="600" y="430" width="300" height="100" fill="url(#hatch)"/>
 
 <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
-<path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H600M600 130V345M600 425V530M600 430H900M100 530H250"/>
+<path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H500M600 130V345M600 425V530M600 430H900M100 530H250"/>
+<g data-connection="hall-a-b-open"><!-- 走廊A与走廊B在x=3.2、y[4,5]处无隔墙并连续连通 --></g>
 <path d="M400 450V530" stroke="#f7ead7" stroke-width="10"/>
 <path d="M520 330H600" stroke="#edf1f5" stroke-width="10"/>
 <path d="M405 450H475" stroke="#edf1f5" stroke-width="10"/>

@@ -44,7 +44,8 @@
 <rect x="600" y="430" width="300" height="100" fill="url(#hatch)"/>
 
 <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
-<path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H600M600 130V345M600 425V530M600 430H900M100 530H250"/>
+<path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H500M600 130V345M600 425V530M600 430H900M100 530H250"/>
+<g data-connection="hall-a-b-open"><!-- 走廊A与走廊B在x=3.2、y[4,5]处无隔墙并连续连通 --></g>
 <path d="M400 450V530" stroke="#f7ead7" stroke-width="10"/>
 <path d="M520 330H600" stroke="#edf1f5" stroke-width="10"/>
 <path d="M405 450H475" stroke="#edf1f5" stroke-width="10"/>
@@ -66,8 +67,9 @@
 <circle cx="750" cy="280" r="13" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="306" class="small center">卧室吊扇</text>
 <circle cx="250" cy="330" r="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="250" y="354" class="small center">客厅吊扇钩</text>
 <rect x="486" y="346" width="13" height="38" class="danger"/><text x="478" y="343" class="small red" text-anchor="end">浴霸待核验</text>
-<circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V505"/>
-<rect x="500" y="495" width="80" height="24" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="540" y="511" class="small purple center">光猫 / Wi-Fi</text>
+<circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V506"/>
+<rect x="500" y="506" width="80" height="22" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="540" y="521" class="small purple center">光猫 / Wi-Fi</text>
+<text x="540" y="542" class="micro purple center">贴走廊A南墙壁挂</text>
 <text x="610" y="466" class="micro purple">网线与入户电线同洞口位置</text>
 
 <text x="250" y="270" class="room">客厅</text><text x="250" y="291" class="roomsub">净4.0×3.0m</text>

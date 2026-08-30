@@ -52,6 +52,13 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("燃气灶直连支路", plumbing)
         self.assertIn("光猫 / Wi-Fi", electrical)
 
+    def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
+        for filename in EXPECTED:
+            svg = (self.output_dir / filename).read_text(encoding="utf-8")
+            if filename != "50-kitchen-bath-details.svg":
+                self.assertIn('data-connection="hall-a-b-open"', svg)
+                self.assertNotIn("M475 450H600", svg)
+
     def test_checked_in_outputs_match_generator(self) -> None:
         checked_in = Path(__file__).resolve().parents[1] / "diagrams" / "v4"
         for filename in EXPECTED:
