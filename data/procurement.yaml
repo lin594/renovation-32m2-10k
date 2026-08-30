@@ -73,11 +73,11 @@ items:
   - { id: BUY-0010, category: waterproofing, room: multiple, item: "防水涂料", candidate: "三棵树S2（准确型号待核）", status: not_purchased }
   - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", status: not_purchased }
   - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: offline, status: not_purchased }
-  - { id: BUY-0013, category: paint, room: whole_house, item: "底漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 149, stated_coverage: "50㎡一遍/桶", status: not_purchased }
-  - { id: BUY-0014, category: paint, room: whole_house, item: "面漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 299, stated_coverage: "30㎡两遍/桶", target_color: "偏暖黄色", status: not_purchased }
+  - { id: BUY-0013, category: paint, room: whole_house, item: "底漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 149, stated_coverage: "50㎡一遍/桶", quantity_formula: "ceil(净乳胶漆面积/50)", quantity_status: blocked_by_measurement, status: not_purchased }
+  - { id: BUY-0014, category: paint, room: whole_house, item: "面漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 299, stated_coverage: "30㎡两遍/桶", quantity_formula: "ceil(净乳胶漆面积/30)", quantity_status: blocked_by_measurement, target_color: "偏暖黄色", status: not_purchased }
   - { id: BUY-0015, category: tool, room: whole_house, item: "刷漆工具套装", planned_unit_price_cny: 70, status: not_purchased }
   - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", status: not_purchased }
   - { id: BUY-0017, category: flooring, room: bathroom, item: "卫生间地砖及铺贴辅料", status: not_purchased }
   - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", status: not_purchased }
-  - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", color: todo, status: not_purchased }
+  - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, quantity_status: blocked_by_measurement, status: not_purchased }
   - { id: BUY-0020, category: coating, room: living_room, item: "书桌暗木色改造材料", status: not_purchased, note: "先确认桌面是实木、贴皮、板材还是覆膜" }

@@ -10,8 +10,8 @@ design_direction:
 
 existing_substrate:
   wall_old_skin: "已基本铲平"
-  bathroom_walls: "已有白色瓷砖"
-  kitchen_tiles: "已有白色瓷砖"
+  bathroom_walls: "四面墙约1.8m高已有白色瓷砖"
+  kitchen_tiles: "四面墙约1.8m高已有白色瓷砖；现有灶台也是瓷砖"
   floors: "全屋现有瓷砖地板"
 
 preconditions:
@@ -24,8 +24,8 @@ proposed_sequence:
   - "基层清理、除尘和必要修补"
   - "按确认后的产品体系施工墙固/界面剂与防水层"
   - "线下购买腻子并找平墙面"
-  - "底漆一遍（暂按产品标称约50㎡/桶）"
-  - "偏暖黄色面漆两遍（暂按产品标称约30㎡/桶）"
+  - "底漆一遍（桶数按净乳胶漆面积÷50㎡后向上取整）"
+  - "偏暖黄色面漆两遍（桶数按净乳胶漆面积÷30㎡后向上取整）"
 
 waterproof_or_moisture_zones:
   - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: planned, risk_ref: SAF-0010 }
@@ -43,6 +43,63 @@ product_candidates:
   - { item: "面漆", candidate: "小建刷新S2相关产品（准确名称待核）", price_cny: 299, stated_coverage: "约30㎡两遍", color: "偏暖黄色", procurement_ref: BUY-0014 }
   - { item: "刷漆工具套装", price_cny: 70, procurement_ref: BUY-0015 }
 
+latex_paint_quantity_model:
+  status: blocked_by_measurement
+  task_ref: TASK-0017
+  measurement_basis:
+    ceiling_height_m: 2.65
+    suspended_ceiling: false
+    door_height_m: 1.9
+    kitchen_nominal_net_m: [2.0, 2.0]
+    bathroom_design_net_m: [1.05, 0.75]
+    balcony_provisional_net_m: [3.0, 0.85]
+  area_basis: "实际需要乳胶漆的墙面和顶面净展开面积；扣除门窗、厨卫瓷砖区及明确不涂区域"
+  primer:
+    stated_coverage_per_bucket: "50㎡一遍"
+    bucket_price_cny: 149
+    bucket_formula: "ceil(net_latex_area_m2 / 50)"
+  topcoat:
+    stated_coverage_per_bucket: "30㎡两遍"
+    bucket_price_cny: 299
+    bucket_formula: "ceil(net_latex_area_m2 / 30)"
+  tool_set_cny: 70
+  budget_formula: "149 × primer_buckets + 299 × topcoat_buckets + 70"
+  provisional_takeoff_m2:
+    ceiling_area: 31.14
+    latex_wall_area_before_external_window_deduction: 103.57
+    latex_total_before_external_window_deduction: 134.70
+    latex_wall_breakdown_before_external_window_deduction:
+      living: 32.73
+      bedroom: 30.28
+      kitchen_above_tile: 6.47
+      bathroom_above_tile: 2.74
+      hall_a_and_b_union: 13.79
+      balcony: 17.56
+    status: "保守基数；仍需扣除客厅、卧室、厨房和阳台外窗的实际洞口面积"
+  quantity_boundary:
+    primer: "当前基数下按3桶；最终仍以净面积复算"
+    topcoat: "净面积≤120㎡时4桶；120㎡<净面积≤150㎡时5桶"
+    conservative_purchase_case: { primer_buckets: 3, topcoat_buckets: 5, tool_sets: 1, planned_total_cny: 2012 }
+    lower_case_if_net_area_at_most_120_m2: { primer_buckets: 3, topcoat_buckets: 4, tool_sets: 1, planned_total_cny: 1713 }
+  missing_measurements:
+    - "各外窗洞口高度及阳台窗台高度"
+    - "厨卫、阳台及其他区域哪些顶面纳入乳胶漆"
+    - "柜体、瓷砖、固定设备等明确不涂区域的尺寸"
+  note: "不得用一桶底漆+一桶面漆的价格作为全屋预算；计算出4.7桶时按5桶采购"
+
+tile_recolor_quantity_model:
+  status: blocked_by_measurement
+  area_basis: "厨卫四面墙自地面起约1.8m高的瓷砖净面积，加厨房现有瓷砖灶台展开面积"
+  provisional_takeoff_m2:
+    kitchen_walls_before_window_deduction: 12.96
+    bathroom_walls_before_window_deduction: 5.22
+    kitchen_counter_horizontal_surface: 1.00
+    subtotal_before_window_deduction_and_counter_edges: 19.18
+  missing_measurements:
+    - "厨房外窗与1.8m瓷砖带的重叠高度"
+    - "厨房灶台立面、侧面及其他需要改色的瓷砖展开尺寸"
+  note: "瓷砖改色漆与乳胶漆使用不同基层和涂层体系，用量不得合并"
+
 floor_plan:
   existing: "瓷砖地板"
   zones:
@@ -56,7 +113,8 @@ refinishing:
     status: "方案待定；此前记录为尚未购买，需先确认材质和来源"
     procurement_ref: BUY-0020
   - item: "厨房和卫生间既有白色瓷砖"
-    plan: "刷漆改色"
+    scope: "厨房四面墙和卫生间四面墙约1.8m高，以及厨房现有瓷砖灶台"
+    plan: "刷漆改色；与乳胶漆面积分开测算"
     color: todo
     procurement_ref: BUY-0019
     risk_ref: SAF-0013

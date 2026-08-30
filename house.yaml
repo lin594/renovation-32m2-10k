@@ -25,6 +25,8 @@ coordinate_system:
   unit: "米"
   wall_thickness: 0.24
   door_height: 1.9
+  ceiling_height: 2.65
+  suspended_ceiling: false
   accuracy: "坐标为名义值（≈墙中线），实测存在±0.1级墙厚误差"
 
 geometry:
@@ -236,6 +238,7 @@ surface_finishes:
   wall_old_skin: "已基本铲平"
   floor_existing: "瓷砖"
   style: "宋氏美学 + 侘寂中古，偏暖黄色"
+  tile_recolor_scope: "厨房和卫生间四面墙约1.8m高的白色瓷砖，以及厨房现有瓷砖灶台"
 
 circulation:
   paths:
@@ -294,6 +297,7 @@ open_questions:   # 当前待定，咨询时可优先回答这些
   - "扫地机器人停靠位置在哪里，附近能否提供常电插座和回充净空？"
   - "玄关南侧光猫/Wi-Fi置物架的宽深、安装高度和供电点位是多少？"
   - "阳台净宽实测值（推算~0.85）"
+  - "各外窗洞口实际高度、阳台窗台高度，以及哪些顶面不刷乳胶漆？"
 
 discussion_roadmap:
   1: "卫生间深化（防水高度/找坡/挡水条/洁具选型）"

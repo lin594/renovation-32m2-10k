@@ -100,3 +100,4 @@ active_tasks:
   - { id: TASK-0014, phase: waterproof_surfaces, item: "复测石塑地板叠铺后的门槛和门扇净高", status: todo }
   - { id: TASK-0015, phase: waterproof_surfaces, item: "对厨卫白色瓷砖改色体系做小样测试", status: todo }
   - { id: TASK-0016, phase: fixtures_appliances, item: "制定三套罗马杆窗帘的改造或旧物利用方案", status: todo }
+  - { id: TASK-0017, phase: waterproof_surfaces, item: "复测层高、窗洞和不涂区域，计算乳胶漆与瓷砖改色净面积及向上取整桶数", status: todo }
