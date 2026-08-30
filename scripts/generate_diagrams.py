@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the six responsibility-separated V4 renovation diagrams."""
+"""Generate the responsibility-separated V4 renovation diagrams."""
 
 from __future__ import annotations
 
@@ -356,6 +356,80 @@ def kitchen_bath_details() -> str:
     return document("kitchen-bath-details", "50 厨卫详图", "厨房台面叠层、燃气关系及卫生间洁具关键尺寸", kitchen + bath)
 
 
+FINISH_DEFS = r'''
+<defs>
+  <pattern id="wood" width="28" height="12" patternUnits="userSpaceOnUse">
+    <rect width="28" height="12" fill="#e8d7bd"/><path d="M0 6Q7 1 14 6T28 6" fill="none" stroke="#b88959" stroke-width="1" opacity=".65"/>
+  </pattern>
+  <pattern id="tile" width="22" height="22" patternUnits="userSpaceOnUse">
+    <rect width="22" height="22" fill="#dceff0"/><path d="M0 0H22V22H0Z" fill="none" stroke="#8bb8ba" stroke-width="1"/>
+  </pattern>
+  <pattern id="deck-pebble" width="30" height="20" patternUnits="userSpaceOnUse">
+    <rect width="30" height="20" fill="#d6b98a"/><path d="M0 10H30M10 0V20M20 0V20" stroke="#8b6542" stroke-width="1.5"/><circle cx="25" cy="5" r="3" fill="#a8a29e"/>
+  </pattern>
+  <style>
+    .moisture{fill:none;stroke:#0891b2;stroke-width:8;stroke-dasharray:9 6}
+    .ceiling{fill:#fde68a;fill-opacity:.28;stroke:#ca8a04;stroke-width:2;stroke-dasharray:8 5}
+    .tilepaint{fill:none;stroke:#a855f7;stroke-width:9;stroke-dasharray:5 5}
+  </style>
+</defs>
+'''
+
+
+def finishes_materials() -> str:
+    finishes = '''
+<!-- Dry-zone overlay: SPC wood-grain floor over existing tile -->
+<g data-finish="spc-wood-grain" opacity=".82">
+  <rect x="100" y="130" width="300" height="400" fill="url(#wood)"/>
+  <rect x="400" y="130" width="200" height="200" fill="url(#wood)"/>
+  <rect x="500" y="330" width="100" height="120" fill="url(#wood)"/>
+  <rect x="400" y="450" width="200" height="80" fill="url(#wood)"/>
+  <rect x="600" y="130" width="300" height="300" fill="url(#wood)"/>
+</g>
+<rect x="400" y="330" width="100" height="120" fill="url(#tile)" data-finish="bathroom-tile"/>
+<rect x="100" y="530" width="300" height="100" fill="url(#deck-pebble)" data-finish="balcony-deck-pebble"/>
+
+<!-- Existing white wall tiles and counter are a separate recoloring system, not latex paint. -->
+<g data-finish="tile-recolor">
+  <rect x="406" y="136" width="188" height="188" class="tilepaint"/>
+  <rect x="406" y="336" width="88" height="108" class="tilepaint"/>
+  <rect x="410" y="145" width="180" height="38" fill="#f3e8ff" fill-opacity=".82" stroke="#a855f7" stroke-width="2"/>
+</g>
+<text x="500" y="202" class="small center purple">厨房四周墙砖高约1.8m</text>
+<text x="500" y="219" class="micro center purple">含现有瓷砖灶台改色</text>
+<text x="450" y="354" class="micro center purple">四周墙砖高约1.8m</text>
+
+<!-- Moisture treatment extents are indicative and must be measured on site. -->
+<rect x="115" y="145" width="270" height="370" rx="12" class="ceiling" data-surface="living-room-ceiling"/>
+<path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-surface="suspected-damp-walls"/>
+<path d="M105 540V620M115 625H390" class="moisture" data-surface="balcony-non-window-surfaces"/>
+<text x="250" y="320" class="small center" fill="#92400e">客厅顶部拟做防潮/防水处理</text>
+<text x="112" y="438" class="micro blue" transform="rotate(-90 112 438)">西墙南部疑似受潮</text>
+<text x="388" y="418" class="micro blue" transform="rotate(-90 388 418)">东墙南部邻卫生间</text>
+<text x="415" y="286" class="micro blue">水槽墙</text>
+<text x="450" y="385" class="small center">卫生间自铺地砖</text>
+<text x="250" y="585" class="small center">菠萝格地板 + 鹅卵石</text>
+<text x="745" y="408" class="small center">干区：瓷砖上叠铺石塑木纹地板</text>
+<text x="250" y="660" class="small center">三处罗马杆+窗帘已有｜换布、染色、拆分利用或回收待定</text>
+<text x="100" y="690" class="small purple">瓷砖改色粗基数约19.18㎡：待扣厨房窗洞，并补量灶台立面/侧面。</text>
+'''
+    side = sidebar("饰面体系与施工门禁", [
+        "风格：宋氏美学 + 侘寂中古，暖黄色",
+        "先修排水渗漏/查潮源，再封闭基层",
+        "层高2.65m、无吊顶；先算净面积 A",
+        "扣外窗前保守基数：A ≈ 134.70㎡",
+        "底漆 = ceil(A÷50)：当前按3桶",
+        "面漆 = ceil(A÷30)：以120㎡为分界",
+        "A≤120：3+4桶+工具 = ¥1713",
+        "A>120：3+5桶+工具 = ¥2012",
+        "最终桶数待外窗洞口高度复测",
+        "厨卫墙砖/灶台改色面积单独测算",
+        "!卫生间防水不能只凭商品简称",
+    ], [("#b88959", "干区石塑木纹地板"), ("#8bb8ba", "卫生间自铺地砖"), ("#a855f7", "既有白色瓷砖改色"), ("#0891b2", "防潮/防水候选区域")])
+    body = FINISH_DEFS + room_fields(True) + finishes + base_walls() + windows() + room_labels() + side
+    return document("finishes-materials", "60 墙地面饰面图", "墙顶地面材料分区、基层处理顺序与风格方向", body)
+
+
 OUTPUTS = {
     "00-existing-survey.svg": ("existing-survey", "00 现状测量图", existing_survey),
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
@@ -363,6 +437,7 @@ OUTPUTS = {
     "30-electrical-low-voltage.svg": ("electrical-low-voltage", "30 强弱电点位图", electrical_low_voltage),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
+    "60-finishes-materials.svg": ("finishes-materials", "60 墙地面饰面图", finishes_materials),
 }
 
 

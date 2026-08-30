@@ -29,6 +29,7 @@ REQUIRED = (
     "diagrams/v4/30-electrical-low-voltage.svg",
     "diagrams/v4/40-doors-windows-cats.svg",
     "diagrams/v4/50-kitchen-bath-details.svg",
+    "diagrams/v4/60-finishes-materials.svg",
 )
 LEDGER_COLUMNS = (
     "id",

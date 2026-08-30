@@ -15,6 +15,7 @@ EXPECTED = {
     "30-electrical-low-voltage.svg": ("electrical-low-voltage", "强弱电点位图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
+    "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
 }
 
 
@@ -27,7 +28,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_six_svg_files(self) -> None:
+    def test_generates_exactly_seven_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -48,9 +49,19 @@ class GenerateDiagramsTest(unittest.TestCase):
         furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
         plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")
         electrical = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
+        finishes = (self.output_dir / "60-finishes-materials.svg").read_text(encoding="utf-8")
         self.assertIn('data-status="not-purchased"', furniture)
         self.assertIn("燃气灶直连支路", plumbing)
         self.assertIn("光猫 / Wi-Fi", electrical)
+        self.assertIn('data-finish="spc-wood-grain"', finishes)
+        self.assertIn("ceil(A÷50)", finishes)
+        self.assertIn("ceil(A÷30)", finishes)
+        self.assertNotIn("¥518", finishes)
+        self.assertIn("134.70㎡", finishes)
+        self.assertIn("¥2012", finishes)
+        self.assertIn('data-finish="tile-recolor"', finishes)
+        self.assertIn("19.18㎡", finishes)
+        self.assertIn("宋氏美学", finishes)
 
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:

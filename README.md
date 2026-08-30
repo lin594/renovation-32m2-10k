@@ -22,7 +22,7 @@
 │   ├── finishes.yaml       # 墙顶地面、涂装体系和风格方向
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
-│   ├── v4/                 # 当前六类专业图及职责说明
+│   ├── v4/                 # 当前七类专业图及职责说明
 │   └── archive/            # 已被替代但需要保留的历史图纸
 ├── docs/
 │   ├── decisions/          # 类 ADR 的装修决策记录
@@ -35,7 +35,7 @@
 
 ```bash
 make check      # 校验必需文件、CSV 金额和 SVG/XML
-make diagrams   # 从公共生成器重新生成六张 v4 SVG
+make diagrams   # 从公共生成器重新生成七张 v4 SVG
 make test       # 验证图纸职责、关键图层和生成物一致性
 make summary    # 输出当前收支摘要
 git log --oneline --decorate
@@ -75,4 +75,4 @@ git log --oneline --decorate
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
 
-当前图纸采用六类 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电、门窗猫安全、厨卫详图。
+当前图纸采用七类 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电、门窗猫安全、厨卫详图、墙地面饰面。
