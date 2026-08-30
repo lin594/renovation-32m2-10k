@@ -50,5 +50,15 @@ items:
     quantity: 1
     unit: 条
     location: 阳台
-    condition: broken_cannot_lift
-    planned_use: "维修、固定使用或拆除待定"
+    condition: lift_function_broken
+    planned_use: "保留并固定使用，不再要求升降"
+
+  - id: INV-0006
+    category: appliance
+    item: "扫地机器人"
+    quantity: 1
+    unit: 台
+    location: "停靠位置待定"
+    condition: owned
+    requirements: ["常电插座", "回充前方净空", "无需上下水"]
+    task_ref: TASK-0009

@@ -74,3 +74,15 @@ active_tasks:
     phase: utilities
     item: "确认老小区无地线条件下的合规供电方案"
     status: blocked_by_safety_review
+  - id: TASK-0007
+    phase: doors_windows
+    item: "完成卫生间和厨房移门详图并定制"
+    status: todo
+  - id: TASK-0008
+    phase: utilities
+    item: "设计入户网线及玄关光猫/Wi-Fi置物架供电"
+    status: todo
+  - id: TASK-0009
+    phase: fixtures_appliances
+    item: "确定扫地机器人停靠与供电位置"
+    status: todo
