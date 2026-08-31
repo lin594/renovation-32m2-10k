@@ -89,7 +89,7 @@ lighting_zones:
     fixture: "220V柔性灯带候选"
     target: "玄关和走廊A基础照明"
     controls: ["本地实体控制", "智能插座或智能开关"]
-    preferred_connection: "若具体产品明确支持固定接线：MCB-02受控线在可检修带盖接线盒内，连接厂家专用整流/电源接头，再接灯带；不是建筑线直碰灯带铜箔"
+    preferred_connection: "若具体产品明确支持固定接线：MCB-05受控线在可检修带盖接线盒内，连接厂家专用整流/电源接头，再接灯带；不是建筑线直碰灯带铜箔"
     plug_in_alternative: "带厂家成套电源接头和成型插头的灯带接RCBO-03所供玄关常电插座，再通过有实体按钮的智能插座控制"
     forbidden: ["建筑导线与灯带铜箔/软引线裸接", "把接头埋进腻子或不可开启线槽", "剪切端不装绝缘端帽", "只保留依赖网络的控制方式"]
     status: selected_pending_product

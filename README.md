@@ -24,7 +24,7 @@
 │   ├── schedule.yaml       # 9月备料、10月主施工、1月单人收尾和入住门槛
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
-│   ├── v4/                 # 当前八张职责分离专业图及说明
+│   ├── v4/                 # 当前十张职责分离专业图及说明
 │   └── archive/            # 已被替代但需要保留的历史图纸
 ├── docs/
 │   ├── decisions/          # 类 ADR 的装修决策记录
@@ -37,7 +37,7 @@
 
 ```bash
 make check      # 校验必需文件、CSV 金额和 SVG/XML
-make diagrams   # 从公共生成器重新生成八张 v4 SVG
+make diagrams   # 从公共生成器重新生成十张 v4 SVG
 make test       # 验证图纸职责、关键图层和生成物一致性
 make summary    # 输出当前收支摘要
 git log --oneline --decorate
@@ -79,4 +79,4 @@ git log --oneline --decorate
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
 
-当前图纸采用八张职责分离的 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电点位、五回路与无主灯、门窗猫安全、厨卫详图、墙地面饰面。
+当前图纸采用十张职责分离的 v4 体系，职责详见 `diagrams/v4/README.md`。电气部分进一步拆成点位、真实空间走线、五回路/PCT拓扑和卧室局部详图，避免把空间路径、保护逻辑和装配细节挤在同一张图里。
