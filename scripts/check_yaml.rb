@@ -172,6 +172,9 @@ outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.di
 errors << "electrical.yaml 插座组数明细应合计14组" unless outlets["total_planned"] == 14 && outlet_sum == 14
 errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
 
+sofa_robot = outlets.dig("living_room", "sofa_robot_branch") || {}
+errors << "扫地机与沙发应共用RCBO-03分支路径但保留两个独立插座点" unless sofa_robot["id"] == "LR-SOFA-ROBOT" && sofa_robot.dig("lower_robot_socket", "supply") == "always_on" && sofa_robot.dig("lower_robot_socket", "smart_control") == "forbidden" && sofa_robot.dig("upper_sofa_socket", "smart_plug_optional") == true
+
 balcony = electrical.dig("confirmed_conditions", "balcony") || {}
 errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
 

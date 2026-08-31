@@ -178,7 +178,7 @@ electrical:
     total_groups: 14
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
     kitchen: ["燃气热水器", "油烟机", "台面电器"]
-    living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发", "扫地机器人TBD"]
+    living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发上部充电", "扫地机器人低位常电"]
     hall_a: ["设备架一组至少4位常电插座"]
     bathroom_general_socket_count: 0
     bathroom_protected_device_points: ["浴霸高位连接点", "智能除雾镜柜高位连接点"]
@@ -250,7 +250,18 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "洗烘一体滚筒洗衣机", rect: [2.4, 3.2, 2.2, 3], orient: "东面贴卫生间西墙，正面朝南，东南角=(3.2,3)", procurement_status: not_purchased, procurement_ref: BUY-0003 }
     - { item: "餐桌", rect: [1.6, 2.4, 2.2, 3], size: "0.8×0.8", note: "洗衣机北侧；建议无背靠凳便于收进桌下" }
     - { item: "茶几", status: "不做" }
-    - { item: "扫地机器人", status: "已有，位置待定", requirements: ["需要电源", "无需上下水", "前方回充通道净空"], inventory_ref: INV-0006 }
+    - item: "扫地机器人"
+      rect_nominal: [1.65, 2.05, 0, 0.45]
+      status: "已有，停靠在沙发与书桌之间并紧靠沙发"
+      requirements: ["低位常电", "无需上下水", "向东保持直线回充通道", "可从储物台下方直接取出", "不得被智能插座误断电"]
+      inventory_ref: INV-0006
+    - item: "扫地机上方窄桌/储物台"
+      rect_nominal: [1.6, 2.45, 0, 0.45]
+      status: "未购买，尺寸待扫地机和沙发实物冻结"
+      structure: "优先壁挂或后置支撑；下方无前腿，不遮挡机器人进出、散热和取出"
+      use: ["沙发边几", "储物", "上部充电"]
+      procurement_status: not_purchased
+      procurement_ref: BUY-0033
   balcony:
     - { item: "收纳柜", rect: [4, 5, 2.5, 3], note: "最东端，封死阳台门东扇" }
     - { item: "升降晾衣架（靠客厅）", rect: [4, 5, 0, 2.5], status: "已安装，可升降" }

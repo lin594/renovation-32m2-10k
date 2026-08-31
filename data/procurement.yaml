@@ -281,3 +281,12 @@ items:
     planned_quantity: 2
     requirements: ["均位于RCD-BATH-01下游", "先核对设备说明和喷溅范围", "允许插头时使用匹配负载的防水插座式漏保", "只允许固定接线时使用双极隔离开关和带盖接线盒", "浴霸不接普通智能插座"]
     quantity_status: blocked_by_product_manuals_and_splash_survey
+
+  - id: BUY-0033
+    category: furniture
+    room: living_room
+    item: "扫地机上方窄桌/储物台"
+    status: not_purchased
+    target_zone_m: [0.85, 0.45]
+    requirements: ["位于沙发与书桌之间并紧靠沙发", "优先壁挂或后置支撑", "机器人路径前方不得有落地前腿", "保留散热、取出和维护空间", "上部可用于沙发充电"]
+    quantity_status: blocked_by_robot_sofa_and_desk_remeasurement

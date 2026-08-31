@@ -171,8 +171,14 @@ outlet_groups:
   living_room:
     circuit: RCBO-03
     count: 7
-    points: ["客厅空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发", "扫地机器人TBD"]
-    robot_vacuum: { status: tbd_dashed, route_reserve_m: 2, water_supply: false, drain: false }
+    points: ["客厅空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发上部充电", "扫地机器人低位常电"]
+    sofa_robot_branch:
+      id: LR-SOFA-ROBOT
+      route: "RCBO-03客厅普通插座链在沙发与书桌之间形成同一分支路径"
+      lower_robot_socket: { status: planned, supply: always_on, smart_control: forbidden, placement: "扫地机停靠位低位" }
+      upper_sofa_socket: { status: planned, supply: always_on, smart_plug_optional: true, placement: "窄桌/储物台上方充电位" }
+      independence: "两个独立插座点；智能控制只允许插在上部充电位，不能切断机器人底座"
+    robot_vacuum: { status: planned_fixed_zone, route_reserve_m: 2, water_supply: false, drain: false, location: "双人沙发与书桌之间、紧靠沙发" }
   hall_a_shelf:
     circuit: RCBO-03
     count: 1

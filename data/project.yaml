@@ -92,7 +92,7 @@ active_tasks:
   - id: TASK-0009
     phase: fixtures_appliances
     item: "确定扫地机器人停靠与供电位置"
-    status: todo
+    status: done
   - id: TASK-0010
     phase: doors_windows
     item: "选择并购买卧室门"
