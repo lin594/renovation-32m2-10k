@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-09-01
+updated: "2026-09-01"
 
 severity_order: [critical, high, medium, low]
 status_values: [open, investigating, mitigated, accepted, closed]

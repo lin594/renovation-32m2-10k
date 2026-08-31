@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-09-01
+updated: "2026-09-01"
 
 status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
