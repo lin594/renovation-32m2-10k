@@ -163,3 +163,13 @@ risks:
     fixed_wiring_gate: "只有产品说明明确允许硬接时，才在可检修带盖接线盒内用匹配端子和应力消除结构接入受控照明回路"
     next_action: "9月冻结具体产品资料；10月1日复测长度和安装面，10月8日仅在墙面干燥且断电验电后安装"
     task_ref: TASK-0026
+
+  - id: SAF-0016
+    domain: balcony_electrical
+    title: "阳台无穿线孔，移门夹线或无保护跨门布线存在破损触电风险"
+    severity: high
+    status: controlled_by_deferral
+    confirmed_fact: "阳台没有电气穿线孔，唯一直接路径会经过客厅与阳台之间的移门"
+    concern: "常设电线穿过门缝会妨碍关门，并可能被门扇反复挤压、磨损绝缘"
+    guardrail: "本期不钻孔、不夹门布线、不安装阳台永久220V线路；所有电气图不得绘制进入阳台的永久线路"
+    next_action: "入住后如确有需求，优先选择充电灯；临时插电只能在门开启且有人看管时使用，用后拔除"

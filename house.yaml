@@ -156,16 +156,18 @@ electrical:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
     - { location: "洗衣机东侧", status: existing, plan: "优先利用" }
     - { location: "卧室门北侧", status: existing, plan: "优先利用" }
+    - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing, exclusive_use: "卧室吊扇调速器", note: "不与床南插座共盒或共用端子" }
     - { fallback: "暗盒不适用的位置再增加明盒" }
   wall_holes:
     - { id: E-HOLE-01, location: "卧室门洞最北端", nominal_coordinate: "(x≈2.15,y=5)" }
     - { id: E-HOLE-02, location: "厨房门洞最西端", nominal_coordinate: "(x=2,y≈4.2)" }
     - { id: E-HOLE-03, location: "卫生间门洞最东端", nominal_coordinate: "(x=3.2,y≈3.75)" }
     - { id: E-HOLE-04, location: "客厅通道口最北端", nominal_coordinate: "(x=3.2,y=3)" }
+    - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
     - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing }
-    - { item: "卧室吊扇", location: "卧室中心上方", status: existing }
+    - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
     - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, risk_ref: SAF-0003 }
   lighting_plan:
@@ -181,7 +183,8 @@ low_voltage:
     nominal_coordinate: "(x≈3.2,y=5)"
     status: planned
   equipment_shelf:
-    location: "玄关南侧墙面"
+    location: "走廊A南墙墙面，置物架背面贴墙锚固"
+    wall_anchor: "hall_a_south_wall"
     equipment: ["光猫", "Wi-Fi路由器", "EVE V1"]
     type: "壁挂置物架"
     status: planned
@@ -240,6 +243,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "升降晾衣架（靠客厅）", rect: [4, 5, 0, 2.5], status: "已安装，可升降" }
     - { item: "升降晾衣架（另一条）", rect: [4, 5, 0, 2.5], status: "升降功能损坏，保留并固定使用" }
     - { item: "猫抓板", location: "阳台西墙和南墙窗户下方", status: planned }
+    - { item: "永久220V供电", status: deferred, constraint: "无穿线孔；本期不钻孔、不夹门布线，充电灯或开门临时插电待入住后决定" }
   kitchen:
     - { item: "瓷砖水泥台面(已有)", rect: [0, 0.5, 3, 5], size: "南北0.5×东西2.0", note: "沿厨房北墙铺满，保留；本轮口述尺寸优先于旧版0.8m记录" }
     - item: "架空瓷砖台面（计划）"

@@ -11,6 +11,15 @@ confirmed_conditions:
   panel_markings: "业主记忆为约500V、36A，完整型号、脱扣额定值、极数、漏电动作参数均待拍照"
   branch_device_capacity: "共5个支路位置：3个漏电保护器+2个空气开关，不增加不存在的回路位置"
   home_server: "EVE V1可长期运行，固定放在走廊A南墙玄关置物架"
+  balcony:
+    no_electrical_penetration: true
+    permanent_power: deferred
+    current_phase_rule: "不钻孔、不把电线夹过阳台移门、不设置永久220V线路"
+    later_option: "入住后再决定充电灯，或仅在阳台门开启时使用可拔除的临时插电设备"
+  bedroom_fan_existing_wiring:
+    surface_segment: "E-HOLE-01至卧室西墙E-BOX-BED-FAN调速器暗盒"
+    concealed_segment: "E-BOX-BED-FAN至卧室中心吊扇"
+    reuse_gate: "施工前完成通断与绝缘检查"
 
 design_principles:
   - "无主灯采用分散灯具和分区控制，不为每盏灯单独设置配电箱回路"
@@ -55,8 +64,8 @@ provisional_five_circuit_allocation:
     - id: MCB-02
       existing_device_type: "空气开关"
       physical_position: 5
-      scope: ["走廊A/B固定照明", "客厅固定照明", "阳台固定照明", "走廊A 220V灯带"]
-      route: "从配电箱沿走廊A/B短距离布置，并经E-HOLE-04进入客厅后继续到阳台"
+      scope: ["走廊A/B固定照明", "客厅固定照明", "走廊A 220V灯带"]
+      route: "从配电箱沿走廊A/B短距离布置，并经E-HOLE-04进入客厅；线路止于客厅，不进入阳台"
       reason: "形成南向/公共照明回路；与北向照明分开，任一路故障时不至全屋无基础照明"
       conductor: "1.5mm²铜线候选"
       protection: "空开类型不可改为漏保，但额定值必须与1.5mm²及实际敷设条件匹配；若现件确为36A须更换同宽合适额定值空开"
@@ -91,7 +100,7 @@ lighting_zones:
   - { id: LZ-06, room: kitchen, fixture: "基础漫射灯", controls: ["实体开关"], status: planned }
   - { id: LZ-07, room: kitchen, fixture: "台面任务灯", controls: ["独立实体开关"], status: planned }
   - { id: LZ-08, room: bathroom, fixture: "防潮基础灯+镜前灯预留", controls: ["实体开关"], status: blocked_by_safety_review }
-  - { id: LZ-09, room: balcony, fixture: "暖色漫射灯", controls: ["客厅侧实体开关"], status: planned }
+  - { id: LZ-09, room: balcony, fixture: "充电灯或开门时临时插接灯具", controls: ["灯具本体开关"], status: deferred_until_after_move_in, permanent_power: false }
 
 lighting_selection:
   color_temperature_k: "2700至3000"
@@ -114,7 +123,8 @@ terminal_policy:
     - "端子数量在10月1日完成逐点拓扑复测后冻结；9月不按猜测批量购买"
 
 hall_a_shelf:
-  location: "走廊A南墙壁挂置物架"
+  location: "走廊A南墙壁挂置物架，背面贴南墙锚固"
+  wall_anchor: hall_a_south_wall
   equipment: ["光猫", "Wi-Fi路由器", "EVE V1", "走廊A灯带电源接头/智能控制（如采用插接方案）"]
   power: "至少4个常电插位；光猫、路由器和EVE V不接在会被照明自动化关闭的插座上"
   network: "入户网线到光猫，路由器到EVE V仅用架内短网线，不再为家庭中枢跨房间布网线"
