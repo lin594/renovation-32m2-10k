@@ -153,7 +153,8 @@ electrical:
       dedicated_loads: "空调、厨房和洗烘机按设备铭牌、距离与敷设条件另算"
     terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"
     protection_gate: "PCT≤32A只是端子必要条件；保护器还须匹配最小下游导线、实际敷设、负载和故障切断条件"
-    smart_control_rule: "普通插座保持常电；智能墙壁开关只控制灯具，不向普通插座供电"
+    smart_control_rule: "普通插座保持常电；智能墙壁开关一律使用零火版且只控制灯具，不向普通插座供电"
+    bathroom_dedicated_feeder: "MCB-05经E-HOLE-03连续无接头进入高位干区RCD-BATH-01；浴霸、除雾镜柜和照明全部在双极30mA末端漏保下游"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
@@ -168,11 +169,11 @@ electrical:
     - { id: E-HOLE-04, location: "客厅通道口最北端", nominal_coordinate: "(x=3.2,y=3)" }
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
-    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing }
-    - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing }
+    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: RCBO-03, device_protection: SRCD-AC-LIV }
+    - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, device_protection: SRCD-AC-BED }
     - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
-    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, risk_ref: SAF-0003 }
+    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, device_protection: SRCD-BATH-HEATER, risk_ref: SAF-0003 }
   planned_outlets:
     total_groups: 14
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
@@ -180,6 +181,7 @@ electrical:
     living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发", "扫地机器人TBD"]
     hall_a: ["设备架一组至少4位常电插座"]
     bathroom_general_socket_count: 0
+    bathroom_protected_device_points: ["浴霸高位连接点", "智能除雾镜柜高位连接点"]
     protective_earth_status: "允许使用带明确“本户无PE”标识的三孔面板；PE端子保持未连接且不得与N短接，分级漏保不等于接地验收合格"
   lighting_plan:
     concept: "无主灯，以分散灯具和任务照明代替唯一主光源"

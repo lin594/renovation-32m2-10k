@@ -182,7 +182,7 @@ items:
       - { spec: "BV 1×1.5mm²控制线", candidate_color: "红色", color_status: "待电工按当地要求和全屋线色规则冻结", quantity_m: 50, purpose: "开关回线和吊扇受控相线" }
     requirements: ["CCC及合格证", "不得用于普通插座、空调、厨房大负载或洗烘机"]
     quantity_status: conditional_cart_only
-    purchase_strategy: "9月只加入京东购物车；10月1日确认两只照明空开为B10/C10，并由合格电工结合敷设和负载确认1.5mm²保护后，各买50m"
+    purchase_strategy: "9月只加入京东购物车；10月1日由合格电工结合MCB-04铭牌、全屋非卫浴照明负载、敷设和线长确认1.5mm²保护后，各买50m"
     fallback: "门禁不通过则不装1.5mm²固定照明；走廊灯带用RCBO-03常电插座+智能插座，其他空间暂用插接式灯具"
     risk_ref: SAF-0014
 
@@ -204,15 +204,16 @@ items:
     item: "TYO PCT端子与独立检修盒"
     status: not_purchased
     requirements:
-      - "PCT-42×1、PCT-62×6，其中5只PCT-62在用、1只备用"
-      - "每节点使用独立约100×100×50mm带盖可检修明装盒"
-      - "32A是每极全部端口总电流；L/N/PE使用相互独立的极组/端子"
+      - "图纸固定六个逻辑分线节点，不把逻辑节点数直接当作PCT或检修盒实购数量"
+      - "按实物内部拓扑为L/N分别提供独立极组；本户无PE，不设置虚构PE极组"
+      - "32A是每极全部端口总电流"
       - "到货核对CCC/合格证、实物型号、内部拓扑、剥线10mm及硬/软线允许截面积"
       - "直接上级≤32A只是端子必要条件；保护器还须匹配最小下游导线、敷设、负载及故障切断条件"
       - "逻辑数量只有在实物确认单件含L/N独立极组时成立；若为单一公共母线须重新计数"
-    planned_quantities: { PCT-42: 1, PCT-62: 6, surface_junction_box_100x100x50mm: 6 }
-    quantity_status: logical_topology_only_blocked_by_product_and_protection_review
-    purchase_strategy: "9月只建购物车；10月1日核对实物内部拓扑、认证和保护器后再冻结实购数量。安装通电另受专业验收门禁约束"
+    logical_node_count: 6
+    planned_quantities: null
+    quantity_status: blocked_by_product_topology_and_protection_review
+    purchase_strategy: "9月只收藏候选产品；10月1日核对实物内部拓扑、认证、保护器和每个逻辑节点所需L/N极组后换算实购数量"
 
   - id: BUY-0026
     category: lighting
@@ -244,3 +245,39 @@ items:
     status: not_purchased
     checklist_ref: "docs/todo/2026-09-online-preparation.md"
     purchase_strategy: "9月按已有/借用/待买盘点；普通件最迟9月24日下单，遗漏项9月29日晚以前用京东次日补齐"
+
+  - id: BUY-0029
+    category: electrical_protection
+    room: bedroom_living_room
+    item: "两台空调插座式漏保/空调伴侣"
+    status: not_purchased
+    planned_quantity: 2
+    requirements: ["不大于30mA", "L/N双极切断", "TEST/RESET", "匹配空调插头及启动负载", "CCC及合格证", "不能用普通过欠压或计量产品冒充"]
+    quantity_status: blocked_by_two_ac_nameplates_and_product_manuals
+
+  - id: BUY-0030
+    category: electrical_protection
+    room: living_room
+    item: "洗烘一体机专用插座式漏保"
+    status: not_purchased
+    planned_quantity: 1
+    requirements: ["不大于30mA", "L/N双极切断", "TEST/RESET", "匹配最终机型插头及变频/电机负载", "保持常电且不经过智能开关"]
+    quantity_status: blocked_by_washer_model
+
+  - id: BUY-0031
+    category: electrical_protection
+    room: bathroom
+    item: "卫生间双极末端漏保及高位可检修防护箱"
+    status: not_purchased
+    planned_quantity: 1
+    requirements: ["额定剩余动作电流不大于30mA", "L/N双极切断", "TEST/RESET", "额定电流与MCB-05、馈线及卫浴总负载匹配", "优先室内实测干区高位", "无合格干区时改装走廊A门外"]
+    quantity_status: blocked_by_panel_load_product_and_dry_zone_survey
+
+  - id: BUY-0032
+    category: electrical_fixture
+    room: bathroom
+    item: "浴霸与智能除雾镜柜高位防溅连接点"
+    status: not_purchased
+    planned_quantity: 2
+    requirements: ["均位于RCD-BATH-01下游", "先核对设备说明和喷溅范围", "允许插头时使用匹配负载的防水插座式漏保", "只允许固定接线时使用双极隔离开关和带盖接线盒", "浴霸不接普通智能插座"]
+    quantity_status: blocked_by_product_manuals_and_splash_survey

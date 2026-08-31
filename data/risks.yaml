@@ -7,13 +7,13 @@ status_values: [open, investigating, mitigated, accepted, closed]
 risks:
   - id: SAF-0001
     domain: electrical
-    title: "老小区据称无保护地线"
+    title: "老小区已确认无保护地线"
     severity: critical
     status: open
-    confirmed_fact: "业主口述老小区没有地线；配电箱含总空开、延时送电器、3个漏保和2个空开"
+    confirmed_fact: "户内仅有L/N两线、无可用PE且四楼无法独立增设；配电箱含总空开、延时送电器、3个漏保和2个空开"
     concern: "卫生间浴霸、空调、热水器及厨房设备包含高功率或潮湿环境用电"
     guardrail: "漏保和延时送电设备不自动视为保护接地替代；不得仅凭配电箱器件数量关闭风险"
-    next_action: "由合格电工现场检测入户系统、PE/等电位条件、绝缘和回路保护，并记录检测结果"
+    next_action: "由合格电工核验没有N/PE误接或借用管道接地，并检测绝缘、极性、回路保护和各级漏保动作"
     owner_test_limit: "当前仅有万用表和测电笔；暂不购买绝缘电阻及漏保专用测试仪，DIY检查不得标记为专业验收"
     schedule_control: "明线在乳胶漆达到厂家允许安装条件后施工；10月若未完成，必须先冻结回路和编号再留给1月按图执行"
     blocks: ["浴霸继续使用结论", "全屋电路施工图", "最终通电验收"]
@@ -35,9 +35,9 @@ risks:
     severity: critical
     status: open
     confirmed_fact: "浴霸位于卫生间东墙偏北；卫生间按全间湿区设计"
-    unknowns: ["型号", "防护等级", "安装高度", "距淋浴出水范围", "供电回路", "接地/等电位条件"]
-    guardrail: "在上述条件完成专业核验前，不把现位置标记为可继续使用"
-    next_action: "拍摄铭牌和全景，测量位置关系，由电工核验回路、防护和安装位置；比较移位、更换或取消方案"
+    unknowns: ["型号", "防护等级", "安装高度", "距淋浴出水范围", "最大功率", "是否允许插头连接"]
+    guardrail: "浴霸必须在RCD-BATH-01下游；按产品说明选择防水插座式漏保或双极隔离开关+带盖接线盒，完成位置核验前不继续使用"
+    next_action: "拍摄铭牌和全景，测量喷溅范围与干区；由电工核验MCB-05、馈线、末端漏保、连接方式及安装位置"
     task_ref: TASK-0005
 
   - id: SAF-0004
@@ -212,3 +212,23 @@ risks:
     next_action: "9月14日前形成首版报价矩阵，10月1日复测后冻结含送装和辅料总价；超出则按延期顺序降级并重新批准预算"
     blocks: ["非必要软装不可退订单", "宣称10000元方案已证明可行"]
     task_ref: TASK-0030
+
+  - id: SAF-0020
+    domain: residual_current_coordination
+    title: "上下级30mA漏保可能发生非选择性同时跳闸"
+    severity: medium
+    status: accepted
+    confirmed_fact: "业主选择保留低成本分级漏保，并接受故障时上级与设备末端保护器可能同时动作"
+    concern: "故障定位和恢复供电需要逐级复位，不能保证只隔离单台设备"
+    guardrail: "每只漏保分别使用TEST按钮并由专业仪表记录动作电流/时间；图纸和验收不得宣称具备选择性"
+
+  - id: SAF-0021
+    domain: bathroom_electrical
+    title: "卫生间末端漏保箱的干区位置尚未实测"
+    severity: critical
+    status: open
+    confirmed_fact: "MCB-05计划作为卫生间专用馈线，进入后先接双极30mA末端漏保"
+    concern: "卫生间按全间湿区设计，高位并不自动等于避开淋浴喷溅或满足产品安装条件"
+    guardrail: "优先在室内实测干区高位；无法证明存在合格位置时自动改到走廊A门外，不降级为湿区裸露安装"
+    next_action: "10月1日按淋浴设备、浴帘、浴霸和镜柜位置实测喷溅范围，并核对候选漏保箱产品说明"
+    task_ref: TASK-0031

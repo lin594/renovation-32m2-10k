@@ -163,9 +163,9 @@ errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路"
 
 junctions = Array(electrical["junction_boxes"])
 active_junctions = junctions.select { |junction| junction["status"] == "active_planned" }
-pct_42_count = active_junctions.count { |junction| junction["terminal"] == "PCT-42" }
-pct_62_count = active_junctions.count { |junction| junction["terminal"] == "PCT-62" }
-errors << "electrical.yaml 在用逻辑节点应为PCT-42×1、PCT-62×5" unless active_junctions.length == 6 && pct_42_count == 1 && pct_62_count == 5
+expected_junctions = Set["JB-L4", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV", "JB-BATH"]
+actual_junctions = active_junctions.map { |junction| junction["id"] }.to_set
+errors << "electrical.yaml 应有六个逻辑分线节点且不得保留JB-L5" unless active_junctions.length == 6 && actual_junctions == expected_junctions
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
@@ -176,8 +176,24 @@ balcony = electrical.dig("confirmed_conditions", "balcony") || {}
 errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
 
 terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
-errors << "electrical.yaml PCT采购逻辑数量应为1只PCT-42和6只PCT-62（含备用）" unless terminal_procurement["pct_42"] == 1 && terminal_procurement["pct_62_active"] == 5 && terminal_procurement["pct_62_spare"] == 1 && terminal_procurement["pct_62_total"] == 6
+errors << "electrical.yaml 不得把PCT逻辑节点直接写成实购物理数量" unless electrical.dig("terminal_policy", "logical_node_count") == 6 && terminal_procurement["physical_quantity"].nil? && terminal_procurement["status"] == "blocked_by_product_topology_and_protection_review"
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
+
+circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
+errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
+expected_lighting = Set["卧室固定照明", "卧室吊扇", "厨房固定照明", "走廊A/B固定照明", "客厅固定照明", "走廊A 220V灯带"]
+errors << "MCB-04应合并全部非卫浴固定照明及卧室吊扇" unless Array(circuits_by_id.dig("MCB-04", "scope")).to_set == expected_lighting
+
+layered_devices = Array(electrical.dig("layered_residual_protection", "devices"))
+device_ids = layered_devices.map { |device| device["id"] }.to_set
+expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-WASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
+errors << "分级漏保设备表必须覆盖两台空调、洗烘机、卫生间总保护、浴霸和镜柜" unless device_ids == expected_devices
+bath_rcd = layered_devices.find { |device| device["id"] == "RCD-BATH-01" } || {}
+errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "智能除雾镜柜", "卫生间防潮照明"]
+
+electrical_text = electrical.to_s
+errors << "智能墙壁开关必须使用零火版且不得控制普通插座" unless electrical_text.include?("零火版") && electrical_text.include?("不把其受控输出接到通用插座")
+errors << "两线制方案必须禁止N/PE短接和管道接地" unless electrical_text.include?("N/PE短接") && electrical_text.include?("水管") && electrical_text.include?("燃气管")
 
 socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item["item"] == "BVVB 2×2.5mm²" } || {}
 errors << "electrical.yaml BVVB 2×2.5mm²首卷应为50m" unless socket_wire["quantity_m"] == 50 && socket_wire["rolls"] == 1
