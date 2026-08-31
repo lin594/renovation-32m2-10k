@@ -130,7 +130,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertEqual(topology.count('data-terminal-status="active"'), 6)
         for node in ("JB-L4", "JB-L5", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV"):
             self.assertIn(f'data-junction="{node}"', topology)
-        self.assertIn("直接上级必须≤32A", topology)
+        self.assertIn("上级≤32A只是PCT必要条件", topology)
+        self.assertIn("PCT只是连接器、不提供保护", topology)
 
     def test_33_separates_controller_and_bed_sockets(self) -> None:
         detail = (self.output_dir / "33-bedroom-electrical-detail.svg").read_text(encoding="utf-8")
@@ -142,6 +143,7 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-terminal-scope="bed-sockets-only"', detail)
         self.assertIn('data-circuit="MCB-04"', detail)
         self.assertIn('data-circuit="RCBO-01"', detail)
+        self.assertIn("专业检测和PE方案关闭前", detail)
 
     def test_electrical_bom_excludes_recolored_blue_wire_and_switched_outlets(self) -> None:
         root = Path(__file__).resolve().parents[1]

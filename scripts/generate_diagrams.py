@@ -362,11 +362,12 @@ def electrical_topology() -> str:
 <text x="585" y="487" class="small bold">卧室照明</text><text x="585" y="515" class="small">厨房照明</text>
 <text x="585" y="574" class="small bold">走廊A灯带</text><text x="585" y="598" class="small">走廊B灯</text><text x="585" y="622" class="small">客厅固定照明</text>
 
-<rect x="60" y="710" width="900" height="72" rx="12" class="danger"/><text x="82" y="738" class="note red bold">32A门禁：</text><text x="185" y="738" class="note red">每极全部端口合计32A；直接上级必须≤32A。</text><text x="82" y="764" class="small red">若现场为36A：不得用PCT向2.5mm²分支，节点暂停，等待电工确认保护器或下游保护。</text>
+<rect x="60" y="710" width="900" height="72" rx="12" class="danger"/><text x="82" y="738" class="note red bold">保护门禁：</text><text x="185" y="738" class="note red">上级≤32A只是PCT必要条件，还须匹配最小下游导线与负载。</text><text x="82" y="764" class="small red">PCT只是连接器、不提供保护；36A或任一匹配条件未知时，节点暂停并保持断电。</text>
 '''
     side = sidebar("端子数量与插座基线", [
-        "在用：PCT-42×1、PCT-62×5",
-        "采购：PCT-62另加备用×1",
+        "逻辑节点：PCT-42×1、PCT-62×5",
+        "实物含L/N独立极组后才冻结采购数量",
+        "另预留PCT-62备用逻辑单元×1",
         "每节点独立约100×100×50mm检修盒",
         "插座共14组：卧3 / 厨3 / 客7 / 玄1",
         "玄关一组至少4个常电位",
@@ -407,7 +408,7 @@ def bedroom_electrical_detail() -> str:
  <text x="206" y="497" class="micro bold center">JB-BED</text><text x="206" y="512" class="micro center">PCT短尾线</text>
 </g>
 <line x1="292" y1="390" x2="292" y2="505" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 5"/><text x="300" y="390" class="micro red">不同回路分盒 / 分槽 / 分端子</text>
-<rect x="110" y="590" width="760" height="62" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="132" y="616" class="small red">一个暗盒不够：保留原暗盒给调速器，在旁边加独立明盒插座；不叠压多根铜鼻子。</text><text x="132" y="638" class="small red">每个插座端子只接一根PCT短尾线；两芯L/N没有PE，三孔插座及I类设备仍未验收。</text>
+<rect x="110" y="590" width="760" height="62" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="132" y="616" class="small red">一个暗盒不够：保留原暗盒给调速器，在旁边加独立明盒插座；不叠压多根铜鼻子。</text><text x="132" y="638" class="small red">两芯L/N没有PE；专业检测和PE方案关闭前，三孔插座及I类设备不得通电。</text>
 '''
     side = sidebar("33 现场装配检查", [
         "橙：空开4的吊扇控制回路",

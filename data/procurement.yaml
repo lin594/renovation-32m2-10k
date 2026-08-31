@@ -182,7 +182,7 @@ items:
       - { spec: "BV 1×1.5mm²红色", quantity_m: 50, purpose: "开关回线和吊扇受控相线" }
     requirements: ["CCC及合格证", "不得用于普通插座、空调、厨房大负载或洗烘机"]
     quantity_status: conditional_cart_only
-    purchase_strategy: "9月只加入京东购物车；10月1日确认两只照明空开为B10/C10或取得合格电工明确批准后，各买50m"
+    purchase_strategy: "9月只加入京东购物车；10月1日确认两只照明空开为B10/C10，并由合格电工结合敷设和负载确认1.5mm²保护后，各买50m"
     fallback: "门禁不通过则不装1.5mm²固定照明；走廊灯带用RCBO-03常电插座+智能插座，其他空间暂用插接式灯具"
     risk_ref: SAF-0014
 
@@ -196,7 +196,7 @@ items:
     planned_quantity_m: 50
     quantity_status: approved_initial_roll
     purchase_strategy: "现在购买50m一卷；10月1日复测净路线，净长超过45m时用京东次日补第二卷"
-    note: "空调、洗烘机和厨房负载仍须按铭牌、距离、敷设与保护器另行核算；买线不等于批准通电"
+    note: "该两芯线只含L/N，不能完成带PE的插座终端回路；空调、冰箱、洗烘机、热水器等I类设备在PE与专业验收门禁关闭前不得通电。买线不等于批准安装或通电"
 
   - id: BUY-0025
     category: electrical_connector
@@ -208,10 +208,11 @@ items:
       - "每节点使用独立约100×100×50mm带盖可检修明装盒"
       - "32A是每极全部端口总电流；L/N/PE使用相互独立的极组/端子"
       - "到货核对CCC/合格证、实物型号、内部拓扑、剥线10mm及硬/软线允许截面积"
-      - "直接上级保护器必须≤32A；若确认36A，不得向2.5mm²分支，暂停并请电工确定保护方案"
+      - "直接上级≤32A只是端子必要条件；保护器还须匹配最小下游导线、敷设、负载及故障切断条件"
+      - "逻辑数量只有在实物确认单件含L/N独立极组时成立；若为单一公共母线须重新计数"
     planned_quantities: { PCT-42: 1, PCT-62: 6, surface_junction_box_100x100x50mm: 6 }
-    quantity_status: topology_frozen_use_blocked_by_upstream_rating
-    purchase_strategy: "可按冻结数量建购物车/购买；安装通电仍受10月1日上级额定电流门禁约束"
+    quantity_status: logical_topology_only_blocked_by_product_and_protection_review
+    purchase_strategy: "9月只建购物车；10月1日核对实物内部拓扑、认证和保护器后再冻结实购数量。安装通电另受专业验收门禁约束"
 
   - id: BUY-0026
     category: lighting

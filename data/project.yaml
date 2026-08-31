@@ -103,7 +103,7 @@ active_tasks:
   - { id: TASK-0016, phase: fixtures_appliances, item: "制定三套罗马杆窗帘的改造或旧物利用方案", status: todo }
   - { id: TASK-0017, phase: waterproof_surfaces, item: "复测层高、窗洞和不涂区域，计算乳胶漆与瓷砖改色净面积及向上取整桶数", status: todo }
   - { id: TASK-0018, phase: waterproof_surfaces, item: "在书桌底部完成10×10cm水性木器漆小样并决定是否改黑胡桃色", status: todo, schedule_window: "2026-10-01至2026-10-05" }
-  - { id: TASK-0019, phase: waterproof_surfaces, item: "完成卫生间地面防水和自铺地砖；记录跳过闭水导致的未验证状态", status: todo, schedule_window: "2026-10-02至2026-10-05" }
+  - { id: TASK-0019, phase: waterproof_surfaces, item: "完成卫生间地面防水、至少24h铺砖前蓄水试验和自铺地砖；试验不通过不得铺砖", status: todo, schedule_window: "2026-10-02至2026-10-05" }
   - { id: TASK-0020, phase: waterproof_surfaces, item: "完成全屋基层、底漆和两遍面漆", status: todo, schedule_window: "2026-10-02至2026-10-07" }
   - { id: TASK-0021, phase: utilities, item: "完成或冻结明线回路、走向、端点编号和材料包", status: todo, schedule_window: "最迟2026-10-08" }
   - { id: TASK-0022, phase: waterproof_surfaces, item: "完成石塑地板主要区域；未完成部分留下首排示范和编号", status: todo, schedule_window: "2026-10-08及2027年1月收尾" }
@@ -113,3 +113,4 @@ active_tasks:
   - { id: TASK-0026, phase: utilities, item: "完成无主灯分区、走廊A灯带控制及本地失效兜底设计", status: in_progress, schedule_window: "2026年9月远程设计；2026-10-01复测冻结" }
   - { id: TASK-0027, phase: utilities, item: "验证EVE V连续运行、断电恢复、虚拟机自启和远程管理", status: todo, schedule_window: "2026-09-01至2026-09-07" }
   - { id: TASK-0028, phase: utilities, item: "拍摄配电箱全部器件铭牌并冻结线径、保护器、端子和逐回路BOM", status: todo, schedule_window: "2026-10-01；急缺小件用京东次日补购" }
+  - { id: TASK-0029, phase: commissioning, item: "由合格电工确认供电/PE系统并完成绝缘、回路保护、插座接线和漏保动作等竣工检测；记录实测值", status: blocked_by_safety_review, schedule_window: "2026-10-01方案复核；新建线路通电前验收" }

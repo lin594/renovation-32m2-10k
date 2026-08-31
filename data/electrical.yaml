@@ -1,7 +1,7 @@
 version: 1
 updated: 2026-08-31
 status: preliminary_discussion_baseline
-drawing_property: "讨论方案，不是施工图；线径、保护器和端子须经现场铭牌核验与合格电工复核"
+drawing_property: "讨论方案，不是施工图或通电批准；线径、保护器、PE系统、端子和测试结果须经现场核验与合格电工复核"
 
 confirmed_conditions:
   wiring_method: "全屋明装线槽/明管"
@@ -25,6 +25,7 @@ design_principles:
   - "无主灯采用分散灯具和分区控制，不为每盏灯单独设置配电箱回路"
   - "智能控制不能替代本地实体控制；网络、Home Assistant或云端故障时仍能手动开关基础照明"
   - "6mm²主干不能自动保护缩径后的1.5mm²支路；支路保护器必须按最小导线、敷设方式和负载匹配"
+  - "PCT只是连接器，不提供过载、短路或漏电保护；上级≤32A只是端子必要条件，还须按最小下游导线载流能力匹配保护器"
   - "照明支路暂按1.5mm²铜线讨论；普通插座支路不小于2.5mm²；空调、厨房和洗烘等大负载按铭牌与线路长度另算"
   - "剩余蓝色6mm²线优先只作为中性导体候选，不把端部胶布改色直接视为相线方案获批"
 
@@ -59,7 +60,7 @@ provisional_five_circuit_allocation:
       route: "在配电箱处分成北向两支，分别经E-HOLE-01进入卧室、经E-HOLE-02进入厨房"
       reason: "利用两个相邻北向穿线孔，不与南向客厅/阳台照明往返绕线"
       conductor: "1.5mm²铜线候选"
-      protection: "空开类型不可改为漏保；仅当铭牌为B10/C10或合格电工明确批准保护1.5mm²时安装固定照明，否则采用插接式照明过渡"
+      protection: "空开类型不可改为漏保；B10/C10只作为初筛，仍须由合格电工结合线长、敷设、负载和产品确认保护1.5mm²后才安装，否则采用插接式照明过渡"
       status: blocked_by_panel_survey
     - id: MCB-05
       existing_device_type: "空气开关"
@@ -68,7 +69,7 @@ provisional_five_circuit_allocation:
       route: "从配电箱沿走廊A/B短距离布置，并经E-HOLE-04进入客厅；线路止于客厅，不进入阳台"
       reason: "形成南向/公共照明回路；与北向照明分开，任一路故障时不至全屋无基础照明"
       conductor: "1.5mm²铜线候选"
-      protection: "空开类型不可改为漏保；仅当铭牌为B10/C10或合格电工明确批准保护1.5mm²时安装固定照明，否则采用插接式照明过渡"
+      protection: "空开类型不可改为漏保；B10/C10只作为初筛，仍须由合格电工结合线长、敷设、负载和产品确认保护1.5mm²后才安装，否则采用插接式照明过渡"
       status: blocked_by_panel_survey
   hall_power_split:
     fixed_lighting: "由MCB-05供电；220V灯带硬接仍须经过厂家专用电源/整流接头并在可检修盒内端接"
@@ -113,9 +114,11 @@ terminal_policy:
   pct_42: { topology: "2进4出", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
   pct_62: { topology: "按实物标识核对内部极组后使用", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
   aggregate_current_rule: "32A为每极全部进出线合计允许电流，不是每个出线口各32A"
-  upstream_gate: "只有直接上级保护器额定电流≤32A时才允许使用；若现场确认为36A，不得用PCT向2.5mm²分支供电，暂停该节点施工，直到合格电工确认更换保护器或增加匹配的下游保护"
+  upstream_gate: "直接上级≤32A只是端子额定值门禁；保护器还必须不大于最小下游导线在实际敷设条件下允许值，并匹配负载与故障切断要求。任一条件未知即暂停接线和通电"
+  device_role: "PCT仅作连接/分线，不是保护器，不能用端子额定值替代支路过载、短路、漏电和接地故障保护"
   enclosure: "每个节点固定在独立、带盖、可开启检修的约100×100×50mm明装盒内"
   procurement: { pct_42: 1, pct_62_active: 5, pct_62_spare: 1, pct_62_total: 6 }
+  quantity_gate: "上述为图纸逻辑单元数；只有实物确认单件包含满足L/N分离所需的独立极组时才可按此数量购买，否则须按实物内部拓扑重算数量"
   rules:
     - "L、N和PE（如经检测存在）使用相互独立的极组/端子，不混接；到货后必须用实物标识和通断测试确认PCT内部拓扑"
     - "端子必须安装在可开启的接线盒或配电箱内并固定"
@@ -183,12 +186,26 @@ cable_plan:
     - { item: "BVVB 2×1.5mm²", quantity_m: 50, purpose: "固定照明成对供电" }
     - { item: "BV 1×1.5mm²红色", quantity_m: 50, purpose: "开关回线及吊扇受控相线" }
   lighting_purchase_gate:
-    pass_if: "10月1日确认两只照明空开为B10/C10，或合格电工明确确认其保护1.5mm²线路"
+    pass_if: "10月1日确认两只照明空开为B10/C10，并由合格电工结合线长、敷设、负载及产品明确确认其保护1.5mm²线路"
     on_pass: "购买两种1.5mm²线各50m"
     on_fail: "不安装1.5mm²固定照明；走廊灯带改接RCBO-03常电插座+智能插座，其他空间暂用插接式灯具"
   rejected_option: "不采用全屋2.5mm²照明；它增加成本、线槽尺寸与盒内拥挤，也不能修复保护器不匹配"
   trunking_rule: "按BVVB成品实际外径选线槽，成品线缆占槽内截面约40%以内，并为未来PE留空间"
   design_minimums: { lighting_mm2: 1.5, sockets_mm2: 2.5 }
+  socket_cable_limit: "BVVB 2×2.5mm²只包含L/N，不能构成带PE的完整插座终端回路；允许采购和预排尺寸，但在PE方案关闭前不得据此完成三孔插座或I类设备通电"
+
+commissioning_gate:
+  status: blocked
+  professional_checks:
+    - "确认供电系统类型、入户PE/PEN及卫生间等电位条件，不自行把N当PE"
+    - "保护器额定值/曲线与每段最小导线、敷设、负载和故障切断条件匹配"
+    - "馈电线路绝缘电阻"
+    - "插座极性和PE连续性（仅在确认存在合规PE后）"
+    - "接地故障回路条件"
+    - "漏保动作电流与动作时间"
+    - "回路标签、接线盒可检修性及端子紧固"
+  diy_limit: "万用表和测电笔只能做辅助通断/验电，不能替代上述竣工安全与功能检验"
+  energization_rule: "未形成合格电工签字/照片/实测值记录前，新建固定线路保持断开，不给三孔插座、空调、冰箱、洗烘机、热水器或浴霸通电"
 
 hall_a_shelf:
   location: "走廊A南墙壁挂置物架，背面贴南墙锚固"

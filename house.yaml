@@ -152,7 +152,9 @@ electrical:
       general_sockets: "BVVB 2×2.5mm²，先购50m；净路线复测超过45m时补第二卷"
       dedicated_loads: "空调、厨房和洗烘机按设备铭牌、距离与敷设条件另算"
     terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"
+    protection_gate: "PCT≤32A只是端子必要条件；保护器还须匹配最小下游导线、实际敷设、负载和故障切断条件"
     smart_control_rule: "普通插座保持常电；智能墙壁开关只控制灯具，不向普通插座供电"
+    energization_gate: "PE系统、绝缘、回路保护、插座接线和漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
     - { location: "洗衣机东侧", status: existing, plan: "优先利用" }
