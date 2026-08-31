@@ -56,10 +56,9 @@ items:
   - id: BUY-0007
     category: furniture
     room: living_room
-    item: "书桌和椅子"
+    item: "书桌椅子"
     status: not_purchased
-    desk_target_size_m: [1.3, 0.7]
-    requirements: ["书桌西侧贴墙", "东侧与冰箱东侧平齐", "椅子不得长期阻断主通道"]
+    requirements: ["适配已有约1.3×0.7m书桌", "椅子不得长期阻断主通道", "优先轻便、可完全推入桌下"]
 
   - id: BUY-0008
     category: door
@@ -80,4 +79,12 @@ items:
   - { id: BUY-0017, category: flooring, room: bathroom, item: "卫生间地砖及铺贴辅料", status: not_purchased }
   - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", status: not_purchased }
   - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, quantity_status: blocked_by_measurement, status: not_purchased }
-  - { id: BUY-0020, category: coating, room: living_room, item: "书桌暗木色改造材料", status: not_purchased, note: "先确认桌面是实木、贴皮、板材还是覆膜" }
+  - id: BUY-0020
+    category: coating
+    room: living_room
+    item: "书桌黑胡桃色改造材料"
+    candidate: "三棵树水性木器漆及所需配套底涂"
+    target_effect: "保留木纹的黑胡桃色"
+    purchase_strategy: "先买小样量；桌底10×10cm附着小样通过后再补足"
+    status: not_purchased
+    note: "书桌已有且为浅色木板；具体基材未知，接受简单改色效果，小样失败则保持原色"

@@ -183,8 +183,9 @@ def furniture_circulation() -> str:
 <path d="M880 480H520V470H360V510" fill="none" stroke="#16a34a" stroke-width="18" opacity=".20" stroke-linecap="round"/>
 <path d="M880 480H520V470H360" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
 {rect(0,1.6,0,.9,"planned",'data-status="not-purchased"')}<text x="145" y="215" class="small center">双人沙发｜未购买</text>
-{rect(2.5,3.2,0,1.3,"planned",'data-status="not-purchased"')}<text x="165" y="414" class="small center">书桌椅｜未购买</text>
+{rect(2.5,3.2,0,1.3,"fixed",'data-status="existing-to-refinish"')}<text x="165" y="402" class="small center">书桌｜已有</text><text x="165" y="419" class="micro center">待改黑胡桃色</text>
 <circle cx="175" cy="355" r="18" class="planned" data-status="not-purchased"/>
+<text x="175" y="359" class="micro center">椅</text>
 {rect(3.3,4,.6,1.3,"fixed")}<text x="195" y="494" class="small center">冰箱</text>
 {rect(3.2,4,0,.6,"planned")}<text x="130" y="483" class="small center">角落</text><text x="130" y="499" class="micro center">功能待定</text>
 {rect(2.4,3.2,2.2,3,"planned",'data-status="not-purchased"')}<circle cx="360" cy="411" r="24" fill="none" stroke="#f97316" stroke-width="2"/><text x="360" y="382" class="small center">洗烘一体机｜未购买</text>
@@ -202,7 +203,8 @@ def furniture_circulation() -> str:
     # Intentionally no open bath-slider leaf: circulation must remain readable.
     side = sidebar("采购与摆放状态", [
         "橙虚线：未购买、未定制或尺寸待定",
-        "沙发、书桌椅、洗烘机尚未购买",
+        "书桌已有，待做黑胡桃色小样改色",
+        "椅子、沙发和洗烘机尚未购买",
         "马桶、浴室柜尚未购买",
         "扫地机器人已有，但停靠位置待定",
         "主通道仍需保持约0.7m净宽",

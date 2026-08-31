@@ -45,6 +45,13 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertNotIn('data-state="bath-slider-open-in-passage"', furniture)
         self.assertIn('data-detail="bath-slider-constraint"', doors)
 
+    def test_existing_desk_and_unpurchased_chair_are_distinct(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        self.assertIn('data-status="existing-to-refinish"', furniture)
+        self.assertIn("书桌｜已有", furniture)
+        self.assertIn("待改黑胡桃色", furniture)
+        self.assertIn("椅子、沙发和洗烘机尚未购买", furniture)
+
     def test_bath_slider_opens_east_and_temporarily_intrudes_hall_b(self) -> None:
         doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
         details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")

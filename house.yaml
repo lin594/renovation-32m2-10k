@@ -196,7 +196,8 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
   living_room:
     - { item: "双人沙发", rect: [0, 1.6, 0, 0.9], orient: "靠西墙，面朝东", procurement_status: not_purchased, procurement_ref: BUY-0006 }
     - { item: "投影仪", mount: "西墙沙发上方高位壁装", throw_m: 2.85, screen: "y=3墙 x[0.3,1.7]实墙段（无门无窗）", max_image: "100~110寸", note: "光路无家具遮挡（已校核）" }
-    - { item: "书桌和椅子", rect: [2.5, 3.2, 0, 1.3], size: "书桌约1.3×0.7", orient: "西侧完全贴墙；东侧与冰箱东侧平齐于y≈1.3", note: "桌下留空，但日常被座椅挡住", procurement_status: not_purchased, procurement_ref: BUY-0007 }
+    - { item: "书桌（已有）", rect: [2.5, 3.2, 0, 1.3], size: "约1.3×0.7", orient: "西侧完全贴墙；东侧与冰箱东侧平齐于y≈1.3", condition: "浅色木板，具体基材待现场确认", refinishing_plan: "三棵树水性木器漆改为保留木纹的黑胡桃色；先做桌底10×10cm小样", inventory_ref: INV-0009, coating_ref: BUY-0020 }
+    - { item: "书桌椅子", status: "未购买", procurement_status: not_purchased, procurement_ref: BUY-0007, note: "购买后不得长期阻断主通道" }
     - { item: "冰箱", rect: [3.3, 4, 0.6, 1.3], orient: "南面贴x=4墙；东侧与书桌东侧平齐；门朝东、北铰链、向东北旋开" }
     - { item: "书桌/冰箱形成的角落", rect: [3.2, 4, 0, 0.6], status: "功能待定", note: "书桌下方虽空，但座椅常会挡住进出" }
     - { item: "洗烘一体滚筒洗衣机", rect: [2.4, 3.2, 2.2, 3], orient: "东面贴卫生间西墙，正面朝南，东南角=(3.2,3)", procurement_status: not_purchased, procurement_ref: BUY-0003 }

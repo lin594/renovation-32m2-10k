@@ -109,8 +109,12 @@ floor_plan:
 
 refinishing:
   - item: "书桌"
-    plan: "改成暗色木头效果"
-    status: "方案待定；此前记录为尚未购买，需先确认材质和来源"
+    inventory_ref: INV-0009
+    existing_finish: "浅色木板，具体基材待现场确认"
+    plan: "使用三棵树水性木器漆简单改为保留木纹的黑胡桃色"
+    sample: "桌底10×10cm隐蔽小样"
+    acceptance: "小样附着合格才大面积施工；失败则保持原色"
+    status: planned_sample_first
     procurement_ref: BUY-0020
   - item: "厨房和卫生间既有白色瓷砖"
     scope: "厨房四面墙和卫生间四面墙约1.8m高，以及厨房现有瓷砖灶台"

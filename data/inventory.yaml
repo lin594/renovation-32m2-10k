@@ -85,3 +85,15 @@ items:
     planned_use: "改造、换布、染色、拆分利用或回收待定"
     note: "当前风格与宋氏美学/侘寂中古方向冲突"
     task_ref: TASK-0016
+
+  - id: INV-0009
+    category: reusable_furniture
+    item: "浅色木板书桌"
+    quantity: 1
+    unit: 张
+    location: 客厅
+    condition: existing_usable
+    planned_use: "向西靠墙继续使用"
+    refinishing_plan: "三棵树水性木器漆简单改为保留木纹的黑胡桃色"
+    sample_requirement: "先在桌底做10×10cm隐蔽小样；附着不合格则保持原色"
+    procurement_ref: BUY-0020
