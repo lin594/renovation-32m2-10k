@@ -157,10 +157,10 @@ items:
     room: whole_house
     item: "明装电路材料包"
     status: not_purchased
-    purchase_strategy: "9月按冻结图纸形成BOM；线槽等小件可提前寄往另一住所"
-    bom_categories: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "改色标识材料"]
-    quantity_status: blocked_by_route_takeoff
-    note: "施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行"
+    purchase_strategy: "9月形成初步购物车；线槽和标准小件可提前寄往另一住所，保护器、导线和端子数量在10月1日现场冻结后用京东次日补购"
+    bom_categories: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
+    quantity_status: blocked_by_route_takeoff_and_panel_labels
+    note: "仅有3个漏保+2个空开共五路；施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行"
 
   - id: BUY-0022
     category: windows
@@ -171,3 +171,66 @@ items:
     installation_window: "2027年1月中旬"
     requirements: ["耐抓纱网", "框体牢固", "防误开锁扣", "无可钻缝隙", "保留应急开启"]
     budget_priority: protected
+
+  - id: BUY-0023
+    category: electrical_material
+    room: whole_house
+    item: "1.5mm²铜线（仅照明支路候选）"
+    status: not_purchased
+    requirements: ["国标合格产品", "火线/零线使用正确且全路径可辨识的颜色", "不得用于普通插座、空调、厨房大负载或洗烘机"]
+    quantity_status: blocked_by_route_takeoff_and_breaker_match
+    purchase_strategy: "9月只加入购物车；10月1日确认MCB-01/02完整铭牌和两条照明路线长度后下单，京东次日作为兜底"
+    risk_ref: SAF-0014
+
+  - id: BUY-0024
+    category: electrical_material
+    room: whole_house
+    item: "2.5mm²及以上插座/专用回路铜线"
+    status: not_purchased
+    requirements: ["普通插座不小于2.5mm²", "两台空调、洗烘机、浴霸及厨房负载按铭牌和距离核算", "颜色规范且全路径可辨识"]
+    quantity_status: blocked_by_appliance_list_route_takeoff_and_panel_labels
+    purchase_strategy: "9月比价建购物车，不猜数量；10月1日现场冻结"
+
+  - id: BUY-0025
+    category: electrical_connector
+    room: whole_house
+    item: "接线端子、固定座和DIN导轨分配块"
+    status: not_purchased
+    requirements:
+      - "不只看250V/32A，核对认证、具体型号、导线类型和允许截面积"
+      - "2孔=进线+出线；3孔=进线+续接+一分支；5孔=同回路多分支"
+      - "4mm²/32A端子不默认接6mm²；6mm²使用明确支持6mm²的型号或分配块"
+      - "L/N/PE分别使用独立端子，安装在可检修接线盒或配电箱内"
+    quantity_status: blocked_by_point_topology
+    purchase_strategy: "9月只选候选型号；10月1日逐点画拓扑后用京东次日补购数量"
+
+  - id: BUY-0026
+    category: lighting
+    room: hall_a
+    item: "走廊A 220V灯带成套材料"
+    status: not_purchased
+    requirements:
+      - "2700至3000K，优先Ra/CRI≥90，带柔光结构"
+      - "厂家成套整流/电源接头、成型插头、固定卡和末端绝缘封帽"
+      - "核对额定长度、每米功率、剪切单位、转弯方式、散热安装面和阻燃信息"
+      - "优先插头接智能插座并保留实体控制；不把建筑导线与灯带铜箔/软引线裸接"
+    quantity_status: blocked_by_hall_measurement_and_product_manual
+    purchase_strategy: "9月确定产品和加入购物车；10月1日复测长度，普通快递或京东次日补购"
+    risk_ref: SAF-0015
+
+  - id: BUY-0027
+    category: electrical_fixture
+    room: hall_a
+    item: "玄关设备架常电插座与理线材料"
+    status: not_purchased
+    requirements: ["至少4个常电插位", "光猫/路由器/EVE V不得被灯光自动化切断", "强弱电分区", "可检修", "线缆应力释放"]
+    quantity_status: blocked_by_shelf_dimensions
+    inventory_ref: INV-0012
+
+  - id: BUY-0028
+    category: tool_bundle
+    room: whole_house
+    item: "10月DIY零散工具和耗材"
+    status: not_purchased
+    checklist_ref: "docs/todo/2026-09-online-preparation.md"
+    purchase_strategy: "9月按已有/借用/待买盘点；普通件最迟9月24日下单，遗漏项9月29日晚以前用京东次日补齐"
