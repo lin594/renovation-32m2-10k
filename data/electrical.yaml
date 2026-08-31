@@ -20,51 +20,59 @@ design_principles:
   - "剩余蓝色6mm²线优先只作为中性导体候选，不把端部胶布改色直接视为相线方案获批"
 
 provisional_five_circuit_allocation:
-  recommendation: "功能分组优先；五个保护器只形成五个回路，灯光分区由下游开关完成而不额外占配电箱位置"
+  recommendation: "以配电箱和四个既有穿线孔的方向为第一约束；五个保护器只形成五个回路，房间内灯光分区由下游开关完成"
   circuits:
     - id: RCBO-01
       existing_device_type: "漏电保护器"
-      scope: ["厨房插座", "厨房固定设备"]
-      reason: "厨房负载集中并涉及用水"
-      conductor: "不小于2.5mm²候选；最终按设备清单和线路长度核算"
+      scope: ["卧室普通插座", "卧室已有空调"]
+      route: "从配电箱向北，经卧室门洞最北端E-HOLE-01进入卧室后沿墙分配"
+      reason: "卧室与客厅方向相反，使用独立穿线孔，不与客厅共用绕行主干"
+      conductor: "混合负载及缩径方式待铭牌和保护器核验；普通插座不小于2.5mm²候选"
       status: blocked_by_panel_and_load_survey
     - id: RCBO-02
       existing_device_type: "漏电保护器"
-      scope: ["卫生间用电", "洗烘一体机"]
-      reason: "把湿区和洗衣负载集中到漏电保护下"
-      conductor: "按浴霸/照明/洗烘机铭牌与安装条件核算"
-      status: blocked_by_safety_and_appliance_selection
+      scope: ["厨房插座", "厨房固定设备"]
+      route: "从配电箱经走廊B，到厨房门洞最西端E-HOLE-02进入厨房"
+      reason: "厨房有独立近端穿线孔，负载集中且涉及用水"
+      conductor: "普通插座不小于2.5mm²候选；厨房设备按铭牌、同时使用和线路长度核算"
+      status: blocked_by_panel_and_load_survey
     - id: RCBO-03
       existing_device_type: "漏电保护器"
-      scope: ["卧室普通插座", "客厅普通插座", "玄关常电插座", "EVE V/光猫/路由器"]
-      reason: "所有日常可触及插座优先纳入漏电保护；玄关不单独占一路"
-      conductor: "不小于2.5mm²候选"
-      status: blocked_by_panel_and_load_survey
+      scope: ["客厅普通插座", "客厅已有空调", "客厅洗烘一体机", "卫生间全部用电（含照明）", "玄关设备架常电插座"]
+      route: "从配电箱沿走廊A向南形成一条主干；在E-HOLE-03进卫生间，在E-HOLE-04进客厅；设备架在走廊A就近分支"
+      reason: "卫生间和客厅的穿线孔位于同一南向干线；洗衣机实际在客厅，随客厅回路；玄关常电设备就近取得漏保电源"
+      conductor: "普通插座不小于2.5mm²候选；客厅空调、洗烘机和浴霸同时负载必须现场核算"
+      status: blocked_by_panel_load_and_bathroom_safety_survey
     - id: MCB-01
       existing_device_type: "空气开关"
-      scope: ["全屋固定照明"]
-      reason: "一个1.5mm²照明回路承载多个下游开关分区，节省配电箱位置"
+      physical_position: 4
+      scope: ["卧室固定照明", "厨房固定照明"]
+      route: "在配电箱处分成北向两支，分别经E-HOLE-01进入卧室、经E-HOLE-02进入厨房"
+      reason: "利用两个相邻北向穿线孔，不与南向客厅/阳台照明往返绕线"
       conductor: "1.5mm²铜线候选"
-      protection: "额定值须匹配1.5mm²及实际敷设条件，不得沿用未知36A结论"
+      protection: "空开类型不可改为漏保，但额定值必须与1.5mm²及实际敷设条件匹配；若现件确为36A须更换同宽合适额定值空开"
       status: blocked_by_panel_survey
     - id: MCB-02
       existing_device_type: "空气开关"
-      scope: ["备用"]
-      reason: "待两台空调和洗烘机负载核算后决定；必要时优先更换为合适的漏电保护器形成专用回路"
-      conductor: "待定"
-      status: reserved
-  owner_room_based_alternative:
-    allocation: ["漏保：卧室", "漏保：厨房", "漏保：客厅+卫生间", "空开：玄关", "空开：备用"]
-    tradeoffs:
-      - "按房间施工直观，但玄关常电插座和EVE V不在漏电保护器下"
-      - "客厅+卫生间还可能叠加客厅空调、洗烘机和浴霸，负载集中"
-      - "没有独立、与1.5mm²匹配的全屋照明保护回路"
-    status: "保留为备选，不作为当前推荐基线"
+      physical_position: 5
+      scope: ["走廊A/B固定照明", "客厅固定照明", "阳台固定照明", "走廊A 220V灯带"]
+      route: "从配电箱沿走廊A/B短距离布置，并经E-HOLE-04进入客厅后继续到阳台"
+      reason: "形成南向/公共照明回路；与北向照明分开，任一路故障时不至全屋无基础照明"
+      conductor: "1.5mm²铜线候选"
+      protection: "空开类型不可改为漏保，但额定值必须与1.5mm²及实际敷设条件匹配；若现件确为36A须更换同宽合适额定值空开"
+      status: blocked_by_panel_survey
+  hall_power_split:
+    fixed_lighting: "由MCB-02供电；220V灯带硬接仍须经过厂家专用电源/整流接头并在可检修盒内端接"
+    always_on_sockets: "光猫、路由器、EVE V和插接式智能灯带方案由RCBO-03在走廊A主干就近分支，不接MCB-01/02"
+    rationale: "避免玄关常电插座失去漏电保护，同时保留玄关照明独立空开"
   unresolved_high_loads:
     - "客厅空调与卧室空调的铭牌功率、启动电流和现有临时回路线径"
     - "洗烘一体机最终型号和最大功率"
     - "浴霸是否保留及其功率和防护条件"
-    - "以上设备同时运行时RCBO-02/03是否过载"
+    - "客厅空调、洗烘机、浴霸和客厅插座同时运行时RCBO-03是否过载"
+    - "卧室空调与卧室插座同时运行时RCBO-01是否过载"
+    - "厨房设备同时运行时RCBO-02是否过载"
+  fixed_physical_constraint: "第4、5支路位均只能安装空气开关，不能改装漏保；因此仅分配固定照明，不分配普通插座、洗烘机、空调或湿区设备"
 
 lighting_zones:
   - id: LZ-01
@@ -72,8 +80,8 @@ lighting_zones:
     fixture: "220V柔性灯带候选"
     target: "玄关和走廊A基础照明"
     controls: ["本地实体控制", "智能插座或智能开关"]
-    preferred_connection: "带厂家成套整流/电源接头和成型插头的灯带接入玄关常电插座"
-    fixed_wiring_alternative: "仅当具体产品说明允许硬接时，在可检修带盖接线盒内使用匹配端子、专用电源接头与应力消除后接入受控照明回路"
+    preferred_connection: "若具体产品明确支持固定接线：MCB-02受控线在可检修带盖接线盒内，连接厂家专用整流/电源接头，再接灯带；不是建筑线直碰灯带铜箔"
+    plug_in_alternative: "带厂家成套电源接头和成型插头的灯带接RCBO-03所供玄关常电插座，再通过有实体按钮的智能插座控制"
     forbidden: ["建筑导线与灯带铜箔/软引线裸接", "把接头埋进腻子或不可开启线槽", "剪切端不装绝缘端帽", "只保留依赖网络的控制方式"]
     status: selected_pending_product
   - { id: LZ-02, room: hall_b, fixture: "小型漫射吸顶灯或壁灯", controls: ["实体开关"], status: planned }
@@ -123,5 +131,6 @@ onsite_freeze_gate:
     - "记录C/B曲线及额定电流、极数、漏电动作电流、分断能力和型号"
     - "逐回路确认现有临时线路和实际负载"
     - "测量各端点路线长度和同槽导线数量"
+    - "按E-HOLE-01卧室、E-HOLE-02厨房、E-HOLE-03卫生间、E-HOLE-04客厅逐孔确认路线和分支"
     - "确认走廊A灯带长度、安装高度、剪切单位、成套电源接头与末端封帽"
   outputs: ["最终回路表", "线径和颜色表", "保护器匹配表", "2/3/5孔端子及分配块数量", "逐房间材料包"]

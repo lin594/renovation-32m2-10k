@@ -134,7 +134,7 @@ electrical:
       - { item: "延时送电器", count: 1 }
       - { item: "漏电保护器", count: 3 }
       - { item: "空气开关", count: 2 }
-    branch_capacity: "仅5个现有支路位置：3个漏保+2个空开"
+    branch_capacity: "仅5个现有支路位置：3个漏保+2个空开；第4、5位受物理空间限制只能安装空开，不能改漏保"
     marking_note: "业主记忆为约500V、36A；该信息不足以确定脱扣额定值，正面/侧面完整铭牌待10月1日拍照"
     provisional_allocation_ref: "data/electrical.yaml#provisional_five_circuit_allocation"
   incoming_work:
