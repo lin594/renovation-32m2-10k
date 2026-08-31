@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bedroom-electrical-detail" role="img">
+<title>33 卧室插座与吊扇控制详图</title>
+<desc>原暗盒调速器、床南/床北明装插座及两回路分离规则</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">33 卧室插座与吊扇控制详图</text>
+<text x="70" y="78" class="subtitle">原暗盒调速器、床南/床北明装插座及两回路分离规则</text>
+
+<rect x="90" y="120" width="820" height="560" rx="16" fill="#ece8f7" stroke="#475569" stroke-width="5"/>
+<text x="500" y="154" class="note bold center">卧室西墙与床两侧｜局部展开示意</text>
+<rect x="255" y="230" width="440" height="250" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="475" y="355" class="room">双人床</text><text x="475" y="379" class="roomsub">北侧与南侧各需常电插座</text>
+<circle cx="120" cy="520" r="14" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="120" y="524" class="micro center">01</text><text x="92" y="548" class="micro blue">卧室门洞北端</text>
+
+<g data-circuit="MCB-04" data-terminal-scope="fan-control-only">
+ <path d="M134 520H165V430H205" fill="none" stroke="#f59e0b" stroke-width="5" data-route-kind="surface"/>
+ <rect x="205" y="400" width="82" height="62" rx="5" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" data-box-type="existing-recessed" data-device="fan-speed-controller"/>
+ <text x="246" y="423" class="small bold center">原暗盒</text><text x="246" y="443" class="micro center">仅吊扇调速器</text>
+ <path d="M287 430C380 165 585 150 740 210" fill="none" stroke="#7c3aed" stroke-width="5" stroke-dasharray="2 8" data-route-kind="existing-concealed"/>
+ <circle cx="760" cy="215" r="28" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="760" y="220" class="small center">吊扇</text>
+</g>
+<text x="430" y="180" class="small purple center">调速器 → 吊扇：既有暗埋线，复用前测通断与绝缘</text>
+
+<g data-circuit="RCBO-01" data-terminal-scope="bed-sockets-only">
+ <path d="M134 520H165V500H310V465" fill="none" stroke="#0284c7" stroke-width="5" data-route-kind="surface"/>
+ <rect x="305" y="425" width="88" height="72" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" data-box-type="surface-bed-south"/>
+ <text x="349" y="451" class="small bold center">床南明盒</text><text x="349" y="472" class="micro center">常电插座</text>
+ <path d="M165 500V185H720" fill="none" stroke="#0284c7" stroke-width="5" data-route-kind="surface"/>
+ <rect x="720" y="155" width="88" height="72" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" data-box-type="surface-bed-north"/>
+ <text x="764" y="181" class="small bold center">床北明盒</text><text x="764" y="202" class="micro center">常电插座</text>
+ <rect x="165" y="482" width="82" height="38" rx="6" fill="#fff" stroke="#0284c7" stroke-width="2" data-junction="JB-BED"/>
+ <text x="206" y="497" class="micro bold center">JB-BED</text><text x="206" y="512" class="micro center">PCT短尾线</text>
+</g>
+<line x1="292" y1="390" x2="292" y2="505" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 5"/><text x="300" y="390" class="micro red">不同回路分盒 / 分槽 / 分端子</text>
+<rect x="110" y="590" width="760" height="62" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="132" y="616" class="small red">一个暗盒不够：保留原暗盒给调速器，在旁边加独立明盒插座；不叠压多根铜鼻子。</text><text x="132" y="638" class="small red">两芯L/N没有PE：PE端子保持未连接并贴标；绝缘、极性和漏保实测通过后才通电。</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">33 现场装配检查</text><text x="994" y="196" class="note">橙：空开4的吊扇控制回路</text><text x="994" y="225" class="note">蓝：漏保1的卧室常电插座回路</text><text x="994" y="254" class="note">紫点线：调速器后的既有暗埋线</text><text x="994" y="283" class="note">床南明盒与调速器暗盒相邻但独立</text><text x="994" y="312" class="note">床北使用独立明装插座</text><text x="994" y="341" class="note">JB-BED另分空调、床北、床南</text><text x="994" y="370" class="note">普通插座不由智能墙壁开关供电</text><text x="994" y="399" class="note">智能插座只插在常电插座上</text><text x="994" y="428" class="note">不同回路不得共用端子</text><text x="994" y="457" class="note red">断电、验电后施工；绝缘需专业仪表</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="524" class="small">吊扇受控相线</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#0284c7" stroke-width="5"/><text x="1044" y="553" class="small">卧室漏保常电</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="582" class="small">既有暗埋线</text>
+<text x="100" y="800" class="small">V5 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+</svg>

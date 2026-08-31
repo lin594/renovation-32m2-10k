@@ -14,8 +14,9 @@ EXPECTED = {
     "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
     "30-electrical-low-voltage.svg": ("electrical-low-voltage", "强弱电点位图"),
     "31-electrical-routes.svg": ("electrical-routes", "强电真实空间走线图"),
-    "32-electrical-topology.svg": ("electrical-topology", "五回路与PCT端子拓扑图"),
+    "32-electrical-topology.svg": ("electrical-topology", "五回路与分级漏保拓扑图"),
     "33-bedroom-electrical-detail.svg": ("bedroom-electrical-detail", "卧室插座与吊扇控制详图"),
+    "34-bathroom-electrical-detail.svg": ("bathroom-electrical-detail", "卫生间专用馈线与漏保详图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
@@ -31,7 +32,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_ten_svg_files(self) -> None:
+    def test_generates_exactly_eleven_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -54,6 +55,16 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("书桌｜已有", furniture)
         self.assertIn("待改黑胡桃色", furniture)
         self.assertIn("椅子、沙发和洗烘机尚未购买", furniture)
+
+    def test_robot_dock_table_and_two_outlets_are_explicit(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
+        self.assertIn('data-furniture="robot-vacuum"', furniture)
+        self.assertIn('data-clear-under="true"', furniture)
+        self.assertIn('data-robot-approach="east-clear"', furniture)
+        self.assertIn('data-outlet-branch="LR-SOFA-ROBOT"', furniture)
+        self.assertIn('data-outlet="robot-always-on"', points)
+        self.assertIn('data-outlet="sofa-charge"', points)
 
     def test_bath_slider_opens_east_and_temporarily_intrudes_hall_b(self) -> None:
         doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
@@ -118,20 +129,43 @@ class GenerateDiagramsTest(unittest.TestCase):
             "31-electrical-routes.svg",
             "32-electrical-topology.svg",
             "33-bedroom-electrical-detail.svg",
+            "34-bathroom-electrical-detail.svg",
         ):
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
             self.assertNotIn('data-permanent-route="balcony"', svg)
             self.assertNotIn("阳台固定照明", svg)
 
-    def test_32_has_exact_pct_topology(self) -> None:
+    def test_32_has_five_circuits_six_logical_nodes_and_layered_rcd(self) -> None:
         topology = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
-        self.assertEqual(topology.count('data-terminal-model="PCT-42"'), 1)
-        self.assertEqual(topology.count('data-terminal-model="PCT-62"'), 5)
-        self.assertEqual(topology.count('data-terminal-status="active"'), 6)
-        for node in ("JB-L4", "JB-L5", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV"):
+        self.assertEqual(topology.count('data-circuit="'), 5)
+        self.assertEqual(topology.count('data-terminal-status="logical"'), 6)
+        for node in ("JB-L4", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV", "JB-BATH"):
             self.assertIn(f'data-junction="{node}"', topology)
-        self.assertIn("上级≤32A只是PCT必要条件", topology)
-        self.assertIn("PCT只是连接器、不提供保护", topology)
+        self.assertNotIn('data-junction="JB-L5"', topology)
+        self.assertIn('data-device-protection="RCD-BATH-01"', topology)
+        self.assertIn('data-device-protection="SRCD-AC-BED"', topology)
+        self.assertIn('data-device-protection="SRCD-AC-LIV"', topology)
+        self.assertIn('data-device-protection="SRCD-WASHER"', topology)
+        self.assertIn("实物型号和数量须现场换算", topology)
+
+    def test_31_routes_mcb05_only_to_bath_rcd(self) -> None:
+        routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
+        self.assertEqual(routes.count('data-circuit="MCB-05"'), 1)
+        self.assertIn('data-bath-feeder="continuous-no-joint"', routes)
+        self.assertIn('data-device-protection="RCD-BATH-01"', routes)
+        self.assertIn('data-fallback="hall-a-outside"', routes)
+
+    def test_34_has_continuous_feeder_three_downstream_loads_and_dry_fallback(self) -> None:
+        detail = (self.output_dir / "34-bathroom-electrical-detail.svg").read_text(encoding="utf-8")
+        self.assertIn('data-upstream-segment="continuous-no-joint-no-branch"', detail)
+        self.assertIn('data-poles="L+N"', detail)
+        self.assertIn('data-trip-ma-max="30"', detail)
+        self.assertIn('data-bath-load-downstream="true"', detail)
+        self.assertIn('data-device-protection="SRCD-BATH-HEATER"', detail)
+        self.assertIn('data-device-protection="SRCD-BATH-MIRROR"', detail)
+        self.assertIn('data-location-preference="bath-dry-high"', detail)
+        self.assertIn('data-location-fallback="hall-a-outside"', detail)
+        self.assertIn("禁止普通智能插座承载", detail)
 
     def test_33_separates_controller_and_bed_sockets(self) -> None:
         detail = (self.output_dir / "33-bedroom-electrical-detail.svg").read_text(encoding="utf-8")
@@ -143,7 +177,7 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-terminal-scope="bed-sockets-only"', detail)
         self.assertIn('data-circuit="MCB-04"', detail)
         self.assertIn('data-circuit="RCBO-01"', detail)
-        self.assertIn("专业检测和PE方案关闭前", detail)
+        self.assertIn("PE端子保持未连接并贴标", detail)
 
     def test_electrical_bom_excludes_recolored_blue_wire_and_switched_outlets(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -158,18 +192,24 @@ class GenerateDiagramsTest(unittest.TestCase):
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "50-kitchen-bath-details.svg"}:
+            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "50-kitchen-bath-details.svg"}:
                 self.assertIn('data-connection="hall-a-b-open"', svg)
                 self.assertNotIn("M475 450H600", svg)
 
     def test_checked_in_outputs_match_generator(self) -> None:
-        checked_in = Path(__file__).resolve().parents[1] / "diagrams" / "v4"
+        checked_in = Path(__file__).resolve().parents[1] / "diagrams" / "v5"
         for filename in EXPECTED:
             self.assertEqual(
                 (checked_in / filename).read_text(encoding="utf-8"),
                 (self.output_dir / filename).read_text(encoding="utf-8"),
                 f"{filename} 已过期，请运行 make diagrams",
             )
+
+    def test_v4_remains_archived_and_marked_v4(self) -> None:
+        archived = Path(__file__).resolve().parents[1] / "diagrams" / "v4"
+        self.assertEqual(len(list(archived.glob("*.svg"))), 10)
+        for path in archived.glob("*.svg"):
+            self.assertIn("V4 讨论图", path.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

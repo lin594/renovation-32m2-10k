@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bathroom-electrical-detail" role="img">
+<title>34 卫生间专用馈线与漏保详图</title>
+<desc>漏保前连续段、双极30mA保护、三条下游分支与干区降级规则</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">34 卫生间专用馈线与漏保详图</text>
+<text x="70" y="78" class="subtitle">漏保前连续段、双极30mA保护、三条下游分支与干区降级规则</text>
+
+<rect x="70" y="115" width="850" height="590" rx="16" fill="#f8fafc" stroke="#475569" stroke-width="3"/>
+<text x="495" y="150" class="note bold center">卫生间专用馈线与末端保护｜逻辑展开</text>
+<g data-circuit="MCB-05"><rect x="105" y="200" width="145" height="72" rx="9" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="177" y="225" class="small bold center">MCB-05</text><text x="177" y="246" class="micro center">卫生间专用空开</text></g>
+<path d="M250 236H390" fill="none" stroke="#dc2626" stroke-width="5" marker-end="url(#arrow)" data-upstream-segment="continuous-no-joint-no-branch"/>
+<text x="320" y="216" class="micro red center">连续 / 机械保护 / 无接头 / 无分支</text>
+<g data-device-protection="RCD-BATH-01" data-poles="L+N" data-trip-ma-max="30"><rect x="390" y="185" width="180" height="104" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><text x="480" y="211" class="small bold center">RCD-BATH-01</text><text x="480" y="234" class="small center">L+N双极｜≤30mA</text><text x="480" y="256" class="micro center">TEST / RESET｜高位可检修箱</text><text x="480" y="276" class="micro red center">必须先保护，再产生任何分支</text></g>
+<path d="M570 236H640" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+<g data-junction="JB-BATH" data-terminal-status="logical"><rect x="640" y="195" width="150" height="84" rx="9" class="fixed"/><text x="715" y="222" class="small bold center">JB-BATH</text><text x="715" y="244" class="micro center">L/N逻辑分线</text><text x="715" y="263" class="micro center">PCT实物待换算</text></g>
+
+<g data-bath-load-downstream="true">
+ <path d="M715 279V360H260" fill="none" stroke="#0284c7" stroke-width="3"/>
+ <path d="M715 320H480" fill="none" stroke="#0284c7" stroke-width="3"/>
+ <path d="M715 340H700" fill="none" stroke="#0284c7" stroke-width="3"/>
+ <g data-device-protection="SRCD-BATH-HEATER"><rect x="120" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="235" y="362" class="small bold center">浴霸连接点</text><text x="235" y="386" class="micro center">说明允许插头：防水插座式漏保</text><text x="235" y="407" class="micro center">只允许固定接线：双极隔离+带盖盒</text><text x="235" y="428" class="micro red center">禁止普通智能插座承载</text></g>
+ <g data-device-protection="SRCD-BATH-MIRROR"><rect x="370" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="485" y="362" class="small bold center">智能除雾镜柜连接点</text><text x="485" y="386" class="micro center">说明允许插头：防水插座式漏保</text><text x="485" y="407" class="micro center">只允许固定接线：双极隔离+带盖盒</text><text x="485" y="428" class="micro center">独立于浴霸控制输出</text></g>
+ <rect x="620" y="335" width="230" height="110" rx="9" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/><text x="735" y="362" class="small bold center">防潮基础灯 / 镜前灯</text><text x="735" y="386" class="micro center">零火开关盒到达L/N</text><text x="735" y="407" class="micro center">智能开关受控相线只去灯具</text><text x="735" y="428" class="micro center">保留本地实体控制</text>
+</g>
+
+<rect x="105" y="490" width="745" height="80" rx="10" fill="#ecfdf5" stroke="#16a34a" stroke-width="2" data-location-preference="bath-dry-high"/><text x="128" y="518" class="small green bold">首选：卫生间内实测干区高位</text><text x="128" y="543" class="small green">高位不自动等于干区；须按淋浴喷溅范围和产品说明确认，且TEST/RESET可触达。</text>
+<rect x="105" y="590" width="745" height="80" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2" data-location-fallback="hall-a-outside"/><text x="128" y="618" class="small orange bold">自动降级：走廊A门外</text><text x="128" y="643" class="small orange">室内没有可证明合格的干区时，整套漏保箱移至门外；不得改成湿区裸露安装。</text>
+<rect x="285" y="575" width="370" height="20" fill="url(#danger)" opacity=".8" data-wet-zone-no-box="true"/><text x="470" y="586" class="micro red center">喷溅/湿区：禁止用“防水”标签替代安装分区</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">34 卫浴电气验收门禁</text><text x="994" y="196" class="note">MCB-05只接这一条馈线</text><text x="994" y="225" class="note">漏保箱前无接头、无分支</text><text x="994" y="254" class="note">RCD-BATH-01同时切断L和N</text><text x="994" y="283" class="note">额定动作电流不大于30mA</text><text x="994" y="312" class="note">浴霸/镜柜/照明全部在下游</text><text x="994" y="341" class="note">设备插头方式必须由说明书允许</text><text x="994" y="370" class="note">浴霸不接普通智能插座</text><text x="994" y="399" class="note">智能照明开关统一使用零火版</text><text x="994" y="428" class="note">无PE标识持续保留，严禁N/PE短接</text><text x="994" y="457" class="note">接受上下级同时跳闸并分别实测</text><text x="994" y="486" class="note red">负载、线径、IP和位置均待10月1日冻结</text><line x1="994" y1="507" x2="1316" y2="507" stroke="#e2e8f0"/><line x1="998" y1="525" x2="1030" y2="525" stroke="#dc2626" stroke-width="5"/><text x="1044" y="529" class="small">漏保前连续馈线 / 安全门禁</text><line x1="998" y1="554" x2="1030" y2="554" stroke="#0284c7" stroke-width="5"/><text x="1044" y="558" class="small">漏保后设备分支</text><line x1="998" y1="583" x2="1030" y2="583" stroke="#16a34a" stroke-width="5"/><text x="1044" y="587" class="small">首选干区</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#f97316" stroke-width="5"/><text x="1044" y="616" class="small">门外自动降级</text>
+<text x="100" y="800" class="small">V5 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+</svg>

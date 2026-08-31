@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="electrical-routes" role="img">
+<title>31 强电真实空间走线图</title>
+<desc>四个穿线孔、五回路真实路径、卫生间先漏保与阳台禁入边界</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">31 强电真实空间走线图</text>
+<text x="70" y="78" class="subtitle">四个穿线孔、五回路真实路径、卫生间先漏保与阳台禁入边界</text>
+
+<rect x="100" y="130" width="300" height="400" fill="#f7ead7" opacity="0.68"/>
+<rect x="100" y="530" width="300" height="100" fill="#e6f3e8" opacity="0.68"/>
+<rect x="400" y="130" width="200" height="200" fill="#f9efd0" opacity="0.68"/>
+<rect x="400" y="330" width="100" height="120" fill="#dff3f7" opacity="0.68"/>
+<rect x="500" y="330" width="100" height="120" fill="#edf1f5" opacity="0.68"/>
+<rect x="400" y="450" width="200" height="80" fill="#edf1f5" opacity="0.68"/>
+<rect x="600" y="130" width="300" height="300" fill="#ece8f7" opacity="0.68"/>
+<rect x="600" y="430" width="300" height="100" fill="url(#hatch)"/>
+
+<path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
+<path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H500M600 130V345M600 425V530M600 430H900M100 530H250"/>
+<g data-connection="hall-a-b-open"><!-- 走廊A与走廊B在x=3.2、y[4,5]处无隔墙并连续连通 --></g>
+<path d="M400 450V530" stroke="#f7ead7" stroke-width="10"/>
+<path d="M520 330H600" stroke="#edf1f5" stroke-width="10"/>
+<path d="M405 450H475" stroke="#edf1f5" stroke-width="10"/>
+<path d="M600 345V425" stroke="#ece8f7" stroke-width="10"/>
+<path d="M600 450V530" stroke="#f1f5f9" stroke-width="10"/>
+<path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
+<path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/>
+<rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="626" y="426" class="small blue">配电箱｜5支路</text>
+<g data-route-kind="surface" fill="none" stroke="#2563eb" stroke-width="4">
+  <path d="M590 442L600 345V255" data-circuit="RCBO-01"/><path d="M590 442L520 330V235" data-circuit="RCBO-02"/>
+  <path d="M590 442H400V315" data-circuit="RCBO-03"/>
+</g>
+<g data-route-kind="lighting-surface" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="9 5">
+  <path d="M590 438L600 345H690" data-circuit="MCB-04"/><path d="M590 438L520 330H560" data-circuit="MCB-04"/>
+  <path d="M590 450H520V478" data-circuit="MCB-04"/><path d="M590 438H400V280" data-circuit="MCB-04"/>
+</g>
+<path d="M590 446H475V410" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
+<circle cx="600" cy="345" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="600" y="349" class="micro center">01</text>
+<circle cx="520" cy="330" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-02"/><text x="520" y="334" class="micro center">02</text>
+<circle cx="475" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-03"/><text x="475" y="454" class="micro center">03</text>
+<circle cx="400" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-04"/><text x="400" y="454" class="micro center">04</text>
+<g data-device-protection="RCD-BATH-01" data-location-preference="bath-dry-high" data-fallback="hall-a-outside">
+  <rect x="455" y="390" width="40" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="475" y="402" class="micro red center">2P</text><text x="475" y="414" class="micro red center">30mA</text>
+  <text x="450" y="382" class="micro red" text-anchor="end">进门后先保护</text>
+</g>
+
+<rect x="488" y="506" width="104" height="24" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" data-device-shelf="hall-a" data-wall-anchor="hall-a-south-wall"/>
+<line x1="488" y1="530" x2="592" y2="530" stroke="#7c3aed" stroke-width="7" data-shelf-wall-contact="true"/>
+<text x="540" y="520" class="micro purple center">设备架｜至少4位常电</text><text x="540" y="550" class="micro purple center">背面贴走廊A南墙</text>
+<path class="network" d="M600 450H540V506"/><text x="607" y="469" class="micro purple">网线入口</text>
+
+<rect x="594" y="244" width="15" height="28" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-box="E-BOX-BED-FAN"/>
+<text x="618" y="292" class="micro orange">调速器暗盒</text>
+<path d="M600 345V258" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="surface-after-E-HOLE-01"/>
+<path d="M609 258C655 250 695 260 750 280" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="2 7" data-fan-feed="existing-concealed"/>
+<circle cx="750" cy="280" r="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="284" class="micro center">吊扇</text>
+<text x="665" y="238" class="micro purple center">既有暗埋线｜先测通断与绝缘</text>
+
+<g data-balcony-power="deferred" data-no-electrical-penetration="true">
+  <path d="M250 530H400" stroke="#dc2626" stroke-width="7" stroke-dasharray="10 7"/>
+  <circle cx="325" cy="560" r="22" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><path d="M310 545L340 575M340 545L310 575" stroke="#dc2626" stroke-width="4"/>
+  <text x="250" y="600" class="small red center">阳台无穿线孔｜本期无永久220V</text>
+  <text x="250" y="620" class="micro red center">不钻孔、不夹移门；充电灯/临时插电入住后再定</text>
+</g>
+
+<text x="230" y="230" class="room">客厅</text><text x="475" y="190" class="room">厨房</text>
+<text x="450" y="390" class="small center bold">卫生间</text><text x="830" y="335" class="room">卧室</text>
+<text x="550" y="390" class="small center bold">走廊B</text><text x="520" y="490" class="small center bold">玄关 / 走廊A</text>
+<text x="250" y="585" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">31 只看真实空间路径</text><text x="994" y="196" class="note">四个圆点：现有穿线孔01～04</text><text x="994" y="225" class="note">蓝实线：三个RCBO设备/插座路径</text><text x="994" y="254" class="note">橙虚线：MCB-04全部非卫浴照明</text><text x="994" y="283" class="note">红实线：MCB-05卫生间连续专用馈线</text><text x="994" y="312" class="note">紫点线：吊扇既有暗埋线</text><text x="994" y="341" class="note">设备架背面与走廊A南墙相接</text><text x="994" y="370" class="note">卧室调速器只用原西墙暗盒</text><text x="994" y="399" class="note">阳台没有穿线孔，本期不设永久供电</text><text x="994" y="428" class="note">所有线路止于客厅侧，不跨阳台移门</text><text x="994" y="457" class="note">E-HOLE-03后先接RCD-BATH-01再分支</text><text x="994" y="486" class="note">漏保箱无合格干区时移至走廊A门外</text><text x="994" y="515" class="note">扫地机已定在沙发/书桌之间，余量2m</text><text x="994" y="544" class="note red">本图不表达PCT内部拓扑和通电批准</text><line x1="994" y1="565" x2="1316" y2="565" stroke="#e2e8f0"/><line x1="998" y1="583" x2="1030" y2="583" stroke="#2563eb" stroke-width="5"/><text x="1044" y="587" class="small">三个RCBO设备/插座明线</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="616" class="small">MCB-04非卫浴照明</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#dc2626" stroke-width="5"/><text x="1044" y="645" class="small">MCB-05卫浴馈线/禁入边界</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="674" class="small">既有暗线/弱电</text>
+<text x="100" y="800" class="small">V5 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+</svg>

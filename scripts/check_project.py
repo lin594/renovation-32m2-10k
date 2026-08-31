@@ -36,6 +36,17 @@ REQUIRED = (
     "diagrams/v4/40-doors-windows-cats.svg",
     "diagrams/v4/50-kitchen-bath-details.svg",
     "diagrams/v4/60-finishes-materials.svg",
+    "diagrams/v5/00-existing-survey.svg",
+    "diagrams/v5/10-furniture-circulation.svg",
+    "diagrams/v5/20-plumbing-gas.svg",
+    "diagrams/v5/30-electrical-low-voltage.svg",
+    "diagrams/v5/31-electrical-routes.svg",
+    "diagrams/v5/32-electrical-topology.svg",
+    "diagrams/v5/33-bedroom-electrical-detail.svg",
+    "diagrams/v5/34-bathroom-electrical-detail.svg",
+    "diagrams/v5/40-doors-windows-cats.svg",
+    "diagrams/v5/50-kitchen-bath-details.svg",
+    "diagrams/v5/60-finishes-materials.svg",
 )
 LEDGER_COLUMNS = (
     "id",
