@@ -144,8 +144,8 @@ electrical:
     wiring_method: "全屋明装线槽/明管"
     installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
     schedule_ref: "data/schedule.yaml"
-    main_feed_proposal: "余下蓝色6平方线用于配电箱到各房间主线；拟用改色电工胶布区分火线/零线"
-    proposal_status: "待安全与合规核验，未批准施工"
+    main_feed_proposal: "余下蓝色6平方线只作为中性导体或其他与蓝色标识一致的用途候选"
+    proposal_status: "待电工按保护器、负载、线长和全路径导体识别冻结实际用途"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
       lighting: "BVVB 2×1.5mm²加控制回线仅作候选；B10/C10只作初筛，仍须由电工结合敷设、线长和负载确认保护匹配后购买和使用，控制线颜色一并现场冻结"
@@ -292,7 +292,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       procurement_ref: BUY-0004
       note: "按预计长度估算，至设计基准南墙约余0.47m；最终以成品尺寸和完成面复测"
     - { item: "淋浴设备（已有）", rect: [2.5, 3.15, 3, 3.55], status: existing, inventory_ref: INV-0011, note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
-    - { item: "浴室柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm", procurement_status: not_purchased, procurement_ref: BUY-0005 }
+    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在RCD-BATH-01下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
     - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "全部尚未购买；东墙整面；北段仍被床挡（见issues）" }

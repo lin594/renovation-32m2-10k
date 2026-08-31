@@ -29,7 +29,7 @@ feasibility:
     - { id: BQ-04, item: "350mm坑距马桶（含送装优先）", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-05, item: "全部外窗防猫纱窗", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-06, item: "三扇门的最低可入住方案", quote_cny: null, status: unpriced, priority: essential_privacy }
-    - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
+    - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关、空调/洗烘设备级漏保及卫生间末端漏保等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
   freeze_rule: "上述必需项形成含送装/辅料的可比总价前，不下不可退的非必要软装订单；若总价超过4728元，先按defer_order降级，再调整范围或总预算，不挪用700元应急金掩盖缺口"
   pass_formula: "4728 - sum(已选必需项含税/送装/辅料报价) >= 0"
 

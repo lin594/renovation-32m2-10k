@@ -12,8 +12,8 @@ items:
     quantity_accuracy: estimated
     location: "现场，具体存放位置待补"
     condition: usable
-    planned_use: "配电箱到各房间的主线"
-    note: "计划用改色电工胶布标识用途；是否可按该方案施工需安全核验"
+    planned_use: "仅作为中性导体或其他与蓝色标识一致的用途候选；具体使用量待电工冻结"
+    note: "不再计划用端部胶布把蓝线改作相线；无法合规利用的余线继续入库"
     risk_ref: SAF-0002
 
   - id: INV-0002
@@ -58,9 +58,9 @@ items:
     item: "扫地机器人"
     quantity: 1
     unit: 台
-    location: "停靠位置待定"
+    location: "计划停靠在客厅双人沙发与书桌之间、紧靠沙发"
     condition: owned
-    requirements: ["常电插座", "回充前方净空", "无需上下水"]
+    requirements: ["低位常电插座", "向东回充前方净空", "无需上下水", "上方储物台不得设置挡路前腿"]
     task_ref: TASK-0009
 
   - id: INV-0007

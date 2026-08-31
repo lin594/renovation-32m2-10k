@@ -45,10 +45,10 @@ items:
   - id: BUY-0005
     category: sanitary_fixture
     room: bathroom
-    item: "壁挂浴室柜"
+    item: "壁挂浴室柜+智能除雾镜柜"
     status: not_purchased
     target_size_m: [0.3, 0.4]
-    requirements: ["耐水", "压门洞不超过已接受的约5cm", "保留阀门和存水弯检修"]
+    requirements: ["耐水", "压门洞不超过已接受的约5cm", "保留阀门和存水弯检修", "镜柜电源接RCD-BATH-01下游独立高位连接点", "核对除雾功率、插头/固定接线说明和喷溅范围"]
 
   - id: BUY-0006
     category: furniture
@@ -196,7 +196,7 @@ items:
     planned_quantity_m: 50
     quantity_status: approved_initial_roll
     purchase_strategy: "现在购买50m一卷；10月1日复测净路线，净长超过45m时用京东次日补第二卷"
-    note: "该两芯线只含L/N，不能完成带PE的插座终端回路；空调、冰箱、洗烘机、热水器等I类设备在PE与专业验收门禁关闭前不得通电。买线不等于批准安装或通电"
+    note: "该两芯线只含L/N，不构成带PE的完整回路；按已接受的两线制方案使用时，三孔面板PE端子保持未连接并贴标。买线不等于批准安装或通电，仍须完成保护器匹配、绝缘、极性和各级漏保实测"
 
   - id: BUY-0025
     category: electrical_connector

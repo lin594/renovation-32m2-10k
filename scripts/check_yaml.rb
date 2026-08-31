@@ -11,8 +11,29 @@ YAML_PATHS = ([File.join(ROOT, "house.yaml")] + Dir[File.join(ROOT, "data", "*.y
 errors = []
 documents = {}
 
+check_duplicate_mapping_keys = lambda do |node, location|
+  case node
+  when Psych::Nodes::Stream, Psych::Nodes::Document, Psych::Nodes::Sequence
+    node.children.each_with_index do |child, index|
+      check_duplicate_mapping_keys.call(child, "#{location}[#{index}]")
+    end
+  when Psych::Nodes::Mapping
+    seen = {}
+    node.children.each_slice(2) do |key_node, value_node|
+      key = key_node.respond_to?(:value) ? key_node.value : key_node.to_s
+      if seen.key?(key)
+        errors << "#{location} 出现重复键 #{key.inspect}（约第#{key_node.start_line + 1}行）"
+      else
+        seen[key] = true
+      end
+      check_duplicate_mapping_keys.call(value_node, "#{location}.#{key}")
+    end
+  end
+end
+
 YAML_PATHS.each do |path|
   begin
+    check_duplicate_mapping_keys.call(Psych.parse_file(path), File.basename(path))
     document = YAML.load_file(path)
     unless document.is_a?(Hash)
       errors << "#{path.delete_prefix(ROOT + "/")} 的顶层必须是 mapping"
@@ -26,7 +47,9 @@ end
 
 ledger_rows = CSV.read(File.join(ROOT, "data", "ledger.csv"), headers: true)
 ledger_ids = ledger_rows.map { |row| row["id"] }.compact.to_set
-inventory_ids = Array(documents.dig("inventory.yaml", "items")).map { |item| item["id"] }.compact.to_set
+inventory = Array(documents.dig("inventory.yaml", "items"))
+inventory_ids = inventory.map { |item| item["id"] }.compact.to_set
+inventory_by_id = inventory.to_h { |item| [item["id"], item] }
 procurement_ids = Array(documents.dig("procurement.yaml", "items")).map { |item| item["id"] }.compact.to_set
 risk_ids = Array(documents.dig("risks.yaml", "risks")).map { |risk| risk["id"] }.compact.to_set
 project = documents.fetch("project.yaml", {})
@@ -200,6 +223,18 @@ errors << "两线制方案必须禁止N/PE短接和管道接地" unless electric
 
 socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item["item"] == "BVVB 2×2.5mm²" } || {}
 errors << "electrical.yaml BVVB 2×2.5mm²首卷应为50m" unless socket_wire["quantity_m"] == 50 && socket_wire["rolls"] == 1
+
+house = documents.fetch("house.yaml", {})
+main_feed = house.dig("electrical", "plan", "main_feed_proposal").to_s
+errors << "house.yaml 蓝色6mm²余线只能保留与颜色标识一致的用途候选" unless main_feed.include?("中性导体") && !main_feed.include?("拟用")
+
+blue_wire = inventory_by_id["INV-0001"] || {}
+errors << "INV-0001只能保留与蓝色标识一致的用途候选" unless blue_wire["planned_use"].to_s.include?("中性导体") && !blue_wire["note"].to_s.include?("改色电工胶布")
+robot = inventory_by_id["INV-0006"] || {}
+errors << "INV-0006应同步沙发与书桌之间的固定停靠区域" unless robot["location"].to_s.include?("沙发与书桌之间")
+
+mirror_cabinet = procurement_by_id["BUY-0005"] || {}
+errors << "BUY-0005应明确智能除雾镜柜及其RCD-BATH-01下游电源" unless mirror_cabinet["item"].to_s.include?("智能除雾镜柜") && mirror_cabinet.to_s.include?("RCD-BATH-01")
 
 # The remaining balance is not a feasibility claim until mandatory quotes exist.
 budget_feasibility = budget.fetch("feasibility", {})
