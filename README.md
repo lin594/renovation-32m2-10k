@@ -19,11 +19,12 @@
 │   ├── project.yaml        # 阶段、任务和项目状态
 │   ├── inventory.yaml      # 已有材料、余料和可复用物品
 │   ├── procurement.yaml    # 待购、询价、下单、到货与验收状态
+│   ├── electrical.yaml     # 五回路、穿线孔、无主灯、端子和玄关中枢基线
 │   ├── finishes.yaml       # 墙顶地面、涂装体系和风格方向
 │   ├── schedule.yaml       # 9月备料、10月主施工、1月单人收尾和入住门槛
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
-│   ├── v4/                 # 当前七类专业图及职责说明
+│   ├── v4/                 # 当前八张职责分离专业图及说明
 │   └── archive/            # 已被替代但需要保留的历史图纸
 ├── docs/
 │   ├── decisions/          # 类 ADR 的装修决策记录
@@ -36,7 +37,7 @@
 
 ```bash
 make check      # 校验必需文件、CSV 金额和 SVG/XML
-make diagrams   # 从公共生成器重新生成七张 v4 SVG
+make diagrams   # 从公共生成器重新生成八张 v4 SVG
 make test       # 验证图纸职责、关键图层和生成物一致性
 make summary    # 输出当前收支摘要
 git log --oneline --decorate
@@ -69,6 +70,7 @@ git log --oneline --decorate
 | 总预算和分类目标 | `data/budget.yaml` |
 | 材料余量 | `data/inventory.yaml` |
 | 采购状态 | `data/procurement.yaml` |
+| 五回路、照明分区和端子规则 | `data/electrical.yaml` |
 | 墙顶地面与涂装 | `data/finishes.yaml` |
 | 阶段和任务 | `data/project.yaml` |
 | 施工窗口、日排期和入住门槛 | `data/schedule.yaml` |
@@ -77,4 +79,4 @@ git log --oneline --decorate
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
 
-当前图纸采用七类 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电、门窗猫安全、厨卫详图、墙地面饰面。
+当前图纸采用八张职责分离的 v4 体系，职责详见 `diagrams/v4/README.md`：现状测量、家具动线、给排水燃气、强弱电点位、五回路与无主灯、门窗猫安全、厨卫详图、墙地面饰面。

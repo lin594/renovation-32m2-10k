@@ -13,6 +13,7 @@ EXPECTED = {
     "10-furniture-circulation.svg": ("furniture-circulation", "家具与动线图"),
     "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
     "30-electrical-low-voltage.svg": ("electrical-low-voltage", "强弱电点位图"),
+    "31-lighting-circuits.svg": ("lighting-circuits", "五回路与无主灯分区图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
@@ -28,7 +29,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_seven_svg_files(self) -> None:
+    def test_generates_exactly_eight_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -86,6 +87,19 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-finish="tile-recolor"', finishes)
         self.assertIn("19.18㎡", finishes)
         self.assertIn("宋氏美学", finishes)
+
+    def test_eve_v_and_route_aware_five_circuit_plan_are_present(self) -> None:
+        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
+        circuits = (self.output_dir / "31-lighting-circuits.svg").read_text(encoding="utf-8")
+        self.assertIn("光猫 / Wi-Fi / EVE V", points)
+        self.assertIn("至少4个常电位", points)
+        self.assertIn("架内短网线接路由器", points)
+        for circuit_id in ("RCBO-01", "RCBO-02", "RCBO-03", "MCB-01", "MCB-02"):
+            self.assertIn(f'data-circuit="{circuit_id}"', circuits)
+        self.assertIn("洗烘机在客厅，归漏保3", circuits)
+        self.assertIn("卫生间灯仍归漏保3", circuits)
+        self.assertIn("220V灯带归空开5", circuits)
+        self.assertIn("若空开确为36A，不得直接保护1.5mm²", circuits)
 
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:

@@ -259,8 +259,8 @@ def electrical_low_voltage() -> str:
 <circle cx="250" cy="330" r="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="250" y="354" class="small center">客厅吊扇钩</text>
 <rect x="486" y="346" width="13" height="38" class="danger"/><text x="478" y="343" class="small red" text-anchor="end">浴霸待核验</text>
 <circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V506"/>
-<rect x="500" y="506" width="80" height="22" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="540" y="521" class="small purple center">光猫 / Wi-Fi</text>
-<text x="540" y="542" class="micro purple center">贴走廊A南墙壁挂</text>
+<rect x="488" y="502" width="104" height="30" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" data-device-shelf="hall-a"/><text x="540" y="515" class="micro purple center">光猫 / Wi-Fi / EVE V</text><text x="540" y="527" class="micro purple center">Home Assistant</text>
+<text x="540" y="547" class="micro purple center">走廊A南墙｜至少4个常电位</text>
 <text x="610" y="466" class="micro purple">网线与入户电线同洞口位置</text>
 '''
     side = sidebar("点位图，不是最终回路图", [
@@ -268,12 +268,74 @@ def electrical_low_voltage() -> str:
         "3卫生间门东端；4客厅通道北端",
         "深蓝方块：优先复用的现有暗盒",
         "紫：网线入口和玄关设备架",
+        "EVE V长期运行，架内短网线接路由器",
+        "光猫/路由器/EVE V需至少4个常电位",
         "扫地机器人仍需确定常电插座",
         "!据称无地线，必须现场检测",
         "!蓝色6mm²余线改色方案未批准",
         "不在本图假定线径和最终线槽路线",
     ], [("#2563eb", "强电/穿墙点"), ("#1e3a8a", "现有暗盒"), ("#7c3aed", "弱电/网络"), ("#dc2626", "安全待核验")])
     return document("electrical-low-voltage", "30 强弱电点位图", "强电、设备、暗盒、穿墙洞和网络设备点位", plan_base(False, True) + points + room_labels() + side)
+
+
+def lighting_circuits() -> str:
+    routes = '''
+<g data-circuit="RCBO-01" fill="none" stroke="#0284c7" stroke-width="5">
+  <path d="M590 442L600 345L690 345"/>
+</g><text x="700" y="326" class="micro blue">漏保1｜卧室插座/空调</text>
+<g data-circuit="RCBO-02" fill="none" stroke="#16a34a" stroke-width="5">
+  <path d="M590 442L520 330V265"/>
+</g><text x="530" y="285" class="micro green">漏保2｜厨房插座/设备</text>
+<g data-circuit="RCBO-03" fill="none" stroke="#dc2626" stroke-width="5">
+  <path d="M590 442H475M475 442V400M475 442H400V330"/>
+  <path d="M555 442V500" stroke-width="3"/>
+</g><text x="225" y="315" class="micro red center">漏保3｜客厅插座/空调/洗烘</text><text x="450" y="420" class="micro red center">卫生间全部用电</text>
+<rect x="525" y="493" width="60" height="24" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="555" y="508" class="micro red center">设备架常电</text>
+
+<g data-circuit="MCB-01" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="9 5">
+  <path d="M600 447V345H750V255"/>
+  <path d="M600 447L520 335V220"/>
+</g>
+<circle cx="750" cy="245" r="16" fill="#fffbeb" stroke="#f59e0b" stroke-width="3"/><text x="750" y="249" class="small center orange">灯</text>
+<circle cx="520" cy="210" r="16" fill="#fffbeb" stroke="#f59e0b" stroke-width="3"/><text x="520" y="214" class="small center orange">灯</text>
+<text x="700" y="390" class="micro orange center">空开4｜北向照明｜孔01/02</text>
+
+<g data-circuit="MCB-02" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="9 5">
+  <path d="M585 447H520V475"/>
+  <path d="M520 447H400V280"/>
+  <path d="M400 447H250V570"/>
+</g>
+<circle cx="520" cy="485" r="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="520" y="489" class="small center purple">带</text>
+<circle cx="250" cy="280" r="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="250" y="284" class="small center purple">灯</text>
+<circle cx="250" cy="580" r="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="250" y="584" class="small center purple">灯</text>
+<text x="285" y="480" class="micro purple center">空开5｜走廊/客厅/阳台照明｜孔04</text>
+
+<rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="624" y="426" class="small blue">配电箱｜3漏保+2空开</text>
+<circle cx="600" cy="345" r="10" fill="#fff" stroke="#334155" stroke-width="2"/><text x="600" y="349" class="micro center">01</text>
+<circle cx="520" cy="330" r="10" fill="#fff" stroke="#334155" stroke-width="2"/><text x="520" y="334" class="micro center">02</text>
+<circle cx="475" cy="450" r="10" fill="#fff" stroke="#334155" stroke-width="2"/><text x="475" y="454" class="micro center">03</text>
+<circle cx="400" cy="450" r="10" fill="#fff" stroke="#334155" stroke-width="2"/><text x="400" y="454" class="micro center">04</text>
+'''
+    side = sidebar("五回路初步方案｜路径优先", [
+        "漏保1：卧室插座/空调 → 孔01",
+        "漏保2：厨房插座/设备 → 孔02",
+        "漏保3：客厅+卫生间+设备架 → 孔03/04",
+        "洗烘机在客厅，归漏保3",
+        "空开4：卧室+厨房固定照明（北向）",
+        "空开5：走廊+客厅+阳台照明（南向）",
+        "卫生间灯仍归漏保3，不接空开",
+        "220V灯带归空开5；使用专用电源接头",
+        "灯光分区靠下游开关，不增加配电箱回路",
+        "!若空开确为36A，不得直接保护1.5mm²",
+        "!本图为讨论图；10月1日按铭牌和负载冻结",
+    ], [("#0284c7", "漏保1"), ("#16a34a", "漏保2"), ("#dc2626", "漏保3"), ("#f59e0b", "空开4"), ("#7c3aed", "空开5")])
+    labels = '''
+<text x="220" y="210" class="room">客厅</text><text x="470" y="180" class="room">厨房</text>
+<text x="450" y="375" class="small center bold">卫生间</text><text x="790" y="205" class="room">卧室</text>
+<text x="550" y="385" class="small center bold">走廊B</text><text x="545" y="485" class="small center bold">走廊A</text>
+<text x="250" y="610" class="room">转角阳台</text>
+'''
+    return document("lighting-circuits", "31 五回路与无主灯分区图", "按四个穿线孔表达三条设备回路、两条照明回路和玄关家庭中枢", plan_base(False, True) + routes + labels + side)
 
 
 def doors_windows_cats() -> str:
@@ -468,6 +530,7 @@ OUTPUTS = {
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
     "20-plumbing-gas.svg": ("plumbing-gas", "20 给排水与燃气图", plumbing_gas),
     "30-electrical-low-voltage.svg": ("electrical-low-voltage", "30 强弱电点位图", electrical_low_voltage),
+    "31-lighting-circuits.svg": ("lighting-circuits", "31 五回路与无主灯分区图", lighting_circuits),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
     "60-finishes-materials.svg": ("finishes-materials", "60 墙地面饰面图", finishes_materials),
