@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
     "README.md",
+    "PROJECT_STATUS.md",
     "AGENTS.md",
     "house.yaml",
     "data/budget.yaml",
@@ -27,27 +28,19 @@ REQUIRED = (
     "data/schedule.yaml",
     "docs/reviews/2026-08-31-third-party-repository-audit.md",
     "docs/reviews/2026-08-31-two-wire-electrical-reassessment.md",
-    "diagrams/v4/00-existing-survey.svg",
-    "diagrams/v4/10-furniture-circulation.svg",
-    "diagrams/v4/20-plumbing-gas.svg",
-    "diagrams/v4/30-electrical-low-voltage.svg",
-    "diagrams/v4/31-electrical-routes.svg",
-    "diagrams/v4/32-electrical-topology.svg",
-    "diagrams/v4/33-bedroom-electrical-detail.svg",
-    "diagrams/v4/40-doors-windows-cats.svg",
-    "diagrams/v4/50-kitchen-bath-details.svg",
-    "diagrams/v4/60-finishes-materials.svg",
-    "diagrams/v5/00-existing-survey.svg",
-    "diagrams/v5/10-furniture-circulation.svg",
-    "diagrams/v5/20-plumbing-gas.svg",
-    "diagrams/v5/30-electrical-low-voltage.svg",
-    "diagrams/v5/31-electrical-routes.svg",
-    "diagrams/v5/32-electrical-topology.svg",
-    "diagrams/v5/33-bedroom-electrical-detail.svg",
-    "diagrams/v5/34-bathroom-electrical-detail.svg",
-    "diagrams/v5/40-doors-windows-cats.svg",
-    "diagrams/v5/50-kitchen-bath-details.svg",
-    "diagrams/v5/60-finishes-materials.svg",
+    "docs/reviews/2026-09-01-public-repository-audit.md",
+    "diagrams/README.md",
+    "diagrams/00-existing-survey.svg",
+    "diagrams/10-furniture-circulation.svg",
+    "diagrams/20-plumbing-gas.svg",
+    "diagrams/30-electrical-low-voltage.svg",
+    "diagrams/31-electrical-routes.svg",
+    "diagrams/32-electrical-topology.svg",
+    "diagrams/33-bedroom-electrical-detail.svg",
+    "diagrams/34-bathroom-electrical-detail.svg",
+    "diagrams/40-doors-windows-cats.svg",
+    "diagrams/50-kitchen-bath-details.svg",
+    "diagrams/60-finishes-materials.svg",
 )
 LEDGER_COLUMNS = (
     "id",
@@ -108,6 +101,30 @@ def validate_svgs(errors: list[str]) -> None:
             errors.append(f"SVG 无法解析：{path.relative_to(ROOT)}：{exc}")
 
 
+def validate_public_layout(errors: list[str]) -> None:
+    diagrams = ROOT / "diagrams"
+    obsolete = [path.name for path in diagrams.iterdir() if path.is_dir()]
+    if obsolete:
+        errors.append(f"diagrams 只应保留当前平铺图纸，发现目录：{', '.join(sorted(obsolete))}")
+    previews = ROOT / "artifacts" / "previews"
+    if previews.exists() and any(previews.iterdir()):
+        errors.append("artifacts/previews 仍包含无效光栅预览；公开展示应直接使用SVG")
+
+
+def validate_status_page(
+    errors: list[str], expenses: Decimal, income: Decimal, net_outflow: Decimal
+) -> None:
+    path = ROOT / "PROJECT_STATUS.md"
+    if not path.is_file():
+        return
+    content = path.read_text(encoding="utf-8")
+    expected = (f"¥{expenses:.2f}", f"¥{income:.2f}", f"¥{net_outflow:.2f}")
+    if not all(value in content for value in expected):
+        errors.append("PROJECT_STATUS.md 与 ledger.csv 汇总不一致，请运行 make status")
+    if "自动生成，请修改 data/ 真源" not in content:
+        errors.append("PROJECT_STATUS.md 缺少派生文件标识")
+
+
 def ledger_summary(rows: list[dict[str, str]]) -> tuple[Decimal, Decimal, Decimal]:
     expenses = sum(
         (Decimal(row["amount_cny"]) for row in rows if row["flow"] == "expense"),
@@ -130,6 +147,8 @@ def main() -> int:
     rows = read_ledger(errors)
     validate_svgs(errors)
     expenses, income, net_outflow = ledger_summary(rows)
+    validate_public_layout(errors)
+    validate_status_page(errors, expenses, income, net_outflow)
 
     if errors:
         for error in errors:

@@ -1,6 +1,6 @@
 # ============================================================================
 # 老房装修改造 · 户型与方案上下文数据包（机器可读）
-# version: 5    date: 2026-08-31
+# version: 6    date: 2026-09-01
 # 用途：将本文件整体转发给 AI / 设计师，即可在其基础上继续装修方案咨询
 # 坐标系：原点=客厅西北角；+x=南(图向下)；+y=东(图向右)；单位=米
 # ============================================================================
@@ -175,9 +175,9 @@ electrical:
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
     - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, device_protection: SRCD-BATH-HEATER, risk_ref: SAF-0003 }
   planned_outlets:
-    total_groups: 14
+    total_groups: 15
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
-    kitchen: ["燃气热水器", "油烟机", "台面电器"]
+    kitchen: ["燃气热水器", "油烟机", "台面电器", "洗碗机三孔常电"]
     living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发上部充电", "扫地机器人低位常电"]
     hall_a: ["设备架一组至少4位常电插座"]
     bathroom_general_socket_count: 0
@@ -219,6 +219,7 @@ plumbing:   # 本轮描述的水路已完成，点位原则上不可改
     - "入户点向南设置浴室柜进水孔"
     - "另一路向北穿墙进入厨房燃气热水器"
     - "向西穿客厅墙到洗烘一体机进水口"
+    - "水槽冷水接口计划增加带独立止水阀的三通，向北侧现有洗碗机供水"
   hot_water_routes:
     - "燃气热水器出水回送卫生间"
     - "水槽位置设置冷、热水接口各一；接口目前高于水槽"
@@ -226,8 +227,10 @@ plumbing:   # 本轮描述的水路已完成，点位原则上不可改
   drainage_routes:
     - "洗烘一体机排水管低位穿墙接卫生间防臭地漏"
     - "洗衣机地漏与马桶最终共用排水管道"
+    - "现有洗碗机排水软管计划按设备说明直接排入水槽；水槽边固定、防脱落和软管路径待10月复测"
   fixtures:
     - { name: "厨房水槽", location: "厨房西南角", rect: [1.2, 2, 3, 3.4] }
+    - { name: "洗碗机（已有）", location: "厨房水槽北侧二层木柜/替代柜上方", footprint_nominal: [0.6, 1.2, 3, 3.6], vertical_relation: "叠放在柜体上，不替代柜体", inventory_ref: INV-0013, task_ref: TASK-0033, note: "型号、尺寸、柜体承重、直排水槽软管和插座待复测" }
     - { name: "洗烘一体滚筒洗衣机", location: "客厅东南角，东面贴卫生间西墙(y=3)", rect: [2.4, 3.2, 2.2, 3], procurement_status: not_purchased, procurement_ref: BUY-0003, note: "排水经y=3墙接入卫生间防臭地漏" }
 
 gas:
@@ -241,7 +244,15 @@ gas:
 
 furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
   living_room:
-    - { item: "双人沙发", rect: [0, 1.6, 0, 0.9], orient: "靠西墙，面朝东", procurement_status: not_purchased, procurement_ref: BUY-0006 }
+    - item: "双人沙发床"
+      rect: [0, 1.6, 0, 0.9]
+      open_rect_nominal: [0, 1.6, 0, 2.0]
+      orient: "靠西墙，面朝东；向东展开"
+      use: ["日常双人沙发", "临时客卧"]
+      procurement_status: not_purchased
+      procurement_ref: BUY-0006
+      clearance: "展开后仍不得侵占客厅约0.7m主通道"
+      privacy_curtain_candidate: "沿临时客卧南缘设置可完全收起的帘子；入住体验后再决定"
     - { item: "投影仪", mount: "西墙沙发上方高位壁装", throw_m: 2.85, screen: "y=3墙 x[0.3,1.7]实墙段（无门无窗）", max_image: "100~110寸", note: "光路无家具遮挡（已校核）" }
     - { item: "书桌（已有）", rect: [2.5, 3.2, 0, 1.3], size: "约1.3×0.7", orient: "西侧完全贴墙；东侧与冰箱东侧平齐于y≈1.3", condition: "浅色木板，具体基材待现场确认", refinishing_plan: "三棵树水性木器漆改为保留木纹的黑胡桃色；先做桌底10×10cm小样", inventory_ref: INV-0009, coating_ref: BUY-0020 }
     - { item: "书桌椅子", status: "未购买", procurement_status: not_purchased, procurement_ref: BUY-0007, note: "购买后不得长期阻断主通道" }
@@ -280,7 +291,8 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "灶台", location: "架空瓷砖台面上方、厨房东端靠北", note: "油烟机挂北窗上；与燃气管、伸缩杆和瓷砖的净空待核验" }
     - { item: "壁龛(已有)", location: "厨房东墙(y=5)近北端", use: "放调料" }
     - { item: "水槽", rect: [1.2, 2, 3, 3.4], note: "西南角；台面宽度受滑门停泊位限制（见issues）" }
-    - { item: "二层木柜(已有)", location: "水槽与北墙现有台面之间", height_relation: "与现有台面平齐", condition: "受潮略有损坏", decision: "保留修复或更换待定" }
+    - { item: "二层木柜(已有)", location: "水槽与北墙现有台面之间", height_relation: "与现有台面平齐，洗碗机计划放在其上方", condition: "受潮略有损坏", decision: "预算允许时可换同位置替代柜；继续使用前须确认承重、水平、抗振和防潮" }
+    - { item: "洗碗机(已有)", footprint_nominal: [0.6, 1.2, 3, 3.6], location: "水槽北侧二层木柜/替代柜上方", vertical_relation: "叠放", inventory_ref: INV-0013, requirements: ["水槽进水处独立开关", "排水软管直接排入水槽并固定", "三孔常电+无PE标识", "设备级漏保候选"], status: "待搬运、复测和安装" }
   bathroom:   # 全间按湿区(wet room)设计
     - { item: "排水立管", location: "西北角(2,3)" }
     - item: "马桶"
@@ -327,6 +339,7 @@ issues:   # AI分析发现的问题，待用户决策
   - { id: bath_heater_splash, desc: "浴霸位于卫生间东墙偏北，业主担心触水/漏电风险", risk_ref: SAF-0003 }
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
   - { id: kitchen_upper_counter, desc: "伸缩杆+三块瓷砖架空台面同时承载锅具/灶台，并计划覆盖北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
+  - { id: dishwasher_cabinet_stack, desc: "洗碗机叠放在受潮二层木柜或同位置替代柜上；须先保证承重、水平、抗振、开门和软管固定", risk_ref: SAF-0022 }
   - { id: no_protective_earth, desc: "已确认老小区户内仅有L/N、无可用PE且四楼无法独立增设；采用分级漏保降低风险，但不视为接地替代", risk_ref: SAF-0018 }
   - { id: balcony_door_narrow, desc: "阳台门有效开口仅0.7m（西扇），搬运大件受限" }
 
@@ -354,17 +367,17 @@ confirmed_facts:   # 已确认，无需再问
   - "卫生间移门装在走廊A侧；常闭，使用时向东滑并临时侵入走廊B约0.4m"
   - "采用无主灯设计；走廊A计划以灯带作为基础照明"
   - "EVE V1可长期运行，放在玄关南侧设备架兼作Home Assistant主机、电子相册和显示器"
+  - "洗碗机为现有物资，计划安装在厨房水槽北侧并需要三孔插头和进水"
 
 open_questions:   # 当前待定，咨询时可优先回答这些
   - "卫生间吊顶内有无排风井/风道？"
   - "卫生间浴霸的型号、防护等级、供电回路、安装高度及距淋浴出水范围是多少？"
-  - "老小区无地线是口述信息还是已由电工实测？是否存在等电位端子或可用PE路径？"
-  - "余下蓝色6平方线用于不同功能导体并用胶布改色，能否通过当地施工与验收要求？"
   - "厨房架空台面离原台面高度、伸缩杆数量/固定方式、灶台尺寸和燃气管检修净空是多少？"
   - "厨房滑门面板是否改停走廊B侧以加宽水槽台面？"
   - "衣柜北段采用不常用区、缩短衣柜还是调整床位？"
   - "书桌/冰箱角落最终用途及是否需要保持人手可达？"
-  - "扫地机器人停靠位置在哪里，附近能否提供常电插座和回充净空？"
+  - "现有洗碗机的型号、机身/开门尺寸、进排水接口和水槽北侧可用净空是多少？"
+  - "受潮二层木柜当前承重、水平和稳定性是否足以承载洗碗机，还是需要同位置替代柜？"
   - "玄关南侧光猫/Wi-Fi置物架的宽深、安装高度和供电点位是多少？"
   - "配电箱各器件完整型号、脱扣额定值、极数、漏电动作电流和分断能力是什么？"
   - "走廊A 220V灯带的具体型号、长度、剪切单位、成套电源接头和末端封帽是什么？"

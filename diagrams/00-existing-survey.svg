@@ -72,5 +72,5 @@
 <text x="560" y="319" class="small orange">厨房旧门已拆</text><text x="445" y="470" class="small orange">卫浴旧门已拆</text>
 <text x="640" y="340" class="small orange">卧室旧门已拆</text><text x="375" y="520" class="small orange" text-anchor="end">通道旧门已拆</text>
 <rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">本图只确认“现场有什么”</text><text x="994" y="196" class="note">墙体、洞口、窗户和公共走廊</text><text x="994" y="225" class="note">固定的水、排水、燃气和配电点</text><text x="994" y="254" class="note">已有空调、吊扇、吊扇钩和浴霸</text><text x="994" y="283" class="note">四个室内旧门均已拆除</text><text x="994" y="312" class="note">卧室门洞较旧图北移约5cm</text><text x="994" y="341" class="note">不表达家具购买和假定线路</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#1f2937" stroke-width="5"/><text x="1044" y="524" class="small">墙体/固定边界</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#0284c7" stroke-width="5"/><text x="1044" y="553" class="small">水或固定设备</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#ea580c" stroke-width="5"/><text x="1044" y="582" class="small">燃气点</text>
-<text x="100" y="800" class="small">V5 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>

@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 project: "32㎡二手房翻新至可入住"
 owner_role: "业主兼实际策划人"
 status: in_progress
@@ -116,6 +116,11 @@ active_tasks:
   - { id: TASK-0027, phase: utilities, item: "验证EVE V连续运行、断电恢复、虚拟机自启和远程管理", status: todo, schedule_window: "2026-09-01至2026-09-07" }
   - { id: TASK-0028, phase: utilities, item: "拍摄配电箱全部器件铭牌并冻结线径、保护器、端子和逐回路BOM", status: todo, schedule_window: "2026-10-01；急缺小件用京东次日补购" }
   - { id: TASK-0029, phase: commissioning, item: "由合格电工核验两线制无PE边界，并完成绝缘、极性、保护器匹配、插座接线和各级漏保动作检测；记录实测值", status: blocked_by_safety_review, schedule_window: "2026-10-01方案复核；新建线路通电前验收" }
-  - { id: TASK-0030, phase: survey_design, item: "形成剩余必需项可比报价矩阵并验证4728元预算可行性", status: todo, schedule_window: "2026-09-14首版；2026-10-01冻结" }
+  - { id: TASK-0030, phase: survey_design, item: "形成剩余必需项可比报价矩阵并验证PROJECT_STATUS当前可用上限是否足够", status: todo, schedule_window: "2026-09-14首版；2026-10-01冻结" }
   - { id: TASK-0031, phase: utilities, item: "实测卫生间干区并冻结MCB-05、RCD-BATH-01、浴霸/镜柜连接方式", status: blocked_by_safety_review, schedule_window: "2026-10-01复测；新建线路通电前验收" }
   - { id: TASK-0032, phase: utilities, item: "核对两台空调及洗烘机铭牌，选择具备L/N双极切断和TEST/RESET的设备级漏保", status: todo, schedule_window: "2026年9月只选型；2026-10-01冻结" }
+  - id: TASK-0033
+    phase: fixtures_appliances
+    item: "复测并安装叠放在水槽北侧柜体上方的现有洗碗机，冻结柜体承重、独立进水开关、直排水槽和无PE三孔保护方案"
+    status: todo
+    schedule_window: "2026年9月核对型号；2026-10-01复测并尽量搬运；厨房回路验收后安装"

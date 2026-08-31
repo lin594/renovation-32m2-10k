@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 
 items:
   - id: INV-0001
@@ -130,3 +130,15 @@ items:
     planned_use: "Home Assistant主机、玄关电子相册和信息显示器"
     requirements: ["有线网络", "常电", "通风", "远程桌面", "断电恢复流程"]
     task_ref: TASK-0027
+
+  - id: INV-0013
+    category: appliance
+    item: "洗碗机"
+    quantity: 1
+    unit: 台
+    location: "现有物资，待搬运并叠放在厨房水槽北侧二层木柜/替代柜上方"
+    condition: owned_pending_model_and_function_check
+    planned_use: "复用，不采购新机"
+    requirements: ["实测机身与开门尺寸", "水槽进水处独立开关供水", "排水软管按说明直接排入水槽并可靠固定", "RCBO-02常电三孔插座并标注本户无PE", "设备级漏保候选", "复核受潮木柜或替代柜的承重、抗振和防潮"]
+    task_ref: TASK-0033
+    risk_ref: SAF-0022

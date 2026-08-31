@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the responsibility-separated V5 renovation diagrams."""
+"""Generate the current responsibility-separated renovation diagrams."""
 
 from __future__ import annotations
 
@@ -79,7 +79,7 @@ def document(role: str, title_value: str, subtitle: str, body: str) -> str:
 <text x="70" y="52" class="title">{title_value}</text>
 <text x="70" y="78" class="subtitle">{subtitle}</text>
 {body}
-<text x="100" y="800" class="small">V5 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>
 '''
 
@@ -182,7 +182,9 @@ def furniture_circulation() -> str:
     furniture = f'''
 <path d="M880 480H520V470H360V510" fill="none" stroke="#16a34a" stroke-width="18" opacity=".20" stroke-linecap="round"/>
 <path d="M880 480H520V470H360" fill="none" stroke="#15803d" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
-{rect(0,1.6,0,.9,"planned",'data-status="not-purchased"')}<text x="145" y="215" class="small center">双人沙发｜未购买</text>
+{rect(0,1.6,0,2.0,"planned",'data-furniture="sofa-bed" data-mode="bed-open" opacity="0.55"')}<text x="245" y="275" class="micro center orange">展开约1.6×2.0m｜临时客卧</text>
+{rect(0,1.6,0,.9,"planned",'data-furniture="sofa-bed" data-mode="sofa" data-status="not-purchased"')}<text x="145" y="215" class="small center">双人沙发床｜未购买</text>
+<path d="M100 295H400" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="10 7" data-privacy-curtain="candidate"/><text x="305" y="289" class="micro purple center">后期隐私帘候选｜可完全收起</text>
 <g data-furniture="robot-vacuum" data-status="existing" data-power="always-on">
   <rect x="105" y="300" width="40" height="40" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
   <circle cx="125" cy="320" r="14" fill="none" stroke="#0284c7" stroke-width="2"/>
@@ -205,6 +207,7 @@ def furniture_circulation() -> str:
 {rect(3.2,4,0,.6,"planned")}<text x="130" y="483" class="small center">角落</text><text x="130" y="499" class="micro center">功能待定</text>
 {rect(2.4,3.2,2.2,3,"planned",'data-status="not-purchased"')}<circle cx="360" cy="411" r="24" fill="none" stroke="#f97316" stroke-width="2"/><text x="360" y="382" class="small center">洗烘一体机｜未购买</text>
 {rect(1.6,2.4,2.2,3,"fixed")}<text x="360" y="330" class="small center">餐桌</text>
+{rect(.6,1.2,3,3.6,"fixed",'data-appliance="dishwasher" data-status="owned-to-move" data-stack-on="wood-cabinet"')}<text x="430" y="210" class="micro center">洗碗机｜已有</text><text x="430" y="226" class="micro center">叠放木柜/替代柜上</text><text x="430" y="242" class="micro center">承重待核</text>
 {rect(0,1.3,5,7,"fixed")}<text x="700" y="198" class="small center">双人床1.3×2.0</text>
 {rect(0,3,7.2,8,"fixed")}<text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣柜深0.8m｜帘子</text>
 {rect(1.3,1.7,5,7,"planned")}<text x="700" y="287" class="small center">长窄柜/书桌｜尺寸待定</text>
@@ -219,11 +222,13 @@ def furniture_circulation() -> str:
     side = sidebar("采购与摆放状态", [
         "橙虚线：未购买、未定制或尺寸待定",
         "书桌已有，待做黑胡桃色小样改色",
-        "椅子、沙发和洗烘机尚未购买",
+        "椅子、沙发床和洗烘机尚未购买",
+        "沙发床向东展开，兼作临时客卧",
+        "紫虚线：入住后再决定的隐私帘",
+        "洗碗机已有；叠放水槽北侧柜体上",
         "马桶、浴室柜尚未购买",
         "扫地机器人已有，停靠在沙发与书桌之间",
         "上方窄桌下部无前腿，不挡回充与取出",
-        "低位机器人常电；上部充电可选智能插座",
         "主通道仍需保持约0.7m净宽",
         "卫生间移门不在本图画开启门扇",
         "!家具下单前必须现场复测",
@@ -236,6 +241,8 @@ def plumbing_gas() -> str:
 <circle cx="400" cy="350" r="9" fill="#0284c7"/><text x="386" y="345" class="small blue" text-anchor="end">入户水</text>
 <path class="water" d="M400 350V365H430M400 350V430H480M400 350V290H425M400 350H360V410" marker-end="url(#blue-arrow)"/>
 <text x="438" y="365" class="micro blue">马桶冷水</text><text x="484" y="432" class="micro blue">浴室柜冷水</text><text x="326" y="408" class="micro blue">洗衣机冷水</text>
+<rect x="405" y="195" width="55" height="58" class="fixed" data-appliance="dishwasher"/><text x="432" y="216" class="micro center">洗碗机</text><text x="432" y="234" class="micro center">已有</text>
+<path class="water" d="M420 290V253" marker-end="url(#blue-arrow)" data-dishwasher-water="sink-feed-independent-switch"/><path class="drain" d="M445 253V285H420" stroke-dasharray="6 4" marker-end="url(#arrow)" data-dishwasher-drain="direct-to-sink"/><text x="465" y="273" class="micro green">软管直排水槽并固定</text>
 <path class="hot" d="M425 280V340H450V400M450 340H480"/>
 <text x="435" y="270" class="small red">热水器出水回卫生间</text>
 <circle cx="400" cy="330" r="11" fill="#0f766e"/><text x="414" y="326" class="small green">排水立管</text>
@@ -252,6 +259,7 @@ def plumbing_gas() -> str:
         "绿：排水及唯一立管",
         "橙：燃气入口和两条支路",
         "地漏已安装，包含于500元服务",
+        "洗碗机：水槽进水独立开关+软管直排水槽",
         "水泥/沙子/堵漏王用于固定改管",
         "!燃气管遮盖和检修仍需验收确认",
         "!封闭饰面前应做联合排水测试",
@@ -275,6 +283,7 @@ def electrical_low_voltage() -> str:
 <circle cx="196" cy="520" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-LIV"/><text x="208" y="540" class="micro red">空调末端漏保</text>
 <circle cx="612" cy="190" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-BED"/><text x="630" y="190" class="micro red">末端漏保</text>
 <circle cx="360" cy="405" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-WASHER"/><text x="322" y="422" class="micro red">洗烘专用漏保</text>
+<rect x="404" y="194" width="58" height="60" class="fixed" data-appliance="dishwasher"/><text x="433" y="216" class="micro center">洗碗机</text><rect x="451" y="236" width="10" height="10" fill="#2563eb" data-outlet="dishwasher-three-hole"/><circle cx="462" cy="244" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-DISHWASHER"/><text x="474" y="250" class="micro red">三孔常电｜无PE标识</text>
 <circle cx="750" cy="280" r="13" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="306" class="small center">卧室吊扇</text>
 <circle cx="250" cy="330" r="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="250" y="354" class="small center">客厅吊扇钩</text>
 <rect x="486" y="346" width="13" height="38" class="danger"/><text x="478" y="343" class="small red" text-anchor="end">浴霸待核验</text>
@@ -294,6 +303,7 @@ def electrical_low_voltage() -> str:
         "EVE V长期运行，架内短网线接路由器",
         "光猫/路由器/EVE V需至少4个常电位",
         "扫地机低位常电+沙发上部充电各1点",
+        "洗碗机新增三孔常电和设备级漏保候选",
         "空调×2、洗烘机均有设备级漏保候选",
         "卫生间由MCB-05经双极末端漏保供电",
         "已确认两线制无PE；三孔面板须持久标识",
@@ -378,36 +388,37 @@ def electrical_topology_v5() -> str:
 <g data-circuit="MCB-05"><rect x="78" y="580" width="160" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="158" y="602" class="small bold center">空开5｜MCB-05</text><text x="158" y="622" class="micro center">卫生间专用馈线</text><text x="158" y="638" class="micro center">上游不设分支</text></g>
 
 <g fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"><path d="M238 209H305"/><path d="M238 299H305"/><path d="M238 396H305"/><path d="M238 506H305"/><path d="M238 616H305"/></g>
-<g data-junction="JB-BED" data-terminal-status="logical"><rect x="305" y="175" width="140" height="68" rx="9" class="fixed"/><text x="375" y="200" class="small bold center">JB-BED</text><text x="375" y="220" class="micro center">3个逻辑分支</text></g>
-<g data-junction="JB-KIT" data-terminal-status="logical"><rect x="305" y="265" width="140" height="68" rx="9" class="fixed"/><text x="375" y="290" class="small bold center">JB-KIT</text><text x="375" y="310" class="micro center">3个逻辑分支</text></g>
-<g data-junction="JB-R3" data-terminal-status="logical"><rect x="305" y="360" width="140" height="68" rx="9" class="fixed"/><text x="375" y="385" class="small bold center">JB-R3</text><text x="375" y="405" class="micro center">设备架 / 客厅</text></g>
-<g data-junction="JB-L4" data-terminal-status="logical"><rect x="305" y="470" width="140" height="72" rx="9" class="fixed"/><text x="375" y="495" class="small bold center">JB-L4</text><text x="375" y="515" class="micro center">4个照明分区</text><text x="375" y="531" class="micro center">端子型号待换算</text></g>
+<g data-junction="JB-BED" data-terminal-status="logical" data-terminal-candidate="PCT-62"><rect x="305" y="175" width="140" height="68" rx="9" class="fixed"/><text x="375" y="200" class="small bold center">JB-BED</text><text x="375" y="220" class="micro center">PCT-62｜3组L/N</text></g>
+<g data-junction="JB-KIT" data-terminal-status="logical" data-terminal-candidate="five-hole-pair"><rect x="305" y="265" width="140" height="68" rx="9" class="fixed"/><text x="375" y="290" class="small bold center">JB-KIT</text><text x="375" y="310" class="micro center">五孔×2｜4组L/N</text></g>
+<g data-junction="JB-R3" data-terminal-status="logical" data-terminal-candidate="PCT-62"><rect x="305" y="360" width="140" height="68" rx="9" class="fixed"/><text x="375" y="385" class="small bold center">JB-R3</text><text x="375" y="405" class="micro center">PCT-62｜用2留1</text></g>
+<g data-junction="JB-L4" data-terminal-status="logical" data-terminal-candidate="five-hole-pair"><rect x="305" y="470" width="140" height="72" rx="9" class="fixed"/><text x="375" y="495" class="small bold center">JB-L4</text><text x="375" y="515" class="micro center">五孔×2｜4组L/N</text><text x="375" y="531" class="micro center">额定值待核</text></g>
 <g data-device-protection="RCD-BATH-01"><rect x="305" y="575" width="140" height="82" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><text x="375" y="598" class="small bold center">RCD-BATH-01</text><text x="375" y="618" class="micro center">双极 / ≤30mA</text><text x="375" y="635" class="micro center">TEST / RESET</text><text x="375" y="650" class="micro red center">先保护，后分支</text></g>
 
 <g fill="none" stroke="#94a3b8" stroke-width="2.2" marker-end="url(#arrow)"><path d="M445 209H505"/><path d="M445 299H505"/><path d="M445 394H505"/><path d="M445 506H505"/><path d="M445 616H505"/></g>
 <text x="520" y="188" class="small bold" data-device-protection="SRCD-AC-BED">卧室空调 → SRCD-AC-BED</text><text x="520" y="214" class="small">床北常电插座</text><text x="520" y="238" class="small">床南常电插座</text>
-<text x="520" y="278" class="small bold">燃气热水器</text><text x="520" y="304" class="small">油烟机</text><text x="520" y="330" class="small">台面电器</text>
+<text x="520" y="278" class="small bold">燃气热水器 / 油烟机</text><text x="520" y="304" class="small">台面电器</text><text x="520" y="330" class="small" data-device-protection="SRCD-DISHWASHER">洗碗机 → SRCD-DISHWASHER</text>
 <text x="520" y="378" class="small bold">玄关设备架</text><text x="520" y="405" class="small">客厅 → JB-LIV</text>
-<g data-junction="JB-LIV" data-terminal-status="logical"><rect x="715" y="360" width="140" height="74" rx="9" class="fixed"/><text x="785" y="385" class="small bold center">JB-LIV</text><text x="785" y="405" class="micro center">空调 / 冰箱 / 洗烘</text><text x="785" y="421" class="micro center">+ 普通插座链</text></g>
+<g data-junction="JB-LIV" data-terminal-status="logical" data-terminal-candidate="five-hole-pair"><rect x="715" y="360" width="140" height="74" rx="9" class="fixed"/><text x="785" y="385" class="small bold center">JB-LIV</text><text x="785" y="405" class="micro center">五孔×2｜4组L/N</text><text x="785" y="421" class="micro center">额定值待核</text></g>
 <text x="875" y="374" class="small" data-device-protection="SRCD-AC-LIV">空调 → SRCD-AC-LIV</text><text x="875" y="399" class="small" data-device-protection="SRCD-WASHER">洗烘 → SRCD-WASHER</text><text x="875" y="424" class="small">机器人常电 / 沙发充电</text>
 <text x="520" y="480" class="small bold">卧室照明 / 吊扇</text><text x="520" y="504" class="small">厨房照明</text><text x="520" y="528" class="small">走廊A/B + 客厅照明</text>
-<g data-junction="JB-BATH" data-terminal-status="logical" data-bath-load-downstream="true"><rect x="505" y="575" width="145" height="82" rx="9" class="fixed"/><text x="577" y="600" class="small bold center">JB-BATH</text><text x="577" y="620" class="micro center">漏保下游逻辑分线</text><text x="577" y="638" class="micro center">浴霸 / 镜柜 / 照明</text></g>
+<g data-junction="JB-BATH" data-terminal-status="logical" data-terminal-candidate="PCT-62" data-bath-load-downstream="true"><rect x="505" y="575" width="145" height="82" rx="9" class="fixed"/><text x="577" y="600" class="small bold center">JB-BATH</text><text x="577" y="620" class="micro center">PCT-62｜3组L/N</text><text x="577" y="638" class="micro center">漏保下游分线</text></g>
 <text x="675" y="588" class="small" data-device-protection="SRCD-BATH-HEATER">浴霸设备连接保护</text><text x="675" y="616" class="small" data-device-protection="SRCD-BATH-MIRROR">除雾镜柜设备连接保护</text><text x="675" y="644" class="small">卫生间防潮照明</text>
 
-<rect x="55" y="710" width="920" height="72" rx="12" class="danger"/><text x="78" y="737" class="note red bold">两线制边界：</text><text x="190" y="737" class="note red">三孔面板PE端子不连接并贴“本户无PE”；严禁N/PE短接或管道接地。</text><text x="78" y="764" class="small red">上下级漏保可能同时跳闸；PCT仅为六个逻辑节点，实物型号和数量须现场换算。</text>
+<rect x="55" y="710" width="920" height="72" rx="12" class="danger"/><text x="78" y="737" class="note red bold">两线制边界：</text><text x="190" y="737" class="note red">三孔面板PE端子不连接并贴“本户无PE”；严禁N/PE短接或管道接地。</text><text x="78" y="764" class="small red">最低SKU：PCT-62×1包 + 五孔接线型×1包；实物额定值/认证未核前不下单。</text>
 '''
     side = sidebar("五回路与保护层", [
         "恰好3个RCBO + 2个MCB",
         "MCB-04：全部非卫浴固定照明",
         "MCB-05：仅卫生间连续馈线",
         "卫生间先经双极≤30mA漏保",
-        "六个PCT逻辑节点，不是实购数量",
+        "六个逻辑节点压缩为两种端子",
         "原JB-L5已删除；新增JB-BATH",
-        "插座仍为14组，卫浴2点另计设备连接",
-        "空调×2、洗烘机增加设备级漏保",
+        "插座共15组，卫浴2点另计设备连接",
+        "空调×2、洗烘机、洗碗机有设备级漏保",
         "普通插座常电；智能墙壁开关零火版",
         "机器人常电不受智能控制",
-        "上下级漏保分别实测，不宣称选择性",
+        "PCT-62二进六出：分3组L/N",
+        "五孔型：L/N各一只分4路",
         "!所有参数仍受铭牌、负载和专业检测门禁",
     ])
     return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、六个逻辑分线节点、设备级漏保和两线制边界", topology + side)
@@ -554,7 +565,7 @@ def kitchen_bath_details() -> str:
 <text x="320" y="220" class="small center orange">上层0.4×0.6m瓷砖×3（总长约1.8m）</text>
 <rect x="420" y="210" width="75" height="55" fill="#fee2e2" stroke="#b45309" stroke-width="2"/><text x="457" y="242" class="small center">燃气灶</text>
 <rect x="120" y="430" width="80" height="150" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="510" class="small center">水槽</text>
-<rect x="120" y="310" width="80" height="110" class="planned"/><text x="210" y="360" class="small orange">受潮二层木柜</text>
+<g data-stack="dishwasher-on-cabinet"><rect x="120" y="310" width="80" height="110" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/><text x="160" y="405" class="micro center">受潮木柜/替代柜</text><rect x="126" y="316" width="68" height="67" class="fixed" data-appliance="dishwasher" data-status="owned-to-move"/><circle cx="160" cy="350" r="20" fill="none" stroke="#64748b" stroke-width="2"/></g><text x="210" y="340" class="small">洗碗机｜已有</text><text x="210" y="360" class="micro">叠放在柜体上方</text><text x="210" y="380" class="micro red">承重/水平/抗振待核</text><text x="210" y="400" class="micro">进水独立开关；排水直入水槽</text>
 <path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
 <path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
 <circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
@@ -578,7 +589,7 @@ def kitchen_bath_details() -> str:
   <line x1="50" y1="-50" x2="50" y2="0" stroke="#64748b" stroke-width="5"/><line x1="350" y1="-50" x2="350" y2="0" stroke="#64748b" stroke-width="5"/>
   <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原0.5m深台面</text>
 </g>
-<text x="85" y="702" class="small red">安全门禁：燃气管检修、伸缩杆稳定、瓷砖承载和灶台耐热均未关闭。</text>
+<text x="85" y="687" class="small red">安全门禁：燃气管检修、台面承载、柜体承重、排水固定和无PE保护均未关闭。</text>
 '''
     bath = '''
 <rect x="710" y="115" width="630" height="610" rx="14" class="panel"/>
@@ -707,7 +718,7 @@ def generate_all(output_dir: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "diagrams" / "v5")
+    parser.add_argument("--output", type=Path, default=ROOT / "diagrams")
     args = parser.parse_args()
     generate_all(args.output)
     print(f"Generated {len(OUTPUTS)} SVG diagrams in {args.output}")

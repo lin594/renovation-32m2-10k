@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 timezone: Asia/Shanghai
 status: approved_execution_baseline
 
@@ -20,7 +20,7 @@ milestones:
     owner: 主负责人
     acceptance:
       - "乳胶漆按3桶底漆、5桶面漆、1套工具完成下单或具备到货确认"
-      - "BVVB 2×2.5mm²首卷50m已下单或到货；PCT仅收藏候选产品，六个逻辑节点尚未换算为实购物理数量"
+      - "BVVB 2×2.5mm²首卷50m已下单或到货；端子只保留PCT-62与五孔接线型两包最低候选，仍受实物和保护门禁"
       - "1.5mm²照明线保持购物车状态；MCB-04、卫生间末端漏保与PCT是否可安装明确标注为10月1日现场门禁"
       - "已预约合格电工在10月1日核验两线制无PE边界、分级漏保和保护器方案，并在新建线路通电前完成规定检测"
       - "EVE V完成72小时运行、断电恢复、虚拟机自启和远程管理验证"
@@ -74,8 +74,8 @@ september_remote_preparation:
     item: "按五回路上限形成明线初步BOM并把不依赖现场参数的小件寄到2km外另一住所"
     contents: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
     buy_now: ["BVVB 2×2.5mm² 50m一卷（合规相线色+淡蓝芯、CCC/合格证）"]
-    cart_now: ["PCT-42/PCT-62候选产品（不填数量）", "卫生间双极30mA漏保及防护箱候选", "空调/洗烘机插座式漏保候选", "BVVB 2×1.5mm² 50m", "BV 1×1.5mm²控制线50m（颜色待现场冻结）"]
-    deferred_until_october_1: ["保护器具体型号", "1.5mm²是否允许购买安装", "六个PCT逻辑节点对应的实物端子/检修盒数量", "2.5mm²是否补第二卷", "卫生间干区与设备连接方式", "6mm²分配块"]
+    cart_now: ["PCT-62二进六出1包与五孔接线型1包（均10只/包，暂不下单）", "二极一进一出串联型1包（仅条件购物车）", "卫生间双极30mA漏保及防护箱候选", "空调/洗烘/洗碗机插座式漏保候选", "BVVB 2×1.5mm² 50m", "BV 1×1.5mm²控制线50m（颜色待现场冻结）"]
+    deferred_until_october_1: ["保护器具体型号", "1.5mm²是否允许购买安装", "两包最低端子是否通过额定电流/实物/保护门禁及是否需要串联型", "2.5mm²是否补第二卷", "卫生间干区与设备连接方式", "6mm²分配块"]
   - id: SEP-03
     item: "木器漆、瓷砖漆及配套底涂仅买小样量"
   - id: SEP-04
@@ -95,9 +95,11 @@ september_remote_preparation:
     item: "线上预约开封本地合格电工：10月1日核验两线制无PE边界、保护器/线径/PCT和分级漏保方案，并预留通电前检测时段"
     required_outputs: ["无PE且未借用N/管道作接地的检查记录", "逐回路保护器/最小导线匹配表", "PCT实物拓扑与使用结论", "绝缘/极性/各级漏保动作等检测项目和报价"]
   - id: SEP-11
-    item: "建立剩余必需项报价表并执行4728元预算可行性门禁"
+    item: "建立剩余必需项报价表并执行动态预算可行性门禁"
     scope: ["电工复核/检测", "卫生间防水辅料", "基本地面", "马桶", "防猫纱窗", "三扇门最低方案", "基础电料"]
-    rule: "报价未齐不得把4728元描述为可支配余额，也不下不可退的非必要订单"
+    rule: "报价未齐不得把PROJECT_STATUS自动计算的可用上限描述为可自由支配余额，也不下不可退的非必要订单"
+  - id: SEP-12
+    item: "拍摄现有洗碗机铭牌、插头和进排水接口，查找说明书并建立水槽直排软管固定与柜体承重复测表"
 
 september_delivery_rules:
   paint_delivery_days: 5
@@ -129,6 +131,7 @@ october_daily_plan:
       - "复测走廊A灯带长度、安装高度和接头检修位置"
       - "抄录两台空调、浴霸和已有大功率设备铭牌；最终洗烘机型号未定时只冻结产品门禁"
       - "实测卫生间喷溅范围和候选干区；无合格干区时把RCD-BATH-01改到走廊A门外"
+      - "复测水槽北侧柜体的承重、水平、抗振和洗碗机开门净空；确认进水独立开关及排水软管直排水槽固定位置"
   - date_range: ["2026-10-02", "2026-10-04"]
     focus: "卫生间湿作业与全屋基层双线并行"
     worker_a:
@@ -212,14 +215,12 @@ january_single_worker_sequence:
 
 budget_gate:
   overall_budget_cny: 10000
-  actual_expenses_after_tile_cny: 1860
-  actual_income_cny: 55
-  actual_net_outflow_cny: 1805
   october_trip_reserve_cny: 700
   paint_and_tools_plan_cny: 2012
   contingency_cny: 700
-  available_for_other_work_cny: 4728
-  formula: "10000 - 1860 - 700 - 2012 - 700 = 4728"
+  actuals_source: "data/ledger.csv"
+  generated_status_ref: "PROJECT_STATUS.md"
+  calculation: "总预算减账本累计支出、交通预留、涂装预留和应急金；不在schedule重复手写实际金额"
   feasibility_status: unproven_until_essential_quotes
   quote_gate_ref: "data/budget.yaml#feasibility"
   defer_order:
@@ -259,7 +260,7 @@ owner_decisions_and_open_risks:
   - decision: "确认整屋为无法独立增设PE的L/N两线制，采用分级漏保降低风险"
     consequence: "允许带“本户无PE”标识的三孔面板进入方案；PE端子保持未连接，严禁N/PE短接或借用水管、燃气管"
     risk_ref: SAF-0018
-  - decision: "4728元仅视为剩余上限，不视为已经覆盖全部必需项"
+  - decision: "PROJECT_STATUS自动计算的金额仅视为剩余上限，不视为已经覆盖全部必需项"
     consequence: "9月形成必需项首版报价；超预算时先延期清单项目，再调整范围或总预算"
     risk_ref: SAF-0019
 

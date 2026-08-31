@@ -126,36 +126,26 @@ ledger_net = ledger_expenses - ledger_income
 
 schedule_gate = schedule.fetch("budget_gate", {})
 budget_gate = budget.fetch("current_gate", {})
-expected_budget_values = {
-  "overall_budget_cny" => 10_000,
-  "actual_expenses_after_tile_cny" => ledger_expenses,
-  "actual_income_cny" => ledger_income,
-  "actual_net_outflow_cny" => ledger_net,
-  "october_trip_reserve_cny" => 700,
-  "paint_and_tools_plan_cny" => 2_012,
-  "contingency_cny" => 700,
-  "available_for_other_work_cny" => 4_728
-}.freeze
-
-expected_budget_values.each do |key, expected|
-  actual = schedule_gate[key]
-  errors << "schedule.yaml budget_gate.#{key} 应为 #{expected}，实际为 #{actual.inspect}" unless actual == expected
-end
 
 errors << "budget.yaml overall_budget_cny 应为10000" unless budget["overall_budget_cny"] == 10_000
 errors << "budget.yaml contingency_cny 应为700" unless budget["contingency_cny"] == 700
 {
-  "actual_expenses_cny" => ledger_expenses,
-  "actual_income_cny" => ledger_income,
-  "actual_net_outflow_cny" => ledger_net,
   "october_trip_reserve_cny" => 700,
   "paint_and_tools_plan_cny" => 2_012,
-  "contingency_cny" => 700,
-  "available_for_other_work_cny" => 4_728
+  "contingency_cny" => 700
 }.each do |key, expected|
-  actual = budget_gate[key]
-  errors << "budget.yaml current_gate.#{key} 应为 #{expected}，实际为 #{actual.inspect}" unless actual == expected
+  budget_actual = budget_gate[key]
+  schedule_actual = schedule_gate[key]
+  errors << "budget.yaml current_gate.#{key} 应为 #{expected}，实际为 #{budget_actual.inspect}" unless budget_actual == expected
+  errors << "schedule.yaml budget_gate.#{key} 应与预算一致" unless schedule_actual == expected
 end
+
+snapshot_keys = %w[actual_expenses_cny actual_expenses_after_tile_cny actual_income_cny actual_net_outflow_cny available_for_other_work_cny formula]
+snapshot_keys.each do |key|
+  errors << "budget.yaml 不应手写易漂移快照 #{key}，由PROJECT_STATUS生成" if budget_gate.key?(key)
+  errors << "schedule.yaml 不应手写易漂移快照 #{key}，由PROJECT_STATUS生成" if schedule_gate.key?(key)
+end
+errors << "预算实际支出必须只引用data/ledger.csv" unless budget["actuals_source"] == "data/ledger.csv" && schedule_gate["actuals_source"] == "data/ledger.csv"
 
 no_trip = schedule.dig("onsite_windows", "no_special_trip") || {}
 errors << "10月8日后至1月中旬的装修专项往返必须为0" unless no_trip["planned_renovation_roundtrips"] == 0
@@ -189,10 +179,13 @@ active_junctions = junctions.select { |junction| junction["status"] == "active_p
 expected_junctions = Set["JB-L4", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV", "JB-BATH"]
 actual_junctions = active_junctions.map { |junction| junction["id"] }.to_set
 errors << "electrical.yaml 应有六个逻辑分线节点且不得保留JB-L5" unless active_junctions.length == 6 && actual_junctions == expected_junctions
+junctions_by_id = active_junctions.to_h { |junction| [junction["id"], junction] }
+errors << "2至3路节点应使用PCT-62候选" unless %w[JB-R3 JB-BED JB-BATH].all? { |id| junctions_by_id.dig(id, "terminal_candidate").to_s.include?("PCT-62") }
+errors << "4路节点应使用五孔接线型L/N各一只候选" unless %w[JB-KIT JB-LIV JB-L4].all? { |id| junctions_by_id.dig(id, "terminal_candidate").to_s.include?("五孔") }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
-errors << "electrical.yaml 插座组数明细应合计14组" unless outlets["total_planned"] == 14 && outlet_sum == 14
+errors << "electrical.yaml 插座组数明细应合计15组" unless outlets["total_planned"] == 15 && outlet_sum == 15
 errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
 
 sofa_robot = outlets.dig("living_room", "sofa_robot_branch") || {}
@@ -205,6 +198,16 @@ terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
 errors << "electrical.yaml 不得把PCT逻辑节点直接写成实购物理数量" unless electrical.dig("terminal_policy", "logical_node_count") == 6 && terminal_procurement["physical_quantity"].nil? && terminal_procurement["status"] == "blocked_by_product_topology_and_protection_review"
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
 
+terminal_families = electrical.dig("terminal_policy", "product_family_plan") || {}
+pct_62 = electrical.dig("terminal_policy", "pct_62") || {}
+errors << "PCT-62必须记录为二进六出并分出3组L/N" unless pct_62["topology"].to_s.include?("2进6出") && pct_62["topology"].to_s.include?("3组L/N")
+errors << "端子最低SKU应为PCT-62一包+五孔接线型一包，PCT-42首批不买" unless terminal_families.dig("branch_type", "candidate").to_s.include?("PCT-62") && terminal_families.dig("branch_type", "initial_packs") == 1 && terminal_families.dig("splice_type", "candidate").to_s.include?("五孔") && terminal_families.dig("splice_type", "initial_packs") == 1 && Array(terminal_families["initial_exclusions"]).include?("PCT-42")
+errors << "串联型只能作为条件购物车且硬线最大4mm²" unless terminal_families.dig("series_type", "cart_only") == true && terminal_families.dig("series_type", "hard_wire_max_mm2") == 4
+
+terminal_buy = procurement_by_id["BUY-0025"] || {}
+minimum_cart = Array(terminal_buy["provisional_minimum_cart"])
+errors << "BUY-0025最低购物车应恰好两种端子且每种10只/包" unless minimum_cart.length == 2 && minimum_cart.all? { |item| item["packs"] == 1 && item["pieces_per_pack"] == 10 } && minimum_cart.any? { |item| item["item"].to_s.include?("PCT-62") } && minimum_cart.any? { |item| item["item"].to_s.include?("五孔") }
+
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
 expected_lighting = Set["卧室固定照明", "卧室吊扇", "厨房固定照明", "走廊A/B固定照明", "客厅固定照明", "走廊A 220V灯带"]
@@ -212,8 +215,8 @@ errors << "MCB-04应合并全部非卫浴固定照明及卧室吊扇" unless Arr
 
 layered_devices = Array(electrical.dig("layered_residual_protection", "devices"))
 device_ids = layered_devices.map { |device| device["id"] }.to_set
-expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-WASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
-errors << "分级漏保设备表必须覆盖两台空调、洗烘机、卫生间总保护、浴霸和镜柜" unless device_ids == expected_devices
+expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
+errors << "分级漏保设备表必须覆盖两台空调、洗烘机、洗碗机、卫生间总保护、浴霸和镜柜" unless device_ids == expected_devices
 bath_rcd = layered_devices.find { |device| device["id"] == "RCD-BATH-01" } || {}
 errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "智能除雾镜柜", "卫生间防潮照明"]
 
@@ -235,6 +238,15 @@ errors << "INV-0006应同步沙发与书桌之间的固定停靠区域" unless r
 
 mirror_cabinet = procurement_by_id["BUY-0005"] || {}
 errors << "BUY-0005应明确智能除雾镜柜及其RCD-BATH-01下游电源" unless mirror_cabinet["item"].to_s.include?("智能除雾镜柜") && mirror_cabinet.to_s.include?("RCD-BATH-01")
+
+sofa_bed = procurement_by_id["BUY-0006"] || {}
+errors << "BUY-0006应同时承担沙发和临时客卧，并保留隐私帘候选" unless sofa_bed["item"].to_s.include?("沙发床") && sofa_bed["privacy_option"].to_s.include?("隐私帘")
+
+dishwasher = inventory_by_id["INV-0013"] || {}
+dishwasher_kit = procurement_by_id["BUY-0034"] || {}
+errors << "现有洗碗机必须进入库存而非重复采购设备" unless dishwasher["condition"].to_s.start_with?("owned") && dishwasher["planned_use"].to_s.include?("不采购新机")
+errors << "洗碗机连接包必须覆盖止水、排水、无PE标识和设备级漏保" unless dishwasher_kit.to_s.include?("独立") && dishwasher_kit.to_s.include?("排水") && dishwasher_kit.to_s.include?("本户无PE") && dishwasher_kit.to_s.include?("双极")
+errors << "厨房插座应新增洗碗机三孔常电点" unless outlets.dig("kitchen", "count") == 4 && outlets.dig("kitchen", "dishwasher", "device_protection") == "SRCD-DISHWASHER"
 
 # The remaining balance is not a feasibility claim until mandatory quotes exist.
 budget_feasibility = budget.fetch("feasibility", {})

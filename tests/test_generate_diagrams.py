@@ -54,7 +54,27 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-status="existing-to-refinish"', furniture)
         self.assertIn("书桌｜已有", furniture)
         self.assertIn("待改黑胡桃色", furniture)
-        self.assertIn("椅子、沙发和洗烘机尚未购买", furniture)
+        self.assertIn("椅子、沙发床和洗烘机尚未购买", furniture)
+
+    def test_sofa_bed_guest_mode_and_optional_privacy_are_explicit(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        self.assertIn('data-furniture="sofa-bed" data-mode="sofa"', furniture)
+        self.assertIn('data-furniture="sofa-bed" data-mode="bed-open"', furniture)
+        self.assertIn('data-privacy-curtain="candidate"', furniture)
+        self.assertIn("临时客卧", furniture)
+
+    def test_owned_dishwasher_has_space_water_drain_and_protection_layers(self) -> None:
+        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
+        plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")
+        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
+        topology = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
+        details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")
+        self.assertIn('data-appliance="dishwasher" data-status="owned-to-move"', furniture)
+        self.assertIn('data-dishwasher-water="sink-feed-independent-switch"', plumbing)
+        self.assertIn('data-dishwasher-drain="direct-to-sink"', plumbing)
+        self.assertIn('data-outlet="dishwasher-three-hole"', points)
+        self.assertIn('data-device-protection="SRCD-DISHWASHER"', topology)
+        self.assertIn('data-stack="dishwasher-on-cabinet"', details)
 
     def test_robot_dock_table_and_two_outlets_are_explicit(self) -> None:
         furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
@@ -146,7 +166,10 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-device-protection="SRCD-AC-BED"', topology)
         self.assertIn('data-device-protection="SRCD-AC-LIV"', topology)
         self.assertIn('data-device-protection="SRCD-WASHER"', topology)
-        self.assertIn("实物型号和数量须现场换算", topology)
+        self.assertIn('data-device-protection="SRCD-DISHWASHER"', topology)
+        self.assertEqual(topology.count('data-terminal-candidate="PCT-62"'), 3)
+        self.assertEqual(topology.count('data-terminal-candidate="five-hole-pair"'), 3)
+        self.assertIn("PCT-62×1包 + 五孔接线型×1包", topology)
 
     def test_31_routes_mcb05_only_to_bath_rcd(self) -> None:
         routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
@@ -189,6 +212,15 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("智能墙壁开关只控制灯具", electrical)
         self.assertNotIn("smart_switch_output: general_socket", electrical)
 
+    def test_terminal_plan_uses_correct_pct62_topology_and_minimum_skus(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
+        electrical = (root / "data/electrical.yaml").read_text(encoding="utf-8")
+        self.assertIn("PCT-62二进六出", procurement)
+        self.assertIn("分出3组L/N", electrical)
+        self.assertIn('initial_exclusions: ["PCT-42"', electrical)
+        self.assertNotIn("PCT-62三进六出", procurement + electrical)
+
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
@@ -197,7 +229,7 @@ class GenerateDiagramsTest(unittest.TestCase):
                 self.assertNotIn("M475 450H600", svg)
 
     def test_checked_in_outputs_match_generator(self) -> None:
-        checked_in = Path(__file__).resolve().parents[1] / "diagrams" / "v5"
+        checked_in = Path(__file__).resolve().parents[1] / "diagrams"
         for filename in EXPECTED:
             self.assertEqual(
                 (checked_in / filename).read_text(encoding="utf-8"),
@@ -205,11 +237,10 @@ class GenerateDiagramsTest(unittest.TestCase):
                 f"{filename} 已过期，请运行 make diagrams",
             )
 
-    def test_v4_remains_archived_and_marked_v4(self) -> None:
-        archived = Path(__file__).resolve().parents[1] / "diagrams" / "v4"
-        self.assertEqual(len(list(archived.glob("*.svg"))), 10)
-        for path in archived.glob("*.svg"):
-            self.assertIn("V4 讨论图", path.read_text(encoding="utf-8"))
+    def test_diagram_directory_contains_only_current_flat_outputs(self) -> None:
+        diagrams = Path(__file__).resolve().parents[1] / "diagrams"
+        self.assertFalse(any(path.is_dir() for path in diagrams.iterdir()))
+        self.assertEqual({path.name for path in diagrams.glob("*.svg")}, set(EXPECTED))
 
 
 if __name__ == "__main__":

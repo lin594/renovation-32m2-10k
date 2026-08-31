@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 status: preliminary_discussion_baseline
 drawing_property: "讨论方案，不是施工图或通电批准；无PE为既定条件，线径、保护器、端子及绝缘/极性/漏保测试结果仍须现场核验与合格电工复核"
 
@@ -95,6 +95,7 @@ layered_residual_protection:
     - { id: SRCD-AC-BED, upstream: RCBO-01, load: "卧室空调", form: "插座式漏保/空调伴侣", status: blocked_by_nameplate_and_product_manual }
     - { id: SRCD-AC-LIV, upstream: RCBO-03, load: "客厅空调", form: "插座式漏保/空调伴侣", status: blocked_by_nameplate_and_product_manual }
     - { id: SRCD-WASHER, upstream: RCBO-03, load: "洗烘一体机", form: "专用插座式漏保", always_on: true, smart_switch_output: false, status: blocked_by_appliance_model }
+    - { id: SRCD-DISHWASHER, upstream: RCBO-02, load: "现有洗碗机", form: "专用插座式漏保候选", always_on: true, smart_switch_output: false, status: blocked_by_appliance_model_and_connection_survey }
     - id: RCD-BATH-01
       upstream: MCB-05
       load: "卫生间全部用电"
@@ -134,40 +135,48 @@ lighting_selection:
 
 terminal_policy:
   candidate_product: "TYO PCT系列（由业主提供参数，型号/认证实物待验）"
-  pct_42: { topology: "2进4出", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
-  pct_62: { topology: "按实物标识核对内部极组后使用", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
+  pct_42: { topology: "2进4出：L/N各进一根，分出2组L/N", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
+  pct_62: { topology: "2进6出：L/N各进一根，分出3组L/N", advertised_voltage_v: 600, advertised_current_a_per_pole: 32, strip_length_mm: 10, hard_wire_mm2: "0.2-6", flexible_wire_mm2: "0.2-4" }
   aggregate_current_rule: "32A为每极全部进出线合计允许电流，不是每个出线口各32A"
   upstream_gate: "直接上级≤32A只是端子额定值门禁；保护器还必须不大于最小下游导线在实际敷设条件下允许值，并匹配负载与故障切断要求。任一条件未知即暂停接线和通电"
   device_role: "PCT仅作连接/分线，不是保护器，不能用端子额定值替代支路过载、短路、漏电和接地故障保护"
   enclosure: "每个节点固定在独立、带盖、可开启检修的约100×100×50mm明装盒内"
   logical_node_count: 6
   procurement: { physical_quantity: null, status: blocked_by_product_topology_and_protection_review }
-  quantity_gate: "图纸只固定六个逻辑分线节点；核对实物L/N独立极组、认证、导线适配和保护器后，才把节点换算成PCT-42/PCT-62及检修盒实购数量"
+  quantity_gate: "图纸固定六个逻辑分线节点；核对PCT-62与五孔接线型的认证、额定值、导线适配和保护器后，才批准两包最低采购"
   rules:
     - "L和N使用相互独立的极组/端子，不混接；本户无PE，不设置虚构PE极组；到货后必须用实物标识和通断测试确认PCT内部拓扑"
     - "端子必须安装在可开启的接线盒或配电箱内并固定"
     - "标称支持6mm²不等于允许从未知36A上级向2.5mm²分支；保护器门禁优先于孔径"
     - "软线接入需按产品要求使用适配端头，不用焊锡替代合规压接"
     - "插座由PCT分出短尾线，每个插座端子只压一根导线，不在插座螺丝下叠压多根导线或铜鼻子"
+  product_family_plan:
+    package_rule: "每个具体类型10只/包；不按全系列囤货"
+    preferred_continuity: "穿墙线优先连续通过；需要分段时，接头只能放在穿线洞后立即可见、带盖、固定的检修盒中，不得位于墙洞内"
+    branch_type: { candidate: "PCT-62二进六出", topology: "L/N各进一根，分出3组L/N", hard_wire_max_mm2: 6, planned_nodes: [JB-R3, JB-BED, JB-BATH], initial_packs: 1, gate: "确认内部极组、认证和32A总电流门禁" }
+    splice_type: { candidate: "五孔接线型", hard_wire_max_mm2: 4, planned_nodes: [JB-KIT, JB-LIV, JB-L4], initial_packs: 1, rule: "L/N各一只；一孔进、四孔出；额定电流待核" }
+    series_type: { candidate: "二极一进一出串联型", hard_wire_max_mm2: 4, initial_packs: 0, cart_only: true, buy_if: "连续穿线确实无法施工或维护" }
+    initial_exclusions: ["PCT-42", "二孔/三孔/八孔接线型", "其他串联规格"]
 
 junction_boxes:
-  - { id: JB-L4, circuit: MCB-04, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["卧室照明/吊扇", "厨房照明", "走廊A/B照明", "客厅照明"] }
-  - { id: JB-R3, circuit: RCBO-03, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["玄关设备架", "客厅"] }
-  - { id: JB-BED, circuit: RCBO-01, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["卧室空调", "床北插座", "床南插座"] }
-  - { id: JB-KIT, circuit: RCBO-02, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["燃气热水器", "油烟机", "台面电器"] }
-  - { id: JB-LIV, circuit: RCBO-03, upstream_node: JB-R3, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["客厅空调", "冰箱", "洗烘一体机", "普通插座链"] }
-  - { id: JB-BATH, circuit: MCB-05, upstream_node: RCD-BATH-01, terminal_candidate: "PCT-42/PCT-62待实物换算", status: active_planned, branches: ["浴霸", "智能除雾镜柜", "卫生间防潮照明"] }
+  - { id: JB-L4, circuit: MCB-04, terminal_candidate: "五孔接线型L/N各一只", status: active_planned, branches: ["卧室照明/吊扇", "厨房照明", "走廊A/B照明", "客厅照明"] }
+  - { id: JB-R3, circuit: RCBO-03, terminal_candidate: "PCT-62，空一组L/N输出", status: active_planned, branches: ["玄关设备架", "客厅"] }
+  - { id: JB-BED, circuit: RCBO-01, terminal_candidate: "PCT-62", status: active_planned, branches: ["卧室空调", "床北插座", "床南插座"] }
+  - { id: JB-KIT, circuit: RCBO-02, terminal_candidate: "五孔接线型L/N各一只", status: active_planned, branches: ["燃气热水器", "油烟机", "台面电器", "洗碗机"] }
+  - { id: JB-LIV, circuit: RCBO-03, upstream_node: JB-R3, terminal_candidate: "五孔接线型L/N各一只", status: active_planned, branches: ["客厅空调", "冰箱", "洗烘一体机", "普通插座链"] }
+  - { id: JB-BATH, circuit: MCB-05, upstream_node: RCD-BATH-01, terminal_candidate: "PCT-62", status: active_planned, branches: ["浴霸", "智能除雾镜柜", "卫生间防潮照明"] }
 
 outlet_groups:
-  total_planned: 14
+  total_planned: 15
   bedroom:
     circuit: RCBO-01
     count: 3
     points: ["卧室空调", "床北明装插座", "床南明装插座"]
   kitchen:
     circuit: RCBO-02
-    count: 3
-    points: ["燃气热水器", "油烟机", "台面电器"]
+    count: 4
+    points: ["燃气热水器", "油烟机", "台面电器", "洗碗机三孔常电"]
+    dishwasher: { status: planned_for_existing_appliance, upstream: RCBO-02, device_protection: SRCD-DISHWASHER, protective_earth: "PE端子未连接并标注本户无PE", smart_control: forbidden }
   living_room:
     circuit: RCBO-03
     count: 7
@@ -192,7 +201,7 @@ outlet_groups:
     - "普通插座保持常电，智能插座只作为可拔插设备插在常电插座上"
     - "智能墙壁开关只控制灯具，不把其受控输出接到通用插座"
     - "所有智能墙壁开关只采用零火版，开关盒必须到达L/N，受控相线仅通往灯具"
-    - "空调、洗烘机和浴霸不得以普通智能插座作为主保护或负载开关"
+    - "空调、洗烘机、洗碗机和浴霸不得以普通智能插座作为主保护或负载开关"
     - "两芯线路只有L/N；三孔面板PE端子保持未连接并粘贴“本户无PE”标识，不与N短接，漏保不能替代PE"
 
 bedroom_detail:

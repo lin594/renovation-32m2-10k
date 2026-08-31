@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 
 status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
@@ -53,9 +53,12 @@ items:
   - id: BUY-0006
     category: furniture
     room: living_room
-    item: "双人沙发"
+    item: "双人沙发床"
     status: not_purchased
     target_footprint_m: [1.6, 0.9]
+    requirements: ["日常为双人沙发", "向东展开为临时双人/单人客卧", "展开后不占约0.7m主通道", "与扫地机及上方储物台不冲突", "确认折叠机构和承重"]
+    open_footprint_target_m: [1.6, 2.0]
+    privacy_option: "入住体验后再决定是否沿临时客卧南缘安装可完全收起的隐私帘"
 
   - id: BUY-0007
     category: furniture
@@ -201,19 +204,29 @@ items:
   - id: BUY-0025
     category: electrical_connector
     room: whole_house
-    item: "TYO PCT端子与独立检修盒"
+    item: "TYO分路/接线端子与独立检修盒"
     status: not_purchased
     requirements:
-      - "图纸固定六个逻辑分线节点，不把逻辑节点数直接当作PCT或检修盒实购数量"
+      - "图纸固定六个逻辑分线节点；按节点支路数选择分路型或接线型，不为每种端子各买一包"
       - "按实物内部拓扑为L/N分别提供独立极组；本户无PE，不设置虚构PE极组"
       - "32A是每极全部端口总电流"
       - "到货核对CCC/合格证、实物型号、内部拓扑、剥线10mm及硬/软线允许截面积"
       - "直接上级≤32A只是端子必要条件；保护器还须匹配最小下游导线、敷设、负载及故障切断条件"
       - "逻辑数量只有在实物确认单件含L/N独立极组时成立；若为单一公共母线须重新计数"
+    product_families:
+      - { family: "分路型", examples: ["PCT-42二进四出（2组L/N）", "PCT-62二进六出（3组L/N）"], max_hard_wire_mm2: 6, use: "L/N各进一根，再成对分出多组L/N" }
+      - { family: "串联型", examples: ["一进一出至五进五出"], max_hard_wire_mm2: 4, use: "只在必须把≤4mm²连续线分段时使用" }
+      - { family: "接线型", examples: ["二孔", "三孔", "五孔", "八孔"], max_hard_wire_mm2: 4, use: "同一导体的直通或小分支；L/N必须分别使用独立端子" }
+    pack_size_each_type: 10
     logical_node_count: 6
-    planned_quantities: null
-    quantity_status: blocked_by_product_topology_and_protection_review
-    purchase_strategy: "9月只收藏候选产品；10月1日核对实物内部拓扑、认证、保护器和每个逻辑节点所需L/N极组后换算实购数量"
+    provisional_minimum_cart:
+      - { item: "PCT-62分路型（二进六出）", packs: 1, pieces_per_pack: 10, planned_nodes: [JB-R3, JB-BED, JB-BATH], use_rule: "每只最多分3组L/N；JB-R3留一组空位", status: blocked_by_internal_topology_and_protection }
+      - { item: "五孔接线型", packs: 1, pieces_per_pack: 10, planned_nodes: [JB-KIT, JB-LIV, JB-L4], use_rule: "每节点L/N各一只，一孔进四孔出；余4只作维修备用", status: blocked_by_certification_current_and_wire_fit }
+    cart_only:
+      - { item: "二极一进一出串联型", packs: 1, pieces_per_pack: 10, buy_if: "10月确认穿墙后必须分段且导线≤4mm²；能连续敷设则不买" }
+    do_not_buy_initially: ["PCT-42", "二孔/三孔/八孔接线型", "其他串联规格"]
+    quantity_status: conditional_two_pack_baseline
+    purchase_strategy: "9月建立两包最低购物车但不下单；10月1日核对认证、内部拓扑、上级保护、最小导线和实际节点后，只购买能覆盖全部节点的最少类型"
 
   - id: BUY-0026
     category: lighting
@@ -290,3 +303,20 @@ items:
     target_zone_m: [0.85, 0.45]
     requirements: ["位于沙发与书桌之间并紧靠沙发", "优先壁挂或后置支撑", "机器人路径前方不得有落地前腿", "保留散热、取出和维护空间", "上部可用于沙发充电"]
     quantity_status: blocked_by_robot_sofa_and_desk_remeasurement
+
+  - id: BUY-0034
+    category: appliance_connection
+    room: kitchen
+    item: "现有洗碗机安装连接包"
+    status: not_purchased
+    appliance_inventory_ref: INV-0013
+    requirements:
+      - "先核对洗碗机型号、额定功率、插头、进水和排水说明"
+      - "直接从水槽进水处经已有/新增独立开关供水"
+      - "按设备说明把排水软管直接排入水槽，并使用可靠固定件防脱落和甩水"
+      - "使用RCBO-02常电三孔点位，PE端子未连接并持久标注本户无PE"
+      - "设备级漏保须具备L/N双极切断、TEST/RESET并匹配设备负载"
+      - "软管不得被柜体、门扇或洗碗机本体挤压"
+      - "受潮木柜继续使用前核对承重、水平、抗振和防潮；预算允许时替代柜仍安装在同一位置"
+    quantity_status: blocked_by_dishwasher_model_dimensions_and_sink_test
+    risk_ref: SAF-0022

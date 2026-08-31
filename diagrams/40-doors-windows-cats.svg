@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="existing-survey" role="img">
-<title>00 现状测量图</title>
-<desc>固定空间、门窗洞口与已确认现场点位</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="doors-windows-cats" role="img">
+<title>40 门窗与猫安全图</title>
+<desc>门窗选购定制、防逃纱窗与阳台猫抓板</desc>
 
 <defs>
   <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -31,8 +31,8 @@
 </defs>
 
 <rect width="1400" height="850" fill="#fbfaf7"/>
-<text x="70" y="52" class="title">00 现状测量图</text>
-<text x="70" y="78" class="subtitle">固定空间、门窗洞口与已确认现场点位</text>
+<text x="70" y="52" class="title">40 门窗与猫安全图</text>
+<text x="70" y="78" class="subtitle">门窗选购定制、防逃纱窗与阳台猫抓板</text>
 
 <rect x="100" y="130" width="300" height="400" fill="#f7ead7"/>
 <rect x="100" y="530" width="300" height="100" fill="#e6f3e8"/>
@@ -53,6 +53,41 @@
 <path d="M600 450V530" stroke="#f1f5f9" stroke-width="10"/>
 <path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
 <path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/>
+<!-- Entry door: existing -->
+<path d="M600 530H680M600 450A80 80 0 0 1 680 530" fill="none" stroke="#7c3aed" stroke-width="3"/><text x="650" y="548" class="small purple">入户门｜已有</text>
+<!-- Bedroom door: not purchased -->
+<path d="M600 425H680M600 345A80 80 0 0 1 680 425" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="7 5"/><text x="645" y="335" class="small orange">卧室门｜待选购</text>
+<!-- Kitchen slider: closed representation only -->
+<path d="M520 323H600M440 317H510" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="7 5"/><text x="540" y="308" class="small orange">厨房移门｜待定制</text>
+<!-- Bath slider: mounted on Hall A side; closed normally, slides east for use. -->
+<path d="M405 457H475" fill="none" stroke="#f97316" stroke-width="5"/><text x="438" y="480" class="small orange center">卫生间移门｜常闭</text>
+<g data-state="bath-slider-open-east" data-intrusion-m="0.4">
+  <rect x="500" y="330" width="45" height="120" fill="#fee2e2" fill-opacity=".58" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <path d="M475 457H545" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="7 5"/>
+  <path d="M438 438H520" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="548" y="445" class="micro red">向东开启；临时占走廊B约0.4m</text>
+</g>
+<!-- Balcony slider -->
+<path d="M250 523H325M325 537H400" fill="none" stroke="#7c3aed" stroke-width="4"/><text x="300" y="511" class="small purple">阳台推拉门｜西扇有效约0.7m</text>
+<!-- Cat screens and scratch boards -->
+<path d="M200 126H300" class="cat"/><path d="M450 126H550" class="cat"/><path d="M700 126H800" class="cat"/>
+<path d="M96 535V625" class="cat"/><path d="M110 634H390" class="cat"/>
+<path d="M106 542V622" class="cat"/><path d="M112 624H388" class="cat"/>
+<text x="250" y="650" class="small green center">阳台西墙+南墙窗下猫抓板</text>
+<!-- Bathroom slider customization inset: temporary Hall B intrusion is accepted. -->
+<g data-detail="bath-slider-constraint">
+  <rect x="980" y="360" width="340" height="190" rx="10" fill="#fffaf0" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="998" y="389" class="note bold">卫生间移门定制约束</text>
+  <line x1="1000" y1="425" x2="1075" y2="425" stroke="#f97316" stroke-width="6"/>
+  <text x="1038" y="447" class="small center">走廊A侧常闭</text>
+  <path d="M1085 425H1140" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1185" y="401" width="95" height="52" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="1145" y1="425" x2="1240" y2="425" stroke="#dc2626" stroke-width="6" stroke-dasharray="7 5"/>
+  <text x="1192" y="474" class="small red center">向东完全开启：约0.4m进入走廊B</text>
+  <text x="998" y="505" class="small">日常可按进出需要部分开启；关闭后恢复A/B走廊净空。</text>
+  <text x="998" y="530" class="small">门洞有效净宽目标约0.65m；轨道和停泊尺寸下单前复测。</text>
+</g>
+
 <text x="250" y="270" class="room">客厅</text><text x="250" y="291" class="roomsub">净4.0×3.0m</text>
 <text x="500" y="225" class="room">厨房</text><text x="500" y="246" class="roomsub">约2.0×&lt;2.0m</text>
 <text x="450" y="388" class="room">卫生间</text><text x="450" y="408" class="roomsub">设计基准约1.05×0.75m</text>
@@ -60,17 +95,11 @@
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
 
-<circle cx="400" cy="330" r="9" fill="#0f766e"/><text x="414" y="334" class="small">唯一排水立管</text>
-<circle cx="400" cy="350" r="8" fill="#0284c7"/><text x="414" y="354" class="small">入户水</text>
-<circle cx="598" cy="165" r="9" fill="#ea580c"/><text x="610" y="160" class="small orange">燃气入口</text>
-<rect x="579" y="430" width="36" height="22" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="620" y="424" class="small blue">配电箱</text>
-<rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
-<rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="635" y="151" class="small">卧室空调</text>
-<circle cx="750" cy="280" r="13" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="306" class="small center">吊扇</text>
-<circle cx="250" cy="330" r="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="250" y="354" class="small center">吊扇钩</text>
-<rect x="486" y="346" width="13" height="38" class="danger"/><text x="478" y="343" class="small red" text-anchor="end">浴霸</text>
-<text x="560" y="319" class="small orange">厨房旧门已拆</text><text x="445" y="470" class="small orange">卫浴旧门已拆</text>
-<text x="640" y="340" class="small orange">卧室旧门已拆</text><text x="375" y="520" class="small orange" text-anchor="end">通道旧门已拆</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">本图只确认“现场有什么”</text><text x="994" y="196" class="note">墙体、洞口、窗户和公共走廊</text><text x="994" y="225" class="note">固定的水、排水、燃气和配电点</text><text x="994" y="254" class="note">已有空调、吊扇、吊扇钩和浴霸</text><text x="994" y="283" class="note">四个室内旧门均已拆除</text><text x="994" y="312" class="note">卧室门洞较旧图北移约5cm</text><text x="994" y="341" class="note">不表达家具购买和假定线路</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#1f2937" stroke-width="5"/><text x="1044" y="524" class="small">墙体/固定边界</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#0284c7" stroke-width="5"/><text x="1044" y="553" class="small">水或固定设备</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#ea580c" stroke-width="5"/><text x="1044" y="582" class="small">燃气点</text>
-<text x="100" y="800" class="small">V4 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<rect x="970" y="120" width="370" height="210" rx="14" class="panel"/>
+<text x="994" y="158" class="note bold">门窗与三猫安全</text>
+<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨房/卫生间移门：待定制</text>
+<text x="994" y="252" class="note">所有外窗：防逃纱窗 TODO</text><text x="994" y="281" class="note">阳台猫抓板提高窗台可达性</text>
+<text x="994" y="310" class="note red">纱网、边框、锁扣和缝隙需整体验收</text>
+
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>

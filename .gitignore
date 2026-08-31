@@ -3,6 +3,5 @@ __pycache__/
 *.pyc
 *.tmp
 
-# 本地渲染预览可重新生成，不作为设计真源
+# 图纸直接使用SVG；若临时导出光栅图，请存到系统临时目录而非仓库。
 house-plan-understanding.png
-artifacts/previews/

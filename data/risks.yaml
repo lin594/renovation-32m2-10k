@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 
 severity_order: [critical, high, medium, low]
 status_values: [open, investigating, mitigated, accepted, closed]
@@ -20,13 +20,13 @@ risks:
 
   - id: SAF-0002
     domain: electrical
-    title: "蓝色6平方铜线拟通过胶布改色后承担不同导体功能"
+    title: "剩余蓝色6平方铜线的用途受导体颜色限制"
     severity: high
-    status: open
-    confirmed_fact: "100m蓝色6平方铜线约使用40m，余约60m，计划作为配电箱至各房间主线"
-    concern: "导体识别、全路径可辨识性、端接一致性和所在地施工验收要求尚未确认"
-    guardrail: "该计划当前是材料利用提案，不是已批准施工方案"
-    next_action: "确定供电系统、回路用途和当地要求后，由电工书面确认线色/重新标识方案；必要时购买正确颜色导线"
+    status: mitigated
+    confirmed_fact: "100m蓝色6平方铜线约使用40m、余约60m；现方案不再用胶布改色后充当相线"
+    concern: "余料可利用范围较窄，不能为了省材料破坏全路径导体识别"
+    guardrail: "仅作为中性导体或其他与蓝色标识一致的用途候选；不合适则继续入库"
+    next_action: "10月由电工结合五回路主干方案确认可利用长度和端接方式"
     inventory_ref: INV-0001
 
   - id: SAF-0003
@@ -177,11 +177,11 @@ risks:
 
   - id: SAF-0017
     domain: electrical_terminal
-    title: "PCT端子32A总电流与疑似36A上级保护器不匹配"
+    title: "分路/接线端子额定值与疑似36A上级保护器可能不匹配"
     severity: critical
     status: open
-    confirmed_fact: "拟用PCT-42/62标称每极32A；配电箱支路器件被口述为约36A但铭牌未核实"
-    concern: "端子额定值低于上级保护器，且用其向2.5mm²分支时，故障或过载可能不能由上级及时限制在端子和支线额定范围内"
+    confirmed_fact: "最低SKU拟用PCT-62（标称每极32A）和五孔接线型；五孔型额定电流尚未知，配电箱支路器件被口述为约36A但铭牌未核实"
+    concern: "端子额定值可能低于上级保护器，且用其向2.5mm²/1.5mm²分支时，故障或过载可能不能由上级及时限制在端子和支线额定范围内"
     guardrail: "上级≤32A只是必要条件；其额定值还须匹配最小下游导线在实际敷设下的允许值以及负载/故障切断条件。任一条件未知则不接线、不通电"
     next_action: "10月1日拍摄铭牌并逐节点填写上级保护器；同时核对PCT实物内部拓扑、认证和允许导线截面积"
     blocks: ["PCT节点安装", "相关2.5mm²分支通电"]
@@ -203,10 +203,10 @@ risks:
 
   - id: SAF-0019
     domain: budget
-    title: "4728元剩余额尚未覆盖未报价的必需工程"
+    title: "动态剩余预算尚未覆盖未报价的必需工程"
     severity: high
     status: open
-    confirmed_fact: "已知支出、10月交通、乳胶漆工具和应急金扣除后余额上限为4728元，但电工检测、防水辅料、基本地面、马桶、防猫纱窗、三扇门和基础电料均未形成总价"
+    confirmed_fact: "PROJECT_STATUS按账本实时计算剩余上限，但电工检测、防水辅料、基本地面、马桶、防猫纱窗、三扇门和基础电料均未形成总价"
     concern: "把余额上限误当成可自由支配资金，可能导致先买软装后无法完成防猫、安全用电或基本洁具"
     guardrail: "必需项可比报价未齐前，不下不可退的非必要订单，不动用700元应急金平衡已知缺口"
     next_action: "9月14日前形成首版报价矩阵，10月1日复测后冻结含送装和辅料总价；超出则按延期顺序降级并重新批准预算"
@@ -232,3 +232,15 @@ risks:
     guardrail: "优先在室内实测干区高位；无法证明存在合格位置时自动改到走廊A门外，不降级为湿区裸露安装"
     next_action: "10月1日按淋浴设备、浴帘、浴霸和镜柜位置实测喷溅范围，并核对候选漏保箱产品说明"
     task_ref: TASK-0031
+
+  - id: SAF-0022
+    domain: dishwasher_water_electrical
+    title: "现有洗碗机的尺寸、给排水和无PE连接尚未核验"
+    severity: high
+    status: open
+    confirmed_fact: "洗碗机为现有物资，计划叠放在水槽北侧二层木柜或同位置替代柜上；从水槽进水处经独立开关供水，排水软管直接排入水槽"
+    unknowns: ["型号与额定功率", "机身及开门尺寸", "进排水软管说明", "木柜剩余承载能力", "替代柜预算", "软管固定方式"]
+    concern: "水槽附近用电且本户无PE；受潮木柜承重不足、机器振动、排水软管脱落或插座受潮会放大风险"
+    guardrail: "RCBO-02下设置设备级双极漏保候选和带本户无PE标识的三孔常电点；进水有独立开关，直排水槽软管可靠固定，不用普通智能插座控制"
+    next_action: "9月拍摄铭牌和接口；10月1日复测柜体承重/水平和水槽边固定位置，再决定修复木柜或购买同位置替代柜"
+    task_ref: TASK-0033

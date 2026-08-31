@@ -1,0 +1,58 @@
+name: 项目校验
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: 数据、图纸与预算
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 生成派生文件并校验
+        run: |
+          make status
+          make diagrams
+          git diff --exit-code -- diagrams
+          make check
+      - name: 写入 Actions 摘要
+        run: cat PROJECT_STATUS.md >> "$GITHUB_STEP_SUMMARY"
+
+  sync-status:
+    name: 同步公开状态页
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+      - name: 重新计算状态
+        run: ruby scripts/generate_status.rb
+      - name: 仅提交派生状态页
+        run: |
+          if git diff --quiet -- PROJECT_STATUS.md; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add PROJECT_STATUS.md
+          git commit -m "更新(预算): 自动刷新项目状态 [skip ci]"
+          git push

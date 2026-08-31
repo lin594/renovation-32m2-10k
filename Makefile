@@ -1,7 +1,7 @@
 PYTHON ?= python3
 RUBY ?= ruby
 
-.PHONY: check diagrams summary test
+.PHONY: check diagrams status summary test
 
 diagrams:
 	$(PYTHON) scripts/generate_diagrams.py
@@ -9,7 +9,10 @@ diagrams:
 test:
 	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v
 
-check:
+status:
+	$(RUBY) scripts/generate_status.rb
+
+check: status
 	$(RUBY) scripts/check_yaml.rb
 	$(PYTHON) scripts/check_project.py
 	$(MAKE) test

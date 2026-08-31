@@ -42,7 +42,7 @@
 <text x="320" y="220" class="small center orange">上层0.4×0.6m瓷砖×3（总长约1.8m）</text>
 <rect x="420" y="210" width="75" height="55" fill="#fee2e2" stroke="#b45309" stroke-width="2"/><text x="457" y="242" class="small center">燃气灶</text>
 <rect x="120" y="430" width="80" height="150" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="510" class="small center">水槽</text>
-<rect x="120" y="310" width="80" height="110" class="planned"/><text x="210" y="360" class="small orange">受潮二层木柜</text>
+<g data-stack="dishwasher-on-cabinet"><rect x="120" y="310" width="80" height="110" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/><text x="160" y="405" class="micro center">受潮木柜/替代柜</text><rect x="126" y="316" width="68" height="67" class="fixed" data-appliance="dishwasher" data-status="owned-to-move"/><circle cx="160" cy="350" r="20" fill="none" stroke="#64748b" stroke-width="2"/></g><text x="210" y="340" class="small">洗碗机｜已有</text><text x="210" y="360" class="micro">叠放在柜体上方</text><text x="210" y="380" class="micro red">承重/水平/抗振待核</text><text x="210" y="400" class="micro">进水独立开关；排水直入水槽</text>
 <path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
 <path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
 <circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
@@ -66,7 +66,7 @@
   <line x1="50" y1="-50" x2="50" y2="0" stroke="#64748b" stroke-width="5"/><line x1="350" y1="-50" x2="350" y2="0" stroke="#64748b" stroke-width="5"/>
   <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原0.5m深台面</text>
 </g>
-<text x="85" y="702" class="small red">安全门禁：燃气管检修、伸缩杆稳定、瓷砖承载和灶台耐热均未关闭。</text>
+<text x="85" y="687" class="small red">安全门禁：燃气管检修、台面承载、柜体承重、排水固定和无PE保护均未关闭。</text>
 
 <rect x="710" y="115" width="630" height="610" rx="14" class="panel"/>
 <text x="735" y="155" class="note bold">卫生间：洁具净空与固定点</text>
@@ -93,5 +93,5 @@
   <text x="1135" y="704" class="micro red center">向东开启，约0.4m临时进入走廊B；可部分开启</text>
 </g>
 
-<text x="100" y="800" class="small">V4 讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>

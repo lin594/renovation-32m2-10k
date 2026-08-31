@@ -1,5 +1,5 @@
 version: 1
-updated: 2026-08-31
+updated: 2026-09-01
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -9,18 +9,16 @@ contingency_cny: 700
 actuals_source: "data/ledger.csv"
 
 current_gate:
-  actual_expenses_cny: 1860
-  actual_income_cny: 55
-  actual_net_outflow_cny: 1805
   october_trip_reserve_cny: 700
   paint_and_tools_plan_cny: 2012
   contingency_cny: 700
-  available_for_other_work_cny: 4728
-  formula: "10000 - 1860 - 700 - 2012 - 700 = 4728"
+  calculation: "其余工作可用上限 = overall_budget_cny - ledger累计支出 - 交通预留 - 涂装预留 - 应急金"
+  income_policy: "保守门禁不使用回收收入冲抵支出；现金视角另在PROJECT_STATUS.md展示"
+  generated_status_ref: "PROJECT_STATUS.md"
 
 feasibility:
   status: unproven_until_essential_quotes
-  conclusion: "4728元只是扣除已知支出/预留后的余额，不等于剩余必需工程已经买得下"
+  conclusion: "自动计算的可用上限不等于剩余必需工程已经买得下"
   decision_deadline: "2026-09-14形成第一版；2026-10-01现场复测后冻结"
   unpriced_essential_scope:
     - { id: BQ-01, item: "合格电工方案复核与通电前检测", quote_cny: null, status: unpriced, priority: safety_gate }
@@ -30,8 +28,8 @@ feasibility:
     - { id: BQ-05, item: "全部外窗防猫纱窗", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-06, item: "三扇门的最低可入住方案", quote_cny: null, status: unpriced, priority: essential_privacy }
     - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关、空调/洗烘设备级漏保及卫生间末端漏保等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
-  freeze_rule: "上述必需项形成含送装/辅料的可比总价前，不下不可退的非必要软装订单；若总价超过4728元，先按defer_order降级，再调整范围或总预算，不挪用700元应急金掩盖缺口"
-  pass_formula: "4728 - sum(已选必需项含税/送装/辅料报价) >= 0"
+  freeze_rule: "上述必需项形成含送装/辅料的可比总价前，不下不可退的非必要软装订单；若总价超过PROJECT_STATUS当前可用上限，先按defer_order降级，再调整范围或总预算，不挪用700元应急金掩盖缺口"
+  pass_formula: "PROJECT_STATUS当前可用上限 - sum(已选必需项含税/送装/辅料报价) >= 0"
 
 categories:
   - { id: demolition, name: "拆旧与清运", planned_cny: null }
