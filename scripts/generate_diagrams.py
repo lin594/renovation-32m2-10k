@@ -282,8 +282,14 @@ def doors_windows_cats() -> str:
 <path d="M600 425H680M600 345A80 80 0 0 1 680 425" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="7 5"/><text x="645" y="335" class="small orange">卧室门｜待选购</text>
 <!-- Kitchen slider: closed representation only -->
 <path d="M520 323H600M440 317H510" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="7 5"/><text x="540" y="308" class="small orange">厨房移门｜待定制</text>
-<!-- Bath slider: CLOSED only in whole plan -->
-<path d="M405 443H475" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="7 5"/><text x="438" y="473" class="small orange center">卫生间移门｜待定制</text>
+<!-- Bath slider: mounted on Hall A side; closed normally, slides east for use. -->
+<path d="M405 457H475" fill="none" stroke="#f97316" stroke-width="5"/><text x="438" y="480" class="small orange center">卫生间移门｜常闭</text>
+<g data-state="bath-slider-open-east" data-intrusion-m="0.4">
+  <rect x="500" y="330" width="45" height="120" fill="#fee2e2" fill-opacity=".58" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <path d="M475 457H545" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="7 5"/>
+  <path d="M438 438H520" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="548" y="445" class="micro red">向东开启；临时占走廊B约0.4m</text>
+</g>
 <!-- Balcony slider -->
 <path d="M250 523H325M325 537H400" fill="none" stroke="#7c3aed" stroke-width="4"/><text x="300" y="511" class="small purple">阳台推拉门｜西扇有效约0.7m</text>
 <!-- Cat screens and scratch boards -->
@@ -291,16 +297,18 @@ def doors_windows_cats() -> str:
 <path d="M96 535V625" class="cat"/><path d="M110 634H390" class="cat"/>
 <path d="M106 542V622" class="cat"/><path d="M112 624H388" class="cat"/>
 <text x="250" y="650" class="small green center">阳台西墙+南墙窗下猫抓板</text>
-<!-- Bathroom slider customization inset: no open leaf in passage -->
+<!-- Bathroom slider customization inset: temporary Hall B intrusion is accepted. -->
 <g data-detail="bath-slider-constraint">
-  <rect x="980" y="360" width="340" height="160" rx="10" fill="#fffaf0" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="980" y="360" width="340" height="190" rx="10" fill="#fffaf0" stroke="#f59e0b" stroke-width="1.5"/>
   <text x="998" y="389" class="note bold">卫生间移门定制约束</text>
-  <line x1="1000" y1="430" x2="1080" y2="430" stroke="#f97316" stroke-width="5" stroke-dasharray="8 5"/>
-  <text x="1040" y="450" class="small center">关闭门扇约0.70m</text>
-  <rect x="1090" y="410" width="190" height="55" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
-  <text x="1185" y="436" class="small red center">正常通道控制区</text>
-  <text x="1185" y="453" class="micro center">定制门扇不得进入</text>
-  <text x="998" y="494" class="small">门洞有效净宽目标约0.65m；停泊方式现场复测后确定。</text>
+  <line x1="1000" y1="425" x2="1075" y2="425" stroke="#f97316" stroke-width="6"/>
+  <text x="1038" y="447" class="small center">走廊A侧常闭</text>
+  <path d="M1085 425H1140" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1185" y="401" width="95" height="52" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="1145" y1="425" x2="1240" y2="425" stroke="#dc2626" stroke-width="6" stroke-dasharray="7 5"/>
+  <text x="1192" y="474" class="small red center">向东完全开启：约0.4m进入走廊B</text>
+  <text x="998" y="505" class="small">日常可按进出需要部分开启；关闭后恢复A/B走廊净空。</text>
+  <text x="998" y="530" class="small">门洞有效净宽目标约0.65m；轨道和停泊尺寸下单前复测。</text>
 </g>
 '''
     side_top = '''
@@ -325,8 +333,22 @@ def kitchen_bath_details() -> str:
 <rect x="120" y="430" width="80" height="150" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="510" class="small center">水槽</text>
 <rect x="120" y="310" width="80" height="110" class="planned"/><text x="210" y="360" class="small orange">受潮二层木柜</text>
 <path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
-<path class="gas" d="M515 225V175H135V365"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m；计划在架空层下</text>
-<rect x="120" y="330" width="45" height="65" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><text x="175" y="385" class="small orange">热水器</text>
+<path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
+<circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
+<g data-view="kitchen-west-wall-elevation">
+  <rect x="535" y="305" width="125" height="285" rx="8" fill="#fffdf8" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="597" y="328" class="small bold center">厨房西墙立面</text>
+  <line x1="550" y1="340" x2="550" y2="570" stroke="#475569" stroke-width="4"/>
+  <line x1="550" y1="570" x2="648" y2="570" stroke="#475569" stroke-width="3"/>
+  <rect x="565" y="370" width="70" height="82" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="2" data-placement="water-heater-above-sink"/>
+  <text x="600" y="405" class="micro orange center">燃气</text><text x="600" y="420" class="micro orange center">热水器</text>
+  <path d="M600 457V480" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow)"/>
+  <ellipse cx="600" cy="500" rx="35" ry="9" fill="#dff3f7" stroke="#16829a" stroke-width="2"/>
+  <rect x="565" y="500" width="70" height="55" fill="#effafd" stroke="#16829a" stroke-width="2"/>
+  <text x="600" y="532" class="small center">水槽</text>
+  <text x="600" y="466" class="micro orange center">水槽正上方</text>
+  <text x="597" y="584" class="micro red center">不在二层木柜上方</text>
+</g>
 <g transform="translate(120 625)">
   <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" stroke-width="5"/>
   <rect x="20" y="-70" width="360" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
@@ -351,7 +373,15 @@ def kitchen_bath_details() -> str:
 <circle cx="895" cy="515" r="10" fill="#0f766e"/><text x="910" y="520" class="small green">扬子防臭地漏</text>
 <path class="dim" d="M830 195H812M830 573H812M818 195V573"/><text x="790" y="385" class="dimtext" transform="rotate(-90 790 385)">设计基准净长约1.05m</text>
 <path class="dim" d="M850 595V613M1120 595V613M850 607H1120"/><text x="985" y="630" class="dimtext">净宽约0.75m</text>
-<rect x="800" y="650" width="490" height="50" fill="#fff1f2" stroke="#dc2626"/><text x="1045" y="680" class="small red center">南侧门洞/通道：定制移门不得占用正常通行空间</text>
+<g data-state="bath-slider-open-east" data-intrusion-m="0.4">
+  <rect x="800" y="650" width="490" height="58" rx="6" fill="#fff7ed" stroke="#f59e0b"/>
+  <line x1="820" y1="674" x2="925" y2="674" stroke="#f97316" stroke-width="6"/>
+  <text x="872" y="697" class="micro center">走廊A侧常闭</text>
+  <path d="M940 674H1000" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1110" y="658" width="145" height="32" fill="#fee2e2" stroke="#dc2626" stroke-dasharray="5 4"/>
+  <line x1="1015" y1="674" x2="1190" y2="674" stroke="#dc2626" stroke-width="6" stroke-dasharray="7 5"/>
+  <text x="1135" y="704" class="micro red center">向东开启，约0.4m临时进入走廊B；可部分开启</text>
+</g>
 '''
     return document("kitchen-bath-details", "50 厨卫详图", "厨房台面叠层、燃气关系及卫生间洁具关键尺寸", kitchen + bath)
 

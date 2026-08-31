@@ -80,7 +80,7 @@ active_tasks:
     status: blocked_by_safety_review
   - id: TASK-0007
     phase: doors_windows
-    item: "完成卫生间和厨房移门详图并定制"
+    item: "按走廊A侧安装、向东临时侵入走廊B约0.4m的规则完成卫生间移门详图，并完成厨房移门详图与定制"
     status: todo
   - id: TASK-0008
     phase: utilities

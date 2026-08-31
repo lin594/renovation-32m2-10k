@@ -45,6 +45,20 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertNotIn('data-state="bath-slider-open-in-passage"', furniture)
         self.assertIn('data-detail="bath-slider-constraint"', doors)
 
+    def test_bath_slider_opens_east_and_temporarily_intrudes_hall_b(self) -> None:
+        doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
+        details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")
+        for svg in (doors, details):
+            self.assertIn('data-state="bath-slider-open-east"', svg)
+            self.assertIn('data-intrusion-m="0.4"', svg)
+        self.assertIn("按进出需要部分开启", doors)
+
+    def test_water_heater_is_directly_above_sink_not_wood_cabinet(self) -> None:
+        details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")
+        self.assertIn('data-placement="water-heater-above-sink"', details)
+        self.assertIn("水槽正上方", details)
+        self.assertIn("不在二层木柜上方", details)
+
     def test_status_and_specialty_layers_are_present(self) -> None:
         furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
         plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")

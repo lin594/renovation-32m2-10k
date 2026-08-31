@@ -14,10 +14,10 @@ items:
   - id: BUY-0002
     category: door
     room: bathroom
-    item: "卫生间隐藏移门"
+    item: "卫生间移门（走廊A侧安装）"
     status: pending_custom_order
-    requirements: ["门洞约0.7m", "有效净宽目标约0.65m", "开启门扇不得遮挡正常通道", "耐潮"]
-    note: "先完成门详图再下单"
+    requirements: ["门洞约0.7m", "有效净宽目标约0.65m", "安装在走廊A侧", "常闭不占走廊B", "向东开启时可临时侵入走廊B约0.4m", "允许按进出需要部分开启", "耐潮"]
+    note: "先按已确认运行方式完成门详图，再复测轨道、门板和停泊尺寸后下单"
 
   - id: BUY-0003
     category: appliance

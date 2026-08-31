@@ -75,13 +75,18 @@ doors:
     wall: "x=3.2（卫生间南墙）"
     opening: { y: [3.05, 3.75] }
     width: 0.7
-    type: "隐藏滑门，面板装走廊A侧，沿墙东西滑"
+    type: "移门，门板/轨道装在走廊A侧，沿墙东西滑；明装或暗藏结构待定制复测"
+    installation_side: "走廊A"
+    normal_state: closed
+    motion_to_open: "向东（+y）滑动"
     procurement_status: pending_custom_order
     procurement_ref: BUY-0002
     panel_closed: "y[3.05,3.75]"
-    panel_open_legacy_candidate: "y[3.75,4.45]（旧估算会侵入A/B交汇口，不能直接作为定制依据）"
-    design_constraint: "定制方案和总平面图均不得让门扇遮挡正常通道；精确停泊位置待门详图解决"
-    drawing_rule: "总平面只画关闭状态/开启方向，不把待定开启门扇画在通道中"
+    panel_fully_open_nominal: "y[3.75,4.45]"
+    hall_b_intrusion_m: "约0.4（按名义坐标约0.45）"
+    practical_use: "无需每次完全滑到底；向东滑到卫生间能够进出即可"
+    design_constraint: "常闭状态不占走廊B；使用时允许门板暂时侵入走廊B约0.4m，须能顺畅回关"
+    drawing_rule: "总平面画关闭状态；门窗图和厨卫详图补充向东开启、临时侵入走廊B的状态"
     effective_clear_width: 0.65   # 浴室柜压门洞东侧5cm
     old_door_status: removed
   - id: balcony_slider
@@ -183,7 +188,7 @@ gas:
   branches:
     - { target: "燃气灶", route: "从入户燃气点直接连接燃气灶" }
     - { target: "燃气热水器", route: "入户后沿厨房北墙向西约2m，再向南接入热水器" }
-  water_heater: { type: "燃气", location: "厨房西墙靠南、水槽上方", status: existing_or_planned_position }
+  water_heater: { type: "燃气", location: "厨房西墙靠南", vertical_relation: "正对水槽并位于水槽正上方", excluded_relation: "不在二层木柜上方", status: existing_or_planned_position }
   concealment: "北墙段燃气管计划位于架空瓷砖台面下方"
   acceptance: "管道可见性、检修、通风、与灶具/电气/水点距离须按所在地燃气验收要求确认"
 
@@ -250,14 +255,14 @@ circulation:
     clear_width: "~0.7"
     role: "客厅西区(沙发/书桌/餐桌) ↔ 入户/阳台 的唯一路线，必须保持净空"
   notes:
-    - "卫生间滑门旧候选开启位置会侵入A/B交汇口；定制必须重新解决，整体图不画挡路的开启门扇"
+    - "卫生间移门常闭时不占走廊；使用时从走廊A侧向东滑，可临时侵入走廊B约0.4m"
     - "冰箱门开启时短暂占用冰箱东侧过道（瞬时）"
 
 issues:   # AI分析发现的问题，待用户决策
   - { id: corner_access, desc: "书桌与冰箱形成约0.6×0.8m角落；桌下虽空但常被椅子挡住", status: "功能待定" }
   - { id: wardrobe_north_blocked, desc: "衣柜北段x[0,1.3]被床挡住，取物困难", options: ["衣柜缩短至x[1.3,3]", "北段做不常取物区", "调整床位"], closure: "帘子" }
   - { id: bath_wet_room, desc: "唯一排水在西北角→全间湿区；按0.58m马桶估算前方约余0.47m；浴室柜会溅湿；门洞净0.65m" }
-  - { id: bath_slider_clearance, desc: "卫生间滑门待定制；旧开启候选会侵入走廊交汇口，新方案必须保证正常通道不被门扇占用", status: "待门详图" }
+  - { id: bath_slider_clearance, desc: "卫生间滑门待定制；常闭于走廊A侧，使用时向东滑并临时侵入走廊B约0.4m，可按实际进出需要部分开启", status: "运行方式已确认，尺寸待门详图" }
   - { id: bath_ventilation, desc: "卫生间无外窗，仅厨卫高窗通风；吊顶内有无排风井待确认" }
   - { id: bath_heater_splash, desc: "浴霸位于卫生间东墙偏北，业主担心触水/漏电风险", risk_ref: SAF-0003 }
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
@@ -284,6 +289,8 @@ confirmed_facts:   # 已确认，无需再问
   - "卫生间、厨房移门均未定制"
   - "不能升降的阳台晾衣架保留并固定使用"
   - "燃气入户后分为燃气灶直连支路和燃气热水器支路"
+  - "燃气热水器在厨房西墙靠南、水槽正上方，不在二层木柜上方"
+  - "卫生间移门装在走廊A侧；常闭，使用时向东滑并临时侵入走廊B约0.4m"
 
 open_questions:   # 当前待定，咨询时可优先回答这些
   - "卫生间吊顶内有无排风井/风道？"
