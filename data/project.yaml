@@ -3,7 +3,8 @@ updated: 2026-08-31
 project: "32㎡二手房翻新至可入住"
 owner_role: "业主兼实际策划人"
 status: in_progress
-priority: "低成本、高性价比；安全项不降级"
+priority: "10000元总预算内低成本、高性价比；三猫安全和基础安全项不降级"
+schedule_source: "data/schedule.yaml"
 
 phases:
   - id: survey_design
@@ -101,3 +102,11 @@ active_tasks:
   - { id: TASK-0015, phase: waterproof_surfaces, item: "对厨卫白色瓷砖改色体系做小样测试", status: todo }
   - { id: TASK-0016, phase: fixtures_appliances, item: "制定三套罗马杆窗帘的改造或旧物利用方案", status: todo }
   - { id: TASK-0017, phase: waterproof_surfaces, item: "复测层高、窗洞和不涂区域，计算乳胶漆与瓷砖改色净面积及向上取整桶数", status: todo }
+  - { id: TASK-0018, phase: waterproof_surfaces, item: "在书桌底部完成10×10cm水性木器漆小样并决定是否改黑胡桃色", status: todo, schedule_window: "2026-10-01至2026-10-05" }
+  - { id: TASK-0019, phase: waterproof_surfaces, item: "完成卫生间地面防水和自铺地砖；记录跳过闭水导致的未验证状态", status: todo, schedule_window: "2026-10-02至2026-10-05" }
+  - { id: TASK-0020, phase: waterproof_surfaces, item: "完成全屋基层、底漆和两遍面漆", status: todo, schedule_window: "2026-10-02至2026-10-07" }
+  - { id: TASK-0021, phase: utilities, item: "完成或冻结明线回路、走向、端点编号和材料包", status: todo, schedule_window: "最迟2026-10-08" }
+  - { id: TASK-0022, phase: waterproof_surfaces, item: "完成石塑地板主要区域；未完成部分留下首排示范和编号", status: todo, schedule_window: "2026-10-08及2027年1月收尾" }
+  - { id: TASK-0023, phase: doors_windows, item: "10月复测三扇门和防猫纱窗，1月接收商家安装并验收", status: todo, schedule_window: "2026-10-01复测；2027年1月安装" }
+  - { id: TASK-0024, phase: commissioning, item: "由一名非主负责人按冻结图纸完成1月单人收尾", status: todo, schedule_window: "2027年1月中旬至2027-02-07" }
+  - { id: TASK-0025, phase: commissioning, item: "完成三猫入住门槛验收", status: todo, schedule_window: "理想2027-01-15；最迟2027-02-07" }

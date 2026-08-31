@@ -111,7 +111,7 @@ windows:
   - { wall: "y=0", span: "x[4.05,4.95]", room: "阳台", note: "近整面非落地" }
   - { wall: "x=5", span: "y[0.1,2.9]",  room: "阳台", note: "近整面非落地" }
   - { wall: "x=2", span: "y[3.35,3.85]", rooms: "厨房↔卫生间", size: "0.5宽×0.5高", note: "高窗近顶，厨卫通风用" }
-  - { scope: "全部外窗", plan: "更换三猫家庭防逃纱窗", status: todo, requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
+  - { scope: "全部外窗", plan: "更换三猫家庭防逃纱窗", status: pending_custom_order, procurement_ref: BUY-0022, measure_window: "2026-10-01", installation_window: "2027年1月中旬", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
 
 electrical:
   current_state:
@@ -119,6 +119,13 @@ electrical:
     indoor_old_wiring: fully_removed
     indoor_new_wiring: todo_surface_mounted
     protective_earth: "老小区无地线（业主口述；待专业检测确认）"
+    temporary_power:
+      panel_energized: true
+      general_outlet: "临时五孔插座回路1路"
+      air_conditioner: "由配电箱另一条临时回路供电，与五孔插座不同回路"
+      available_test_tools: ["万用表", "测电笔"]
+      deferred_test_tools: ["绝缘电阻测试仪", "漏保专用测试仪"]
+      acceptance_limit: "只能完成DIY能力范围检查，不得称为绝缘、接地或漏保专业验收"
   panel:
     location: "y=5墙，入户门与卧室门之间墙面上方（约x[2.95,3.2]区域）"
     constraint: "预留检修位，不可封死"
@@ -132,6 +139,8 @@ electrical:
     cable: { spec: "6平方毫米铜线", color: "蓝色", purchased_m: 100, used_m_approx: 40, remaining_m_approx: 60, inventory_ref: INV-0001 }
   plan:
     wiring_method: "全屋明装线槽/明管"
+    installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
+    schedule_ref: "data/schedule.yaml"
     main_feed_proposal: "余下蓝色6平方线用于配电箱到各房间主线；拟用改色电工胶布区分火线/零线"
     proposal_status: "待安全与合规核验，未批准施工"
   recessed_boxes:

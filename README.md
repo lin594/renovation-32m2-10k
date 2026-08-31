@@ -20,6 +20,7 @@
 │   ├── inventory.yaml      # 已有材料、余料和可复用物品
 │   ├── procurement.yaml    # 待购、询价、下单、到货与验收状态
 │   ├── finishes.yaml       # 墙顶地面、涂装体系和风格方向
+│   ├── schedule.yaml       # 9月备料、10月主施工、1月单人收尾和入住门槛
 │   └── risks.yaml          # 安全、质量、成本和工期风险
 ├── diagrams/               # 当前分层 SVG 图纸
 │   ├── v4/                 # 当前七类专业图及职责说明
@@ -70,6 +71,7 @@ git log --oneline --decorate
 | 采购状态 | `data/procurement.yaml` |
 | 墙顶地面与涂装 | `data/finishes.yaml` |
 | 阶段和任务 | `data/project.yaml` |
+| 施工窗口、日排期和入住门槛 | `data/schedule.yaml` |
 | 风险及处置状态 | `data/risks.yaml` |
 | 方案取舍原因 | `docs/decisions/` |
 

@@ -26,6 +26,7 @@ proposed_sequence:
   - "线下购买腻子并找平墙面"
   - "底漆一遍（桶数按净乳胶漆面积÷50㎡后向上取整）"
   - "偏暖黄色面漆两遍（桶数按净乳胶漆面积÷30㎡后向上取整）"
+  - "乳胶漆达到厂家允许安装和触碰的干燥状态后，才安装明装线槽"
 
 waterproof_or_moisture_zones:
   - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: planned, risk_ref: SAF-0010 }
@@ -81,11 +82,20 @@ latex_paint_quantity_model:
     topcoat: "净面积≤120㎡时4桶；120㎡<净面积≤150㎡时5桶"
     conservative_purchase_case: { primer_buckets: 3, topcoat_buckets: 5, tool_sets: 1, planned_total_cny: 2012 }
     lower_case_if_net_area_at_most_120_m2: { primer_buckets: 3, topcoat_buckets: 4, tool_sets: 1, planned_total_cny: 1713 }
+  procurement_decision:
+    status: approved_conservative_purchase
+    basis_m2: 134.70
+    primer_buckets: 3
+    topcoat_buckets: 5
+    tool_sets: 1
+    planned_total_cny: 2012
+    timing: "2026年9月提前采购，不等待外窗精确面积"
+    requirements: ["面漆同色同批次", "确认生产日期", "确认储存与施工温度", "确认重涂间隔", "未开封余桶登记库存"]
   missing_measurements:
     - "各外窗洞口高度及阳台窗台高度"
     - "厨卫、阳台及其他区域哪些顶面纳入乳胶漆"
     - "柜体、瓷砖、固定设备等明确不涂区域的尺寸"
-  note: "不得用一桶底漆+一桶面漆的价格作为全屋预算；计算出4.7桶时按5桶采购"
+  note: "不得用一桶底漆+一桶面漆的价格作为全屋预算；本期已决定按3桶底漆+5桶面漆保守采购"
 
 tile_recolor_quantity_model:
   status: blocked_by_measurement

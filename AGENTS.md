@@ -12,6 +12,7 @@
 - 每笔支出、收入、退款和待收款更新 `data/ledger.csv`；金额使用人民币元，收入为正向流入但单独记录 `flow`。
 - 可复用材料和剩余材料更新 `data/inventory.yaml`。
 - 阶段和任务更新 `data/project.yaml`。
+- 施工窗口、日排期、人员边界和入住门槛更新 `data/schedule.yaml`。
 - 燃气、强电、防水、排烟、承重、猫防逃等问题更新 `data/risks.yaml`。
 - 影响较大的选择在 `docs/decisions/` 新建编号决策记录。
 - 图纸更新使用新版本文件；已被替代的版本移入 `diagrams/archive/`，不得直接删除。

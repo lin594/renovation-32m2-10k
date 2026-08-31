@@ -10,6 +10,8 @@ items:
     item: "厨房隐藏移门"
     status: pending_custom_order
     requirements: ["门洞约0.8m", "停泊位与高窗/水槽台面协调", "可检修"]
+    measure_window: "2026-10-01"
+    installation_window: "2027年1月中旬"
 
   - id: BUY-0002
     category: door
@@ -18,6 +20,8 @@ items:
     status: pending_custom_order
     requirements: ["门洞约0.7m", "有效净宽目标约0.65m", "安装在走廊A侧", "常闭不占走廊B", "向东开启时可临时侵入走廊B约0.4m", "允许按进出需要部分开启", "耐潮"]
     note: "先按已确认运行方式完成门详图，再复测轨道、门板和停泊尺寸后下单"
+    measure_window: "2026-10-01"
+    installation_window: "2027年1月中旬"
 
   - id: BUY-0003
     category: appliance
@@ -67,15 +71,62 @@ items:
     status: not_purchased
     requirements: ["匹配约0.8m门洞", "按北移约5cm后的实测门洞下单", "开启后不影响卧室主通行"]
     task_ref: TASK-0010
+    measure_window: "2026-10-01"
+    installation_window: "2027年1月中旬"
 
   - { id: BUY-0009, category: furniture, room: bedroom, item: "卧室衣柜（全部）", status: not_purchased, requirements: ["深约0.8m", "帘子代柜门", "处理被床遮挡的北段"] }
-  - { id: BUY-0010, category: waterproofing, room: multiple, item: "防水涂料", candidate: "三棵树S2（准确型号待核）", status: not_purchased }
-  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", status: not_purchased }
-  - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: offline, status: not_purchased }
-  - { id: BUY-0013, category: paint, room: whole_house, item: "底漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 149, stated_coverage: "50㎡一遍/桶", quantity_formula: "ceil(净乳胶漆面积/50)", quantity_status: blocked_by_measurement, status: not_purchased }
-  - { id: BUY-0014, category: paint, room: whole_house, item: "面漆", candidate: "小建刷新S2相关产品（待核）", planned_unit_price_cny: 299, stated_coverage: "30㎡两遍/桶", quantity_formula: "ceil(净乳胶漆面积/30)", quantity_status: blocked_by_measurement, target_color: "偏暖黄色", status: not_purchased }
-  - { id: BUY-0015, category: tool, room: whole_house, item: "刷漆工具套装", planned_unit_price_cny: 70, status: not_purchased }
-  - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", status: not_purchased }
+  - id: BUY-0010
+    category: waterproofing
+    room: multiple
+    item: "防水涂料"
+    candidate: "三棵树S2（准确型号待核，不凭简称下单）"
+    status: not_purchased
+    purchase_gate: ["准确产品型号", "适用卫生间地面", "单位用量", "成膜厚度", "施工与固化温度", "贴砖兼容性"]
+    channel: "10月到开封后线下购买重物"
+  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "10月到开封后线下比价购买", status: not_purchased }
+  - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "10月到开封后线下比价购买", status: not_purchased }
+  - id: BUY-0013
+    category: paint
+    room: whole_house
+    item: "底漆"
+    candidate: "小建刷新S2相关产品（准确名称待核）"
+    planned_unit_price_cny: 149
+    stated_coverage: "50㎡一遍/桶"
+    quantity_formula: "ceil(净乳胶漆面积/50)"
+    planned_quantity: 3
+    unit: 桶
+    quantity_status: approved_conservative_purchase
+    planned_total_cny: 447
+    purchase_window: "2026年9月远程采购"
+    status: not_purchased
+  - id: BUY-0014
+    category: paint
+    room: whole_house
+    item: "面漆"
+    candidate: "小建刷新S2相关产品（准确名称待核）"
+    planned_unit_price_cny: 299
+    stated_coverage: "30㎡两遍/桶"
+    quantity_formula: "ceil(净乳胶漆面积/30)"
+    planned_quantity: 5
+    unit: 桶
+    quantity_status: approved_conservative_purchase
+    planned_total_cny: 1495
+    batch_requirement: "同一颜色、同一批次"
+    target_color: "偏暖黄色"
+    purchase_window: "2026年9月远程采购"
+    leftover_rule: "未开封余桶在施工后登记库存"
+    status: not_purchased
+  - id: BUY-0015
+    category: tool
+    room: whole_house
+    item: "刷漆工具套装"
+    planned_unit_price_cny: 70
+    planned_quantity: 1
+    unit: 套
+    planned_total_cny: 70
+    purchase_window: "2026年9月远程采购"
+    status: not_purchased
+  - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", channel: "10月现场复测、线下比价后购买", status: not_purchased }
   - id: BUY-0017
     category: flooring
     room: bathroom
@@ -89,8 +140,8 @@ items:
     expense_ref: EXP-0007
     inventory_ref: INV-0010
     note: "地砖已购但尚未铺贴；瓷砖胶/砂浆、美缝等铺贴辅料仍待确认和采购"
-  - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", status: not_purchased }
-  - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, quantity_status: blocked_by_measurement, status: not_purchased }
+  - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", priority: deferred_first_batch, status: not_purchased }
+  - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, purchase_strategy: "9月仅买小样量；10月隐蔽小样通过后线下补足，失败则保留白砖", quantity_status: blocked_by_measurement, status: not_purchased }
   - id: BUY-0020
     category: coating
     room: living_room
@@ -100,3 +151,23 @@ items:
     purchase_strategy: "先买小样量；桌底10×10cm附着小样通过后再补足"
     status: not_purchased
     note: "书桌已有且为浅色木板；具体基材未知，接受简单改色效果，小样失败则保持原色"
+
+  - id: BUY-0021
+    category: electrical_material
+    room: whole_house
+    item: "明装电路材料包"
+    status: not_purchased
+    purchase_strategy: "9月按冻结图纸形成BOM；线槽等小件可提前寄往另一住所"
+    bom_categories: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "改色标识材料"]
+    quantity_status: blocked_by_route_takeoff
+    note: "施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行"
+
+  - id: BUY-0022
+    category: windows
+    room: whole_house
+    item: "全部外窗防猫纱窗"
+    status: pending_custom_order
+    measure_window: "2026-10-01"
+    installation_window: "2027年1月中旬"
+    requirements: ["耐抓纱网", "框体牢固", "防误开锁扣", "无可钻缝隙", "保留应急开启"]
+    budget_priority: protected

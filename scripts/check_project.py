@@ -23,6 +23,7 @@ REQUIRED = (
     "data/project.yaml",
     "data/procurement.yaml",
     "data/risks.yaml",
+    "data/schedule.yaml",
     "diagrams/v4/00-existing-survey.svg",
     "diagrams/v4/10-furniture-circulation.svg",
     "diagrams/v4/20-plumbing-gas.svg",

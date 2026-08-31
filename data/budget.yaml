@@ -2,10 +2,21 @@ version: 1
 updated: 2026-08-31
 currency: CNY
 
-# 总预算尚未由业主确定；实际支出只从 ledger.csv 计算，禁止在此手写累计值。
-overall_budget_cny: null
-contingency_cny: null
+# 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
+# 实际支出仍只从 ledger.csv 计算；下列快照由 schedule 的预算门禁交叉校验。
+overall_budget_cny: 10000
+contingency_cny: 700
 actuals_source: "data/ledger.csv"
+
+current_gate:
+  actual_expenses_cny: 1860
+  actual_income_cny: 55
+  actual_net_outflow_cny: 1805
+  october_trip_reserve_cny: 700
+  paint_and_tools_plan_cny: 2012
+  contingency_cny: 700
+  available_for_other_work_cny: 4728
+  formula: "10000 - 1860 - 700 - 2012 - 700 = 4728"
 
 categories:
   - { id: demolition, name: "拆旧与清运", planned_cny: null }
@@ -19,4 +30,18 @@ categories:
   - { id: furniture_storage, name: "家具与收纳", planned_cny: null }
   - { id: appliances, name: "家电", planned_cny: null }
   - { id: pet_safety, name: "猫咪安全与设施", planned_cny: null }
-  - { id: contingency, name: "不可预见费", planned_cny: null }
+  - { id: travel, name: "装修专项交通", planned_cny: 700, note: "仅计2026年10月一次往返；10月8日后计划为零专项往返" }
+  - { id: contingency, name: "不可预见费", planned_cny: 700 }
+
+defer_order:
+  - "洗烘一体机"
+  - "浴室柜"
+  - "顶天立地衣柜架"
+  - "阳台菠萝格与鹅卵石、沙发、宽带和非必要软装"
+
+protected_scope:
+  - "防猫纱窗"
+  - "基本地面"
+  - "卫生间防水"
+  - "马桶"
+  - "基础用电"
