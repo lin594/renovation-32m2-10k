@@ -6,3 +6,4 @@ EXP-0004,,expense,material,bathroom,沙子,建材商,5,paid,consumed,用于固�
 EXP-0005,,expense,demolition,whole_house,拆除四个旧门,拆除人员,100,paid,completed,卫生间卧室厨房及客厅通道旧门
 INC-0001,,income,recycling,bedroom,旧书回收,废品回收方,55,received,completed,卧室书籍回收收入
 EXP-0006,,expense,material,bathroom,立邦堵漏王,建材商,20,paid,consumed,用于固定蹲便器改坐便器相关水管
+EXP-0007,,expense,material,bathroom,30cm×30cm卫生间地砖12块,建材商,18,paid,inventory,名义总面积1.08平方米；尚未铺贴

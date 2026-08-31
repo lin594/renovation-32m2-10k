@@ -97,3 +97,25 @@ items:
     refinishing_plan: "三棵树水性木器漆简单改为保留木纹的黑胡桃色"
     sample_requirement: "先在桌底做10×10cm隐蔽小样；附着不合格则保持原色"
     procurement_ref: BUY-0020
+
+  - id: INV-0010
+    category: flooring_material
+    item: "卫生间地砖"
+    dimensions_cm: [30, 30]
+    quantity: 12
+    unit: 块
+    total_nominal_area_m2: 1.08
+    location: "已购，具体存放位置待现场盘点"
+    condition: new_uninstalled
+    acquisition_cost_ref: EXP-0007
+    planned_use: "卫生间地面自行铺贴"
+    procurement_ref: BUY-0017
+
+  - id: INV-0011
+    category: sanitary_fixture
+    item: "淋浴设备"
+    quantity: 1
+    unit: 套
+    location: 卫生间
+    condition: existing
+    planned_use: "继续安装使用"

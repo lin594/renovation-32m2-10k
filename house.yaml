@@ -232,7 +232,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       procurement_status: not_purchased
       procurement_ref: BUY-0004
       note: "按预计长度估算，至设计基准南墙约余0.47m；最终以成品尺寸和完成面复测"
-    - { item: "淋浴", rect: [2.5, 3.15, 3, 3.55], note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
+    - { item: "淋浴设备（已有）", rect: [2.5, 3.15, 3, 3.55], status: existing, inventory_ref: INV-0011, note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
     - { item: "浴室柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
