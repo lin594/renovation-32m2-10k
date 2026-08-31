@@ -118,7 +118,7 @@ electrical:
     incoming_line_and_panel: completed
     indoor_old_wiring: fully_removed
     indoor_new_wiring: todo_surface_mounted
-    protective_earth: "老小区无地线（业主口述；待专业检测确认）"
+    protective_earth: "已确认老小区户内仅有L/N两线、无可用PE；四楼无法独立增设接地"
     temporary_power:
       panel_energized: true
       general_outlet: "临时五孔插座回路1路"
@@ -154,7 +154,7 @@ electrical:
     terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"
     protection_gate: "PCT≤32A只是端子必要条件；保护器还须匹配最小下游导线、实际敷设、负载和故障切断条件"
     smart_control_rule: "普通插座保持常电；智能墙壁开关只控制灯具，不向普通插座供电"
-    energization_gate: "PE系统、绝缘、回路保护、插座接线和漏保动作未经合格电工实测记录前，新建固定线路不得通电"
+    energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
     - { location: "洗衣机东侧", status: existing, plan: "优先利用" }
@@ -180,7 +180,7 @@ electrical:
     living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发", "扫地机器人TBD"]
     hall_a: ["设备架一组至少4位常电插座"]
     bathroom_general_socket_count: 0
-    protective_earth_status: "两芯L/N不提供PE；三孔插座和I类设备保持无PE未验收"
+    protective_earth_status: "允许使用带明确“本户无PE”标识的三孔面板；PE端子保持未连接且不得与N短接，分级漏保不等于接地验收合格"
   lighting_plan:
     concept: "无主灯，以分散灯具和任务照明代替唯一主光源"
     color_temperature: "2700至3000K"
@@ -314,7 +314,7 @@ issues:   # AI分析发现的问题，待用户决策
   - { id: bath_heater_splash, desc: "浴霸位于卫生间东墙偏北，业主担心触水/漏电风险", risk_ref: SAF-0003 }
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
   - { id: kitchen_upper_counter, desc: "伸缩杆+三块瓷砖架空台面同时承载锅具/灶台，并计划覆盖北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
-  - { id: no_protective_earth, desc: "老小区据称无地线，但卫生间浴霸、空调、热水器及厨电均涉及用电安全", risk_ref: SAF-0001 }
+  - { id: no_protective_earth, desc: "已确认老小区户内仅有L/N、无可用PE且四楼无法独立增设；采用分级漏保降低风险，但不视为接地替代", risk_ref: SAF-0018 }
   - { id: balcony_door_narrow, desc: "阳台门有效开口仅0.7m（西扇），搬运大件受限" }
 
 confirmed_facts:   # 已确认，无需再问
@@ -329,6 +329,7 @@ confirmed_facts:   # 已确认，无需再问
   - "给排水点位全部确定且已施工（不可改）"
   - "配电箱在y=5墙门垛上方（留检修）"
   - "全屋原有室内电路已拆除；后续计划采用明装线路"
+  - "老小区户内仅有L/N两线、无可用PE；作为四楼无法独立增设接地"
   - "厨房原台面为约0.5×2.0m；架空层拟用0.4×0.6m瓷砖三块"
   - "阳台有两条升降晾衣架：靠客厅一条可用，另一条无法升降"
   - "全屋共有三只猫"

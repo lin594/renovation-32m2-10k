@@ -79,8 +79,8 @@ active_tasks:
     status: blocked_by_safety_review
   - id: TASK-0006
     phase: utilities
-    item: "确认老小区无地线条件下的合规供电方案"
-    status: blocked_by_safety_review
+    item: "在已确认无PE的两线制条件下落实分级漏保、无PE标识和禁止借地边界"
+    status: in_progress
   - id: TASK-0007
     phase: doors_windows
     item: "按走廊A侧安装、向东临时侵入走廊B约0.4m的规则完成卫生间移门详图，并完成厨房移门详图与定制"
@@ -115,5 +115,5 @@ active_tasks:
   - { id: TASK-0026, phase: utilities, item: "完成无主灯分区、走廊A灯带控制及本地失效兜底设计", status: in_progress, schedule_window: "2026年9月远程设计；2026-10-01复测冻结" }
   - { id: TASK-0027, phase: utilities, item: "验证EVE V连续运行、断电恢复、虚拟机自启和远程管理", status: todo, schedule_window: "2026-09-01至2026-09-07" }
   - { id: TASK-0028, phase: utilities, item: "拍摄配电箱全部器件铭牌并冻结线径、保护器、端子和逐回路BOM", status: todo, schedule_window: "2026-10-01；急缺小件用京东次日补购" }
-  - { id: TASK-0029, phase: commissioning, item: "由合格电工确认供电/PE系统并完成绝缘、回路保护、插座接线和漏保动作等竣工检测；记录实测值", status: blocked_by_safety_review, schedule_window: "2026-10-01方案复核；新建线路通电前验收" }
+  - { id: TASK-0029, phase: commissioning, item: "由合格电工核验两线制无PE边界，并完成绝缘、极性、保护器匹配、插座接线和各级漏保动作检测；记录实测值", status: blocked_by_safety_review, schedule_window: "2026-10-01方案复核；新建线路通电前验收" }
   - { id: TASK-0030, phase: survey_design, item: "形成剩余必需项可比报价矩阵并验证4728元预算可行性", status: todo, schedule_window: "2026-09-14首版；2026-10-01冻结" }

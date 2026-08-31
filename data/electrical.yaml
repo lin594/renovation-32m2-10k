@@ -1,12 +1,12 @@
 version: 1
 updated: 2026-08-31
 status: preliminary_discussion_baseline
-drawing_property: "讨论方案，不是施工图或通电批准；线径、保护器、PE系统、端子和测试结果须经现场核验与合格电工复核"
+drawing_property: "讨论方案，不是施工图或通电批准；无PE为既定条件，线径、保护器、端子及绝缘/极性/漏保测试结果仍须现场核验与合格电工复核"
 
 confirmed_conditions:
   wiring_method: "全屋明装线槽/明管"
   installation_sequence: "乳胶漆达到产品允许安装和触碰的干燥状态后施工"
-  protective_earth: "老小区无地线（业主口述，待现场专业检测）"
+  protective_earth: "已确认老小区户内仅有L/N两线、无可用PE；四楼无法独立增设接地"
   remaining_conductor: "约60m蓝色6mm²铜线"
   panel_markings: "业主记忆为约500V、36A，完整型号、脱扣额定值、极数、漏电动作参数均待拍照"
   branch_device_capacity: "共5个支路位置：3个漏电保护器+2个空气开关，不增加不存在的回路位置"
@@ -28,6 +28,8 @@ design_principles:
   - "PCT只是连接器，不提供过载、短路或漏电保护；上级≤32A只是端子必要条件，还须按最小下游导线载流能力匹配保护器"
   - "照明支路暂按1.5mm²铜线讨论；普通插座支路不小于2.5mm²；空调、厨房和洗烘等大负载按铭牌与线路长度另算"
   - "剩余蓝色6mm²线优先只作为中性导体候选，不把端部胶布改色直接视为相线方案获批"
+  - "允许三孔面板进入两线制方案，但PE端子保持未连接并粘贴“本户无PE”标识；严禁N/PE短接或借用水管、燃气管作接地"
+  - "配电箱漏保与设备末端漏保属于风险降低措施，不补足PE，也不把无PE设备标记为接地验收合格"
 
 provisional_five_circuit_allocation:
   recommendation: "以配电箱和四个既有穿线孔的方向为第一约束；五个保护器只形成五个回路，房间内灯光分区由下游开关完成"
@@ -159,7 +161,7 @@ outlet_groups:
   control_rules:
     - "普通插座保持常电，智能插座只作为可拔插设备插在常电插座上"
     - "智能墙壁开关只控制灯具，不把其受控输出接到通用插座"
-    - "两芯线路只有L/N，不能提供PE；三孔插座及空调、洗烘机、冰箱等I类设备保持无PE未验收，漏保不能替代PE"
+    - "两芯线路只有L/N；三孔面板PE端子保持未连接并粘贴“本户无PE”标识，不与N短接，漏保不能替代PE"
 
 bedroom_detail:
   fan_controller:
@@ -192,20 +194,19 @@ cable_plan:
   rejected_option: "不采用全屋2.5mm²照明；它增加成本、线槽尺寸与盒内拥挤，也不能修复保护器不匹配"
   trunking_rule: "按BVVB成品实际外径选线槽，成品线缆占槽内截面约40%以内，并为未来PE留空间"
   design_minimums: { lighting_mm2: 1.5, sockets_mm2: 2.5 }
-  socket_cable_limit: "BVVB 2×2.5mm²只包含L/N，不能构成带PE的完整插座终端回路；允许采购和预排尺寸，但在PE方案关闭前不得据此完成三孔插座或I类设备通电"
+  socket_cable_limit: "BVVB 2×2.5mm²只包含L/N；允许用于已明确接受剩余风险的两线制方案，但三孔面板PE端子必须保持未连接并标识“本户无PE”，不得称为带PE完整回路"
 
 commissioning_gate:
   status: blocked
   professional_checks:
-    - "确认供电系统类型、入户PE/PEN及卫生间等电位条件，不自行把N当PE"
+    - "记录户内仅有L/N且无可用PE的既定条件，确认未出现N/PE短接、借用管道接地或虚构PE"
     - "保护器额定值/曲线与每段最小导线、敷设、负载和故障切断条件匹配"
     - "馈电线路绝缘电阻"
-    - "插座极性和PE连续性（仅在确认存在合规PE后）"
-    - "接地故障回路条件"
+    - "插座极性、三孔面板PE端子未连接状态和“本户无PE”持久标识"
     - "漏保动作电流与动作时间"
     - "回路标签、接线盒可检修性及端子紧固"
   diy_limit: "万用表和测电笔只能做辅助通断/验电，不能替代上述竣工安全与功能检验"
-  energization_rule: "未形成合格电工签字/照片/实测值记录前，新建固定线路保持断开，不给三孔插座、空调、冰箱、洗烘机、热水器或浴霸通电"
+  energization_rule: "无PE由业主作为剩余风险接受，但未形成合格电工签字/照片/绝缘、极性、保护器匹配和漏保动作实测记录前，新建固定线路保持断开"
 
 hall_a_shelf:
   location: "走廊A南墙壁挂置物架，背面贴南墙锚固"
