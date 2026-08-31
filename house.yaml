@@ -148,10 +148,11 @@ electrical:
     proposal_status: "待安全与合规核验，未批准施工"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
-      lighting: "1.5mm²铜线候选，只用于照明支路且保护器须匹配"
-      general_sockets: "不小于2.5mm²铜线候选"
+      lighting: "BVVB 2×1.5mm²加BV 1×1.5mm²红色回线，仅在B10/C10或电工明确确认保护匹配后购买和使用"
+      general_sockets: "BVVB 2×2.5mm²，先购50m；净路线复测超过45m时补第二卷"
       dedicated_loads: "空调、厨房和洗烘机按设备铭牌、距离与敷设条件另算"
-    terminal_gate: "只标250V/32A不足以下单；须同时核对允许截面积、导线类型、认证和具体拓扑"
+    terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"
+    smart_control_rule: "普通插座保持常电；智能墙壁开关只控制灯具，不向普通插座供电"
   recessed_boxes:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
     - { location: "洗衣机东侧", status: existing, plan: "优先利用" }
@@ -170,6 +171,14 @@ electrical:
     - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
     - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, risk_ref: SAF-0003 }
+  planned_outlets:
+    total_groups: 14
+    bedroom: ["空调", "床北明装插座", "床南明装插座"]
+    kitchen: ["燃气热水器", "油烟机", "台面电器"]
+    living_room: ["空调", "冰箱", "洗烘一体机", "书桌", "投影仪", "沙发", "扫地机器人TBD"]
+    hall_a: ["设备架一组至少4位常电插座"]
+    bathroom_general_socket_count: 0
+    protective_earth_status: "两芯L/N不提供PE；三孔插座和I类设备保持无PE未验收"
   lighting_plan:
     concept: "无主灯，以分散灯具和任务照明代替唯一主光源"
     color_temperature: "2700至3000K"
