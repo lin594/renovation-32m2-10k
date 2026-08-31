@@ -25,6 +25,7 @@ REQUIRED = (
     "data/procurement.yaml",
     "data/risks.yaml",
     "data/schedule.yaml",
+    "docs/reviews/2026-08-31-third-party-repository-audit.md",
     "diagrams/v4/00-existing-survey.svg",
     "diagrams/v4/10-furniture-circulation.svg",
     "diagrams/v4/20-plumbing-gas.svg",

@@ -125,7 +125,7 @@ items:
     item: "EVE V1 Windows二合一设备"
     quantity: 1
     unit: 台
-    location: "计划放在玄关南侧设备架"
+    location: "计划放在走廊A南墙设备架"
     condition: "触屏损坏、显示正常、确认可长期运行"
     planned_use: "Home Assistant主机、玄关电子相册和信息显示器"
     requirements: ["有线网络", "常电", "通风", "远程桌面", "断电恢复流程"]

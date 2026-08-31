@@ -5,6 +5,8 @@ owner_role: "业主兼实际策划人"
 status: in_progress
 priority: "10000元总预算内低成本、高性价比；三猫安全和基础安全项不降级"
 schedule_source: "data/schedule.yaml"
+phase_status_values: [todo, in_progress, done]
+task_status_values: [todo, in_progress, blocked_by_safety_review, done, cancelled]
 
 phases:
   - id: survey_design
@@ -62,7 +64,7 @@ active_tasks:
   - id: TASK-0002
     phase: utilities
     item: "设计配电箱至各房间的明装线路和回路"
-    status: todo
+    status: in_progress
   - id: TASK-0003
     phase: doors_windows
     item: "为全部外窗选择三猫家庭防逃纱窗"
@@ -86,7 +88,7 @@ active_tasks:
   - id: TASK-0008
     phase: utilities
     item: "设计入户网线及玄关光猫/Wi-Fi置物架供电"
-    status: todo
+    status: done
   - id: TASK-0009
     phase: fixtures_appliances
     item: "确定扫地机器人停靠与供电位置"
@@ -114,3 +116,4 @@ active_tasks:
   - { id: TASK-0027, phase: utilities, item: "验证EVE V连续运行、断电恢复、虚拟机自启和远程管理", status: todo, schedule_window: "2026-09-01至2026-09-07" }
   - { id: TASK-0028, phase: utilities, item: "拍摄配电箱全部器件铭牌并冻结线径、保护器、端子和逐回路BOM", status: todo, schedule_window: "2026-10-01；急缺小件用京东次日补购" }
   - { id: TASK-0029, phase: commissioning, item: "由合格电工确认供电/PE系统并完成绝缘、回路保护、插座接线和漏保动作等竣工检测；记录实测值", status: blocked_by_safety_review, schedule_window: "2026-10-01方案复核；新建线路通电前验收" }
+  - { id: TASK-0030, phase: survey_design, item: "形成剩余必需项可比报价矩阵并验证4728元预算可行性", status: todo, schedule_window: "2026-09-14首版；2026-10-01冻结" }

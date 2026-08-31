@@ -148,7 +148,7 @@ electrical:
     proposal_status: "待安全与合规核验，未批准施工"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
-      lighting: "BVVB 2×1.5mm²加BV 1×1.5mm²红色回线，仅在B10/C10或电工明确确认保护匹配后购买和使用"
+      lighting: "BVVB 2×1.5mm²加控制回线仅作候选；B10/C10只作初筛，仍须由电工结合敷设、线长和负载确认保护匹配后购买和使用，控制线颜色一并现场冻结"
       general_sockets: "BVVB 2×2.5mm²，先购50m；净路线复测超过45m时补第二卷"
       dedicated_loads: "空调、厨房和洗烘机按设备铭牌、距离与敷设条件另算"
     terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"

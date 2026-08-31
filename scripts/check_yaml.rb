@@ -33,6 +33,35 @@ project = documents.fetch("project.yaml", {})
 task_ids = Array(project["active_tasks"]).map { |task| task["id"] }.compact.to_set
 work_ids = Array(project["completed_work"]).map { |work| work["id"] }.compact.to_set
 
+validate_unique_ids = lambda do |items, location|
+  ids = Array(items).map { |item| item["id"] }.compact
+  ids.group_by(&:itself).each do |id, matches|
+    errors << "#{location} 出现重复 ID：#{id}" if matches.length > 1
+  end
+end
+
+validate_enum = lambda do |items, field, allowed, location|
+  Array(items).each do |item|
+    value = item[field]
+    errors << "#{location} #{item['id']} 的 #{field}=#{value.inspect} 不在允许值中" unless allowed.include?(value)
+  end
+end
+
+validate_unique_ids.call(documents.dig("inventory.yaml", "items"), "inventory.yaml items")
+validate_unique_ids.call(documents.dig("procurement.yaml", "items"), "procurement.yaml items")
+validate_unique_ids.call(documents.dig("risks.yaml", "risks"), "risks.yaml risks")
+validate_unique_ids.call(project["active_tasks"], "project.yaml active_tasks")
+validate_unique_ids.call(project["completed_work"], "project.yaml completed_work")
+
+risks_document = documents.fetch("risks.yaml", {})
+validate_enum.call(risks_document["risks"], "severity", Array(risks_document["severity_order"]), "risks.yaml")
+validate_enum.call(risks_document["risks"], "status", Array(risks_document["status_values"]), "risks.yaml")
+
+procurement_document = documents.fetch("procurement.yaml", {})
+validate_enum.call(procurement_document["items"], "status", Array(procurement_document["status_values"]), "procurement.yaml")
+validate_enum.call(project["phases"], "status", Array(project["phase_status_values"]), "project.yaml phases")
+validate_enum.call(project["active_tasks"], "status", Array(project["task_status_values"]), "project.yaml active_tasks")
+
 targets = {
   "cost_ref" => ledger_ids,
   "cost_refs" => ledger_ids,
@@ -124,6 +153,47 @@ tools = procurement_by_id["BUY-0015"] || {}
 errors << "底漆采购基线应为3桶、447元" unless primer["planned_quantity"] == 3 && primer["planned_total_cny"] == 447
 errors << "面漆采购基线应为5桶、1495元" unless topcoat["planned_quantity"] == 5 && topcoat["planned_total_cny"] == 1_495
 errors << "刷漆工具采购基线应为1套、70元" unless tools["planned_quantity"] == 1 && tools["planned_total_cny"] == 70
+
+# Electrical invariants: these are planning facts, not a substitute for professional approval.
+electrical = documents.fetch("electrical.yaml", {})
+circuits = Array(electrical.dig("provisional_five_circuit_allocation", "circuits"))
+expected_circuits = Set["RCBO-01", "RCBO-02", "RCBO-03", "MCB-04", "MCB-05"]
+actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
+errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
+
+junctions = Array(electrical["junction_boxes"])
+active_junctions = junctions.select { |junction| junction["status"] == "active_planned" }
+pct_42_count = active_junctions.count { |junction| junction["terminal"] == "PCT-42" }
+pct_62_count = active_junctions.count { |junction| junction["terminal"] == "PCT-62" }
+errors << "electrical.yaml 在用逻辑节点应为PCT-42×1、PCT-62×5" unless active_junctions.length == 6 && pct_42_count == 1 && pct_62_count == 5
+
+outlets = electrical.fetch("outlet_groups", {})
+outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
+errors << "electrical.yaml 插座组数明细应合计14组" unless outlets["total_planned"] == 14 && outlet_sum == 14
+errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
+
+balcony = electrical.dig("confirmed_conditions", "balcony") || {}
+errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
+
+terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
+errors << "electrical.yaml PCT采购逻辑数量应为1只PCT-42和6只PCT-62（含备用）" unless terminal_procurement["pct_42"] == 1 && terminal_procurement["pct_62_active"] == 5 && terminal_procurement["pct_62_spare"] == 1 && terminal_procurement["pct_62_total"] == 6
+errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
+
+socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item["item"] == "BVVB 2×2.5mm²" } || {}
+errors << "electrical.yaml BVVB 2×2.5mm²首卷应为50m" unless socket_wire["quantity_m"] == 50 && socket_wire["rolls"] == 1
+
+# The remaining balance is not a feasibility claim until mandatory quotes exist.
+budget_feasibility = budget.fetch("feasibility", {})
+quote_items = Array(budget_feasibility["unpriced_essential_scope"])
+validate_unique_ids.call(quote_items, "budget.yaml feasibility.unpriced_essential_scope")
+errors << "budget.yaml 必须把预算可行性标为待必需项报价验证" unless budget_feasibility["status"] == "unproven_until_essential_quotes"
+errors << "budget.yaml 必需项报价门禁应包含7类" unless quote_items.length == 7
+errors << "schedule.yaml 应同步预算报价门禁状态" unless schedule_gate["feasibility_status"] == "unproven_until_essential_quotes"
+
+# Waterproof and energization gates must remain explicit in the execution schedule.
+schedule_text = schedule.to_s
+errors << "schedule.yaml 必须包含不少于24h的铺砖前蓄水试验" unless schedule_text.include?("不少于24h蓄水") || schedule_text.include?("不少于24h的蓄水")
+errors << "schedule.yaml 必须阻止专业检测前新建固定线路通电" unless schedule_text.include?("新建固定线路") && schedule_text.include?("不得通电")
 
 unless errors.empty?
   errors.each { |error| warn "ERROR: #{error}" }

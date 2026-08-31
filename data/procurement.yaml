@@ -175,11 +175,11 @@ items:
   - id: BUY-0023
     category: electrical_material
     room: whole_house
-    item: "1.5mm²照明护套线与红色控制线（仅购物车）"
+    item: "1.5mm²照明护套线与控制线（仅购物车）"
     status: not_purchased
     variants:
       - { spec: "BVVB 2×1.5mm²", quantity_m: 50, purpose: "固定照明成对供电" }
-      - { spec: "BV 1×1.5mm²红色", quantity_m: 50, purpose: "开关回线和吊扇受控相线" }
+      - { spec: "BV 1×1.5mm²控制线", candidate_color: "红色", color_status: "待电工按当地要求和全屋线色规则冻结", quantity_m: 50, purpose: "开关回线和吊扇受控相线" }
     requirements: ["CCC及合格证", "不得用于普通插座、空调、厨房大负载或洗烘机"]
     quantity_status: conditional_cart_only
     purchase_strategy: "9月只加入京东购物车；10月1日确认两只照明空开为B10/C10，并由合格电工结合敷设和负载确认1.5mm²保护后，各买50m"

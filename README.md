@@ -28,7 +28,9 @@
 │   └── archive/            # 已被替代但需要保留的历史图纸
 ├── docs/
 │   ├── decisions/          # 类 ADR 的装修决策记录
-│   └── plans/              # 设计与实施计划
+│   ├── plans/              # 设计与实施计划
+│   ├── reviews/            # 第三方审计、发现和后续复核记录
+│   └── todo/               # 可直接勾选的远程/现场清单
 ├── scripts/                # 校验和汇总工具
 └── artifacts/previews/     # 可再生成的本地预览，不纳入 Git
 ```
@@ -76,6 +78,7 @@ git log --oneline --decorate
 | 施工窗口、日排期和入住门槛 | `data/schedule.yaml` |
 | 风险及处置状态 | `data/risks.yaml` |
 | 方案取舍原因 | `docs/decisions/` |
+| 第三方审计与整改结论 | `docs/reviews/` |
 
 SVG 是用于讨论的派生图纸，不代替现场复测、燃气验收或电气施工图。
 

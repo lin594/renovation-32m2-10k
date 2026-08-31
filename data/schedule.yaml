@@ -26,6 +26,7 @@ milestones:
       - "EVE V完成72小时运行、断电恢复、虚拟机自启和远程管理验证"
       - "走廊A 220V灯带候选产品已核对成套电源接头、剪切单位和末端封帽"
       - "门窗商已预约10月1日复测并预留1月安装档期"
+      - "电工、防水辅料、基本地面、马桶、防猫纱窗、三扇门和基础电料已形成首版可比报价；预算可行性明确标记通过或不通过"
   - id: MS-OCT-CLOSE
     name: "双人主施工窗口结束"
     target_date: "2026-10-08"
@@ -73,8 +74,8 @@ september_remote_preparation:
     item: "按五回路上限形成明线初步BOM并把不依赖现场参数的小件寄到2km外另一住所"
     contents: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
     buy_now: ["BVVB 2×2.5mm² 50m一卷（合规相线色+淡蓝芯、CCC/合格证）"]
-    cart_now: ["PCT-42×1", "PCT-62×6（含备用1只）", "约100×100×50mm带盖明装检修盒×6", "BVVB 2×1.5mm² 50m", "BV 1×1.5mm²红色50m"]
-    deferred_until_october_1: ["保护器具体型号", "1.5mm²是否允许购买安装", "PCT节点是否满足≤32A上级门禁", "2.5mm²是否补第二卷", "6mm²分配块"]
+    cart_now: ["PCT-42×1", "PCT-62×6（含备用1只）", "约100×100×50mm带盖明装检修盒×6", "BVVB 2×1.5mm² 50m", "BV 1×1.5mm²控制线50m（颜色待现场冻结）"]
+    deferred_until_october_1: ["保护器具体型号", "1.5mm²是否允许购买安装", "PCT节点的上级额定值与最小下游导线/负载是否匹配", "2.5mm²是否补第二卷", "6mm²分配块"]
   - id: SEP-03
     item: "木器漆、瓷砖漆及配套底涂仅买小样量"
   - id: SEP-04
@@ -93,6 +94,10 @@ september_remote_preparation:
   - id: SEP-10
     item: "线上预约开封本地合格电工：10月1日复核供电/PE系统、保护器/线径/PCT方案，并预留新建线路通电前检测时段"
     required_outputs: ["供电系统与PE/PEN结论", "逐回路保护器/最小导线匹配表", "PCT实物拓扑与使用结论", "绝缘/接线/漏保等检测项目和报价"]
+  - id: SEP-11
+    item: "建立剩余必需项报价表并执行4728元预算可行性门禁"
+    scope: ["电工复核/检测", "卫生间防水辅料", "基本地面", "马桶", "防猫纱窗", "三扇门最低方案", "基础电料"]
+    rule: "报价未齐不得把4728元描述为可支配余额，也不下不可退的非必要订单"
 
 september_delivery_rules:
   paint_delivery_days: 5
@@ -213,6 +218,8 @@ budget_gate:
   contingency_cny: 700
   available_for_other_work_cny: 4728
   formula: "10000 - 1860 - 700 - 2012 - 700 = 4728"
+  feasibility_status: unproven_until_essential_quotes
+  quote_gate_ref: "data/budget.yaml#feasibility"
   defer_order:
     - "洗烘一体机"
     - "浴室柜"
@@ -247,6 +254,9 @@ owner_decisions_and_open_risks:
   - decision: "把合格电工复核和通电前检测纳入10月本地服务，不新增北京—开封往返"
     consequence: "可继续DIY低风险机械安装，但PE、保护器/线径/PCT结论和最终通电不由DIY判断"
     risk_ref: SAF-0018
+  - decision: "4728元仅视为剩余上限，不视为已经覆盖全部必需项"
+    consequence: "9月形成必需项首版报价；超预算时先延期清单项目，再调整范围或总预算"
+    risk_ref: SAF-0019
 
 default_assumptions:
   - "门窗商能按10月实测尺寸生产并保管到2027年1月"

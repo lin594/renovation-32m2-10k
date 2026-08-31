@@ -184,7 +184,7 @@ cable_plan:
     october_1_gate: "现场按墙面实际路线复测；实测净长>45m时，含10%余量将超过50m，使用京东次日补第二卷"
   add_to_cart_only:
     - { item: "BVVB 2×1.5mm²", quantity_m: 50, purpose: "固定照明成对供电" }
-    - { item: "BV 1×1.5mm²红色", quantity_m: 50, purpose: "开关回线及吊扇受控相线" }
+    - { item: "BV 1×1.5mm²控制线", candidate_color: "红色", color_status: "待电工按当地要求和全屋线色规则冻结", quantity_m: 50, purpose: "开关回线及吊扇受控相线" }
   lighting_purchase_gate:
     pass_if: "10月1日确认两只照明空开为B10/C10，并由合格电工结合线长、敷设、负载及产品明确确认其保护1.5mm²线路"
     on_pass: "购买两种1.5mm²线各50m"
