@@ -139,3 +139,27 @@ risks:
     concern: "湿热、油污、清洁摩擦和基层附着可能导致起皮；地面还涉及防滑"
     next_action: "确认只做墙砖还是包含地砖，在隐蔽区域完成清洁、底涂、面涂小样并做附着/耐水测试"
     task_ref: TASK-0015
+
+  - id: SAF-0014
+    domain: electrical_branch_protection
+    title: "1.5mm²照明支线与未知36A保护器可能不匹配"
+    severity: critical
+    status: open
+    confirmed_fact: "计划购买1.5mm²铜线用于照明；配电箱器件仅被口述为约500V、36A，完整铭牌未知"
+    concern: "6mm²主干缩径后若仍由过大的上级保护器保护，1.5mm²导线可能无法获得适当的过载和短路保护"
+    guardrail: "1.5mm²仅列为照明候选，不用于普通插座、大功率设备或未经匹配的36A回路"
+    next_action: "10月1日拍摄每个器件正面和侧面铭牌，由合格电工结合敷设条件、负载和线路长度冻结保护器与线径"
+    blocks: ["最终回路表", "保护器采购", "1.5mm²支路通电"]
+    task_ref: TASK-0028
+
+  - id: SAF-0015
+    domain: lighting
+    title: "走廊A 220V柔性灯带存在端接和可触及带电风险"
+    severity: high
+    status: open
+    confirmed_fact: "业主倾向220V灯带以减少独立低压驱动和布线工作"
+    concern: "部分220V灯带仍依赖专用整流电源接头，剪切端、软引线、拉力和不可检修接头处理错误会造成触电、短路或发热"
+    guardrail: "优先购买厂家成套电源接头、成型插头和末端封帽并接智能插座；不得把建筑导线与灯带铜箔或软引线裸接"
+    fixed_wiring_gate: "只有产品说明明确允许硬接时，才在可检修带盖接线盒内用匹配端子和应力消除结构接入受控照明回路"
+    next_action: "9月冻结具体产品资料；10月1日复测长度和安装面，10月8日仅在墙面干燥且断电验电后安装"
+    task_ref: TASK-0026

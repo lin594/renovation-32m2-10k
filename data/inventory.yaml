@@ -119,3 +119,14 @@ items:
     location: 卫生间
     condition: existing
     planned_use: "继续安装使用"
+
+  - id: INV-0012
+    category: computing_device
+    item: "EVE V1 Windows二合一设备"
+    quantity: 1
+    unit: 台
+    location: "计划放在玄关南侧设备架"
+    condition: "触屏损坏、显示正常、确认可长期运行"
+    planned_use: "Home Assistant主机、玄关电子相册和信息显示器"
+    requirements: ["有线网络", "常电", "通风", "远程桌面", "断电恢复流程"]
+    task_ref: TASK-0027

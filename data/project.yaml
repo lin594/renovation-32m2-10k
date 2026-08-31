@@ -110,3 +110,6 @@ active_tasks:
   - { id: TASK-0023, phase: doors_windows, item: "10月复测三扇门和防猫纱窗，1月接收商家安装并验收", status: todo, schedule_window: "2026-10-01复测；2027年1月安装" }
   - { id: TASK-0024, phase: commissioning, item: "由一名非主负责人按冻结图纸完成1月单人收尾", status: todo, schedule_window: "2027年1月中旬至2027-02-07" }
   - { id: TASK-0025, phase: commissioning, item: "完成三猫入住门槛验收", status: todo, schedule_window: "理想2027-01-15；最迟2027-02-07" }
+  - { id: TASK-0026, phase: utilities, item: "完成无主灯分区、走廊A灯带控制及本地失效兜底设计", status: in_progress, schedule_window: "2026年9月远程设计；2026-10-01复测冻结" }
+  - { id: TASK-0027, phase: utilities, item: "验证EVE V连续运行、断电恢复、虚拟机自启和远程管理", status: todo, schedule_window: "2026-09-01至2026-09-07" }
+  - { id: TASK-0028, phase: utilities, item: "拍摄配电箱全部器件铭牌并冻结线径、保护器、端子和逐回路BOM", status: todo, schedule_window: "2026-10-01；急缺小件用京东次日补购" }

@@ -1,0 +1,127 @@
+version: 1
+updated: 2026-08-31
+status: preliminary_discussion_baseline
+drawing_property: "讨论方案，不是施工图；线径、保护器和端子须经现场铭牌核验与合格电工复核"
+
+confirmed_conditions:
+  wiring_method: "全屋明装线槽/明管"
+  installation_sequence: "乳胶漆达到产品允许安装和触碰的干燥状态后施工"
+  protective_earth: "老小区无地线（业主口述，待现场专业检测）"
+  remaining_conductor: "约60m蓝色6mm²铜线"
+  panel_markings: "业主记忆为约500V、36A，完整型号、脱扣额定值、极数、漏电动作参数均待拍照"
+  branch_device_capacity: "共5个支路位置：3个漏电保护器+2个空气开关，不增加不存在的回路位置"
+  home_server: "EVE V1可长期运行，固定放在走廊A南墙玄关置物架"
+
+design_principles:
+  - "无主灯采用分散灯具和分区控制，不为每盏灯单独设置配电箱回路"
+  - "智能控制不能替代本地实体控制；网络、Home Assistant或云端故障时仍能手动开关基础照明"
+  - "6mm²主干不能自动保护缩径后的1.5mm²支路；支路保护器必须按最小导线、敷设方式和负载匹配"
+  - "照明支路暂按1.5mm²铜线讨论；普通插座支路不小于2.5mm²；空调、厨房和洗烘等大负载按铭牌与线路长度另算"
+  - "剩余蓝色6mm²线优先只作为中性导体候选，不把端部胶布改色直接视为相线方案获批"
+
+provisional_five_circuit_allocation:
+  recommendation: "功能分组优先；五个保护器只形成五个回路，灯光分区由下游开关完成而不额外占配电箱位置"
+  circuits:
+    - id: RCBO-01
+      existing_device_type: "漏电保护器"
+      scope: ["厨房插座", "厨房固定设备"]
+      reason: "厨房负载集中并涉及用水"
+      conductor: "不小于2.5mm²候选；最终按设备清单和线路长度核算"
+      status: blocked_by_panel_and_load_survey
+    - id: RCBO-02
+      existing_device_type: "漏电保护器"
+      scope: ["卫生间用电", "洗烘一体机"]
+      reason: "把湿区和洗衣负载集中到漏电保护下"
+      conductor: "按浴霸/照明/洗烘机铭牌与安装条件核算"
+      status: blocked_by_safety_and_appliance_selection
+    - id: RCBO-03
+      existing_device_type: "漏电保护器"
+      scope: ["卧室普通插座", "客厅普通插座", "玄关常电插座", "EVE V/光猫/路由器"]
+      reason: "所有日常可触及插座优先纳入漏电保护；玄关不单独占一路"
+      conductor: "不小于2.5mm²候选"
+      status: blocked_by_panel_and_load_survey
+    - id: MCB-01
+      existing_device_type: "空气开关"
+      scope: ["全屋固定照明"]
+      reason: "一个1.5mm²照明回路承载多个下游开关分区，节省配电箱位置"
+      conductor: "1.5mm²铜线候选"
+      protection: "额定值须匹配1.5mm²及实际敷设条件，不得沿用未知36A结论"
+      status: blocked_by_panel_survey
+    - id: MCB-02
+      existing_device_type: "空气开关"
+      scope: ["备用"]
+      reason: "待两台空调和洗烘机负载核算后决定；必要时优先更换为合适的漏电保护器形成专用回路"
+      conductor: "待定"
+      status: reserved
+  owner_room_based_alternative:
+    allocation: ["漏保：卧室", "漏保：厨房", "漏保：客厅+卫生间", "空开：玄关", "空开：备用"]
+    tradeoffs:
+      - "按房间施工直观，但玄关常电插座和EVE V不在漏电保护器下"
+      - "客厅+卫生间还可能叠加客厅空调、洗烘机和浴霸，负载集中"
+      - "没有独立、与1.5mm²匹配的全屋照明保护回路"
+    status: "保留为备选，不作为当前推荐基线"
+  unresolved_high_loads:
+    - "客厅空调与卧室空调的铭牌功率、启动电流和现有临时回路线径"
+    - "洗烘一体机最终型号和最大功率"
+    - "浴霸是否保留及其功率和防护条件"
+    - "以上设备同时运行时RCBO-02/03是否过载"
+
+lighting_zones:
+  - id: LZ-01
+    room: hall_a
+    fixture: "220V柔性灯带候选"
+    target: "玄关和走廊A基础照明"
+    controls: ["本地实体控制", "智能插座或智能开关"]
+    preferred_connection: "带厂家成套整流/电源接头和成型插头的灯带接入玄关常电插座"
+    fixed_wiring_alternative: "仅当具体产品说明允许硬接时，在可检修带盖接线盒内使用匹配端子、专用电源接头与应力消除后接入受控照明回路"
+    forbidden: ["建筑导线与灯带铜箔/软引线裸接", "把接头埋进腻子或不可开启线槽", "剪切端不装绝缘端帽", "只保留依赖网络的控制方式"]
+    status: selected_pending_product
+  - { id: LZ-02, room: hall_b, fixture: "小型漫射吸顶灯或壁灯", controls: ["实体开关"], status: planned }
+  - { id: LZ-03, room: living_room, fixture: "明装轨道射灯/洗墙灯", controls: ["实体或智能墙壁开关"], status: planned }
+  - { id: LZ-04, room: living_room, fixture: "落地灯、书桌灯等插接式任务灯", controls: ["灯具开关或智能插座"], status: planned }
+  - { id: LZ-05, room: bedroom, fixture: "暖色环境灯+床头/窄桌任务灯", controls: ["门口实体开关", "床头无线场景按钮可选"], status: planned }
+  - { id: LZ-06, room: kitchen, fixture: "基础漫射灯", controls: ["实体开关"], status: planned }
+  - { id: LZ-07, room: kitchen, fixture: "台面任务灯", controls: ["独立实体开关"], status: planned }
+  - { id: LZ-08, room: bathroom, fixture: "防潮基础灯+镜前灯预留", controls: ["实体开关"], status: blocked_by_safety_review }
+  - { id: LZ-09, room: balcony, fixture: "暖色漫射灯", controls: ["客厅侧实体开关"], status: planned }
+
+lighting_selection:
+  color_temperature_k: "2700至3000"
+  color_rendering_index: "优先Ra/CRI≥90"
+  glare: "优先带扩散罩、洗墙或间接光；避免视线直视高亮灯珠"
+  replaceability: "优先标准化、可单独更换的灯具或电源接头"
+
+terminal_policy:
+  advertised_250v_32a_status: "仅凭250V/32A不能批准采购，仍需核对型号、认证、导线类型和允许截面积"
+  topology:
+    two_port: "进线+一个出线"
+    three_port: "进线+主干继续+一个分支"
+    five_port: "进线+主干继续+二至三个同回路分支"
+    distribution_block: "6mm²主干在配电箱内向现有五个、由各自保护器保护的回路分配；不凭空增加回路"
+  rules:
+    - "L、N和PE（如经检测存在）使用相互独立的端子，不混接"
+    - "端子必须安装在可开启的接线盒或配电箱内并固定"
+    - "4mm²/32A端子不默认兼容6mm²；6mm²导线选明确标注支持6mm²的型号或DIN导轨分配块"
+    - "软线接入需按产品要求使用适配端头，不用焊锡替代合规压接"
+    - "端子数量在10月1日完成逐点拓扑复测后冻结；9月不按猜测批量购买"
+
+hall_a_shelf:
+  location: "走廊A南墙壁挂置物架"
+  equipment: ["光猫", "Wi-Fi路由器", "EVE V1", "走廊A灯带电源接头/智能控制（如采用插接方案）"]
+  power: "至少4个常电插位；光猫、路由器和EVE V不接在会被照明自动化关闭的插座上"
+  network: "入户网线到光猫，路由器到EVE V仅用架内短网线，不再为家庭中枢跨房间布网线"
+  requirements: ["通风", "可检修", "电源与弱电分区整理", "电源按钮可触达", "线缆有应力释放"]
+  eve_v:
+    roles: ["Home Assistant主机", "玄关家庭电子相册", "家庭信息显示器"]
+    operation: "长期运行，屏幕可定时关闭但主机和虚拟机不休眠"
+    september_acceptance: ["连续运行72小时", "断电恢复流程记录", "虚拟机和Home Assistant自启动", "有线网络稳定", "远程桌面可用"]
+
+onsite_freeze_gate:
+  date: "2026-10-01"
+  required_evidence:
+    - "每个配电箱器件正面和侧面清晰照片"
+    - "记录C/B曲线及额定电流、极数、漏电动作电流、分断能力和型号"
+    - "逐回路确认现有临时线路和实际负载"
+    - "测量各端点路线长度和同槽导线数量"
+    - "确认走廊A灯带长度、安装高度、剪切单位、成套电源接头与末端封帽"
+  outputs: ["最终回路表", "线径和颜色表", "保护器匹配表", "2/3/5孔端子及分配块数量", "逐房间材料包"]
