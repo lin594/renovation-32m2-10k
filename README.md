@@ -23,6 +23,7 @@
 - 入住门槛：三猫理想入住日 2027-01-15，硬截止 2027-02-07；防猫、地面、固化、用电和保洁任一项未通过就延期。
 - 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
 - 11 张现行图纸的职责见 [diagrams/README.md](diagrams/README.md)。
+- 重要方案的现行/已替代关系见 [决策记录索引](docs/decisions/README.md)。
 - 最新第三方复核见 [2026-09-01 公开仓库审计](docs/reviews/2026-09-01-public-repository-audit.md)。
 
 ## 最容易修改的入口
