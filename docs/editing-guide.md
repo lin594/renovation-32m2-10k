@@ -13,7 +13,13 @@ python3 scripts/ledger.py income --amount 120 --item "旧铁门回收" --categor
 
 可选参数：`--counterparty`、`--note`、`--payment-status`、`--project-status`。用 `--dry-run` 先预览，不写文件。
 
-也可以直接编辑 `data/ledger.csv`。规则只有四条：保留表头；ID 不重复；金额写正数；支出用 `expense`、收入用 `income`。提交到主分支后，CI 会重建 `PROJECT_STATUS.md`。
+也可以直接编辑 `data/ledger.csv`。保留表头和列顺序；ID 不重复，支出使用 `EXP-四位数字`，收入使用 `INC-四位数字`；金额只写大于 0 的数字，方向由 `expense`/`income` 表示；新账日期使用 `YYYY-MM-DD`。历史八笔缺失日期允许暂时留空，不能凭猜测补录。
+
+提交后，CI 会把错误直接标在 CSV 对应行，并说明修改方法；校验通过后再重建 `PROJECT_STATUS.md`。标准表头如下，表格软件意外改列时可据此恢复：
+
+```csv
+id,date,flow,category,room,item,counterparty,amount_cny,payment_status,project_status,note
+```
 
 ## 2. 更新物资和采购
 
