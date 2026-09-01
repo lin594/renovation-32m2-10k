@@ -15,14 +15,17 @@
 - 施工窗口、日排期、人员边界和入住门槛更新 `data/schedule.yaml`。
 - 燃气、强电、防水、排烟、承重、猫防逃等问题更新 `data/risks.yaml`。
 - 影响较大的选择在 `docs/decisions/` 新建编号决策记录。
+- 公开照片的目录真源是 `data/photos.csv`，网页派生文件是 `media/photos/README.md`；HEIC 原件只保存在被忽略的 `.local/photos-original/`，不得提交。
+- 新照片一律通过 `python3 scripts/photo.py import ...` 导入，先去元数据、必要时遮挡可识别人像，再按房间和阶段登记；前后对比尽量复用同一机位、方向和焦段。
 - `diagrams/` 只保留当前生效图纸；旧方案由 Git 历史追溯，不维护 `vN/` 或 `archive/` 副本。
-- `PROJECT_STATUS.md` 和 `diagrams/*.svg` 是派生文件，分别由 `make status` 和 `make diagrams` 生成，不手工修改。
+- `PROJECT_STATUS.md`、`diagrams/*.svg` 和 `media/photos/README.md` 是派生文件，分别由 `make status`、`make diagrams` 和 `make gallery` 生成，不手工修改。
 - 总体/家具图不绘制会遮挡通道的待定门扇；未解决的开启与停泊冲突放入门窗详图，用候选方案和净空尺寸表达。
 
 ## Git 约定
 
 - 每个逻辑更新单独提交，提交前运行 `make check`。
 - 推送前先确认远端没有新提交；不强推，不用自动化覆盖原始账本或主数据。
+- 完成本仓库更新后，在远端无领先且校验通过时推送 `main`；公开建议只通过 Issues 管理，不主动邀请 PR。
 - 提交格式：`<类型>(<范围>): <中文摘要>`；类型、范围和摘要均优先使用中文。
 - 类型：`建档|更新|修正|设计|记账|采购|进度|风险|规范|文档|维护`。
 - 范围使用房间或装修领域名称，例如 `卫生间`、`厨房`、`弱电`、`预算`、`版本管理`；仅在不可替代的技术专名中使用英文。

@@ -18,5 +18,6 @@
 | [0005](0005-no-pe-layered-rcd.md) | 无 PE 与分级漏保 | 已采纳 | — |
 | [0006](0006-five-circuits-bathroom-feeder.md) | 五回路与卫生间馈线 | 部分被取代 | 回路仍有效，端子实购由 0007 接管 |
 | [0007](0007-terminal-minimum-sku.md) | 端子最低 SKU | 暂定 | 10 月 1 日实物与铭牌复测后冻结 |
+| [0008](0008-public-photo-and-repository-policy.md) | 公开范围、照片与互动边界 | 已采纳 | 更新 0001 的照片默认策略 |
 
 旧结论无需另建 archive；完整变化使用 Git 历史查看。

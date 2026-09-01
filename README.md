@@ -16,6 +16,8 @@
 
 图纸直接使用 SVG；中文由浏览器字体渲染，不再提交缺少中文字形、无法阅读的 PNG 预览。当前仓库只保留一套现行图纸，旧方案通过 Git 历史查看。
 
+真实现场的装修前与施工中记录见 [现场照片档案](media/photos/README.md)。首页不直接加载照片，避免影响首次阅读；图库会按房间明确标出尚未拍摄的施工中或完工阶段。
+
 ## 当前状态
 
 - 施工策略：2026-10-01～10-08 双人主攻；此后零装修专项往返；2027 年 1 月单人收尾。
@@ -37,6 +39,7 @@
 | 阶段和任务 | `data/project.yaml` |
 | 工期与入住门槛 | `data/schedule.yaml` |
 | 风险与安全门禁 | `data/risks.yaml` |
+| 新增现场照片 | `python3 scripts/photo.py import ...`；目录为 `data/photos.csv` |
 
 完整字段说明和示例见 [人类编辑指南](docs/editing-guide.md)。`PROJECT_STATUS.md` 和 SVG 都是派生文件，不应手改。
 
@@ -58,7 +61,8 @@ python3 scripts/ledger.py expense \
 ```bash
 make status     # 从账本和 YAML 生成 PROJECT_STATUS.md
 make diagrams   # 从生成器重建现行 SVG
-make check      # 数据、引用、预算、图纸和测试的完整校验
+make gallery    # 从照片目录重建按房间图库
+make check      # 数据、引用、预算、照片、图纸和测试的完整校验
 ```
 
 ## 数据设计
@@ -66,3 +70,7 @@ make check      # 数据、引用、预算、图纸和测试的完整校验
 `data/ledger.csv` 是实际收支唯一真源，`data/budget.yaml` 只保存预算上限和预留规则；剩余金额由脚本实时计算，不在多个文件手抄。空间事实以 `house.yaml` 为准，专业方案以 `data/*.yaml` 为准，重要取舍保存在 `docs/decisions/`，历史变化交给 Git。
 
 SVG 是讨论图，不代替现场复测、电气施工图、燃气验收或防水验收。
+
+## 公开互动与版权
+
+欢迎通过 [GitHub Issues](https://github.com/lin594/renovation-32m2-10k/issues) 提出建议；本仓库不主动征集 Pull Request。仓库未采用开源许可证，代码、文档、图纸和公开照片的权利边界见 [COPYRIGHT](COPYRIGHT)。
