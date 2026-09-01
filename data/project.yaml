@@ -87,12 +87,12 @@ active_tasks:
     status: todo
   - id: TASK-0008
     phase: utilities
-    item: "设计入户网线及玄关光猫/Wi-Fi置物架供电"
-    status: done
+    item: "完成入户网线接入及玄关光猫/Wi-Fi/EVE V设备架的供电、安装与理线落地"
+    status: in_progress
   - id: TASK-0009
     phase: fixtures_appliances
-    item: "确定扫地机器人停靠与供电位置"
-    status: done
+    item: "完成扫地机器人停靠位低位常电、沙发上部充电位及不妨碍回充的窄桌/储物配套"
+    status: in_progress
   - id: TASK-0010
     phase: doors_windows
     item: "选择并购买卧室门"
