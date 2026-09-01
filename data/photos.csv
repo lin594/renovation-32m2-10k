@@ -1,0 +1,9 @@
+id,date,stage,room,view,caption,file,privacy_note,source_sha256
+PHOTO-0001,2026-08-24,before,bedroom,overview,装修前卧室全景：原吊扇、窗帘、床台和旧柜体。,media/photos/bedroom/2026-08-24-before-overview-01.jpg,,a91c5098bc0efbfccbc344b60db3665b4af2b8e0b8a1e8e1bfef2ff84dec9a25
+PHOTO-0002,2026-08-24,before,kitchen,overview,装修前厨房全景：原瓷砖灶台、水槽、明管和旧收纳。,media/photos/kitchen/2026-08-24-before-overview-01.jpg,,1a0ec65ebd80613b3dc568579f310690118c5e288b3f1c96d1ea40096d053371
+PHOTO-0003,2026-08-24,before,living,overview,装修前客厅全景：墙顶脱皮、旧地面及待清场物品。,media/photos/living/2026-08-24-before-overview-01.jpg,画面内人物家庭照已模糊,567aa58ed97c0b670989e4b98e1901c9bbaac32ef84d42619a9e09684e019faf
+PHOTO-0004,2026-08-24,before,hall_a,overview,装修前走廊A全景：入户、客厅通道和原有挂架。,media/photos/hall-a/2026-08-24-before-overview-01.jpg,,2a2b2c6f9301e35ade6a78be065a1afa2a4980e8fddf635b9eadd0cfcb963861
+PHOTO-0005,2026-08-24,before,hall_b,overview,装修前走廊B全景：连接厨房、卫生间与走廊A。,media/photos/hall-b/2026-08-24-before-overview-01.jpg,,600ca7771f43055559854e2343470b3f9ee38c48142df7b530d198fedefb2adc
+PHOTO-0006,2026-08-24,before,balcony,east,装修前转角阳台向东视图：旧窗帘、收纳和原地面。,media/photos/balcony/2026-08-24-before-east-01.jpg,,226a33ecfa6ff5d2bc7628f290b59230404b39eccc173f7638d4b4d09227ccc5
+PHOTO-0007,2026-08-24,before,balcony,west,装修前转角阳台向西视图：窗下墙面和原地面。,media/photos/balcony/2026-08-24-before-west-01.jpg,,ea34df6e427a908e4837a509a1935227840091f2d5575f6ee77c66cb39fa423f
+PHOTO-0008,2026-08-27,progress,bath,toilet-removal,卫生间拆除蹲坑后的阶段记录：原排污口、管道与待处理基层。,media/photos/bath/2026-08-27-progress-toilet-removal-01.jpg,,811e63d3e38abcb0abbc0824597ab1c71262d12b3177d20236e21c3870d8341c

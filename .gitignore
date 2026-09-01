@@ -3,5 +3,10 @@ __pycache__/
 *.pyc
 *.tmp
 
+# 现场照片原件只保存在本机；Git 仅跟踪去元数据后的网页版 JPEG。
+.local/
+*.HEIC
+*.heic
+
 # 图纸直接使用SVG；若临时导出光栅图，请存到系统临时目录而非仓库。
 house-plan-understanding.png
