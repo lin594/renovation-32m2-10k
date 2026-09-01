@@ -9,23 +9,28 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: project-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     name: 数据、图纸与预算
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
           ruby-version: "3.3"
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.12"
       - name: 生成派生文件并校验
         run: |
           make status
           make diagrams
-          git diff --exit-code -- diagrams
+          make gallery
+          git diff --exit-code -- PROJECT_STATUS.md diagrams media/photos/README.md
           make check
       - name: 写入 Actions 摘要
         run: cat PROJECT_STATUS.md >> "$GITHUB_STEP_SUMMARY"
@@ -38,10 +43,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           ref: main
-      - uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
         with:
           ruby-version: "3.3"
       - name: 重新计算状态

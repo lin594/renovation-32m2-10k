@@ -1,10 +1,13 @@
 PYTHON ?= python3
 RUBY ?= ruby
 
-.PHONY: check diagrams status summary test
+.PHONY: check diagrams gallery status summary test
 
 diagrams:
 	$(PYTHON) scripts/generate_diagrams.py
+
+gallery:
+	$(PYTHON) scripts/photo.py gallery
 
 test:
 	$(PYTHON) -m unittest discover -s tests -p 'test_*.py' -v

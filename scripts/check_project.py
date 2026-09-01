@@ -10,8 +10,15 @@ from decimal import Decimal, InvalidOperation
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
+from urllib.parse import unquote
 import xml.etree.ElementTree as ET
+
+try:
+    from scripts import photo
+except ModuleNotFoundError:  # Direct execution via `python3 scripts/check_project.py`.
+    import photo  # type: ignore[no-redef]
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +32,7 @@ REQUIRED = (
     "data/finishes.yaml",
     "data/inventory.yaml",
     "data/ledger.csv",
+    "data/photos.csv",
     "data/project.yaml",
     "data/procurement.yaml",
     "data/risks.yaml",
@@ -34,6 +42,7 @@ REQUIRED = (
     "docs/reviews/2026-09-01-public-repository-audit.md",
     "docs/decisions/README.md",
     "diagrams/README.md",
+    "media/photos/README.md",
     "diagrams/00-existing-survey.svg",
     "diagrams/10-furniture-circulation.svg",
     "diagrams/20-plumbing-gas.svg",
@@ -86,6 +95,17 @@ LEDGER_COLUMNS = (
     "project_status",
     "note",
 )
+
+BASELINE_PHOTOS = {
+    "PHOTO-0001": ("2026-08-24", "before", "bedroom", "overview"),
+    "PHOTO-0002": ("2026-08-24", "before", "kitchen", "overview"),
+    "PHOTO-0003": ("2026-08-24", "before", "living", "overview"),
+    "PHOTO-0004": ("2026-08-24", "before", "hall_a", "overview"),
+    "PHOTO-0005": ("2026-08-24", "before", "hall_b", "overview"),
+    "PHOTO-0006": ("2026-08-24", "before", "balcony", "east"),
+    "PHOTO-0007": ("2026-08-24", "before", "balcony", "west"),
+    "PHOTO-0008": ("2026-08-27", "progress", "bath", "toilet-removal"),
+}
 
 
 def validate_required_files(errors: list[str]) -> None:
@@ -172,6 +192,85 @@ def validate_public_layout(errors: list[str]) -> None:
         errors.append("artifacts/previews 仍包含无效光栅预览；公开展示应直接使用SVG")
 
 
+def validate_local_markdown_links(errors: list[str], relative_paths: tuple[str, ...]) -> None:
+    for relative_path in relative_paths:
+        document = ROOT / relative_path
+        if not document.is_file():
+            continue
+        content = document.read_text(encoding="utf-8")
+        for target in re.findall(r"\[[^\]]*\]\(([^)]+)\)", content):
+            clean_target = unquote(target.split("#", 1)[0]).strip()
+            if not clean_target or re.match(r"^[a-z]+://", clean_target):
+                continue
+            resolved = (document.parent / clean_target).resolve()
+            if not resolved.exists():
+                errors.append(f"{relative_path} 包含失效本地链接：{target}")
+
+
+def house_room_ids() -> set[str]:
+    content = (ROOT / "house.yaml").read_text(encoding="utf-8")
+    rooms_block = content.split("\nrooms:\n", 1)[1].split("\ndoors:\n", 1)[0]
+    return set(re.findall(r"\bid:\s*([a-z][a-z0-9_]*)", rooms_block))
+
+
+def validate_photos(errors: list[str]) -> None:
+    catalog = ROOT / "data/photos.csv"
+    gallery = ROOT / "media/photos/README.md"
+    if not catalog.is_file():
+        return
+    try:
+        rows = photo.read_catalog(catalog)
+        photo.validate_catalog(rows)
+    except (OSError, photo.PhotoError) as exc:
+        errors.append(f"照片目录无效：{exc}")
+        return
+
+    known_rooms = house_room_ids()
+    for row in rows:
+        if row["room"] not in known_rooms:
+            errors.append(f"照片 {row['id']} 引用了 house.yaml 中不存在的房间 {row['room']}")
+
+    indexed = {row["id"]: row for row in rows}
+    for photo_id, expected in BASELINE_PHOTOS.items():
+        row = indexed.get(photo_id)
+        actual = None if row is None else tuple(row[key] for key in ("date", "stage", "room", "view"))
+        if actual != expected:
+            errors.append(f"当前照片基线缺失或被改写：{photo_id} 应为 {expected}")
+
+    catalog_files = {row["file"] for row in rows}
+    disk_files = {
+        path.relative_to(ROOT).as_posix()
+        for path in (ROOT / "media/photos").rglob("*.jpg")
+    }
+    for missing in sorted(catalog_files - disk_files):
+        errors.append(f"照片目录登记文件不存在：{missing}")
+    for orphan in sorted(disk_files - catalog_files):
+        errors.append(f"发现未登记的公开照片：{orphan}")
+    for relative_path in sorted(catalog_files & disk_files):
+        try:
+            photo.validate_public_jpeg(ROOT / relative_path)
+        except photo.PhotoError as exc:
+            errors.append(str(exc))
+
+    expected_gallery = photo.gallery_markdown(rows)
+    if not gallery.is_file() or gallery.read_text(encoding="utf-8") != expected_gallery:
+        errors.append("media/photos/README.md 已过期，请运行 make gallery")
+
+    try:
+        tracked = subprocess.run(
+            ["git", "ls-files", "-z"], cwd=ROOT, check=True, capture_output=True
+        ).stdout.decode("utf-8").split("\0")
+    except (OSError, subprocess.CalledProcessError, UnicodeDecodeError) as exc:
+        errors.append(f"无法检查Git照片跟踪范围：{exc}")
+        return
+    forbidden = [
+        path for path in tracked
+        if path and (path.startswith(".local/") or Path(path).suffix.lower() == ".heic")
+    ]
+    if forbidden:
+        errors.append(f"Git不应跟踪HEIC或.local原件：{', '.join(sorted(forbidden))}")
+
+
 def validate_status_page(
     errors: list[str], expenses: Decimal, income: Decimal, net_outflow: Decimal
 ) -> None:
@@ -209,6 +308,8 @@ def main() -> int:
     validate_svgs(errors)
     expenses, income, net_outflow = ledger_summary(rows)
     validate_public_layout(errors)
+    validate_local_markdown_links(errors, ("README.md", "media/photos/README.md"))
+    validate_photos(errors)
     validate_status_page(errors, expenses, income, net_outflow)
 
     if errors:
