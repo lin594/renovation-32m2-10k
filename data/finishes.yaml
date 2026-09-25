@@ -1,11 +1,11 @@
 version: 1
-updated: "2026-08-31"
+updated: "2026-09-26"
 status: planning
 
 design_direction:
   primary: "宋氏美学"
   supporting: ["侘寂", "中古"]
-  color_temperature: "偏暖、偏黄色"
+  color_temperature: "偏暖奶油；小建刷新S2 1875暂定（近可可蛋奶）"
   avoid: ["冷白", "高亮塑料感", "与整体冲突的现有窗帘风格"]
 
 existing_substrate:
@@ -16,7 +16,7 @@ existing_substrate:
 
 preconditions:
   - { item: "修复厨房水槽铁质排水管疑似渗漏", task_ref: TASK-0011, risk_ref: SAF-0011 }
-  - { item: "确认客厅西墙南部和东墙南部受潮来源", task_ref: TASK-0013, risk_ref: SAF-0009 }
+  - { item: "确认客厅西墙南部、东墙南部及西南角天花板受潮/疑似雨漏来源", task_ref: TASK-0013, risk_ref: SAF-0009 }
   - { item: "核对防水涂料、墙固、腻子、底漆和面漆的产品体系兼容性", task_ref: TASK-0012, risk_ref: SAF-0010 }
 
 proposed_sequence:
@@ -31,71 +31,53 @@ proposed_sequence:
 waterproof_or_moisture_zones:
   - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: planned, risk_ref: SAF-0010 }
   - { zone: "阳台", scope: "除窗户外的墙面/顶面等区域", status: planned }
-  - { zone: "客厅顶部", scope: "具体边界待量", status: planned }
+  - { zone: "客厅西南角天花板", scope: "疑似顶楼雨漏；室内仅做清理、观察及明确点/缝的局部背水面堵漏", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "厨房水槽墙壁", reason: "邻近水点且铁质排水管疑似渗漏", status: blocked_by_repair, risk_ref: SAF-0011 }
 
 product_candidates:
-  - { item: "防水涂料", candidate: "三棵树S2（用户暂称，准确产品名/用途待核对）", procurement_ref: BUY-0010 }
+  - { item: "卫生间防水涂料", candidate: "三棵树S2防水（与小建刷新乳胶漆S2不是同一产品；准确型号/用途继续核对）", procurement_ref: BUY-0010 }
   - { item: "墙固/界面剂", procurement_ref: BUY-0011 }
   - { item: "腻子", purchase_channel: offline, procurement_ref: BUY-0012 }
-  - { item: "底漆", candidate: "小建刷新S2相关产品（准确名称待核）", price_cny: 149, stated_coverage: "约50㎡一遍", procurement_ref: BUY-0013 }
-  - { item: "面漆", candidate: "小建刷新S2相关产品（准确名称待核）", price_cny: 299, stated_coverage: "约30㎡两遍", color: "偏暖黄色", procurement_ref: BUY-0014 }
-  - { item: "刷漆工具套装", price_cny: 70, procurement_ref: BUY-0015 }
+  - { item: "底漆", candidate: "小建刷新S2底漆", stated_coverage: "约50㎡一遍/桶（用户截图）", procurement_ref: BUY-0013 }
+  - { item: "面漆", candidate: "小建刷新S2面漆", stated_coverage: "约30㎡两遍/桶，不兑水（用户截图）", color: "1875近可可蛋奶（暂定）", procurement_ref: BUY-0014 }
+  - { item: "刷漆工具套装", candidate: "小建刷新S2家工具套装", planned_price_cny_approx: 70, procurement_ref: BUY-0015 }
 
 latex_paint_quantity_model:
-  status: blocked_by_measurement
+  status: planned_pending_final_color_and_order
   task_ref: TASK-0017
   measurement_basis:
-    ceiling_height_m: 2.65
+    ceiling_height_m: 2.8
     suspended_ceiling: false
     door_height_m: 1.9
-    kitchen_nominal_net_m: [2.0, 2.0]
-    bathroom_design_net_m: [1.05, 0.75]
-    balcony_provisional_net_m: [3.0, 0.85]
-  area_basis: "实际需要乳胶漆的墙面和顶面净展开面积；扣除门窗、厨卫瓷砖区及明确不涂区域"
-  primer:
-    stated_coverage_per_bucket: "50㎡一遍"
-    bucket_price_cny: 149
-    bucket_formula: "ceil(net_latex_area_m2 / 50)"
-  topcoat:
-    stated_coverage_per_bucket: "30㎡两遍"
-    bucket_price_cny: 299
-    bucket_formula: "ceil(net_latex_area_m2 / 30)"
-  tool_set_cny: 70
-  budget_formula: "149 × primer_buckets + 299 × topcoat_buckets + 70"
+    kitchen_tile_height_m: 1.8
+    bathroom_tile_height_m: 1.8
+    balcony_rule: "阳台只刷顶面，不刷墙面"
+  area_basis: "实际需要乳胶漆的墙面和顶面净展开面积；扣除门窗、厨卫1.8m以下瓷砖区及明确不涂区域"
+  seller_coverage:
+    primer: "5L桶、净含量4.5kg；客服说明兑水约1000mL后滚涂约50㎡一遍"
+    topcoat: "5L桶、净含量5.8kg；客服说明不兑水直接滚涂约30㎡两遍"
   provisional_takeoff_m2:
-    ceiling_area: 31.14
-    latex_wall_area_before_external_window_deduction: 103.57
-    latex_total_before_external_window_deduction: 134.70
-    latex_wall_breakdown_before_external_window_deduction:
-      living: 32.73
-      bedroom: 30.28
-      kitchen_above_tile: 6.47
-      bathroom_above_tile: 2.74
-      hall_a_and_b_union: 13.79
-      balcony: 17.56
-    status: "保守基数；仍需扣除客厅、卧室、厨房和阳台外窗的实际洞口面积"
+    total_before_three_external_window_deductions: 123.99
+    required_window_deduction_for_four_topcoat_buckets: 3.99
+    status: "当前未实测三处主要外窗高度；4桶面漆按卖家口径最多覆盖约120㎡两遍，因此下单前仍需客服确认"
   quantity_boundary:
-    primer: "当前基数下按3桶；最终仍以净面积复算"
-    topcoat: "净面积≤120㎡时4桶；120㎡<净面积≤150㎡时5桶"
-    conservative_purchase_case: { primer_buckets: 3, topcoat_buckets: 5, tool_sets: 1, planned_total_cny: 2012 }
-    lower_case_if_net_area_at_most_120_m2: { primer_buckets: 3, topcoat_buckets: 4, tool_sets: 1, planned_total_cny: 1713 }
+    primer: "3桶可按约150㎡一遍覆盖，当前足够"
+    topcoat: "4桶按约120㎡两遍覆盖；余量很小，依赖外窗扣减和实际施工损耗"
   procurement_decision:
-    status: approved_conservative_purchase
-    basis_m2: 134.70
+    status: planned_pending_color_and_customer_confirmation
     primer_buckets: 3
-    topcoat_buckets: 5
+    topcoat_buckets: 4
     tool_sets: 1
-    planned_total_cny: 2012
-    timing: "2026年9月提前采购，不等待外窗精确面积"
-    requirements: ["面漆同色同批次", "确认生产日期", "确认储存与施工温度", "确认重涂间隔", "未开封余桶登记库存"]
+    color_code: "1875"
+    color_name: "近可可蛋奶"
+    timing: "2026-09-26微信客服下单"
+    requirements: ["下单前用已收到小料在自然光/室内暖光下最终确认1875", "确认4桶面漆可覆盖接近120㎡两遍", "确认面漆同色同批次", "确认后补单的色差/批次处理方式", "确认生产日期、储存与施工温度、重涂间隔"]
   missing_measurements:
-    - "各外窗洞口高度及阳台窗台高度"
-    - "厨卫、阳台及其他区域哪些顶面纳入乳胶漆"
-    - "柜体、瓷砖、固定设备等明确不涂区域的尺寸"
-  note: "不得用一桶底漆+一桶面漆的价格作为全屋预算；本期已决定按3桶底漆+5桶面漆保守采购"
+    - "客厅、卧室、厨房主要外窗实际高度及窗台高度"
+    - "柜体、固定设备等明确不涂区域的最终尺寸"
+  note: "本轮不再按旧134.70㎡与5桶面漆采购；面积口径已切换为2.8m层高、阳台只刷顶、厨卫1.8m以下不刷"
 
 tile_recolor_quantity_model:
   status: blocked_by_measurement
