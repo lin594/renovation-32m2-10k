@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-01"
+updated: "2026-09-26"
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -11,6 +11,7 @@ actuals_source: "data/ledger.csv"
 current_gate:
   october_trip_reserve_cny: 700
   paint_and_tools_plan_cny: 2012
+  paint_and_tools_reserve_note: "S2现计划3桶底漆+4桶面漆+1套工具；实际成交价尚未确认，订单落地前继续保留原2012元作为保守预留上限"
   contingency_cny: 700
   calculation: "其余工作可用上限 = overall_budget_cny - ledger累计支出 - 交通预留 - 涂装预留 - 应急金"
   income_policy: "保守门禁不使用回收收入冲抵支出；现金视角另在PROJECT_STATUS.md展示"
@@ -19,7 +20,7 @@ current_gate:
 feasibility:
   status: unproven_until_essential_quotes
   conclusion: "自动计算的可用上限不等于剩余必需工程已经买得下"
-  decision_deadline: "2026-09-14形成第一版；2026-10-01现场复测后冻结"
+  decision_deadline: "2026-09-26形成远程首版；2026-09-28现场复测后冻结"
   unpriced_essential_scope:
     - { id: BQ-01, item: "合格电工方案复核与通电前检测", quote_cny: null, status: unpriced, priority: safety_gate }
     - { id: BQ-02, item: "卫生间防水、瓷砖胶/砂浆和美缝辅料", quote_cny: null, status: unpriced, priority: protected }
@@ -43,7 +44,7 @@ categories:
   - { id: furniture_storage, name: "家具与收纳", planned_cny: null }
   - { id: appliances, name: "家电", planned_cny: null }
   - { id: pet_safety, name: "猫咪安全与设施", planned_cny: null }
-  - { id: travel, name: "装修专项交通", planned_cny: 700, note: "仅计2026年10月一次往返；10月8日后计划为零专项往返" }
+  - { id: travel, name: "装修专项交通", planned_cny: 700, note: "计本次9/27夜出发、9/28到开封的主施工往返；10月4日主窗口结束后至1月中旬计划为零装修专项往返" }
   - { id: contingency, name: "不可预见费", planned_cny: 700 }
 
 defer_order:
