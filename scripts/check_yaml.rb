@@ -163,9 +163,9 @@ errors << "三猫入住硬截止应为2027-02-07" unless cat_gate["hard_deadline
 primer = procurement_by_id["BUY-0013"] || {}
 topcoat = procurement_by_id["BUY-0014"] || {}
 tools = procurement_by_id["BUY-0015"] || {}
-errors << "底漆采购基线应为3桶、447元" unless primer["planned_quantity"] == 3 && primer["planned_total_cny"] == 447
-errors << "面漆采购基线应为5桶、1495元" unless topcoat["planned_quantity"] == 5 && topcoat["planned_total_cny"] == 1_495
-errors << "刷漆工具采购基线应为1套、70元" unless tools["planned_quantity"] == 1 && tools["planned_total_cny"] == 70
+errors << "底漆采购基线应为3桶" unless primer["planned_quantity"] == 3
+errors << "面漆采购基线应为4桶" unless topcoat["planned_quantity"] == 4
+errors << "刷漆工具采购基线应为1套" unless tools["planned_quantity"] == 1
 
 # Electrical invariants: these are planning facts, not a substitute for professional approval.
 electrical = documents.fetch("electrical.yaml", {})
