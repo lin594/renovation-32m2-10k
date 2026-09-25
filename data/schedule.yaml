@@ -45,7 +45,7 @@ milestones:
     owner: 业主
 
 onsite_windows:
-  main:
+  october_main:
     start: "2026-09-28"
     end: "2026-10-04"
     people: 2
@@ -131,6 +131,7 @@ main_window_daily_plan:
       - "普通PVC明线槽优先水泥钉/钢钉或适配基层的免钉方式；不为此预购冲击钻"
       - "厨房双层台面灯带本轮不做"
       - "合格电工完成绝缘、极性、保护器匹配、插座接线和各级漏保动作等终检；无法完成专业检测的回路保持断开"
+    electrical_stop_rule: "专业检测与记录完成前，新建固定线路不得通电；万用表不能替代绝缘电阻与漏保动作专业检测"
   - date: "2026-10-04"
     focus: "总验收、保洁、留档与返程缓冲"
     tasks:
@@ -165,8 +166,8 @@ january_single_worker_sequence:
 
 budget_gate:
   overall_budget_cny: 10000
-  main_trip_reserve_cny: 700
-  paint_and_tools_reserve_cny: 2012
+  october_trip_reserve_cny: 700
+  paint_and_tools_plan_cny: 2012
   contingency_cny: 700
   actuals_source: "data/ledger.csv"
   generated_status_ref: "PROJECT_STATUS.md"
