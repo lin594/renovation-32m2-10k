@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-01"
+updated: "2026-09-26"
 
 status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
@@ -82,7 +82,7 @@ items:
     category: waterproofing
     room: multiple
     item: "防水涂料"
-    candidate: "三棵树S2（准确型号待核，不凭简称下单）"
+    candidate: "三棵树S2防水（与小建刷新乳胶漆S2不是同一产品；准确型号待核，不凭简称下单）"
     status: not_purchased
     purchase_gate: ["准确产品型号", "适用卫生间地面", "单位用量", "成膜厚度", "施工与固化温度", "贴砖兼容性"]
     channel: "10月到开封后线下购买重物"
@@ -92,43 +92,41 @@ items:
     category: paint
     room: whole_house
     item: "底漆"
-    candidate: "小建刷新S2相关产品（准确名称待核）"
-    planned_unit_price_cny: 149
-    stated_coverage: "50㎡一遍/桶"
-    quantity_formula: "ceil(净乳胶漆面积/50)"
+    candidate: "小建刷新S2底漆"
+    seller_stated_coverage: "约50㎡一遍/桶；用户截图称5L、净含量4.5kg，施工时兑水约1000mL"
     planned_quantity: 3
     unit: 桶
-    quantity_status: approved_conservative_purchase
-    planned_total_cny: 447
-    purchase_window: "2026年9月远程采购"
+    quantity_status: approved_for_order
+    purchase_window: "2026-09-26微信客服下单"
     status: not_purchased
+
   - id: BUY-0014
     category: paint
     room: whole_house
     item: "面漆"
-    candidate: "小建刷新S2相关产品（准确名称待核）"
-    planned_unit_price_cny: 299
-    stated_coverage: "30㎡两遍/桶"
-    quantity_formula: "ceil(净乳胶漆面积/30)"
-    planned_quantity: 5
+    candidate: "小建刷新S2面漆"
+    seller_stated_coverage: "约30㎡两遍/桶；用户截图称5L、净含量5.8kg，不兑水直接刷"
+    planned_quantity: 4
     unit: 桶
-    quantity_status: approved_conservative_purchase
-    planned_total_cny: 1495
-    batch_requirement: "同一颜色、同一批次"
-    target_color: "偏暖黄色"
-    purchase_window: "2026年9月远程采购"
-    leftover_rule: "未开封余桶在施工后登记库存"
+    quantity_status: pending_customer_confirmation_for_near_120m2
+    target_color: "1875近可可蛋奶（暂定）"
+    batch_requirement: "4桶同色同批次"
+    purchase_window: "2026-09-26微信客服下单"
+    order_gate: "当前未扣三处外窗面积约123.99㎡；4桶理论覆盖120㎡两遍，下单前让客服确认该面积口径与施工损耗是否可接受"
     status: not_purchased
+
   - id: BUY-0015
     category: tool
     room: whole_house
-    item: "刷漆工具套装"
-    planned_unit_price_cny: 70
+    item: "小建刷新S2刷漆工具套装"
+    planned_unit_price_cny_approx: 70
     planned_quantity: 1
     unit: 套
-    planned_total_cny: 70
-    purchase_window: "2026年9月远程采购"
+    contents_from_seller_screenshot: ["大滚筒×2", "小滚筒×2", "刷子×2", "托盘×2"]
+    note: "不重复购买滚筒/刷子/托盘；伸缩接长杆、局部批刀/铲刀、砂纸、美纹纸与保护膜另备"
+    purchase_window: "与乳胶漆同单"
     status: not_purchased
+
   - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", channel: "10月现场复测、线下比价后购买", status: not_purchased }
   - id: BUY-0017
     category: flooring
@@ -163,7 +161,7 @@ items:
     purchase_strategy: "9月形成初步购物车；线槽和标准小件可提前寄往另一住所，保护器、导线和端子数量在10月1日现场冻结后用京东次日补购"
     bom_categories: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
     quantity_status: blocked_by_route_takeoff_and_panel_labels
-    note: "仅有3个漏保+2个空开共五路；施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行"
+    note: "仅有3个漏保+2个空开共五路；施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行。普通PVC明线槽优先用水泥钉/钢钉或适配基层的免钉方式固定，不把冲击钻列为预购工具；只有硬基层或承重固定确需膨胀件时再临时解决。"
 
   - id: BUY-0022
     category: windows
