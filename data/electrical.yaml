@@ -1,6 +1,6 @@
 version: 1
-updated: "2026-09-01"
-status: preliminary_discussion_baseline
+updated: "2026-09-26"
+status: design_frozen_pending_onsite_measurement
 drawing_property: "讨论方案，不是施工图或通电批准；无PE为既定条件，线径、保护器、端子及绝缘/极性/漏保测试结果仍须现场核验与合格电工复核"
 
 confirmed_conditions:
@@ -20,6 +20,12 @@ confirmed_conditions:
     surface_segment: "E-HOLE-01至卧室西墙E-BOX-BED-FAN调速器暗盒"
     concealed_segment: "E-BOX-BED-FAN至卧室中心吊扇"
     reuse_gate: "施工前完成通断与绝缘检查"
+
+onsite_assumptions:
+  owner_tools: "业主本轮购买万用表，并准备绝缘螺丝刀、剥线钳、斜口钳/尖嘴钳；默认联系电工无工具上门"
+  professional_test_tools: "绝缘电阻和漏保动作等专业检测仪表另行借/租或由终检人员提供；万用表不能替代"
+  raceway_fixing: "普通PVC明线槽优先水泥钉/钢钉或适配基层的免钉方式；不把冲击钻列为预购工具，只有硬基层/承重固定确需膨胀件时再临时解决"
+  timing: "9/28现场复核并冻结依赖铭牌/负载/路线的细节；10/3目标终装和终检"
 
 design_principles:
   - "无主灯采用分散灯具和分区控制，不为每盏灯单独设置配电箱回路"
@@ -123,7 +129,7 @@ lighting_zones:
   - { id: LZ-04, room: living_room, fixture: "落地灯、书桌灯等插接式任务灯", controls: ["灯具开关或智能插座"], status: planned }
   - { id: LZ-05, room: bedroom, fixture: "暖色环境灯+床头/窄桌任务灯", controls: ["门口实体开关", "床头无线场景按钮可选"], status: planned }
   - { id: LZ-06, room: kitchen, fixture: "基础漫射灯", controls: ["实体开关"], status: planned }
-  - { id: LZ-07, room: kitchen, fixture: "台面任务灯", controls: ["独立实体开关"], status: planned }
+  - { id: LZ-07, room: kitchen, fixture: "台面任务灯/灯带", controls: ["入住后按需"], status: deferred_until_after_move_in, note: "厨房双层台面灯带本轮不做；入住后如确有需要，优先成套插接式低压任务灯/灯带，避免新增固定220V线路" }
   - { id: LZ-08, room: bathroom, fixture: "防潮基础灯+镜前灯预留", controls: ["实体开关"], status: blocked_by_safety_review }
   - { id: LZ-09, room: balcony, fixture: "充电灯或开门时临时插接灯具", controls: ["灯具本体开关"], status: deferred_until_after_move_in, permanent_power: false }
 
@@ -229,7 +235,7 @@ cable_plan:
     - { item: "BVVB 2×1.5mm²", quantity_m: 50, purpose: "固定照明成对供电" }
     - { item: "BV 1×1.5mm²控制线", candidate_color: "红色", color_status: "待电工按当地要求和全屋线色规则冻结", quantity_m: 50, purpose: "开关回线及吊扇受控相线" }
   lighting_purchase_gate:
-    pass_if: "10月1日确认MCB-04铭牌，并由合格电工结合全屋非卫浴照明总负载、线长、敷设及产品明确确认其保护1.5mm²线路"
+    pass_if: "9月28日确认MCB-04铭牌，并由合格电工结合全屋非卫浴照明总负载、线长、敷设及产品明确确认其保护1.5mm²线路"
     on_pass: "购买两种1.5mm²线各50m"
     on_fail: "不安装1.5mm²固定照明；走廊灯带改接RCBO-03常电插座+智能插座，其他空间暂用插接式灯具"
   rejected_option: "不采用全屋2.5mm²照明；它增加成本、线槽尺寸与盒内拥挤，也不能修复保护器不匹配"
