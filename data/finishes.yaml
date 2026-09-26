@@ -34,7 +34,7 @@ waterproof_or_moisture_zones:
   - { zone: "客厅西南角天花板", scope: "疑似顶楼雨漏；室内仅做清理、观察及明确点/缝的局部背水面堵漏", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
-  - { zone: "厨房水槽墙壁", reason: "邻近水点且铁质排水管疑似渗漏", status: blocked_by_repair, risk_ref: SAF-0011 }
+  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管疑似渗漏；瓷砖砌水槽计划做额外防水", status: blocked_by_repair, risk_ref: SAF-0011, note: "先修铁管漏点；S2只用于合适的水泥/砂浆基层。光滑釉面瓷砖需按产品说明做清洁、打毛/界面处理，不能把直接涂刷视为默认方案" }
 
 product_candidates:
   - { item: "卫生间防水涂料", candidate: "三棵树柔韧型S2室内防水；京东常见18kg灰色卫生间/厨房通用规格", procurement_ref: BUY-0010 }
