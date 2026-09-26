@@ -99,11 +99,14 @@ items:
     seller_stated_coverage: "约50㎡一遍/桶；用户截图称5L、净含量4.5kg，施工时兑水约1000mL"
     planned_quantity: 3
     unit: 桶
+    actual_unit_price_cny: 149
+    actual_total_cny: 447
     quantity_status: ordered
     order_date: "2026-09-26"
     shipping_origin: "沈阳"
     shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
     delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
+    seller_application_note: "每桶底漆约加1L纯净水；3桶合计准备至少3L纯净水"
     status: ordered
 
   - id: BUY-0014
@@ -114,7 +117,9 @@ items:
     seller_stated_coverage: "约30㎡两遍/桶；用户截图称5L、净含量5.8kg，不兑水直接刷"
     planned_quantity: 4
     unit: 桶
-    quantity_status: pending_customer_confirmation_for_near_120m2
+    actual_unit_price_cny: 299
+    actual_total_cny: 1196
+    quantity_status: ordered
     target_color: "1875近可可蛋奶（墙面与天花板统一同色）"
     batch_requirement: "4桶同色同批次"
     order_date: "2026-09-26"
@@ -122,6 +127,7 @@ items:
     shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
     delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
     order_note: "4桶S2面漆全部为1875，墙面与天花板统一同色；仍需到货时核对批次与桶身信息"
+    seller_application_note: "面漆原浆滚涂、不兑水；使用托盘；刷漆时关窗；室温15–25℃最适宜；底漆至第一遍面漆、第一遍至第二遍面漆均至少间隔2小时并以实际干燥状态为准；开工前联系赵哥"
     status: ordered
 
   - id: BUY-0015
@@ -131,8 +137,8 @@ items:
     planned_unit_price_cny_approx: 70
     planned_quantity: 1
     unit: 套
-    contents_from_seller_screenshot: ["大滚筒×2", "小滚筒×2", "刷子×2", "托盘×2"]
-    included_extra: "卖家另赠2个托盘"
+    contents_from_seller_screenshot: ["大滚筒×2", "小滚筒×2", "刷子×2"]
+    included_extra: "卖家另赠托盘×2"
     actual_price_cny: 70
     note: "不重复购买滚筒/刷子/托盘；伸缩接长杆、局部批刀/铲刀、砂纸、美纹纸与保护膜另备"
     order_date: "2026-09-26"
