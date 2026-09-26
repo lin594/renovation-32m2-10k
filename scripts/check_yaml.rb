@@ -131,7 +131,7 @@ errors << "budget.yaml overall_budget_cny 应为10000" unless budget["overall_bu
 errors << "budget.yaml contingency_cny 应为700" unless budget["contingency_cny"] == 700
 {
   "october_trip_reserve_cny" => 700,
-  "paint_and_tools_plan_cny" => 2_012,
+  "paint_and_tools_plan_cny" => 299,
   "contingency_cny" => 700
 }.each do |key, expected|
   budget_actual = budget_gate[key]
