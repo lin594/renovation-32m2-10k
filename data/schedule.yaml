@@ -69,8 +69,10 @@ remote_preparation_0926_0927:
   - id: PREP-01
     item: "乳胶漆定色与下单"
     details:
-      - "已于2026-09-26下单：底漆3桶 + S2 1875面漆4桶 + 70元工具套装（另赠2托盘）"
+      - "已于2026-09-26支付1713元：底漆3桶（149×3）+ S2 1875面漆4桶（299×4）+ 70元工具套装（赠2托盘）"
       - "墙面与天花板统一1875，不拆白顶"
+      - "底漆每桶约加1L纯净水；施工前准备至少3L"
+      - "面漆原浆滚涂、不兑水；使用托盘；刷漆时关窗；室温15–25℃最适宜；两道间隔至少2小时并以实际干燥状态为准；开工前联系赵哥"
       - "卖家确认9/26下午从沈阳发物流，预计约3天到开封"
       - "若9/29上午尚未到货，先做基层清理/局部腻子/打磨除尘，不等待乳胶漆"
   - id: PREP-02
@@ -174,11 +176,11 @@ january_single_worker_sequence:
 budget_gate:
   overall_budget_cny: 10000
   october_trip_reserve_cny: 700
-  paint_and_tools_plan_cny: 2012
+  paint_and_tools_plan_cny: 299
   contingency_cny: 700
   actuals_source: "data/ledger.csv"
   generated_status_ref: "PROJECT_STATUS.md"
-  note: "乳胶漆实际已改为3底+4面+1套工具，但成交价未确认前仍沿用2012元保守预留上限"
+  note: "9/26已支付乳胶漆与卖家工具套装1713元并记入ledger；当前仅保留299元作为未购小工具/耗材预留"
   feasibility_status: unproven_until_essential_quotes
   quote_gate_ref: "data/budget.yaml#feasibility"
 
