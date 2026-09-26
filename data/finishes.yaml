@@ -37,7 +37,7 @@ waterproof_or_moisture_zones:
   - { zone: "厨房水槽墙壁", reason: "邻近水点且铁质排水管疑似渗漏", status: blocked_by_repair, risk_ref: SAF-0011 }
 
 product_candidates:
-  - { item: "卫生间防水涂料", candidate: "三棵树S2防水（与小建刷新乳胶漆S2不是同一产品；准确型号/用途继续核对）", procurement_ref: BUY-0010 }
+  - { item: "卫生间防水涂料", candidate: "三棵树柔韧型S2室内防水；京东常见18kg灰色卫生间/厨房通用规格", procurement_ref: BUY-0010 }
   - { item: "墙固/界面剂", procurement_ref: BUY-0011 }
   - { item: "腻子", purchase_channel: offline, procurement_ref: BUY-0012 }
   - { item: "底漆", candidate: "小建刷新S2底漆", stated_coverage: "约50㎡一遍/桶（用户截图）", procurement_ref: BUY-0013 }
