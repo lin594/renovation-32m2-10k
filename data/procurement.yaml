@@ -82,11 +82,13 @@ items:
     category: waterproofing
     room: multiple
     item: "防水涂料"
-    candidate: "三棵树漆室内防水涂料 柔韧型S2，京东常见规格18kg、灰色、卫生间/厨房通用"
+    candidate: "三棵树漆室内防水涂料 柔韧型S2，灰色18kg、卫生间/厨房通用（京东自营在售）"
     status: not_purchased
     purchase_gate: ["确认具体S2 SKU", "适用卫生间地面/墙根", "组分配比", "推荐厚度", "单位用量", "施工与固化温度", "贴砖兼容性", "18kg余料是否可分组分保存"]
     quantity_note: "卫生间设计净地面约0.79㎡；若加约30cm墙根上翻，总施工面约1.87㎡。按三棵树聚合物水泥防水同类产品1mm厚约2.1–2.3kg/㎡量级估算，约需3.9–4.3kg；18kg对本卫生间单独使用明显偏大，不因包装大而无意义加厚。"
-    channel: "优先京东自营/官方渠道；下单前先确认是否存在更小规格或可分批配料保存"
+    channel: "计划2026-09-27通过京东下单并直送装修房；开封通常次日达，少数第三天到。18kg重货不寄2km外代收点"
+    order_timing: "2026-09-27；目标9/28到，慢则9/29到，仍衔接9/29防水施工"
+    mixing_rule: "到货后读取桶身/合格证确认液粉组分、实际配比、遍数/厚度与固化时间；不要一次把18kg全部混合，只有标签明确允许时才按比例分批配料"
   - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "10月到开封后线下比价购买", status: not_purchased }
   - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "10月到开封后线下比价购买", status: not_purchased }
   - id: BUY-0013
@@ -110,7 +112,7 @@ items:
     planned_quantity: 4
     unit: 桶
     quantity_status: pending_customer_confirmation_for_near_120m2
-    target_color: "1875近可可蛋奶（暂定）"
+    target_color: "1875近可可蛋奶（墙面与天花板统一同色）"
     batch_requirement: "4桶同色同批次"
     purchase_window: "2026-09-26微信客服下单"
     order_gate: "当前未扣三处外窗面积约123.99㎡；4桶理论覆盖120㎡两遍，下单前让客服确认该面积口径与施工损耗是否可接受"
