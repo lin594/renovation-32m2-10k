@@ -97,7 +97,7 @@ active_tasks:
     phase: doors_windows
     item: "选择并购买卧室门"
     status: todo
-  - { id: TASK-0011, phase: waterproof_surfaces, item: "检查并修复厨房水槽铁质排水管疑似渗漏", status: todo }
+  - { id: TASK-0011, phase: waterproof_surfaces, item: "检查并修复厨房老铁下水渗漏；旧瓷砖水槽基层处理后以S2作隐藏二道防水，后续再定制304不锈钢内胆/整体包槽", status: todo, schedule_window: "2026-09-28定位漏点与基层；不锈钢覆盖后置" }
   - { id: TASK-0012, phase: waterproof_surfaces, item: "核对防水/墙固/腻子/底漆/面漆产品体系与用量", status: todo }
   - { id: TASK-0013, phase: waterproof_surfaces, item: "查明客厅西墙南部、东墙南部及西南角天花板疑似受潮/雨漏来源；顶楼屋面不由业主自行登高处理", status: todo, schedule_window: "2026-09-28室内排查；持续雨漏的屋面迎水面维修外包" }
   - { id: TASK-0014, phase: waterproof_surfaces, item: "复测石塑地板叠铺后的门槛和门扇净高", status: todo }
