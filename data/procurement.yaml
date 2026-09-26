@@ -82,10 +82,11 @@ items:
     category: waterproofing
     room: multiple
     item: "防水涂料"
-    candidate: "三棵树S2防水（与小建刷新乳胶漆S2不是同一产品；准确型号待核，不凭简称下单）"
+    candidate: "三棵树漆室内防水涂料 柔韧型S2，京东常见规格18kg、灰色、卫生间/厨房通用"
     status: not_purchased
-    purchase_gate: ["准确产品型号", "适用卫生间地面", "单位用量", "成膜厚度", "施工与固化温度", "贴砖兼容性"]
-    channel: "10月到开封后线下购买重物"
+    purchase_gate: ["确认具体S2 SKU", "适用卫生间地面/墙根", "组分配比", "推荐厚度", "单位用量", "施工与固化温度", "贴砖兼容性", "18kg余料是否可分组分保存"]
+    quantity_note: "卫生间设计净地面约0.79㎡；若加约30cm墙根上翻，总施工面约1.87㎡。按三棵树聚合物水泥防水同类产品1mm厚约2.1–2.3kg/㎡量级估算，约需3.9–4.3kg；18kg对本卫生间单独使用明显偏大，不因包装大而无意义加厚。"
+    channel: "优先京东自营/官方渠道；下单前先确认是否存在更小规格或可分批配料保存"
   - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "10月到开封后线下比价购买", status: not_purchased }
   - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "10月到开封后线下比价购买", status: not_purchased }
   - id: BUY-0013
