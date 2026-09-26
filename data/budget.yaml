@@ -10,8 +10,8 @@ actuals_source: "data/ledger.csv"
 
 current_gate:
   october_trip_reserve_cny: 700
-  paint_and_tools_plan_cny: 2012
-  paint_and_tools_reserve_note: "S2现计划3桶底漆+4桶面漆+1套工具；实际成交价尚未确认，订单落地前继续保留原2012元作为保守预留上限"
+  paint_and_tools_plan_cny: 299
+  paint_and_tools_reserve_note: "乳胶漆订单1713元已于9/26实际支付并进入ledger；原2012元涂装/工具预留中剩余299元继续覆盖万用表、水平尺、伸缩杆、批刀/砂纸/保护等未采购小工具与耗材，避免与已支付漆款重复预留"
   contingency_cny: 700
   calculation: "其余工作可用上限 = overall_budget_cny - ledger累计支出 - 交通预留 - 涂装预留 - 应急金"
   income_policy: "保守门禁不使用回收收入冲抵支出；现金视角另在PROJECT_STATUS.md展示"
