@@ -99,9 +99,12 @@ items:
     seller_stated_coverage: "约50㎡一遍/桶；用户截图称5L、净含量4.5kg，施工时兑水约1000mL"
     planned_quantity: 3
     unit: 桶
-    quantity_status: approved_for_order
-    purchase_window: "2026-09-26微信客服下单"
-    status: not_purchased
+    quantity_status: ordered
+    order_date: "2026-09-26"
+    shipping_origin: "沈阳"
+    shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
+    delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
+    status: ordered
 
   - id: BUY-0014
     category: paint
@@ -114,9 +117,12 @@ items:
     quantity_status: pending_customer_confirmation_for_near_120m2
     target_color: "1875近可可蛋奶（墙面与天花板统一同色）"
     batch_requirement: "4桶同色同批次"
-    purchase_window: "2026-09-26微信客服下单"
-    order_gate: "当前未扣三处外窗面积约123.99㎡；4桶理论覆盖120㎡两遍，下单前让客服确认该面积口径与施工损耗是否可接受"
-    status: not_purchased
+    order_date: "2026-09-26"
+    shipping_origin: "沈阳"
+    shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
+    delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
+    order_note: "4桶S2面漆全部为1875，墙面与天花板统一同色；仍需到货时核对批次与桶身信息"
+    status: ordered
 
   - id: BUY-0015
     category: tool
@@ -126,9 +132,12 @@ items:
     planned_quantity: 1
     unit: 套
     contents_from_seller_screenshot: ["大滚筒×2", "小滚筒×2", "刷子×2", "托盘×2"]
+    included_extra: "卖家另赠2个托盘"
+    actual_price_cny: 70
     note: "不重复购买滚筒/刷子/托盘；伸缩接长杆、局部批刀/铲刀、砂纸、美纹纸与保护膜另备"
-    purchase_window: "与乳胶漆同单"
-    status: not_purchased
+    order_date: "2026-09-26"
+    shipment_status: "与乳胶漆同票/同批物流发出，预计约3天到开封"
+    status: ordered
 
   - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", channel: "10月现场复测、线下比价后购买", status: not_purchased }
   - id: BUY-0017
