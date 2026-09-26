@@ -45,7 +45,7 @@ product_candidates:
   - { item: "刷漆工具套装", candidate: "小建刷新S2家工具套装", planned_price_cny_approx: 70, procurement_ref: BUY-0015 }
 
 latex_paint_quantity_model:
-  status: planned_pending_final_color_and_order
+  status: ordered_pending_delivery
   task_ref: TASK-0017
   measurement_basis:
     ceiling_height_m: 2.8
@@ -66,15 +66,18 @@ latex_paint_quantity_model:
     primer: "3桶可按约150㎡一遍覆盖，当前足够"
     topcoat: "4桶按约120㎡两遍覆盖；余量很小，依赖外窗扣减和实际施工损耗"
   procurement_decision:
-    status: planned_pending_color_and_customer_confirmation
+    status: ordered
     primer_buckets: 3
     topcoat_buckets: 4
     tool_sets: 1
     color_code: "1875"
     color_name: "近可可蛋奶"
     color_scope: "墙面与天花板统一同色，不拆白顶"
-    timing: "2026-09-26微信客服下单"
-    requirements: ["下单前用已收到小料在自然光/室内暖光下最终确认1875", "确认4桶面漆可覆盖接近120㎡两遍", "确认面漆同色同批次", "确认后补单的色差/批次处理方式", "确认生产日期、储存与施工温度、重涂间隔"]
+    order_date: "2026-09-26"
+    shipment: "沈阳发物流，卖家预计约3天到开封；2026-09-26下午发货"
+    tool_set_price_cny: 70
+    tool_set_extra: "另赠2个托盘"
+    delivery_check: ["底漆3桶", "1875面漆4桶", "工具套装1套", "核对4桶面漆批次", "桶身无破损/渗漏", "拍生产/批次/色号留档"]
   missing_measurements:
     - "客厅、卧室、厨房主要外窗实际高度及窗台高度"
     - "柜体、固定设备等明确不涂区域的最终尺寸"
