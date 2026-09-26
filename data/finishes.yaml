@@ -56,8 +56,15 @@ latex_paint_quantity_model:
     balcony_rule: "阳台只刷顶面，不刷墙面"
   area_basis: "实际需要乳胶漆的墙面和顶面净展开面积；扣除门窗、厨卫1.8m以下瓷砖区及明确不涂区域"
   seller_coverage:
-    primer: "5L桶、净含量4.5kg；客服说明兑水约1000mL后滚涂约50㎡一遍"
-    topcoat: "5L桶、净含量5.8kg；客服说明不兑水直接滚涂约30㎡两遍"
+    primer: "5L桶、净含量4.5kg；客服说明每桶加约1L纯净水后滚涂约50㎡一遍"
+    topcoat: "5L桶、净含量5.8kg；客服说明原浆滚涂、不兑水，约30㎡两遍"
+  seller_application_guidance:
+    pure_water_for_primer: "至少3L；3桶×约1L/桶"
+    tray_required: true
+    windows_during_rolling: "关窗"
+    preferred_indoor_temperature_c: [15, 25]
+    minimum_interval: "底漆→第一遍面漆、第一遍→第二遍面漆均至少2小时，并以实际干燥状态为准"
+    support_contact: "开工前联系赵哥"
   provisional_takeoff_m2:
     total_before_three_external_window_deductions: 123.99
     required_window_deduction_for_four_topcoat_buckets: 3.99
