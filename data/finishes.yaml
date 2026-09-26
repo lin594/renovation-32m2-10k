@@ -5,7 +5,7 @@ status: planning
 design_direction:
   primary: "宋氏美学"
   supporting: ["侘寂", "中古"]
-  color_temperature: "偏暖奶油；小建刷新S2 1875暂定（近可可蛋奶）"
+  color_temperature: "偏暖奶油；小建刷新S2 1875（近可可蛋奶），墙面与天花板统一同色"
   avoid: ["冷白", "高亮塑料感", "与整体冲突的现有窗帘风格"]
 
 existing_substrate:
@@ -72,6 +72,7 @@ latex_paint_quantity_model:
     tool_sets: 1
     color_code: "1875"
     color_name: "近可可蛋奶"
+    color_scope: "墙面与天花板统一同色，不拆白顶"
     timing: "2026-09-26微信客服下单"
     requirements: ["下单前用已收到小料在自然光/室内暖光下最终确认1875", "确认4桶面漆可覆盖接近120㎡两遍", "确认面漆同色同批次", "确认后补单的色差/批次处理方式", "确认生产日期、储存与施工温度、重涂间隔"]
   missing_measurements:
