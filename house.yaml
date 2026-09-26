@@ -291,7 +291,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       note: "北侧燃气管计划被包含在该瓷砖台面下方"
     - { item: "灶台", location: "架空瓷砖台面上方、厨房东端靠北", note: "油烟机挂北窗上；与燃气管、伸缩杆和瓷砖的净空待核验" }
     - { item: "壁龛(已有)", location: "厨房东墙(y=5)近北端", use: "放调料" }
-    - { item: "水槽", rect: [1.2, 2, 3, 3.4], note: "西南角；台面宽度受滑门停泊位限制（见issues）" }
+    - { item: "水槽", rect: [1.2, 2, 3, 3.4], note: "现为瓷砖砌水槽/台体；本轮计划清洁、修补并以S2作隐藏二道防水，后续定制304不锈钢内胆/整体包槽覆盖。内胆由原砌体承重，S2不承担结构或粘结；排水检修口不得永久封死。台面宽度仍受滑门停泊位限制（见issues）" }
     - { item: "二层木柜(已有)", location: "水槽与北墙现有台面之间", height_relation: "与现有台面平齐，洗碗机计划放在其上方", condition: "受潮略有损坏", decision: "预算允许时可换同位置替代柜；继续使用前须确认承重、水平、抗振和防潮" }
     - { item: "洗碗机(已有)", footprint_nominal: [0.6, 1.2, 3, 3.6], location: "水槽北侧二层木柜/替代柜上方", vertical_relation: "叠放", inventory_ref: INV-0013, requirements: ["水槽进水处独立开关", "排水软管直接排入水槽并固定", "三孔常电+无PE标识", "设备级漏保候选"], status: "待搬运、复测和安装" }
   bathroom:   # 全间按湿区(wet room)设计
@@ -339,6 +339,7 @@ issues:   # AI分析发现的问题，待用户决策
   - { id: bath_ventilation, desc: "卫生间无外窗，仅厨卫高窗通风；吊顶内有无排风井待确认" }
   - { id: bath_heater_splash, desc: "浴霸位于卫生间东墙偏北，业主担心触水/漏电风险", risk_ref: SAF-0003 }
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
+  - { id: kitchen_sink_overlay, desc: "旧瓷砖砌水槽外观差，本轮仅做基层修补+S2隐藏防水，后续定制304不锈钢内胆/整体包槽作为最终接水与易清洁表面；定制前须复测内口长宽深、翻边、排水和龙头孔位", status: planned_deferred }
   - { id: kitchen_upper_counter, desc: "伸缩杆+三块瓷砖架空台面同时承载锅具/灶台，并计划覆盖北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
   - { id: dishwasher_cabinet_stack, desc: "洗碗机叠放在受潮二层木柜或同位置替代柜上；须先保证承重、水平、抗振、开门和软管固定", risk_ref: SAF-0022 }
   - { id: top_floor_rain_leak, desc: "房屋位于四楼顶层；客厅西南角天花板存在疑似雨漏水迹。业主恐高，不自行上屋顶；室内只做观察、清理和明确点/缝的局部背水面堵漏，持续雨漏的屋面迎水面维修交物业/防水人员", risk_ref: SAF-0009 }
