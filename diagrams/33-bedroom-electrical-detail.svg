@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bedroom-electrical-detail" role="img">
 <title>33 卧室插座与吊扇控制详图</title>
-<desc>原暗盒调速器、床南/床北明装插座及两回路分离规则</desc>
+<desc>RCBO-01连续卧室主干、吊扇调速器与床侧明装插座</desc>
 
 <defs>
   <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -32,14 +32,14 @@
 
 <rect width="1400" height="850" fill="#fbfaf7"/>
 <text x="70" y="52" class="title">33 卧室插座与吊扇控制详图</text>
-<text x="70" y="78" class="subtitle">原暗盒调速器、床南/床北明装插座及两回路分离规则</text>
+<text x="70" y="78" class="subtitle">RCBO-01连续卧室主干、吊扇调速器与床侧明装插座</text>
 
 <rect x="90" y="120" width="820" height="560" rx="16" fill="#ece8f7" stroke="#475569" stroke-width="5"/>
 <text x="500" y="154" class="note bold center">卧室西墙与床两侧｜局部展开示意</text>
 <rect x="255" y="230" width="440" height="250" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="475" y="355" class="room">双人床</text><text x="475" y="379" class="roomsub">北侧与南侧各需常电插座</text>
 <circle cx="120" cy="520" r="14" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="120" y="524" class="micro center">01</text><text x="92" y="548" class="micro blue">卧室门洞北端</text>
 
-<g data-circuit="MCB-04" data-terminal-scope="fan-control-only">
+<g data-circuit="RCBO-01" data-terminal-scope="fan-control-branch">
  <path d="M134 520H165V430H205" fill="none" stroke="#f59e0b" stroke-width="5" data-route-kind="surface"/>
  <rect x="205" y="400" width="82" height="62" rx="5" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" data-box-type="existing-recessed" data-device="fan-speed-controller"/>
  <text x="246" y="423" class="small bold center">原暗盒</text><text x="246" y="443" class="micro center">仅吊扇调速器</text>
@@ -48,18 +48,18 @@
 </g>
 <text x="430" y="180" class="small purple center">调速器 → 吊扇：既有暗埋线，复用前测通断与绝缘</text>
 
-<g data-circuit="RCBO-01" data-terminal-scope="bed-sockets-only">
+<g data-circuit="RCBO-01" data-terminal-scope="bed-socket-branches">
  <path d="M134 520H165V500H310V465" fill="none" stroke="#0284c7" stroke-width="5" data-route-kind="surface"/>
  <rect x="305" y="425" width="88" height="72" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" data-box-type="surface-bed-south"/>
  <text x="349" y="451" class="small bold center">床南明盒</text><text x="349" y="472" class="micro center">常电插座</text>
  <path d="M165 500V185H720" fill="none" stroke="#0284c7" stroke-width="5" data-route-kind="surface"/>
  <rect x="720" y="155" width="88" height="72" rx="5" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" data-box-type="surface-bed-north"/>
  <text x="764" y="181" class="small bold center">床北明盒</text><text x="764" y="202" class="micro center">常电插座</text>
- <rect x="165" y="482" width="82" height="38" rx="6" fill="#fff" stroke="#0284c7" stroke-width="2" data-junction="JB-BED"/>
- <text x="206" y="497" class="micro bold center">JB-BED</text><text x="206" y="512" class="micro center">PCT短尾线</text>
+ <rect x="165" y="482" width="96" height="38" rx="6" fill="#fff" stroke="#0284c7" stroke-width="2" data-branch-pattern="distributed"/>
+ <text x="213" y="497" class="micro bold center">卧室连续主干</text><text x="213" y="512" class="micro center">就地T接短尾线</text>
 </g>
-<line x1="292" y1="390" x2="292" y2="505" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 5"/><text x="300" y="390" class="micro red">不同回路分盒 / 分槽 / 分端子</text>
+<line x1="292" y1="390" x2="292" y2="505" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 5"/><text x="300" y="390" class="micro red">同一RCBO主干；调速器与插座仍分盒</text>
 <rect x="110" y="590" width="760" height="62" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="132" y="616" class="small red">一个暗盒不够：保留原暗盒给调速器，在旁边加独立明盒插座；不叠压多根铜鼻子。</text><text x="132" y="638" class="small red">两芯L/N没有PE：PE端子保持未连接并贴标；绝缘、极性和漏保实测通过后才通电。</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">33 现场装配检查</text><text x="994" y="196" class="note">橙：空开4的吊扇控制回路</text><text x="994" y="225" class="note">蓝：漏保1的卧室常电插座回路</text><text x="994" y="254" class="note">紫点线：调速器后的既有暗埋线</text><text x="994" y="283" class="note">床南明盒与调速器暗盒相邻但独立</text><text x="994" y="312" class="note">床北使用独立明装插座</text><text x="994" y="341" class="note">JB-BED另分空调、床北、床南</text><text x="994" y="370" class="note">普通插座不由智能墙壁开关供电</text><text x="994" y="399" class="note">智能插座只插在常电插座上</text><text x="994" y="428" class="note">不同回路不得共用端子</text><text x="994" y="457" class="note red">断电、验电后施工；绝缘需专业仪表</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="524" class="small">吊扇受控相线</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#0284c7" stroke-width="5"/><text x="1044" y="553" class="small">卧室漏保常电</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="582" class="small">既有暗埋线</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">33 现场装配检查</text><text x="994" y="196" class="note">橙：RCBO-01主干分出的吊扇控制支线</text><text x="994" y="225" class="note">蓝：RCBO-01卧室连续主干 / 常电支线</text><text x="994" y="254" class="note">紫点线：调速器后的既有暗埋线</text><text x="994" y="283" class="note">床南明盒与调速器暗盒相邻但独立</text><text x="994" y="312" class="note">床北使用独立明装插座</text><text x="994" y="341" class="note">不设固定JB-BED；沿主干在需要处T接</text><text x="994" y="370" class="note">普通插座不由智能墙壁开关供电</text><text x="994" y="399" class="note">智能插座只插在常电插座上</text><text x="994" y="428" class="note">不同功能盒保持独立；T接节点必须可检修</text><text x="994" y="457" class="note red">断电、验电后施工；绝缘需专业仪表</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="524" class="small">吊扇受控相线</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#0284c7" stroke-width="5"/><text x="1044" y="553" class="small">卧室漏保常电</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="582" class="small">既有暗埋线</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>
