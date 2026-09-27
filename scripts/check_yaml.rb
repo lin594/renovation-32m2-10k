@@ -174,14 +174,10 @@ expected_circuits = Set["RCBO-01", "RCBO-02", "RCBO-03", "MCB-04", "MCB-05"]
 actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
 errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
 
-junctions = Array(electrical["junction_boxes"])
-active_junctions = junctions.select { |junction| junction["status"] == "active_planned" }
-expected_junctions = Set["JB-L4", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV", "JB-BATH"]
-actual_junctions = active_junctions.map { |junction| junction["id"] }.to_set
-errors << "electrical.yaml 应有六个逻辑分线节点且不得保留JB-L5" unless active_junctions.length == 6 && actual_junctions == expected_junctions
-junctions_by_id = active_junctions.to_h { |junction| [junction["id"], junction] }
-errors << "2至3路节点应使用PCT-62候选" unless %w[JB-R3 JB-BED JB-BATH].all? { |id| junctions_by_id.dig(id, "terminal_candidate").to_s.include?("PCT-62") }
-errors << "4路节点应使用五孔接线型L/N各一只候选" unless %w[JB-KIT JB-LIV JB-L4].all? { |id| junctions_by_id.dig(id, "terminal_candidate").to_s.include?("五孔") }
+branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
+errors << "electrical.yaml 应改为分布式T接树干模型且节点数现场冻结" unless electrical.dig("branch_nodes", "model") == "distributed_along_trunk" && electrical.dig("branch_nodes", "fixed_count").nil?
+errors << "客厅高负载节点必须位于RCD-LIV-01下游并只分空调/冰箱" unless branch_nodes.any? { |node| node["id"] == "JB-LIV-HIGH" && node["upstream_node"] == "RCD-LIV-01" && Array(node["branches"]).to_set == Set["客厅空调", "冰箱"] }
+errors << "卫生间节点必须位于RCD-BATH-01下游" unless branch_nodes.any? { |node| node["id"] == "JB-BATH" && node["upstream_node"] == "RCD-BATH-01" }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
@@ -189,36 +185,35 @@ errors << "electrical.yaml 插座组数明细应合计15组" unless outlets["tot
 errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
 
 sofa_robot = outlets.dig("living_room", "sofa_robot_branch") || {}
-errors << "扫地机与沙发应共用RCBO-03分支路径但保留两个独立插座点" unless sofa_robot["id"] == "LR-SOFA-ROBOT" && sofa_robot.dig("lower_robot_socket", "supply") == "always_on" && sofa_robot.dig("lower_robot_socket", "smart_control") == "forbidden" && sofa_robot.dig("upper_sofa_socket", "smart_plug_optional") == true
+errors << "扫地机与沙发应共用RCBO-03分支路径但保留两个独立插座点" unless sofa_robot["id"] == "LR-SOFA-ROBOT" && sofa_robot["circuit"] == "RCBO-03" && sofa_robot.dig("lower_robot_socket", "supply") == "always_on" && sofa_robot.dig("lower_robot_socket", "smart_control") == "forbidden" && sofa_robot.dig("upper_sofa_socket", "smart_plug_optional") == true
 
 balcony = electrical.dig("confirmed_conditions", "balcony") || {}
 errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
 
 terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
-errors << "electrical.yaml 不得把PCT逻辑节点直接写成实购物理数量" unless electrical.dig("terminal_policy", "logical_node_count") == 6 && terminal_procurement["physical_quantity"].nil? && terminal_procurement["status"] == "blocked_by_product_topology_and_protection_review"
+errors << "T接端子不得在现场线种/截面与产品适配核验前写死采购数量" unless electrical.dig("terminal_policy", "strategy").to_s.include?("分布式T接") && terminal_procurement["physical_quantity"].nil? && terminal_procurement["status"] == "blocked_by_onsite_wire_and_terminal_survey"
+errors << "固定布线T接方案必须明确拒绝汽车线束类穿刺夹" unless electrical.to_s.include?("汽车线束类廉价穿刺夹")
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
 
-terminal_families = electrical.dig("terminal_policy", "product_family_plan") || {}
-pct_62 = electrical.dig("terminal_policy", "pct_62") || {}
-errors << "PCT-62必须记录为二进六出并分出3组L/N" unless pct_62["topology"].to_s.include?("2进6出") && pct_62["topology"].to_s.include?("3组L/N")
-errors << "端子最低SKU应为PCT-62一包+五孔接线型一包，PCT-42首批不买" unless terminal_families.dig("branch_type", "candidate").to_s.include?("PCT-62") && terminal_families.dig("branch_type", "initial_packs") == 1 && terminal_families.dig("splice_type", "candidate").to_s.include?("五孔") && terminal_families.dig("splice_type", "initial_packs") == 1 && Array(terminal_families["initial_exclusions"]).include?("PCT-42")
-errors << "串联型只能作为条件购物车且硬线最大4mm²" unless terminal_families.dig("series_type", "cart_only") == true && terminal_families.dig("series_type", "hard_wire_max_mm2") == 4
-
 terminal_buy = procurement_by_id["BUY-0025"] || {}
-minimum_cart = Array(terminal_buy["provisional_minimum_cart"])
-errors << "BUY-0025最低购物车应恰好两种端子且每种10只/包" unless minimum_cart.length == 2 && minimum_cart.all? { |item| item["packs"] == 1 && item["pieces_per_pack"] == 10 } && minimum_cart.any? { |item| item["item"].to_s.include?("PCT-62") } && minimum_cart.any? { |item| item["item"].to_s.include?("五孔") }
+errors << "BUY-0025不得保留旧PCT-62+五孔型固定最低购物车" if terminal_buy.key?("provisional_minimum_cart")
+errors << "BUY-0025应等待现场T接端子适配核验" unless terminal_buy.to_s.include?("T接") && terminal_buy["status"] == "not_purchased"
 
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
-expected_lighting = Set["卧室固定照明", "卧室吊扇", "厨房固定照明", "走廊A/B固定照明", "客厅固定照明", "走廊A 220V灯带"]
-errors << "MCB-04应合并全部非卫浴固定照明及卧室吊扇" unless Array(circuits_by_id.dig("MCB-04", "scope")).to_set == expected_lighting
+errors << "MCB-04应只承担客厅空调和冰箱" unless Array(circuits_by_id.dig("MCB-04", "scope")).to_set == Set["客厅已有空调", "客厅冰箱"]
+errors << "RCBO-01应把卧室照明/吊扇并入卧室空间主干" unless Array(circuits_by_id.dig("RCBO-01", "scope")).to_set == Set["卧室普通插座", "卧室已有空调", "卧室固定照明", "卧室吊扇"]
+errors << "RCBO-02应把厨房照明并入厨房空间主干" unless Array(circuits_by_id.dig("RCBO-02", "scope")).to_set == Set["厨房插座", "厨房固定设备", "厨房固定照明"]
+errors << "RCBO-03不得再承载客厅空调或冰箱" if Array(circuits_by_id.dig("RCBO-03", "scope")).any? { |x| x.include?("空调") || x.include?("冰箱") }
 
 layered_devices = Array(electrical.dig("layered_residual_protection", "devices"))
 device_ids = layered_devices.map { |device| device["id"] }.to_set
-expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
-errors << "分级漏保设备表必须覆盖两台空调、洗烘机、洗碗机、卫生间总保护、浴霸和镜柜" unless device_ids == expected_devices
+expected_devices = Set["SRCD-AC-BED", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-LIV-01", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
+errors << "分级漏保设备表必须覆盖卧室空调可选附加保护、洗烘/洗碗机候选保护、客厅高负载总保护和卫生间总保护" unless device_ids == expected_devices
 bath_rcd = layered_devices.find { |device| device["id"] == "RCD-BATH-01" } || {}
-errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "智能除雾镜柜", "卫生间防潮照明"]
+errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间基础照明"]
+liv_rcd = layered_devices.find { |device| device["id"] == "RCD-LIV-01" } || {}
+errors << "客厅空调和冰箱必须全部位于RCD-LIV-01下游" unless Array(liv_rcd["branches"]).to_set == Set["客厅空调", "冰箱"]
 
 electrical_text = electrical.to_s
 errors << "智能墙壁开关必须使用零火版且不得控制普通插座" unless electrical_text.include?("零火版") && electrical_text.include?("不把其受控输出接到通用插座")
