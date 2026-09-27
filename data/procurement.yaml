@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-26"
+updated: "2026-09-27"
 
 status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
@@ -176,8 +176,8 @@ items:
     room: whole_house
     item: "明装电路材料包"
     status: not_purchased
-    purchase_strategy: "9月形成初步购物车；线槽和标准小件可提前寄往另一住所，保护器、导线和端子数量在10月1日现场冻结后用京东次日补购"
-    bom_categories: ["线槽", "弯头", "三通", "底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
+    purchase_strategy: "9/28现场复测后线下优先买线槽本体与同系列转角/直接件；目标只保留常规槽+公共干槽两档，先少量试装再补。保护器、导线和T接端子按铭牌/线径冻结后采购"
+    bom_categories: ["PVC阻燃明装线槽（候选30×15常规档；公共干槽39×19或50×25现场二选一）", "同系列直接/平弯/阴角/阳角/三通", "深型明装底盒", "插座", "开关", "固定件", "线号标识", "带盖接线盒"]
     quantity_status: blocked_by_route_takeoff_and_panel_labels
     note: "仅有3个漏保+2个空开共五路；施工必须在乳胶漆达到厂家允许安装和触碰的干燥状态后进行。普通PVC明线槽优先用水泥钉/钢钉或适配基层的免钉方式固定，不把冲击钻列为预购工具；只有硬基层或承重固定确需膨胀件时再临时解决。"
 
@@ -194,28 +194,22 @@ items:
   - id: BUY-0023
     category: electrical_material
     room: whole_house
-    item: "1.5mm²照明护套线与控制线（仅购物车）"
-    status: not_purchased
-    variants:
-      - { spec: "BVVB 2×1.5mm²", quantity_m: 50, purpose: "固定照明成对供电" }
-      - { spec: "BV 1×1.5mm²控制线", candidate_color: "红色", color_status: "待电工按当地要求和全屋线色规则冻结", quantity_m: 50, purpose: "开关回线和吊扇受控相线" }
-    requirements: ["CCC及合格证", "不得用于普通插座、空调、厨房大负载或洗烘机"]
-    quantity_status: conditional_cart_only
-    purchase_strategy: "9月只加入京东购物车；10月1日由合格电工结合MCB-04铭牌、全屋非卫浴照明负载、敷设和线长确认1.5mm²保护后，各买50m"
-    fallback: "门禁不通过则不装1.5mm²固定照明；走廊灯带用RCBO-03常电插座+智能插座，其他空间暂用插接式灯具"
-    risk_ref: SAF-0014
+    item: "1.5mm²照明线旧方案"
+    status: cancelled
+    cancel_reason: "DIY优先：新建照明/开关/普通插座短支线统一2.5mm²，减少线径SKU、缩径保护判断和现场分辨"
+    replacement_ref: BUY-0024
 
   - id: BUY-0024
     category: electrical_material
     room: whole_house
-    item: "BVVB 2×2.5mm²插座护套线"
+    item: "BVVB 2×2.5mm²两芯固定布线护套线"
     status: not_purchased
     requirements: ["一卷50m", "内芯为合规相线色+淡蓝色", "CCC及合格证", "不采用蓝线改色"]
-    estimated_net_m: "42-45"
+    estimated_net_m: "原插座估算42-45m；现照明/开关也统一2.5mm²，最终总量9/28复测"
     planned_quantity_m: 50
     quantity_status: approved_initial_roll
-    purchase_strategy: "现在购买50m一卷；10月1日复测净路线，净长超过45m时用京东次日补第二卷"
-    note: "该两芯线只含L/N，不构成带PE的完整回路；按已接受的两线制方案使用时，三孔面板PE端子保持未连接并贴标。买线不等于批准安装或通电，仍须完成保护器匹配、绝缘、极性和各级漏保实测"
+    purchase_strategy: "先以50m一卷为基线；9/28按插座+照明+开关实际路线复测，不足时再补第二卷"
+    note: "默认用于新建普通小支线；开关盒按智能化预留L/N，普通开关也可使用。该两芯线不含PE；三孔面板PE端子仍保持未连接并贴标。"
 
   - id: BUY-0025
     category: electrical_connector
@@ -266,10 +260,10 @@ items:
   - id: BUY-0029
     category: electrical_protection
     room: bedroom_living_room
-    item: "两台空调插座式漏保/空调伴侣"
+    item: "两台空调漏保型插座/空调伴侣"
     status: not_purchased
     planned_quantity: 2
-    requirements: ["不大于30mA", "L/N双极切断", "TEST/RESET", "匹配空调插头及启动负载", "CCC及合格证", "不能用普通过欠压或计量产品冒充"]
+    requirements: ["不大于30mA", "L/N双极切断", "TEST/RESET", "匹配空调插头及启动负载", "CCC及合格证", "客厅空调属于MCB-04末端保护，优先固定式漏保插座/固定式空调伴侣", "不能用普通过欠压或计量产品冒充"]
     quantity_status: blocked_by_two_ac_nameplates_and_product_manuals
 
   - id: BUY-0030
@@ -284,10 +278,10 @@ items:
   - id: BUY-0031
     category: electrical_protection
     room: bathroom
-    item: "卫生间双极末端漏保及高位可检修防护箱"
+    item: "卫生间双极总漏保及门外DIN明装小箱"
     status: not_purchased
     planned_quantity: 1
-    requirements: ["额定剩余动作电流不大于30mA", "L/N双极切断", "TEST/RESET", "额定电流与MCB-05、馈线及卫浴总负载匹配", "优先室内实测干区高位", "无合格干区时改装走廊A门外"]
+    requirements: ["额定剩余动作电流不大于30mA", "L/N双极切断", "TEST/RESET", "额定电流与MCB-05、馈线及卫浴总负载匹配", "优先走廊A卫生间门外2~4位DIN明装小箱", "仅在产品说明和安装区域均确认合格时才改卫生间干区高位"]
     quantity_status: blocked_by_panel_load_product_and_dry_zone_survey
 
   - id: BUY-0032
@@ -307,6 +301,15 @@ items:
     target_zone_m: [0.85, 0.45]
     requirements: ["位于沙发与书桌之间并紧靠沙发", "优先壁挂或后置支撑", "机器人路径前方不得有落地前腿", "保留散热、取出和维护空间", "上部可用于沙发充电"]
     quantity_status: blocked_by_robot_sofa_and_desk_remeasurement
+
+  - id: BUY-0035
+    category: electrical_protection
+    room: living_room
+    item: "冰箱漏保型插座"
+    status: not_purchased
+    planned_quantity: 1
+    requirements: ["额定剩余动作电流不大于30mA", "L/N双极切断", "TEST/RESET", "保持常电", "匹配冰箱插头和MCB-04支路", "不能用普通智能插座替代"]
+    quantity_status: blocked_by_panel_and_product_selection
 
   - id: BUY-0034
     category: appliance_connection
