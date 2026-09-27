@@ -85,7 +85,7 @@ provisional_five_circuit_allocation:
     hall_to_living: "RCBO-03与MCB-04可在配电箱至E-HOLE-04前共用一根较宽明线槽；仅共享机械路径，不共享导体、N线、端子或保护器"
     after_e_hole_04: "过客厅门洞后自然分流：RCBO-03沿客厅生活区绕行；MCB-04只去空调/冰箱短路径"
     room_rule: "RCBO-01、RCBO-02分别只穿一次E-HOLE-01、E-HOLE-02；照明随所在房间RCBO主干就地分支"
-    t_branch_rule: "优先主干不断、在可检修明装底盒/接线盒内用固定布线适用的T接/分支连接器引出短尾线；不采用汽车线束类廉价穿刺夹"
+    t_branch_rule: "主干优先沿顶边/高位连续敷设；绝大多数T接发生在高位主干上的可检修带盖接线盒内，再以短垂直支线下落到坐姿/手部高度的插座和开关。低位插座盒默认只做末端，不承担主干T接；投影仪等高位设备可直接从高位主干就近分支"
   unresolved_high_loads:
     - "两台空调铭牌功率、启动/最大输入电流和现有连接方式"
     - "洗烘一体机最终型号和最大输入功率"
@@ -147,7 +147,7 @@ terminal_policy:
   device_role: "连接器只作连接/分线，不提供过载、短路、漏电保护；上游保护器必须保护全路径最小截面导线"
   trunk_branch_candidate: "固定建筑布线适用、铜导体、额定电压/电流明确、主线与支线截面范围分别明确的T接/分支连接器"
   selection_gate: "现场确认主干/支线线种与截面、保护器额定值、连接器认证和说明书后再选型；不得仅因‘免剥’或‘支持6mm²’下单"
-  enclosure: "优先把T接节点放在相邻深型明装插座底盒内；无插座可借用时才增加带盖可开启接线盒"
+  enclosure: "T接节点优先放在顶边/高位主干旁的独立带盖可开启明装接线盒内；低位插座盒原则上只收一根末端支线。仅当某个特殊点位与主干同高且确有检修空间时才允许复用设备盒"
   rules:
     - "主干不断是施工便利目标，不要求绝对免剥；若正规产品要求局部剥除绝缘并机械压紧，按说明施工"
     - "严禁汽车线束类廉价穿刺夹用于220V固定住宅布线"
@@ -163,9 +163,9 @@ branch_nodes:
   model: "distributed_along_trunk"
   fixed_count: null
   examples:
-    - { id: TN-BED, circuit: RCBO-01, pattern: "卧室主干沿墙经过空调/床侧/调速器附近，就地T接短支线" }
-    - { id: TN-KIT, circuit: RCBO-02, pattern: "厨房主干沿设备墙经过热水器、油烟机、台面、洗碗机和灯位，就地T接" }
-    - { id: TN-HALL-LIV, circuit: RCBO-03, pattern: "走廊设备架先T接，穿E-HOLE-04后沿客厅生活区连续绕行" }
+    - { id: TN-BED, circuit: RCBO-01, pattern: "卧室高位主干沿顶边走；在床侧/空调/调速器对应上方高位T接，再垂直下落到低位点；高位空调可就近短接" }
+    - { id: TN-KIT, circuit: RCBO-02, pattern: "厨房高位主干沿设备墙上沿走；在热水器、油烟机、台面、洗碗机和灯位上方高位T接，向下/向设备短支" }
+    - { id: TN-HALL-LIV, circuit: RCBO-03, pattern: "走廊/客厅主干尽量保持在顶边高位；每个低位插座在对应上方T接后垂直下落，投影仪等高位设备直接从高位主干就近分支" }
     - { id: JB-LIV-HIGH, circuit: MCB-04, branches: ["SRCD-AC-LIV→客厅空调", "SRCD-FRIDGE→冰箱"], note: "短主干就地T分；两端各自漏保，不与RCBO-03电气连接" }
     - { id: JB-BATH, circuit: MCB-05, upstream_node: RCD-BATH-01, branches: ["浴霸", "浴室柜/镜灯", "卫生间基础照明"] }
 
