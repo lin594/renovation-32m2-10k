@@ -61,7 +61,12 @@
 <g data-route-kind="high-load-short" fill="none" stroke="#f59e0b" stroke-width="4">
   <path d="M590 438H400V315H220" data-circuit="MCB-04"/>
 </g>
-<path d="M590 446H475V410" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
+<g data-device-protection="RCD-LIV-01">
+  <rect x="248" y="296" width="46" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="271" y="308" class="micro red center">2P</text><text x="271" y="320" class="micro red center">30mA</text>
+</g>
+<path d="M590 446H517V456" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
+<path d="M495 470L475 450" fill="none" stroke="#dc2626" stroke-width="3" data-bath-after-rcd="true"/>
 <circle cx="600" cy="345" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="600" y="349" class="micro center">01</text>
 <circle cx="520" cy="330" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-02"/><text x="520" y="334" class="micro center">02</text>
 <circle cx="475" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-03"/><text x="475" y="454" class="micro center">03</text>
