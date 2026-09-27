@@ -32,7 +32,7 @@
 
 <rect width="1400" height="850" fill="#fbfaf7"/>
 <text x="70" y="52" class="title">32 五回路与分级漏保拓扑图</text>
-<text x="70" y="78" class="subtitle">固定五支路、连续空间主干、分布式T接和两路MCB下游总漏保</text>
+<text x="70" y="78" class="subtitle">固定五支路、连续空间主干、分布式T接与MCB末端/总漏保</text>
 
 <rect x="55" y="115" width="205" height="575" rx="14" class="panel"/><text x="157" y="150" class="note bold center">配电箱｜固定5支路</text>
 <g data-circuit="RCBO-01"><rect x="78" y="180" width="160" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="158" y="202" class="small bold center">漏保1｜RCBO-01</text><text x="158" y="222" class="micro center">卧室全空间主干</text></g>
