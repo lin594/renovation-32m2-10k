@@ -220,29 +220,17 @@ items:
   - id: BUY-0025
     category: electrical_connector
     room: whole_house
-    item: "TYO分路/接线端子与独立检修盒"
+    item: "固定布线用T接/分支连接器"
     status: not_purchased
     requirements:
-      - "图纸固定六个逻辑分线节点；按节点支路数选择分路型或接线型，不为每种端子各买一包"
-      - "按实物内部拓扑为L/N分别提供独立极组；本户无PE，不设置虚构PE极组"
-      - "32A是每极全部端口总电流"
-      - "到货核对CCC/合格证、实物型号、内部拓扑、剥线10mm及硬/软线允许截面积"
-      - "直接上级≤32A只是端子必要条件；保护器还须匹配最小下游导线、敷设、负载及故障切断条件"
-      - "逻辑数量只有在实物确认单件含L/N独立极组时成立；若为单一公共母线须重新计数"
-    product_families:
-      - { family: "分路型", examples: ["PCT-42二进四出（2组L/N）", "PCT-62二进六出（3组L/N）"], max_hard_wire_mm2: 6, use: "L/N各进一根，再成对分出多组L/N" }
-      - { family: "串联型", examples: ["一进一出至五进五出"], max_hard_wire_mm2: 4, use: "只在必须把≤4mm²连续线分段时使用" }
-      - { family: "接线型", examples: ["二孔", "三孔", "五孔", "八孔"], max_hard_wire_mm2: 4, use: "同一导体的直通或小分支；L/N必须分别使用独立端子" }
-    pack_size_each_type: 10
-    logical_node_count: 6
-    provisional_minimum_cart:
-      - { item: "PCT-62分路型（二进六出）", packs: 1, pieces_per_pack: 10, planned_nodes: [JB-R3, JB-BED, JB-BATH], use_rule: "每只最多分3组L/N；JB-R3留一组空位", status: blocked_by_internal_topology_and_protection }
-      - { item: "五孔接线型", packs: 1, pieces_per_pack: 10, planned_nodes: [JB-KIT, JB-LIV, JB-L4], use_rule: "每节点L/N各一只，一孔进四孔出；余4只作维修备用", status: blocked_by_certification_current_and_wire_fit }
-    cart_only:
-      - { item: "二极一进一出串联型", packs: 1, pieces_per_pack: 10, buy_if: "10月确认穿墙后必须分段且导线≤4mm²；能连续敷设则不买" }
-    do_not_buy_initially: ["PCT-42", "二孔/三孔/八孔接线型", "其他串联规格"]
-    quantity_status: conditional_two_pack_baseline
-    purchase_strategy: "9月建立两包最低购物车但不下单；10月1日核对认证、内部拓扑、上级保护、最小导线和实际节点后，只购买能覆盖全部节点的最少类型"
+      - "用于220V固定建筑布线和铜导体，具有明确认证/合格证明"
+      - "额定电压、电流以及主线/支线适用截面分别明确"
+      - "优先支持主干不断的T接；是否需要局部剥绝缘按产品说明"
+      - "不得使用汽车线束类廉价穿刺夹"
+      - "节点优先放在深型明装插座底盒或独立可开启接线盒内"
+      - "库存蓝色6mm²若作N主干，连接器必须明确支持对应主线截面"
+    selection_gate: "9/28现场确认各回路保护器、拟用线种/截面、主干实际路径和节点数量后再选型号与数量"
+    note: "取消旧PCT-62+五孔型各一包的固定最低购物车；当前不按逻辑节点囤货"
 
   - id: BUY-0026
     category: lighting
