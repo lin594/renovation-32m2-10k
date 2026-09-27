@@ -1,7 +1,7 @@
 <!-- 本文件由 scripts/generate_status.rb 自动生成，请修改 data/ 真源后运行 make status。 -->
 # 项目状态
 
-数据日期：2026-09-26。实际收支唯一真源：[data/ledger.csv](data/ledger.csv)。
+数据日期：2026-09-27。实际收支唯一真源：[data/ledger.csv](data/ledger.csv)。
 
 ## 资金快照
 
