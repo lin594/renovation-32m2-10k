@@ -280,7 +280,8 @@ def electrical_low_voltage() -> str:
 <rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text x="610" y="321" class="micro">卧室门北侧暗盒</text>
 <rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
 <rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="636" y="151" class="small">卧室空调</text>
-<circle cx="196" cy="520" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="RCD-LIV-01"/><text x="208" y="540" class="micro red">空调+冰箱总漏保</text>
+<circle cx="176" cy="520" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-LIV"/><text x="154" y="548" class="micro red">空调末端漏保</text>
+<circle cx="204" cy="520" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-FRIDGE"/><text x="214" y="548" class="micro red">冰箱漏保插座</text>
 <circle cx="612" cy="190" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-BED"/><text x="630" y="190" class="micro red">末端漏保</text>
 <circle cx="360" cy="405" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-WASHER"/><text x="322" y="422" class="micro red">洗烘专用漏保</text>
 <rect x="404" y="194" width="58" height="60" class="fixed" data-appliance="dishwasher"/><text x="433" y="216" class="micro center">洗碗机</text><rect x="451" y="236" width="10" height="10" fill="#2563eb" data-outlet="dishwasher-three-hole"/><circle cx="462" cy="244" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-DISHWASHER"/><text x="474" y="250" class="micro red">三孔常电｜无PE标识</text>
@@ -304,7 +305,7 @@ def electrical_low_voltage() -> str:
         "光猫/路由器/EVE V需至少4个常电位",
         "扫地机低位常电+沙发上部充电各1点",
         "洗碗机新增三孔常电和设备级漏保候选",
-        "卧室空调/洗烘可选设备级附加保护；客厅空调+冰箱由RCD-LIV-01总保护",
+        "卧室空调/洗烘可选附加保护；客厅空调与冰箱各自末端漏保",
         "卫生间由MCB-05经门外RCD-BATH-01总漏保供电",
         "已确认两线制无PE；三孔面板须持久标识",
         "!蓝色6mm²余线改色方案未批准",
@@ -323,9 +324,9 @@ def electrical_routes() -> str:
 <g data-route-kind="high-load-short" fill="none" stroke="#f59e0b" stroke-width="4">
   <path d="M590 438H400V315H220" data-circuit="MCB-04"/>
 </g>
-<g data-device-protection="RCD-LIV-01">
-  <rect x="248" y="296" width="46" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
-  <text x="271" y="308" class="micro red center">2P</text><text x="271" y="320" class="micro red center">30mA</text>
+<g data-endpoint-protection="MCB-04-two-srcd">
+  <circle cx="235" cy="308" r="8" fill="#fff" stroke="#dc2626" stroke-width="2"/><circle cx="257" cy="308" r="8" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+  <text x="246" y="292" class="micro red center">两端各自≤30mA漏保</text>
 </g>
 <path d="M590 446H517V456" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
 <path d="M495 470L475 450" fill="none" stroke="#dc2626" stroke-width="3" data-bath-after-rcd="true"/>
@@ -388,14 +389,14 @@ def electrical_topology_v5() -> str:
 <g data-circuit="RCBO-01"><rect x="78" y="180" width="160" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="158" y="202" class="small bold center">漏保1｜RCBO-01</text><text x="158" y="222" class="micro center">卧室全空间主干</text></g>
 <g data-circuit="RCBO-02"><rect x="78" y="270" width="160" height="58" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="158" y="292" class="small bold center">漏保2｜RCBO-02</text><text x="158" y="312" class="micro center">厨房全空间主干</text></g>
 <g data-circuit="RCBO-03"><rect x="78" y="360" width="160" height="72" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/><text x="158" y="382" class="small bold center">漏保3｜RCBO-03</text><text x="158" y="402" class="micro center">玄关 / 客厅生活主干</text><text x="158" y="418" class="micro center">洗烘 / 普通照明</text></g>
-<g data-circuit="MCB-04"><rect x="78" y="470" width="160" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/><text x="158" y="492" class="small bold center">空开4｜MCB-04</text><text x="158" y="512" class="micro center">客厅空调 / 冰箱</text><text x="158" y="528" class="micro center">下游总漏保</text></g>
+<g data-circuit="MCB-04"><rect x="78" y="470" width="160" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/><text x="158" y="492" class="small bold center">空开4｜MCB-04</text><text x="158" y="512" class="micro center">客厅空调 / 冰箱</text><text x="158" y="528" class="micro center">两端各自漏保</text></g>
 <g data-circuit="MCB-05"><rect x="78" y="580" width="160" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="158" y="602" class="small bold center">空开5｜MCB-05</text><text x="158" y="622" class="micro center">卫生间专用馈线</text><text x="158" y="638" class="micro center">上游不设分支</text></g>
 
 <g fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"><path d="M238 209H305"/><path d="M238 299H305"/><path d="M238 396H305"/><path d="M238 506H305"/><path d="M238 616H305"/></g>
 <g data-branch-pattern="distributed" data-node-example="TN-BED"><rect x="305" y="175" width="140" height="68" rx="9" class="fixed"/><text x="375" y="200" class="small bold center">TN-BED</text><text x="375" y="220" class="micro center">连续主干｜就地T接</text></g>
 <g data-branch-pattern="distributed" data-node-example="TN-KIT"><rect x="305" y="265" width="140" height="68" rx="9" class="fixed"/><text x="375" y="290" class="small bold center">TN-KIT</text><text x="375" y="310" class="micro center">连续主干｜就地T接</text></g>
 <g data-branch-pattern="distributed" data-node-example="TN-HALL"><rect x="305" y="360" width="140" height="68" rx="9" class="fixed"/><text x="375" y="385" class="small bold center">TN-HALL</text><text x="375" y="405" class="micro center">玄关就地T接</text></g>
-<g data-device-protection="RCD-LIV-01"><rect x="305" y="470" width="140" height="72" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><text x="375" y="495" class="small bold center">RCD-LIV-01</text><text x="375" y="515" class="micro center">2P｜≤30mA</text><text x="375" y="531" class="micro center">先保护再二分</text></g>
+<g data-junction="JB-LIV-HIGH" data-branch-pattern="endpoint-rcd"><rect x="305" y="470" width="140" height="72" rx="9" class="fixed"/><text x="375" y="495" class="small bold center">JB-LIV-HIGH</text><text x="375" y="515" class="micro center">短主干就地T分</text><text x="375" y="531" class="micro center">两端各自漏保</text></g>
 <g data-device-protection="RCD-BATH-01"><rect x="305" y="575" width="140" height="82" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><text x="375" y="598" class="small bold center">RCD-BATH-01</text><text x="375" y="618" class="micro center">双极 / ≤30mA</text><text x="375" y="635" class="micro center">TEST / RESET</text><text x="375" y="650" class="micro red center">先保护，后分支</text></g>
 
 <g fill="none" stroke="#94a3b8" stroke-width="2.2" marker-end="url(#arrow)"><path d="M445 209H505"/><path d="M445 299H505"/><path d="M445 394H505"/><path d="M445 506H505"/><path d="M445 616H505"/></g>
@@ -404,7 +405,7 @@ def electrical_topology_v5() -> str:
 <text x="520" y="378" class="small bold">玄关设备架 → 就地T接</text><text x="520" y="405" class="small">客厅生活主干 → TN-LIV</text>
 <g data-branch-pattern="distributed" data-node-example="TN-LIV"><rect x="715" y="360" width="140" height="74" rx="9" class="fixed"/><text x="785" y="385" class="small bold center">TN-LIV</text><text x="785" y="405" class="micro center">连续生活主干</text><text x="785" y="421" class="micro center">沿途就地T接</text></g>
 <text x="875" y="374" class="small" data-device-protection="SRCD-WASHER">洗烘（附加保护候选）</text><text x="875" y="399" class="small">书桌 / 投影 / 沙发</text><text x="875" y="424" class="small">机器人低位常电</text>
-<text x="520" y="480" class="small bold">RCD-LIV-01 下游</text><text x="520" y="504" class="small">客厅空调</text><text x="520" y="528" class="small">冰箱</text>
+<text x="520" y="480" class="small bold">MCB-04 两个末端</text><text x="520" y="504" class="small" data-device-protection="SRCD-AC-LIV">客厅空调 → 末端漏保</text><text x="520" y="528" class="small" data-device-protection="SRCD-FRIDGE">冰箱 → 漏保型插座</text>
 <g data-junction="JB-BATH" data-bath-load-downstream="true"><rect x="505" y="575" width="145" height="82" rx="9" class="fixed"/><text x="577" y="600" class="small bold center">JB-BATH</text><text x="577" y="620" class="micro center">漏保后短距离分线</text><text x="577" y="638" class="micro center">最终设备现场冻结</text></g>
 <text x="675" y="588" class="small" data-device-protection="SRCD-BATH-HEATER">浴霸设备连接保护</text><text x="675" y="616" class="small" data-device-protection="SRCD-BATH-MIRROR">除雾镜柜设备连接保护</text><text x="675" y="644" class="small">卫生间基础照明</text>
 
@@ -414,18 +415,18 @@ def electrical_topology_v5() -> str:
         "恰好3个RCBO + 2个MCB",
         "MCB-04：客厅空调+冰箱短主干",
         "MCB-05：仅卫生间连续馈线",
-        "两只MCB均在分支前补2P≤30mA RCD",
+        "MCB-04两端各自漏保；MCB-05分支前总RCD",
         "T接节点沿连续主干分布，数量现场冻结",
         "客厅门洞前可共槽，过洞后两路自然分流",
         "插座共15组，卫浴2点另计设备连接",
-        "RCD-LIV-01总保护客厅空调+冰箱",
+        "客厅空调与冰箱故障互不连带断电",
         "普通插座常电；智能墙壁开关零火版",
         "机器人常电不受智能控制",
         "不再预设PCT-62/五孔端子组合",
         "连接器须适配主线/支线截面并可检修",
         "!所有参数仍受铭牌、负载和专业检测门禁",
     ])
-    return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、连续空间主干、分布式T接和两路MCB下游总漏保", topology + side)
+    return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、连续空间主干、分布式T接与MCB末端/总漏保", topology + side)
 
 
 def bathroom_electrical_detail() -> str:
