@@ -145,7 +145,7 @@ electrical:
     wiring_method: "全屋明装线槽/明管"
     installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
     schedule_ref: "data/schedule.yaml"
-    main_feed_proposal: "余下蓝色6平方线只作为与颜色标识一致的中性导体候选；优先评估用于RCBO-03等长路径的N主干，但不因粗线提高保护器额定值"
+    main_feed_proposal: "余下蓝色6平方线只作为中性导体候选；若用于单相主干，须与同回路等截面的合规相色6平方相线成对敷设，优先评估RCBO-03长直主干"
     proposal_status: "待现场按保护器、负载、线长、线槽空间、T接端子适配和全路径导体识别冻结实际用途"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
@@ -170,7 +170,7 @@ electrical:
     - { id: E-HOLE-04, location: "客厅通道口最北端", nominal_coordinate: "(x=3.2,y=3)" }
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
-    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, upstream_protection: RCD-LIV-01 }
+    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, device_protection: SRCD-AC-LIV }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, device_protection: SRCD-AC-BED }
     - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
