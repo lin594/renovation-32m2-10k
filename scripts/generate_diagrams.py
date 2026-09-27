@@ -280,7 +280,7 @@ def electrical_low_voltage() -> str:
 <rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text x="610" y="321" class="micro">卧室门北侧暗盒</text>
 <rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
 <rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="636" y="151" class="small">卧室空调</text>
-<circle cx="196" cy="520" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-LIV"/><text x="208" y="540" class="micro red">空调末端漏保</text>
+<circle cx="196" cy="520" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="RCD-LIV-01"/><text x="208" y="540" class="micro red">空调+冰箱总漏保</text>
 <circle cx="612" cy="190" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-BED"/><text x="630" y="190" class="micro red">末端漏保</text>
 <circle cx="360" cy="405" r="9" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-WASHER"/><text x="322" y="422" class="micro red">洗烘专用漏保</text>
 <rect x="404" y="194" width="58" height="60" class="fixed" data-appliance="dishwasher"/><text x="433" y="216" class="micro center">洗碗机</text><rect x="451" y="236" width="10" height="10" fill="#2563eb" data-outlet="dishwasher-three-hole"/><circle cx="462" cy="244" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-DISHWASHER"/><text x="474" y="250" class="micro red">三孔常电｜无PE标识</text>
@@ -432,7 +432,7 @@ def bathroom_electrical_detail() -> str:
 <text x="320" y="216" class="micro red center">连续 / 机械保护 / 无接头 / 无分支</text>
 <g data-device-protection="RCD-BATH-01" data-poles="L+N" data-trip-ma-max="30"><rect x="390" y="185" width="180" height="104" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="3"/><text x="480" y="211" class="small bold center">RCD-BATH-01</text><text x="480" y="234" class="small center">L+N双极｜≤30mA</text><text x="480" y="256" class="micro center">TEST / RESET｜门外可检修箱</text><text x="480" y="276" class="micro red center">必须先保护，再产生任何分支</text></g>
 <path d="M570 236H640" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
-<g data-junction="JB-BATH" data-terminal-status="logical"><rect x="640" y="195" width="150" height="84" rx="9" class="fixed"/><text x="715" y="222" class="small bold center">JB-BATH</text><text x="715" y="244" class="micro center">L/N逻辑分线</text><text x="715" y="263" class="micro center">T接/分支型号待定</text></g>
+<g data-junction="JB-BATH" data-branch-pattern="post-rcd"><rect x="640" y="195" width="150" height="84" rx="9" class="fixed"/><text x="715" y="222" class="small bold center">JB-BATH</text><text x="715" y="244" class="micro center">L/N逻辑分线</text><text x="715" y="263" class="micro center">T接/分支型号待定</text></g>
 
 <g data-bath-load-downstream="true">
  <path d="M715 279V360H260" fill="none" stroke="#0284c7" stroke-width="3"/>
