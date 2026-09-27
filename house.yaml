@@ -145,8 +145,8 @@ electrical:
     wiring_method: "全屋明装线槽/明管"
     installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
     schedule_ref: "data/schedule.yaml"
-    main_feed_proposal: "余下蓝色6平方线只作为中性导体或其他与蓝色标识一致的用途候选"
-    proposal_status: "待电工按保护器、负载、线长和全路径导体识别冻结实际用途"
+    main_feed_proposal: "余下蓝色6平方线只作为与颜色标识一致的中性导体候选；优先评估用于RCBO-03等长路径的N主干，但不因粗线提高保护器额定值"
+    proposal_status: "待现场按保护器、负载、线长、线槽空间、T接端子适配和全路径导体识别冻结实际用途"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
       lighting: "BVVB 2×1.5mm²加控制回线仅作候选；B10/C10只作初筛，仍须由电工结合敷设、线长和负载确认保护匹配后购买和使用，控制线颜色一并现场冻结"
@@ -170,7 +170,7 @@ electrical:
     - { id: E-HOLE-04, location: "客厅通道口最北端", nominal_coordinate: "(x=3.2,y=3)" }
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
-    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: RCBO-03, device_protection: SRCD-AC-LIV }
+    - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, upstream_protection: RCD-LIV-01 }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, device_protection: SRCD-AC-BED }
     - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
@@ -189,7 +189,7 @@ electrical:
     color_temperature: "2700至3000K"
     color_rendering: "优先Ra/CRI≥90"
     zones_ref: "data/electrical.yaml#lighting_zones"
-    hall_a: "计划使用220V柔性灯带；优先成套插头接智能插座，硬接时必须按产品说明在可检修接线盒内端接"
+    hall_a: "计划使用220V柔性灯带；优先成套插头接RCBO-03常电插座，硬接时必须按产品说明在可检修接线盒内端接"
 
 low_voltage:
   internet_entry:
