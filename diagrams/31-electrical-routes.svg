@@ -61,9 +61,9 @@
 <g data-route-kind="high-load-short" fill="none" stroke="#f59e0b" stroke-width="4">
   <path d="M590 438H400V315H220" data-circuit="MCB-04"/>
 </g>
-<g data-device-protection="RCD-LIV-01">
-  <rect x="248" y="296" width="46" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
-  <text x="271" y="308" class="micro red center">2P</text><text x="271" y="320" class="micro red center">30mA</text>
+<g data-endpoint-protection="MCB-04-two-srcd">
+  <circle cx="235" cy="308" r="8" fill="#fff" stroke="#dc2626" stroke-width="2"/><circle cx="257" cy="308" r="8" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+  <text x="246" y="292" class="micro red center">两端各自≤30mA漏保</text>
 </g>
 <path d="M590 446H517V456" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
 <path d="M495 470L475 450" fill="none" stroke="#dc2626" stroke-width="3" data-bath-after-rcd="true"/>
