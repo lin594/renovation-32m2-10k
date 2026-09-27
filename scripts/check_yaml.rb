@@ -176,7 +176,7 @@ errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路"
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
 errors << "electrical.yaml 应改为分布式T接树干模型且节点数现场冻结" unless electrical.dig("branch_nodes", "model") == "distributed_along_trunk" && electrical.dig("branch_nodes", "fixed_count").nil?
-errors << "客厅高负载节点必须位于RCD-LIV-01下游并只分空调/冰箱" unless branch_nodes.any? { |node| node["id"] == "JB-LIV-HIGH" && node["upstream_node"] == "RCD-LIV-01" && Array(node["branches"]).to_set == Set["客厅空调", "冰箱"] }
+errors << "客厅高负载节点必须在MCB-04下分为空调与冰箱两个独立末端漏保" unless branch_nodes.any? { |node| node["id"] == "JB-LIV-HIGH" && Array(node["branches"]).to_set == Set["SRCD-AC-LIV→客厅空调", "SRCD-FRIDGE→冰箱"] }
 errors << "卫生间节点必须位于RCD-BATH-01下游" unless branch_nodes.any? { |node| node["id"] == "JB-BATH" && node["upstream_node"] == "RCD-BATH-01" }
 
 outlets = electrical.fetch("outlet_groups", {})
@@ -208,12 +208,11 @@ errors << "RCBO-03不得再承载客厅空调或冰箱" if Array(circuits_by_id.
 
 layered_devices = Array(electrical.dig("layered_residual_protection", "devices"))
 device_ids = layered_devices.map { |device| device["id"] }.to_set
-expected_devices = Set["SRCD-AC-BED", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-LIV-01", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
-errors << "分级漏保设备表必须覆盖卧室空调可选附加保护、洗烘/洗碗机候选保护、客厅高负载总保护和卫生间总保护" unless device_ids == expected_devices
+expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-FRIDGE", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
+errors << "分级漏保设备表必须覆盖两台空调、冰箱、洗烘/洗碗机候选保护和卫生间总保护" unless device_ids == expected_devices
 bath_rcd = layered_devices.find { |device| device["id"] == "RCD-BATH-01" } || {}
 errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间基础照明"]
-liv_rcd = layered_devices.find { |device| device["id"] == "RCD-LIV-01" } || {}
-errors << "客厅空调和冰箱必须全部位于RCD-LIV-01下游" unless Array(liv_rcd["branches"]).to_set == Set["客厅空调", "冰箱"]
+errors << "MCB-04两个负载必须各自具有末端漏保" unless device_ids.include?("SRCD-AC-LIV") && device_ids.include?("SRCD-FRIDGE")
 
 electrical_text = electrical.to_s
 errors << "智能墙壁开关必须使用零火版且不得控制普通插座" unless electrical_text.include?("零火版") && electrical_text.include?("不把其受控输出接到通用插座")
@@ -221,6 +220,8 @@ errors << "两线制方案必须禁止N/PE短接和管道接地" unless electric
 
 socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item["item"] == "BVVB 2×2.5mm²" } || {}
 errors << "electrical.yaml BVVB 2×2.5mm²首卷应为50m" unless socket_wire["quantity_m"] == 50 && socket_wire["rolls"] == 1
+errors << "照明线旧1.5mm²采购项应取消" unless procurement_by_id.dig("BUY-0023", "status") == "cancelled"
+errors << "应新增冰箱漏保型插座采购项" unless procurement_by_id.dig("BUY-0035", "item").to_s.include?("冰箱漏保型插座")
 
 house = documents.fetch("house.yaml", {})
 main_feed = house.dig("electrical", "plan", "main_feed_proposal").to_s
