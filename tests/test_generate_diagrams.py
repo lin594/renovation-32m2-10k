@@ -155,28 +155,33 @@ class GenerateDiagramsTest(unittest.TestCase):
             self.assertNotIn('data-permanent-route="balcony"', svg)
             self.assertNotIn("阳台固定照明", svg)
 
-    def test_32_has_five_circuits_six_logical_nodes_and_layered_rcd(self) -> None:
+    def test_32_has_five_circuits_distributed_branches_and_two_mcb_rcds(self) -> None:
         topology = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
         self.assertEqual(topology.count('data-circuit="'), 5)
-        self.assertEqual(topology.count('data-terminal-status="logical"'), 6)
-        for node in ("JB-L4", "JB-R3", "JB-BED", "JB-KIT", "JB-LIV", "JB-BATH"):
-            self.assertIn(f'data-junction="{node}"', topology)
-        self.assertNotIn('data-junction="JB-L5"', topology)
+        self.assertNotIn('data-terminal-status="logical"', topology)
+        self.assertIn('data-node-example="TN-BED"', topology)
+        self.assertIn('data-node-example="TN-KIT"', topology)
+        self.assertIn('data-node-example="TN-HALL"', topology)
+        self.assertIn('data-node-example="TN-LIV"', topology)
+        self.assertIn('data-junction="JB-BATH"', topology)
+        self.assertIn('data-device-protection="RCD-LIV-01"', topology)
         self.assertIn('data-device-protection="RCD-BATH-01"', topology)
         self.assertIn('data-device-protection="SRCD-AC-BED"', topology)
-        self.assertIn('data-device-protection="SRCD-AC-LIV"', topology)
         self.assertIn('data-device-protection="SRCD-WASHER"', topology)
         self.assertIn('data-device-protection="SRCD-DISHWASHER"', topology)
-        self.assertEqual(topology.count('data-terminal-candidate="PCT-62"'), 3)
-        self.assertEqual(topology.count('data-terminal-candidate="five-hole-pair"'), 3)
-        self.assertIn("PCT-62×1包 + 五孔接线型×1包", topology)
+        self.assertNotIn('data-device-protection="SRCD-AC-LIV"', topology)
+        self.assertNotIn('data-terminal-candidate="PCT-62"', topology)
+        self.assertIn("取消PCT固定最低购物车", topology)
 
     def test_31_routes_mcb05_only_to_bath_rcd(self) -> None:
         routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
         self.assertEqual(routes.count('data-circuit="MCB-05"'), 1)
         self.assertIn('data-bath-feeder="continuous-no-joint"', routes)
         self.assertIn('data-device-protection="RCD-BATH-01"', routes)
-        self.assertIn('data-fallback="hall-a-outside"', routes)
+        self.assertIn('data-location-preference="hall-a-outside"', routes)
+        self.assertIn('data-fallback="bath-dry-high"', routes)
+        self.assertEqual(routes.count('data-circuit="MCB-04"'), 1)
+        self.assertIn('data-route-kind="high-load-short"', routes)
 
     def test_34_has_continuous_feeder_three_downstream_loads_and_dry_fallback(self) -> None:
         detail = (self.output_dir / "34-bathroom-electrical-detail.svg").read_text(encoding="utf-8")
@@ -186,8 +191,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-bath-load-downstream="true"', detail)
         self.assertIn('data-device-protection="SRCD-BATH-HEATER"', detail)
         self.assertIn('data-device-protection="SRCD-BATH-MIRROR"', detail)
-        self.assertIn('data-location-preference="bath-dry-high"', detail)
-        self.assertIn('data-location-fallback="hall-a-outside"', detail)
+        self.assertIn('data-location-preference="hall-a-outside"', detail)
+        self.assertIn('data-location-fallback="bath-dry-high"', detail)
         self.assertIn("禁止普通智能插座承载", detail)
 
     def test_33_separates_controller_and_bed_sockets(self) -> None:
@@ -196,10 +201,11 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-device="fan-speed-controller"', detail)
         self.assertIn('data-box-type="surface-bed-south"', detail)
         self.assertIn('data-box-type="surface-bed-north"', detail)
-        self.assertIn('data-terminal-scope="fan-control-only"', detail)
-        self.assertIn('data-terminal-scope="bed-sockets-only"', detail)
-        self.assertIn('data-circuit="MCB-04"', detail)
-        self.assertIn('data-circuit="RCBO-01"', detail)
+        self.assertIn('data-terminal-scope="fan-control-branch"', detail)
+        self.assertIn('data-terminal-scope="bed-socket-branches"', detail)
+        self.assertNotIn('data-circuit="MCB-04"', detail)
+        self.assertEqual(detail.count('data-circuit="RCBO-01"'), 2)
+        self.assertIn('data-branch-pattern="distributed"', detail)
         self.assertIn("PE端子保持未连接并贴标", detail)
 
     def test_electrical_bom_excludes_recolored_blue_wire_and_switched_outlets(self) -> None:
@@ -212,14 +218,15 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("智能墙壁开关只控制灯具", electrical)
         self.assertNotIn("smart_switch_output: general_socket", electrical)
 
-    def test_terminal_plan_uses_correct_pct62_topology_and_minimum_skus(self) -> None:
+    def test_terminal_plan_uses_onsite_sized_distributed_t_branches(self) -> None:
         root = Path(__file__).resolve().parents[1]
         procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
         electrical = (root / "data/electrical.yaml").read_text(encoding="utf-8")
-        self.assertIn("PCT-62二进六出", procurement)
-        self.assertIn("分出3组L/N", electrical)
-        self.assertIn('initial_exclusions: ["PCT-42"', electrical)
-        self.assertNotIn("PCT-62三进六出", procurement + electrical)
+        self.assertIn("固定布线用T接/分支连接器", procurement)
+        self.assertIn("分布式T接优先", electrical)
+        self.assertIn("汽车线束类廉价穿刺夹", procurement + electrical)
+        self.assertNotIn("provisional_minimum_cart", procurement)
+        self.assertNotIn("PCT-62二进六出", procurement + electrical)
 
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
