@@ -164,12 +164,14 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-node-example="TN-HALL"', topology)
         self.assertIn('data-node-example="TN-LIV"', topology)
         self.assertIn('data-junction="JB-BATH"', topology)
-        self.assertIn('data-device-protection="RCD-LIV-01"', topology)
+        self.assertIn('data-junction="JB-LIV-HIGH"', topology)
         self.assertIn('data-device-protection="RCD-BATH-01"', topology)
         self.assertIn('data-device-protection="SRCD-AC-BED"', topology)
+        self.assertIn('data-device-protection="SRCD-AC-LIV"', topology)
+        self.assertIn('data-device-protection="SRCD-FRIDGE"', topology)
         self.assertIn('data-device-protection="SRCD-WASHER"', topology)
         self.assertIn('data-device-protection="SRCD-DISHWASHER"', topology)
-        self.assertNotIn('data-device-protection="SRCD-AC-LIV"', topology)
+        self.assertNotIn('data-device-protection="RCD-LIV-01"', topology)
         self.assertNotIn('data-terminal-candidate="PCT-62"', topology)
         self.assertIn("取消PCT固定最低购物车", topology)
 
@@ -182,6 +184,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-fallback="bath-dry-high"', routes)
         self.assertEqual(routes.count('data-circuit="MCB-04"'), 1)
         self.assertIn('data-route-kind="high-load-short"', routes)
+        self.assertIn('data-endpoint-protection="MCB-04-two-srcd"', routes)
+        self.assertNotIn('data-device-protection="RCD-LIV-01"', routes)
 
     def test_34_has_continuous_feeder_three_downstream_loads_and_dry_fallback(self) -> None:
         detail = (self.output_dir / "34-bathroom-electrical-detail.svg").read_text(encoding="utf-8")
@@ -227,6 +231,9 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("汽车线束类廉价穿刺夹", procurement + electrical)
         self.assertNotIn("provisional_minimum_cart", procurement)
         self.assertNotIn("PCT-62二进六出", procurement + electrical)
+        self.assertIn('status: cancelled', procurement)
+        self.assertIn('1.5mm²照明线旧方案', procurement)
+        self.assertIn('2×2.5mm²两芯', electrical)
 
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
