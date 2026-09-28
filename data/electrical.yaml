@@ -192,7 +192,7 @@ outlet_groups:
     circuit: RCBO-02
     count: 4
     points: ["燃气热水器", "油烟机", "台面电器", "洗碗机三孔常电"]
-    dishwasher: { status: planned_for_existing_appliance, upstream: RCBO-02, device_protection: SRCD-DISHWASHER, protective_earth: "PE端子未连接并标注本户无PE", smart_control: forbidden }
+    dishwasher: { status: planned_for_existing_appliance, upstream: RCBO-02, protection: "目标C20/30mA RCBO-02统一保护，不再默认叠加设备级漏保", protective_earth: "PE端子未连接并标注本户无PE", smart_control: forbidden }
   living_room:
     count: 7
     circuits:
@@ -221,7 +221,7 @@ outlet_groups:
     - "普通插座保持常电，智能插座只作为可拔插设备插在常电插座上"
     - "智能墙壁开关只控制灯具，不把其受控输出接到通用插座"
     - "所有智能墙壁开关只采用零火版，开关盒必须到达L/N，受控相线仅通往灯具"
-    - "空调、洗烘机、洗碗机和浴霸不得以普通智能插座作为主保护或负载开关"
+    - "空调、洗烘机、洗碗机和浴霸不得以普通智能插座作为主保护或负载开关；RCBO-01/02/03下游设备不再默认重复叠加30mA漏保"
     - "两芯线路只有L/N；三孔面板PE端子保持未连接并粘贴‘本户无PE’标识，不与N短接，漏保不能替代PE"
 
 bedroom_detail:
