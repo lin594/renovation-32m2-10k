@@ -442,8 +442,8 @@ def bathroom_electrical_detail() -> str:
  <path d="M715 279V360H260" fill="none" stroke="#0284c7" stroke-width="3"/>
  <path d="M715 320H480" fill="none" stroke="#0284c7" stroke-width="3"/>
  <path d="M715 340H700" fill="none" stroke="#0284c7" stroke-width="3"/>
- <g data-device-protection="SRCD-BATH-HEATER"><rect x="120" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="235" y="362" class="small bold center">浴霸连接点</text><text x="235" y="386" class="micro center">说明允许插头时按成品要求连接</text><text x="235" y="407" class="micro center">固定接线时使用可检修带盖盒/隔离</text><text x="235" y="428" class="micro red center">禁止普通智能插座承载</text></g>
- <g data-device-protection="SRCD-BATH-MIRROR"><rect x="370" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="485" y="362" class="small bold center">浴室柜 / 镜灯｜总RCD下游点</text><text x="485" y="386" class="micro center">说明允许插头时按成品要求连接</text><text x="485" y="407" class="micro center">固定接线时使用可检修带盖盒/隔离</text><text x="485" y="428" class="micro center">独立于浴霸控制输出</text></g>
+ <g data-device-connection="BATH-HEATER"><rect x="120" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="235" y="362" class="small bold center">浴霸连接点</text><text x="235" y="386" class="micro center">说明允许插头时按成品要求连接</text><text x="235" y="407" class="micro center">固定接线时使用可检修带盖盒/隔离</text><text x="235" y="428" class="micro red center">禁止普通智能插座承载</text></g>
+ <g data-device-connection="BATH-MIRROR"><rect x="370" y="335" width="230" height="110" rx="9" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="485" y="362" class="small bold center">浴室柜 / 镜灯｜总RCD下游点</text><text x="485" y="386" class="micro center">说明允许插头时按成品要求连接</text><text x="485" y="407" class="micro center">固定接线时使用可检修带盖盒/隔离</text><text x="485" y="428" class="micro center">独立于浴霸控制输出</text></g>
  <rect x="620" y="335" width="230" height="110" rx="9" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/><text x="735" y="362" class="small bold center">防潮基础灯 / 镜前灯</text><text x="735" y="386" class="micro center">零火开关盒到达L/N</text><text x="735" y="407" class="micro center">智能开关受控相线只去灯具</text><text x="735" y="428" class="micro center">保留本地实体控制</text>
 </g>
 
@@ -461,8 +461,8 @@ def bathroom_electrical_detail() -> str:
         "浴霸不接普通智能插座",
         "智能照明开关统一使用零火版",
         "无PE标识持续保留，严禁N/PE短接",
-        "接受上下级同时跳闸并分别实测",
-        "!负载、线径、IP和位置均待9月28日现场冻结",
+        "门外总RCD统一保护卫浴全部负载",
+        "!配电箱已确认；剩余设备功率/IP/接线方式待冻结",
     ], [("#dc2626", "漏保前连续馈线 / 安全门禁"), ("#0284c7", "漏保后设备分支"), ("#16a34a", "首选门外"), ("#f97316", "室内干区备选")])
     return document("bathroom-electrical-detail", "34 卫生间专用馈线与漏保详图", "漏保前连续段、双极30mA保护、三条下游分支与干区降级规则", detail + side)
 
