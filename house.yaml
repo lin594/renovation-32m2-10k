@@ -1,6 +1,6 @@
 # ============================================================================
 # 老房装修改造 · 户型与方案上下文数据包（机器可读）
-# version: 7    date: 2026-09-26
+# version: 8    date: 2026-09-28
 # 用途：将本文件整体转发给 AI / 设计师，即可在其基础上继续装修方案咨询
 # 坐标系：原点=客厅西北角；+x=南(图向下)；+y=东(图向右)；单位=米
 # ============================================================================
@@ -123,20 +123,20 @@ electrical:
       panel_energized: true
       general_outlet: "临时五孔插座回路1路"
       air_conditioner: "由配电箱另一条临时回路供电，与五孔插座不同回路"
-      available_test_tools: ["测电笔"]
-      planned_owner_test_tools: ["万用表"]
+      available_test_tools: ["测电笔", "德力西H31万用表"]
+      planned_owner_test_tools: []
       deferred_test_tools: ["绝缘电阻测试仪", "漏保专用测试仪"]
       acceptance_limit: "只能完成DIY能力范围检查，不得称为绝缘、接地或漏保专业验收"
   panel:
     location: "y=5墙，入户门与卧室门之间墙面上方（约x[2.95,3.2]区域）"
     constraint: "预留检修位，不可封死"
     devices:
-      - { item: "空气开关总闸", count: 1 }
-      - { item: "延时送电器", count: 1 }
-      - { item: "漏电保护器", count: 3 }
-      - { item: "空气开关", count: 2 }
-    branch_capacity: "仅5个现有支路位置：3个漏保+2个空开；第4、5位受物理空间限制只能安装空开，不能改漏保"
-    marking_note: "业主记忆为约500V、36A；该信息不足以确定脱扣额定值，正面/侧面完整铭牌待10月1日拍照"
+      - { item: "总开关", model: "CHINT NXB-63", spec: "2P C63", count: 1, action: "保留，检查端子" }
+      - { item: "自复式过欠压保护器", spec: "63A/230V", count: 1, action: "保留，检查端子/外观" }
+      - { item: "支路RCBO", model: "CHINT NXBLE-63YH", existing_spec: "C40 / 30mA / 6kA", count: 3, target: "原位换C20 1P+N / ≤30mA / A型优先" }
+      - { item: "支路MCB", model: "CHINT NXB-63", existing_spec: "C32 / 6kA", count: 2, target: "原位换C20 1P" }
+    branch_capacity: "固定5个支路位置仍保留；第1~3路为2模数RCBO位置，第4~5路为1模数MCB位置"
+    marking_note: "2026-09-28现场照片已确认完整额定值；箱内现有导体大量为蓝色，后续更换支路保护器时必须重新核相/核N，不能沿用颜色推断"
     provisional_allocation_ref: "data/electrical.yaml#provisional_five_circuit_allocation"
   incoming_work:
     cost_ref: EXP-0001
@@ -146,16 +146,17 @@ electrical:
     installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
     schedule_ref: "data/schedule.yaml"
     main_feed_proposal: "余下蓝色6平方线只作为中性导体候选；若用于单相主干，须与同回路等截面的合规相色6平方相线成对敷设，优先评估RCBO-03长直主干"
-    proposal_status: "待现场按保护器、负载、线长、线槽空间、T接端子适配和全路径导体识别冻结实际用途"
+    proposal_status: "配电箱保护器基线已冻结；待设备铭牌和实际路线长度确认6mm²主干使用范围及材料数量"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
-      lighting: "BVVB 2×1.5mm²加控制回线仅作候选；B10/C10只作初筛，仍须由电工结合敷设、线长和负载确认保护匹配后购买和使用，控制线颜色一并现场冻结"
-      general_sockets: "BVVB 2×2.5mm²，先购50m；净路线复测超过45m时补第二卷"
-      dedicated_loads: "空调、厨房和洗烘机按设备铭牌、距离与敷设条件另算"
-    terminal_gate: "PCT每极总电流32A；直接上级保护器须≤32A，若实测36A则暂停分支施工并由电工确认保护方案"
-    protection_gate: "PCT≤32A只是端子必要条件；保护器还须匹配最小下游导线、实际敷设、负载和故障切断条件"
+      lighting: "新建照明/开关短支线统一2.5mm²；L/N优先BVVB 2×2.5，开关受控回线用BV 1×2.5并统一标识"
+      general_sockets: "BVVB 2×2.5mm²；低位末端统一2.5mm²"
+      trunk: "C20基线下允许高位主干使用6mm² L/N并在高位节点分2.5mm²；优先RCBO-03，其次卧室，短路径默认2.5mm²"
+      dedicated_loads: "客厅空调/冰箱在MCB-04 C20下分别做末端漏保；卫生间MCB-05 C20后先经门外总RCD"
+    terminal_gate: "高位分支首选WAGO 221-613类三孔端子：6mm²来+6mm²去+2.5mm²支；L/N各一只，具体SKU说明书核验后购买"
+    protection_gate: "3只支路RCBO目标C20/≤30mA，2只MCB目标C20；任何回路若要提高过流保护额定值，须同步重新核定全部最小导体截面"
     smart_control_rule: "普通插座保持常电；智能墙壁开关一律使用零火版且只控制灯具，不向普通插座供电"
-    bathroom_dedicated_feeder: "MCB-05经E-HOLE-03连续无接头进入高位干区RCD-BATH-01；浴霸、除雾镜柜和照明全部在双极30mA末端漏保下游"
+    bathroom_dedicated_feeder: "MCB-05目标C20，从配电箱连续到走廊A卫生间门外RCD-BATH-01，再经E-HOLE-03进入卫生间；浴霸、浴室柜/镜灯和照明全部在该2P≤30mA总RCD下游"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     - { location: "冰箱位置南侧", status: existing, plan: "优先利用" }
@@ -171,10 +172,10 @@ electrical:
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
     - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, device_protection: SRCD-AC-LIV }
-    - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, device_protection: SRCD-AC-BED }
+    - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, protection: "目标C20/30mA RCBO-01上游统一保护，不再默认叠加设备级漏保" }
     - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；E-HOLE-01至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
-    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, device_protection: SRCD-BATH-HEATER, risk_ref: SAF-0003 }
+    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, risk_ref: SAF-0003 }
   planned_outlets:
     total_groups: 15
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
