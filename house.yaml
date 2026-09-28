@@ -150,20 +150,20 @@ electrical:
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
       lighting: "新建照明/开关统一2.5mm²；BVVB 2×2.5送L/N，BV 1×2.5明确相色作受控回线；所有开关盒带N并使用≥50mm深明盒"
-      general_sockets: "BVVB 2×2.5mm²；预计净用66m、计划下料73m，采购2卷×50m"
+      general_sockets: "BVVB 2×2.5mm²；含卧室床下灯新增约3m后预计净用69m、计划下料77m，采购2卷×50m"
       trunk: "副保护盒C20之后仅RCBO-01/02/03使用6mm² L/N高位主干；计划每根导体总下料24m。MCB-04/05直接2.5mm²"
       dedicated_loads: "客厅空调/冰箱在MCB-04 C20下分别做末端漏保；卫生间MCB-05 C20后先经门外总RCD"
     terminal_gate: "6mm²一分支用221-613类、两分支用221-615类、末端转换用221-612类；L/N各自独立并固定在可开启盒内，具体SKU和导体类型核验后购买"
     protection_gate: "现有主箱3×C40 RCBO + 2×C32 MCB全部保留；邻近副保护盒五路C20作为2.5mm²新线路的过流保护基线。若提高下游保护额定值，须同步重新核定全部最小导体截面"
-    smart_control_rule: "普通插座保持常电；智能墙壁开关一律使用零火版且只控制灯具，不向普通插座供电"
+    smart_control_rule: "客厅和卧室各装一只京东京造JZ-N2零火双开；客厅只控主灯/餐灯，卧室只控主灯/标注仅床下灯的专用照明插座；普通插座保持常电"
     bathroom_dedicated_feeder: "MCB-05目标C20，从副保护盒连续到走廊A卫生间门外RCD-BATH-01，再沿门框明装进入卫生间；浴霸、浴室柜/镜灯和照明全部在该2P≤30mA总RCD下游"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     fact: "现场确认只有暗盒盒位，没有可利用暗管或暗线；全部新增线路按墙面/门框明装"
     points:
       - { location: "冰箱位置南侧", status: existing, plan: "作为冰箱末端插座候选；保持可触及" }
-      - { location: "洗衣机东侧/客厅通道左侧", status: existing, plan: "只作洗烘专用末端；装机后不可触及时盖白板并改相邻明盒" }
-      - { location: "卧室门北侧/门内右侧", status: existing, plan: "只作合适的面板或明线收口，不视为穿线入口" }
+      - { id: E-BOX-LIV-JZ, location: "洗衣机东侧/客厅通道左侧", status: existing, plan: "安装客厅京东京造JZ-N2零火双开；原洗烘插座迁到相邻独立明盒" }
+      - { id: E-BOX-BED-JZ, location: "卧室门北侧/门内右侧", status: existing, plan: "安装卧室京东京造JZ-N2零火双开；不视为穿线入口" }
       - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing, exclusive_use: "卧室吊扇调速器", note: "不与床南插座共盒或共用端子" }
     fallback: "暗盒不适用的位置再增加明盒"
   surface_route_transitions:
@@ -182,17 +182,20 @@ electrical:
     total_groups: 19
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
     kitchen: ["燃气热水器", "油烟机", "台面电器", "洗碗机三孔常电"]
-    living_room: ["空调", "冰箱", "洗烘一体机", "洗烘旁小厨电五孔×2", "书桌下常电", "书桌上常电", "投影仪", "沙发上部充电", "扫地机器人低位常电", "沙发背景光高位受控专用插座"]
+    living_room: ["空调", "冰箱", "洗烘一体机相邻独立明盒", "洗烘旁小厨电五孔×2", "书桌下常电", "书桌上常电", "投影仪", "沙发上部充电", "扫地机器人低位常电", "沙发背景光独立常电专用插座"]
     hall_a: ["设备架一组至少4位常电插座"]
     bathroom_general_socket_count: 0
     bathroom_protected_device_points: ["浴霸高位连接点", "智能除雾镜柜高位连接点"]
+    dedicated_lighting_connection_points: ["走廊A灯带高位受控插座", "卧室床下灯10A二孔受控插座"]
     protective_earth_status: "允许使用带明确“本户无PE”标识的三孔面板；PE端子保持未连接且不得与N短接，分级漏保不等于接地验收合格"
   lighting_plan:
-    concept: "按场景分层：客厅基础吸顶灯+餐区双头射灯+沙发背景光预留；卧室成品漫射灯+床下低压灯带；书桌与床侧任务灯走常电插座"
+    concept: "按场景分层：客厅JZ-N2双键控制基础吸顶灯和餐区双头射灯，沙发背景灯走独立常电；卧室JZ-N2双键控制主灯和床下220V成品插头灯带专用插座；书桌与床侧任务灯走常电插座"
     color_temperature: "卧室/餐区/氛围2700至3000K；客厅基础灯3500至4000K"
     color_rendering: "优先Ra/CRI≥90"
     zones_ref: "data/electrical.yaml#lighting_zones"
     hall_a: "计划约2m、220V厂家成套插头灯带；插入由零火墙壁开关控制并标注‘仅灯带’的高位专用插座，不剪插头硬接"
+    living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机只共用TN-LIV-SOFA高位分线节点，分别以独立BVVB支线接常电插座"
+    bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；西墙吊扇调速器保持独立"
 
 low_voltage:
   internet_entry:

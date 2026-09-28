@@ -84,6 +84,20 @@ def document(role: str, title_value: str, subtitle: str, body: str) -> str:
 '''
 
 
+def construction_document(role: str, title_value: str, subtitle: str, body: str) -> str:
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" data-diagram-role="{role}" data-drawing-property="construction-wiring-final" role="img">
+<title>{title_value}</title>
+<desc>{subtitle}</desc>
+{DEFS}
+<rect width="{WIDTH}" height="{HEIGHT}" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">{title_value}</text>
+<text x="70" y="78" class="subtitle">{subtitle}</text>
+{body}
+<text x="70" y="813" class="small red">施工接线/下料定稿｜仅供断电放样与端点核对；通电前仍须完成实物参数核验及合格电工绝缘、极性、保护器和漏保测试。</text>
+</svg>
+'''
+
+
 def room_fields(mut: bool = False) -> str:
     alpha = ' opacity="0.68"' if mut else ""
     return f'''
@@ -272,8 +286,8 @@ def electrical_low_voltage() -> str:
 <rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="625" y="424" class="small blue">入户配电箱</text>
 <rect x="540" y="458" width="58" height="28" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-subpanel="five-2p-c20"/><text x="569" y="476" class="micro orange center">副箱5×C20</text>
 <rect x="190" y="518" width="11" height="11" fill="#1e3a8a"/><text x="180" y="550" class="micro">冰箱南侧暗盒</text>
-<rect x="394" y="402" width="11" height="11" fill="#1e3a8a"/><text x="318" y="398" class="micro">洗衣机东侧暗盒</text>
-<rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text x="610" y="321" class="micro">卧室门北侧暗盒</text>
+<rect x="394" y="402" width="11" height="11" fill="#1e3a8a" data-switch="JZ-N2-living"/><text x="312" y="398" class="micro">客厅JZ-N2暗盒</text>
+<rect x="594" y="326" width="11" height="11" fill="#1e3a8a" data-switch="JZ-N2-bedroom"/><text x="610" y="321" class="micro">卧室JZ-N2暗盒</text>
 <rect x="250" y="405" width="11" height="11" fill="#1e3a8a"/><text x="245" y="397" class="micro">入户/卧室门间暗盒</text>
 <rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
 <rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="636" y="151" class="small">卧室空调</text>
@@ -286,7 +300,8 @@ def electrical_low_voltage() -> str:
 <rect x="470" y="410" width="28" height="20" rx="3" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-device-protection="RCD-BATH-01"/><text x="466" y="440" class="micro red" text-anchor="end">双极30mA</text>
 <rect x="102" y="305" width="12" height="12" fill="#2563eb" data-outlet="robot-always-on"/><rect x="102" y="337" width="12" height="12" fill="#7c3aed" data-outlet="sofa-charge"/>
 <text x="122" y="315" class="micro blue">扫地机常电</text><text x="122" y="348" class="micro purple">沙发上部充电</text>
-<rect x="102" y="270" width="12" height="12" fill="#f59e0b" data-outlet="sofa-background-controlled"/><text x="122" y="280" class="micro orange">背景光高位受控</text>
+<rect x="102" y="270" width="12" height="12" fill="#2563eb" data-outlet="sofa-background-always-on"/><text x="122" y="280" class="micro blue">背景灯独立常电</text>
+<rect x="690" y="390" width="12" height="12" fill="#f59e0b" data-outlet="underbed-light-controlled"/><text x="710" y="400" class="micro orange">仅床下灯｜JZ-N2第2键</text>
 <rect x="80" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-lower"/><rect x="102" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-upper"/><text x="122" y="190" class="micro blue">书桌上下常电</text>
 <circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V506"/>
 <rect x="488" y="506" width="104" height="24" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" data-device-shelf="hall-a" data-wall-anchor="hall-a-south-wall"/><text x="540" y="520" class="micro purple center">光猫 / Wi-Fi / EVE V</text>
@@ -301,7 +316,9 @@ def electrical_low_voltage() -> str:
         "EVE V长期运行，架内短网线接路由器",
         "光猫/路由器/EVE V需至少4个常电位",
         "扫地机低位、沙发上部、书桌上下均常电",
-        "沙发背景光高位插座受客厅第3键控制",
+        "客厅JZ-N2双键只控主灯/餐灯",
+        "卧室JZ-N2双键只控主灯/床下灯",
+        "沙发背景灯为独立常电，由灯具/智能插头控制",
         "洗碗机三孔常电，由RCBO-02统一30mA保护",
         "卧室空调/洗烘由C20 RCBO统一保护；客厅空调与冰箱各自末端漏保",
         "卫生间由MCB-05经门外RCD-BATH-01总漏保供电",
@@ -430,11 +447,246 @@ def electrical_topology_v5() -> str:
         "客厅空调与冰箱故障互不连带断电",
         "普通插座常电；智能墙壁开关零火版",
         "机器人常电不受智能控制",
-        "6mm²每根24m；BVVB下料73m；回线27m",
+        "6mm²每根24m；BVVB下料77m；回线24m",
         "连接器须适配主线/支线截面并可检修",
         "!主箱保留；副箱端接与负载仍需电工核定",
     ])
     return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、连续空间主干、分布式T接与MCB末端/总漏保", topology + side)
+
+
+def living_jz_n2_wiring() -> str:
+    body = r'''
+<rect x="45" y="112" width="880" height="650" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="485" y="140" class="note bold center">客厅主灯 / 餐灯盒内端子与沙发常电分支</text>
+
+<g data-junction="TN-LIV-LIGHT">
+ <rect x="75" y="165" width="210" height="190" rx="10" class="panel"/>
+ <text x="180" y="190" class="small bold center">TN-LIV-LIGHT 高位盒</text>
+ <rect x="105" y="218" width="142" height="34" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-connector="221-613-L"/>
+ <text x="176" y="240" class="small center">L｜221-613</text>
+ <rect x="105" y="278" width="142" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" data-connector="221-615-N"/>
+ <text x="176" y="300" class="small center">N｜221-615</text>
+ <text x="180" y="334" class="micro center">6mm²进/出；2.5mm²短尾分支</text>
+</g>
+
+<path d="M50 235H105" stroke="#dc2626" stroke-width="5" data-conductor="6mm-L"/><text x="54" y="222" class="micro red">6mm² L</text>
+<path d="M50 295H105" stroke="#2563eb" stroke-width="5" data-conductor="6mm-N"/><text x="54" y="282" class="micro blue">6mm² N</text>
+<path d="M247 235H365" stroke="#dc2626" stroke-width="4" data-cable="BVVB-L-to-switch"/>
+<path d="M247 295H365" stroke="#2563eb" stroke-width="4" data-cable="BVVB-N-to-switch"/>
+<text x="305" y="220" class="micro center">BVVB 2×2.5 至暗盒</text>
+
+<g data-device="JZ-N2-living" data-box="E-BOX-LIV-JZ">
+ <rect x="365" y="172" width="205" height="180" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+ <text x="467" y="199" class="small bold center">京东京造 JZ-N2</text>
+ <text x="467" y="216" class="micro center">洗烘机东侧既有暗盒｜零火双开</text>
+ <circle cx="382" cy="235" r="13" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="382" y="239" class="micro center">L</text>
+ <circle cx="382" cy="295" r="13" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="382" y="299" class="micro center">N</text>
+ <circle cx="552" cy="245" r="15" fill="#fff" stroke="#dc2626" stroke-width="2"/><text x="552" y="249" class="micro center">L1</text>
+ <circle cx="552" cy="305" r="15" fill="#fff" stroke="#c2410c" stroke-width="2"/><text x="552" y="309" class="micro center">L2</text>
+ <text x="468" y="254" class="small center">第1键｜主灯</text><text x="468" y="314" class="small center">第2键｜餐灯</text>
+ <text x="468" y="338" class="micro red center">盒内仅L / N / L1 / L2；端子不并压两根线</text>
+</g>
+
+<path d="M567 245H625" stroke="#dc2626" stroke-width="4" data-controlled-return="living-main"/>
+<rect x="625" y="228" width="90" height="34" rx="6" fill="#fff" stroke="#64748b" stroke-width="2" data-connector="221-412-main"/><text x="670" y="250" class="micro center">221-412</text>
+<path d="M715 245H758" stroke="#dc2626" stroke-width="4"/>
+<rect x="758" y="190" width="135" height="85" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-load="living-main-light"/><text x="825" y="220" class="small bold center">客厅主灯</text><text x="825" y="241" class="micro center">L1 → 灯L</text><text x="825" y="259" class="micro center">N来自221-615</text>
+
+<path d="M567 305H625" stroke="#c2410c" stroke-width="4" data-controlled-return="living-dining"/>
+<rect x="625" y="288" width="90" height="34" rx="6" fill="#fff" stroke="#64748b" stroke-width="2" data-connector="221-412-dining"/><text x="670" y="310" class="micro center">221-412</text>
+<path d="M715 305H758" stroke="#c2410c" stroke-width="4"/>
+<rect x="758" y="287" width="135" height="85" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2" data-load="living-dining-light"/><text x="825" y="317" class="small bold center">餐区双头灯</text><text x="825" y="338" class="micro center">L2 → 灯L</text><text x="825" y="356" class="micro center">N来自221-615</text>
+<path d="M247 295H315V390H740M740 390V275M740 390H825V372" fill="none" stroke="#2563eb" stroke-width="3" data-neutral="living-lights"/>
+<text x="610" y="383" class="micro blue center">N直接分到两盏灯，不经过开关输出</text>
+
+<g data-junction="TN-LIV-SOFA">
+ <rect x="75" y="430" width="210" height="245" rx="10" class="panel"/>
+ <text x="180" y="458" class="small bold center">TN-LIV-SOFA 高位盒</text>
+ <text x="180" y="480" class="micro center">L/N各1只221-615</text>
+ <rect x="108" y="502" width="145" height="34" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="180" y="524" class="small center">L｜221-615</text>
+ <rect x="108" y="552" width="145" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="180" y="574" class="small center">N｜221-615</text>
+ <text x="180" y="615" class="micro center">三个末端只共用此节点</text><text x="180" y="635" class="micro red center">不得串联</text>
+</g>
+<g data-sofa-branches="three-independent-always-on">
+ <path d="M285 520H350V475H410" fill="none" stroke="#dc2626" stroke-width="3"/><path d="M285 568H335V491H410" fill="none" stroke="#2563eb" stroke-width="3"/>
+ <path d="M285 520H360V555H410" fill="none" stroke="#dc2626" stroke-width="3"/><path d="M285 568H350V571H410" fill="none" stroke="#2563eb" stroke-width="3"/>
+ <path d="M285 520H350V635H410" fill="none" stroke="#dc2626" stroke-width="3"/><path d="M285 568H335V651H410" fill="none" stroke="#2563eb" stroke-width="3"/>
+ <rect x="410" y="450" width="300" height="62" rx="8" fill="#fff" stroke="#2563eb" stroke-width="2" data-outlet="robot-always-on"/><text x="430" y="477" class="small bold">BVVB 2×2.5 → 扫地机低位常电</text><text x="430" y="497" class="micro red">禁止智能控制底座电源</text>
+ <rect x="410" y="530" width="300" height="62" rx="8" fill="#fff" stroke="#2563eb" stroke-width="2" data-outlet="sofa-upper-always-on"/><text x="430" y="567" class="small bold">BVVB 2×2.5 → 沙发上部常电</text>
+ <rect x="410" y="610" width="300" height="62" rx="8" fill="#fff" stroke="#2563eb" stroke-width="2" data-outlet="sofa-background-always-on"/><text x="430" y="637" class="small bold">BVVB 2×2.5 → 背景灯独立常电</text><text x="430" y="657" class="micro">贴“仅背景灯”；灯具本体/智能插头控制</text>
+</g>
+<rect x="735" y="470" width="160" height="160" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="815" y="500" class="small bold center">迁位与停工点</text><text x="755" y="529" class="micro">原暗盒改装JZ-N2</text><text x="755" y="550" class="micro">洗烘插座迁相邻明盒</text><text x="755" y="571" class="micro">端子/盒深/LED负载先核</text><text x="755" y="592" class="micro red">不兼容即停工</text><text x="755" y="613" class="micro red">不削细导体、不强压盒盖</text>
+<text x="75" y="728" class="small red">功能验收：两键分别只控制主灯/餐灯；任一灯关闭不得影响三只沙发节点常电插座或洗烘插座。</text>
+'''
+    side = sidebar("35 施工核对", [
+        "开关位置：洗烘机东侧既有暗盒",
+        "第1键主灯；第2键餐灯",
+        "客厅只保留两条受控回线",
+        "L/N由BVVB送到开关盒",
+        "L1/L2均用BV 1×2.5返回",
+        "两条回线各用221-412收口",
+        "灯具N直接来自高位221-615",
+        "开关端子禁止并压两根导体",
+        "背景灯不接JZ-N2输出",
+        "扫地机/沙发/背景灯三支并联常电",
+        "洗烘插座迁相邻独立明盒",
+        "实物不支持2.5mm²时停工",
+        "盒深不足用延长框或深明盒",
+        "!断电核L/N/L1/L2；专业终检后通电",
+    ], [("#dc2626", "相线/受控L"), ("#2563eb", "中性线N/常电支线"), ("#f97316", "JZ-N2与餐灯")])
+    return construction_document("living-jz-n2-wiring", "35 客厅 JZ-N2 施工接线图", "客厅双键盒内端子、主灯/餐灯回线、洗烘迁位与沙发三路独立常电", body + side)
+
+
+def bedroom_jz_n2_wiring() -> str:
+    body = r'''
+<rect x="45" y="112" width="880" height="650" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="485" y="140" class="note bold center">卧室主灯 / 床下灯专用插座与吊扇调速器分离</text>
+<g data-junction="TN-BED-01">
+ <rect x="72" y="172" width="205" height="180" rx="10" class="panel"/>
+ <text x="174" y="198" class="small bold center">TN-BED-01 高位盒</text>
+ <rect x="103" y="222" width="142" height="34" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-connector="221-615-L"/><text x="174" y="244" class="small center">L｜221-615</text>
+ <rect x="103" y="282" width="142" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" data-connector="221-615-N"/><text x="174" y="304" class="small center">N｜221-615</text>
+ <text x="174" y="337" class="micro center">6mm²主干 → BVVB短尾</text>
+</g>
+<path d="M47 239H103" stroke="#dc2626" stroke-width="5" data-conductor="6mm-L"/><text x="50" y="225" class="micro red">6mm² L</text>
+<path d="M47 299H103" stroke="#2563eb" stroke-width="5" data-conductor="6mm-N"/><text x="50" y="285" class="micro blue">6mm² N</text>
+<path d="M245 239H350" stroke="#dc2626" stroke-width="4"/><path d="M245 299H350" stroke="#2563eb" stroke-width="4"/><text x="298" y="218" class="micro center">BVVB 2×2.5</text>
+
+<g data-device="JZ-N2-bedroom" data-box="E-BOX-BED-JZ">
+ <rect x="350" y="165" width="245" height="240" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+ <text x="472" y="192" class="small bold center">京东京造 JZ-N2</text><text x="472" y="210" class="micro center">卧室门内右手既有暗盒｜零火双开</text>
+ <circle cx="368" cy="239" r="13" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="368" y="243" class="micro center">L</text>
+ <rect x="378" y="282" width="100" height="36" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" data-connector="221-413-bedroom-N"/><text x="428" y="305" class="small center">N｜221-413</text>
+ <path d="M350 299H378" stroke="#2563eb" stroke-width="4"/><path d="M478 299H545" stroke="#2563eb" stroke-width="3"/>
+ <circle cx="565" cy="299" r="13" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="565" y="303" class="micro center">N</text>
+ <circle cx="565" cy="239" r="14" fill="#fff" stroke="#dc2626" stroke-width="2"/><text x="565" y="243" class="micro center">L1</text>
+ <circle cx="565" cy="359" r="14" fill="#fff" stroke="#c2410c" stroke-width="2"/><text x="565" y="363" class="micro center">L2</text>
+ <text x="472" y="246" class="small center">第1键｜主灯</text><text x="472" y="366" class="small center">第2键｜床下灯</text>
+ <text x="472" y="391" class="micro red center">端子不并压两根线；N在盒内用221-413分线</text>
+</g>
+
+<path d="M579 239H630" stroke="#dc2626" stroke-width="4" data-controlled-return="bedroom-main"/>
+<rect x="630" y="222" width="90" height="34" rx="6" fill="#fff" stroke="#64748b" stroke-width="2" data-connector="221-412-bedroom-main"/><text x="675" y="244" class="micro center">221-412</text>
+<path d="M720 239H760" stroke="#dc2626" stroke-width="4"/>
+<rect x="760" y="188" width="135" height="96" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-load="bedroom-main-light"/><text x="827" y="220" class="small bold center">卧室主灯</text><text x="827" y="244" class="micro center">L1 → 灯L</text><text x="827" y="264" class="micro center">灯N来自高位221-615</text>
+<path d="M245 299H315V425H827V284" fill="none" stroke="#2563eb" stroke-width="3" data-neutral="bedroom-main-light"/>
+
+<path d="M579 359H690V375" fill="none" stroke="#c2410c" stroke-width="4" data-controlled-output="underbed-L"/>
+<path d="M478 299H615V420H690" fill="none" stroke="#2563eb" stroke-width="3" data-underbed-neutral="from-221-413"/>
+<rect x="690" y="340" width="205" height="112" rx="9" fill="#fff" stroke="#c2410c" stroke-width="3" data-outlet="underbed-light-controlled" data-type="10A-two-pin"/>
+<text x="792" y="370" class="small bold center">10A二孔专用受控插座</text><text x="792" y="393" class="small center">贴“仅床下灯”</text><text x="792" y="415" class="micro center">L来自JZ-N2 L2｜N来自221-413</text><text x="792" y="437" class="micro center">BVVB 2×2.5约3m｜可拔插、不被床压住</text>
+
+<g data-fan-separation="true">
+ <path d="M245 239H300V525H365" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="independent-from-TN-BED-01"/>
+ <path d="M245 299H285V545H365" fill="none" stroke="#2563eb" stroke-width="3"/>
+ <rect x="365" y="500" width="185" height="88" rx="9" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" data-device="fan-speed-controller" data-box="E-BOX-BED-FAN"/><text x="457" y="528" class="small bold center">西墙原吊扇调速器</text><text x="457" y="550" class="micro center">独立暗盒 / 独立输出</text><text x="457" y="570" class="micro red center">不与JZ-N2共盒或共输出</text>
+ <path d="M550 544C635 500 725 500 785 535" fill="none" stroke="#7c3aed" stroke-width="5" stroke-dasharray="3 8" data-fan-feed="existing-concealed"/>
+ <circle cx="820" cy="545" r="38" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="820" y="550" class="small center">吊扇</text>
+ <text x="680" y="493" class="micro purple center">既有暗线：先测通断与绝缘</text>
+</g>
+<rect x="80" y="630" width="815" height="88" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="102" y="657" class="small red bold">床下灯安全：</text><text x="205" y="657" class="small red">只用厂家完整220V二脚插头成品；不剪插头、不裸接铜箔。</text><text x="102" y="680" class="small red">插座可拔插且不受床体挤压；灯带远离床品、猫可啃咬位置和积尘散热死角。</text><text x="102" y="703" class="small red">功能验收：两键只控主灯/床下灯；关闭任一键不得影响床侧常电或吊扇。</text>
+'''
+    side = sidebar("36 施工核对", [
+        "开关位置：卧室门内右手既有暗盒",
+        "第1键主灯；第2键床下灯",
+        "L/N用BVVB送到开关盒",
+        "盒内N用221-413一分二",
+        "L1用BV 1×2.5经221-412到主灯",
+        "L2用BVVB相线到专用插座",
+        "床下点只装10A二孔并贴专用标签",
+        "厂家完整220V二脚插头，不剪线",
+        "西墙调速器暗盒保持独占",
+        "既有吊扇暗线先测通断和绝缘",
+        "JZ-N2与调速器不共盒、不共输出",
+        "盒深不足用延长框或深明盒",
+        "!实物不支持2.5mm²或负载不匹配即停工",
+        "!断电核L/N/L1/L2；专业终检后通电",
+    ], [("#dc2626", "主灯受控L"), ("#c2410c", "床下灯受控L"), ("#2563eb", "N"), ("#7c3aed", "吊扇既有暗线")])
+    return construction_document("bedroom-jz-n2-wiring", "36 卧室 JZ-N2 与吊扇分离施工图", "卧室双键、主灯、床下灯专用插座及西墙吊扇调速器的独立接线", body + side)
+
+
+def electrical_segment_takeoff() -> str:
+    rows = [
+        ("E6-01", "1×6", "L/N各1", "0.6/芯", "主箱RCBO-01 → 副箱C20-01", "保护器端子"),
+        ("E6-02", "1×6", "L/N各1", "0.6/芯", "主箱RCBO-02 → 副箱C20-02", "保护器端子"),
+        ("E6-03", "1×6", "L/N各1", "0.6/芯", "主箱RCBO-03 → 副箱C20-03", "保护器端子"),
+        ("E6-04", "1×6", "L/N各1", "0.6/芯", "主箱MCB-04 → 副箱C20-04", "保护器端子"),
+        ("E6-05", "1×6", "L/N各1", "0.6/芯", "主箱MCB-05 → 副箱C20-05", "保护器端子"),
+        ("E6-06", "1×6", "L/N各1", "4.0/芯", "副箱C20-01 → TN-BED-03", "615续接/613末端"),
+        ("E6-07", "1×6", "L/N各1", "5.0/芯", "副箱C20-02 → TN-KIT-03", "615续接"),
+        ("E6-08", "1×6", "L/N各1", "9.0/芯", "副箱C20-03 → TN-LIV-DESK", "615/613续接"),
+        ("EB-01A", "2×2.5", "1根", "2.0", "TN-BED-01 → 卧室JZ-N2", "615→L/N"),
+        ("EB-01B", "2×2.5", "1根", "1.0", "TN-BED-01 → 卧室主灯N", "N615/余芯封护"),
+        ("EB-02", "2×2.5", "1根", "3.0", "卧室JZ → 床下灯专用插座", "L2 / N经413"),
+        ("EB-03", "2×2.5", "1根", "1.0", "TN-BED-01 → 吊扇调速器", "615→调速器"),
+        ("EB-04", "2×2.5", "1根", "1.5", "TN-BED-02 → 床南常电", "615→插座"),
+        ("EB-05", "2×2.5", "1根", "2.0", "TN-BED-02 → 卧室空调", "615→专用插座"),
+        ("EB-06", "2×2.5", "1根", "2.5", "TN-BED-03 → 床北常电", "613→插座"),
+        ("EK-01", "2×2.5", "1根", "2.0", "TN-KIT-01 → 燃气热水器", "615→设备点"),
+        ("EK-02", "2×2.5", "1根", "2.0", "TN-KIT-01 → 洗碗机", "615→三孔常电"),
+        ("EK-03", "2×2.5", "1根", "2.0", "TN-KIT-02 → 油烟机", "615→设备点"),
+        ("EK-04", "2×2.5", "1根", "2.0", "TN-KIT-02 → 台面插座", "615→插座"),
+        ("EK-05", "2×2.5", "1根", "3.0", "TN-KIT-03 → 厨房灯/开关", "615→L/N与灯N"),
+        ("EL-01", "2×2.5", "1根", "2.0", "TN-HALL-01 → 玄关设备架", "615→常电组"),
+        ("EL-02", "2×2.5", "1根", "2.0", "TN-HALL-01 → 走廊A灯带/开关", "615→L/N与灯N"),
+        ("EL-03", "2×2.5", "1根", "2.0", "TN-HALLB-01 → 走廊B灯/开关", "613/615"),
+        ("EL-04", "2×2.5", "1根", "3.0", "TN-LIV-WASH → 洗烘相邻明盒", "615→插座"),
+        ("EL-05", "2×2.5", "1根", "3.0", "TN-LIV-WASH → 小厨电双五孔", "615→415"),
+        ("EL-06", "2×2.5", "1根", "3.5", "TN-LIV-LIGHT → 客厅JZ-N2", "L613/N615→L/N"),
+        ("EL-07A", "2×2.5", "1根", "1.0", "TN-LIV-LIGHT → 客厅主灯N", "N615/余芯封护"),
+        ("EL-07B", "2×2.5", "1根", "1.5", "TN-LIV-LIGHT → 餐灯N", "N615/余芯封护"),
+        ("EL-08", "2×2.5", "1根", "2.0", "TN-LIV-PROJ → 投影常电", "613→插座"),
+        ("EL-09", "2×2.5", "1根", "2.0", "TN-LIV-SOFA → 扫地机", "615→独立常电"),
+        ("EL-10", "2×2.5", "1根", "2.0", "TN-LIV-SOFA → 沙发上部", "615→独立常电"),
+        ("EL-11", "2×2.5", "1根", "2.0", "TN-LIV-SOFA → 背景灯", "615→仅背景灯"),
+        ("EL-12", "2×2.5", "1根", "2.5", "TN-LIV-DESK → 书桌下", "613→插座"),
+        ("EL-13", "2×2.5", "1根", "2.5", "TN-LIV-DESK → 书桌上", "613→插座"),
+        ("EH-01", "2×2.5", "1根", "4.0", "副箱C20-04 → JB-LIV-HIGH", "连续→413"),
+        ("EH-02", "2×2.5", "1根", "1.5", "JB-LIV-HIGH → 客厅空调漏保", "413→SRCD"),
+        ("EH-03", "2×2.5", "1根", "1.5", "JB-LIV-HIGH → 冰箱漏保插座", "413→SRCD"),
+        ("EW-01", "2×2.5", "1根", "3.0", "副箱C20-05 → RCD-BATH-01", "连续→RCD"),
+        ("EW-02", "2×2.5", "1根", "1.0", "RCD-BATH-01 → JB-BATH", "RCD→415"),
+        ("EW-03", "2×2.5", "1根", "1.5", "JB-BATH → 浴霸", "415→设备"),
+        ("EW-04", "2×2.5", "1根", "0.75", "JB-BATH → 浴室柜/镜灯", "415→设备"),
+        ("EW-05", "2×2.5", "1根", "0.75", "JB-BATH → 卫生间灯/开关", "415→L/N与灯N"),
+        ("EC-01", "1×2.5", "1根L", "3.5", "客厅JZ L1 → 主灯L", "221-412"),
+        ("EC-02", "1×2.5", "1根L", "3.5", "客厅JZ L2 → 餐灯L", "221-412"),
+        ("EC-03", "1×2.5", "1根L", "2.5", "走廊A开关 → 灯带插座L", "412/设备端子"),
+        ("EC-04", "1×2.5", "1根L", "2.5", "走廊B开关 → 基础灯L", "221-612"),
+        ("EC-05", "1×2.5", "1根L", "3.0", "卧室JZ L1 → 主灯L", "221-412"),
+        ("EC-06", "1×2.5", "1根L", "3.0", "厨房开关 → 基础灯L", "412/设备端子"),
+        ("EC-07", "1×2.5", "1根L", "2.5", "卫生间开关 → 基础灯L", "412/设备端子"),
+    ]
+
+    def table_panel(base_x: int, panel_rows: list[tuple[str, str, str, str, str, str]]) -> str:
+        parts = [
+            f'<rect x="{base_x}" y="108" width="650" height="620" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>',
+            f'<rect x="{base_x}" y="108" width="650" height="30" rx="10" fill="#e2e8f0"/>',
+            f'<text x="{base_x + 12}" y="128" class="micro bold">段号</text>',
+            f'<text x="{base_x + 62}" y="128" class="micro bold">线型mm²</text>',
+            f'<text x="{base_x + 137}" y="128" class="micro bold">根数</text>',
+            f'<text x="{base_x + 197}" y="128" class="micro bold">净m</text>',
+            f'<text x="{base_x + 245}" y="128" class="micro bold">起点 → 终点</text>',
+            f'<text x="{base_x + 500}" y="128" class="micro bold">接头 / 端接</text>',
+        ]
+        for index, row in enumerate(panel_rows):
+            y = 157 + index * 23
+            fill = "#f8fafc" if index % 2 == 0 else "#ffffff"
+            parts.append(f'<rect x="{base_x + 1}" y="{y - 16}" width="648" height="23" fill="{fill}"/>')
+            for offset, value in zip((12, 62, 137, 197, 245, 500), row):
+                parts.append(f'<text x="{base_x + offset}" y="{y}" class="micro">{value}</text>')
+        return "".join(parts)
+
+    split = 25
+    tables = table_panel(35, rows[:split]) + table_panel(715, rows[split:])
+    summary = r'''
+<rect x="35" y="742" width="1330" height="48" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="55" y="762" class="small bold">合计：</text><text x="105" y="762" class="small">6mm² 每根净21m / 下料24m；BVVB 2×2.5净69m / 下料77m / 买100m；BV 1×2.5净20.5m / 下料24m / 买30m。</text>
+<text x="55" y="782" class="micro red">长度为计划净值；现场弹线超出即先更新表再下料。221端子总采购量不变；实物SKU、导体类型、剥线长度和保护器端接仍须核验。</text>
+'''
+    return construction_document("electrical-segment-takeoff", "37 全屋逐段下料与端接图", "每一段线型、根数、计划净长、起终点及接头型号；与data/electrical.yaml逐段表同步", tables + summary)
 
 
 def bathroom_electrical_detail() -> str:
@@ -717,6 +969,9 @@ OUTPUTS = {
     "32-electrical-topology.svg": ("electrical-topology", "32 五回路与分级漏保拓扑图", electrical_topology_v5),
     "33-bedroom-electrical-detail.svg": ("bedroom-electrical-detail", "33 卧室插座与吊扇控制详图", bedroom_electrical_detail),
     "34-bathroom-electrical-detail.svg": ("bathroom-electrical-detail", "34 卫生间专用馈线与漏保详图", bathroom_electrical_detail),
+    "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "35 客厅 JZ-N2 施工接线图", living_jz_n2_wiring),
+    "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "36 卧室 JZ-N2 与吊扇分离施工图", bedroom_jz_n2_wiring),
+    "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "37 全屋逐段下料与端接图", electrical_segment_takeoff),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
     "60-finishes-materials.svg": ("finishes-materials", "60 墙地面饰面图", finishes_materials),

@@ -213,13 +213,13 @@ items:
     item: "BVVB 2×2.5mm²两芯固定布线护套线"
     status: not_purchased
     requirements: ["两卷各50m", "内芯为合规相线色+淡蓝色", "CCC及合格证", "不采用蓝线改色"]
-    estimated_net_m: 66
-    planned_cut_m: 73
+    estimated_net_m: 69
+    planned_cut_m: 77
     planned_quantity_m: 100
     planned_rolls: 2
-    expected_remainder_m: 27
+    expected_remainder_m: 23
     quantity_status: planned_takeoff_pending_setout
-    purchase_strategy: "按2卷×50m采购；现场弹线实测若超过73m，先更新下料表，禁止用接头拼凑长直段"
+    purchase_strategy: "按2卷×50m采购；现场弹线实测若超过77m，先更新下料表，禁止用接头拼凑长直段"
     note: "默认用于新建普通小支线；开关盒按智能化预留L/N，普通开关也可使用。该两芯线不含PE；三孔面板PE端子仍保持未连接并贴标。"
 
   - id: BUY-0025
@@ -379,10 +379,10 @@ items:
     item: "BV 1×2.5mm²照明受控相线"
     status: not_purchased
     planned_quantity_m: 30
-    planned_cut_m: 27
+    planned_cut_m: 24
     requirements: ["红/棕等明确相色", "禁止蓝色和黄绿双色", "CCC及合格证"]
     quantity_status: planned_takeoff_pending_setout
-    note: "用于客厅三路、走廊A/B、卧室、厨房和卫生间灯控回线；开关盒另由BVVB 2×2.5送达L/N。"
+    note: "净用约20.5m；用于客厅主灯/餐灯两路、走廊A/B、卧室主灯、厨房和卫生间灯控回线。卧室床下灯L2使用BVVB相线，不另占单芯回线；开关盒由BVVB 2×2.5送达L/N。"
 
   - id: BUY-0040
     category: electrical_fixture
@@ -396,8 +396,9 @@ items:
       - { item: "冰箱漏保型插座", quantity: 1, procurement_ref: BUY-0035 }
       - { item: "玄关设备架至少4位常电插座组", quantity: 1, procurement_ref: BUY-0027 }
       - { item: "走廊A灯带高位专用受控插座", quantity: 1, note: "不计入19组通用插座" }
-      - { item: "客厅三键开关面板", quantity: 1, note: "三路均实际敷设；零火智能版可选" }
-      - { item: "其他固定照明开关面板", quantity: 5, scope: "走廊A/B、卧室、厨房、卫生间", gate: "卫生间键数按设备说明" }
+      - { item: "京东京造JZ-N2零火双开", quantity: 2, procurement_ref: BUY-0041, scope: "客厅1、卧室1" }
+      - { item: "其他固定照明开关面板", quantity: 4, scope: "走廊A/B、厨房、卫生间", gate: "卫生间键数按设备说明" }
+      - { item: "卧室床下灯10A二孔受控专用插座", quantity: 1, note: "不计入19组通用插座；贴仅床下灯" }
       - { item: "客厅24~36W漫射吸顶灯", quantity: 1, requirements: "3500~4000K，Ra≥90优先" }
       - { item: "餐区双头可调明装射灯", quantity: 1, requirements: "每头5~8W，2700~3000K，Ra≥90优先" }
       - { item: "走廊B小型漫射灯", quantity: 1 }
@@ -405,7 +406,24 @@ items:
       - { item: "厨房基础漫射灯", quantity: 1 }
       - { item: "卫生间防潮基础灯", quantity: 1, gate: "防护等级、位置和RCD下游连接经安全复核" }
     quantity_status: point_count_frozen_product_ratings_pending_nameplates
-    note: "走廊A约2m成套插头灯带另见BUY-0026；床下感应灯带、书桌任务灯和沙发背景灯具延期按入住体验选购。"
+    note: "走廊A约2m成套插头灯带另见BUY-0026；床下灯须使用厂家完整220V二脚插头成品，书桌任务灯和沙发背景灯具延期按入住体验选购。"
+
+  - id: BUY-0041
+    category: electrical_fixture
+    room: multiple
+    item: "京东京造JZ-N2零火双开智能开关"
+    status: not_purchased
+    planned_quantity: 2
+    unit_price_cny: 49.9
+    planned_total_cny: 99.8
+    product_url: "https://item.jd.com/product/b4RAvNCE2utuCbYKomXWRg.html"
+    owner_confirmed: ["商品型号JZ-N2", "零火双开", "Mesh 2.0", "单价49.9元", "客厅和卧室各1只"]
+    requirements:
+      - "到货按实物说明确认L/N/L1/L2端子明确支持2.5mm²导体"
+      - "核对LED负载范围、模块厚度和现有暗盒有效深度"
+      - "开关端子不并压两根导体；盒内分线使用对应221-41x类端子"
+      - "不兼容即停工，使用86延长框或相邻深明盒，不削细导体硬塞"
+    quantity_status: owner_selected_pending_physical_terminal_box_and_load_check
 
   - id: BUY-0037
     category: electrical_protection

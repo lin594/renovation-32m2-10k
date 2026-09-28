@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bedroom-jz-n2-wiring" data-drawing-property="construction-wiring-final" role="img">
+<title>36 卧室 JZ-N2 与吊扇分离施工图</title>
+<desc>卧室双键、主灯、床下灯专用插座及西墙吊扇调速器的独立接线</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">36 卧室 JZ-N2 与吊扇分离施工图</text>
+<text x="70" y="78" class="subtitle">卧室双键、主灯、床下灯专用插座及西墙吊扇调速器的独立接线</text>
+
+<rect x="45" y="112" width="880" height="650" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="485" y="140" class="note bold center">卧室主灯 / 床下灯专用插座与吊扇调速器分离</text>
+<g data-junction="TN-BED-01">
+ <rect x="72" y="172" width="205" height="180" rx="10" class="panel"/>
+ <text x="174" y="198" class="small bold center">TN-BED-01 高位盒</text>
+ <rect x="103" y="222" width="142" height="34" rx="6" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-connector="221-615-L"/><text x="174" y="244" class="small center">L｜221-615</text>
+ <rect x="103" y="282" width="142" height="34" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" data-connector="221-615-N"/><text x="174" y="304" class="small center">N｜221-615</text>
+ <text x="174" y="337" class="micro center">6mm²主干 → BVVB短尾</text>
+</g>
+<path d="M47 239H103" stroke="#dc2626" stroke-width="5" data-conductor="6mm-L"/><text x="50" y="225" class="micro red">6mm² L</text>
+<path d="M47 299H103" stroke="#2563eb" stroke-width="5" data-conductor="6mm-N"/><text x="50" y="285" class="micro blue">6mm² N</text>
+<path d="M245 239H350" stroke="#dc2626" stroke-width="4"/><path d="M245 299H350" stroke="#2563eb" stroke-width="4"/><text x="298" y="218" class="micro center">BVVB 2×2.5</text>
+
+<g data-device="JZ-N2-bedroom" data-box="E-BOX-BED-JZ">
+ <rect x="350" y="165" width="245" height="240" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="3"/>
+ <text x="472" y="192" class="small bold center">京东京造 JZ-N2</text><text x="472" y="210" class="micro center">卧室门内右手既有暗盒｜零火双开</text>
+ <circle cx="368" cy="239" r="13" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/><text x="368" y="243" class="micro center">L</text>
+ <rect x="378" y="282" width="100" height="36" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2" data-connector="221-413-bedroom-N"/><text x="428" y="305" class="small center">N｜221-413</text>
+ <path d="M350 299H378" stroke="#2563eb" stroke-width="4"/><path d="M478 299H545" stroke="#2563eb" stroke-width="3"/>
+ <circle cx="565" cy="299" r="13" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="565" y="303" class="micro center">N</text>
+ <circle cx="565" cy="239" r="14" fill="#fff" stroke="#dc2626" stroke-width="2"/><text x="565" y="243" class="micro center">L1</text>
+ <circle cx="565" cy="359" r="14" fill="#fff" stroke="#c2410c" stroke-width="2"/><text x="565" y="363" class="micro center">L2</text>
+ <text x="472" y="246" class="small center">第1键｜主灯</text><text x="472" y="366" class="small center">第2键｜床下灯</text>
+ <text x="472" y="391" class="micro red center">端子不并压两根线；N在盒内用221-413分线</text>
+</g>
+
+<path d="M579 239H630" stroke="#dc2626" stroke-width="4" data-controlled-return="bedroom-main"/>
+<rect x="630" y="222" width="90" height="34" rx="6" fill="#fff" stroke="#64748b" stroke-width="2" data-connector="221-412-bedroom-main"/><text x="675" y="244" class="micro center">221-412</text>
+<path d="M720 239H760" stroke="#dc2626" stroke-width="4"/>
+<rect x="760" y="188" width="135" height="96" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-load="bedroom-main-light"/><text x="827" y="220" class="small bold center">卧室主灯</text><text x="827" y="244" class="micro center">L1 → 灯L</text><text x="827" y="264" class="micro center">灯N来自高位221-615</text>
+<path d="M245 299H315V425H827V284" fill="none" stroke="#2563eb" stroke-width="3" data-neutral="bedroom-main-light"/>
+
+<path d="M579 359H690V375" fill="none" stroke="#c2410c" stroke-width="4" data-controlled-output="underbed-L"/>
+<path d="M478 299H615V420H690" fill="none" stroke="#2563eb" stroke-width="3" data-underbed-neutral="from-221-413"/>
+<rect x="690" y="340" width="205" height="112" rx="9" fill="#fff" stroke="#c2410c" stroke-width="3" data-outlet="underbed-light-controlled" data-type="10A-two-pin"/>
+<text x="792" y="370" class="small bold center">10A二孔专用受控插座</text><text x="792" y="393" class="small center">贴“仅床下灯”</text><text x="792" y="415" class="micro center">L来自JZ-N2 L2｜N来自221-413</text><text x="792" y="437" class="micro center">BVVB 2×2.5约3m｜可拔插、不被床压住</text>
+
+<g data-fan-separation="true">
+ <path d="M245 239H300V525H365" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="independent-from-TN-BED-01"/>
+ <path d="M245 299H285V545H365" fill="none" stroke="#2563eb" stroke-width="3"/>
+ <rect x="365" y="500" width="185" height="88" rx="9" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" data-device="fan-speed-controller" data-box="E-BOX-BED-FAN"/><text x="457" y="528" class="small bold center">西墙原吊扇调速器</text><text x="457" y="550" class="micro center">独立暗盒 / 独立输出</text><text x="457" y="570" class="micro red center">不与JZ-N2共盒或共输出</text>
+ <path d="M550 544C635 500 725 500 785 535" fill="none" stroke="#7c3aed" stroke-width="5" stroke-dasharray="3 8" data-fan-feed="existing-concealed"/>
+ <circle cx="820" cy="545" r="38" fill="#f5f3ff" stroke="#7c3aed" stroke-width="3"/><text x="820" y="550" class="small center">吊扇</text>
+ <text x="680" y="493" class="micro purple center">既有暗线：先测通断与绝缘</text>
+</g>
+<rect x="80" y="630" width="815" height="88" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="102" y="657" class="small red bold">床下灯安全：</text><text x="205" y="657" class="small red">只用厂家完整220V二脚插头成品；不剪插头、不裸接铜箔。</text><text x="102" y="680" class="small red">插座可拔插且不受床体挤压；灯带远离床品、猫可啃咬位置和积尘散热死角。</text><text x="102" y="703" class="small red">功能验收：两键只控主灯/床下灯；关闭任一键不得影响床侧常电或吊扇。</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">36 施工核对</text><text x="994" y="196" class="note">开关位置：卧室门内右手既有暗盒</text><text x="994" y="225" class="note">第1键主灯；第2键床下灯</text><text x="994" y="254" class="note">L/N用BVVB送到开关盒</text><text x="994" y="283" class="note">盒内N用221-413一分二</text><text x="994" y="312" class="note">L1用BV 1×2.5经221-412到主灯</text><text x="994" y="341" class="note">L2用BVVB相线到专用插座</text><text x="994" y="370" class="note">床下点只装10A二孔并贴专用标签</text><text x="994" y="399" class="note">厂家完整220V二脚插头，不剪线</text><text x="994" y="428" class="note">西墙调速器暗盒保持独占</text><text x="994" y="457" class="note">既有吊扇暗线先测通断和绝缘</text><text x="994" y="486" class="note">JZ-N2与调速器不共盒、不共输出</text><text x="994" y="515" class="note">盒深不足用延长框或深明盒</text><text x="994" y="544" class="note red">实物不支持2.5mm²或负载不匹配即停工</text><text x="994" y="573" class="note red">断电核L/N/L1/L2；专业终检后通电</text><line x1="994" y1="594" x2="1316" y2="594" stroke="#e2e8f0"/><line x1="998" y1="612" x2="1030" y2="612" stroke="#dc2626" stroke-width="5"/><text x="1044" y="616" class="small">主灯受控L</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#c2410c" stroke-width="5"/><text x="1044" y="645" class="small">床下灯受控L</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#2563eb" stroke-width="5"/><text x="1044" y="674" class="small">N</text><line x1="998" y1="699" x2="1030" y2="699" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="703" class="small">吊扇既有暗线</text>
+<text x="70" y="813" class="small red">施工接线/下料定稿｜仅供断电放样与端点核对；通电前仍须完成实物参数核验及合格电工绝缘、极性、保护器和漏保测试。</text>
+</svg>

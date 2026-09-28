@@ -17,6 +17,9 @@ EXPECTED = {
     "32-electrical-topology.svg": ("electrical-topology", "五回路与分级漏保拓扑图"),
     "33-bedroom-electrical-detail.svg": ("bedroom-electrical-detail", "卧室插座与吊扇控制详图"),
     "34-bathroom-electrical-detail.svg": ("bathroom-electrical-detail", "卫生间专用馈线与漏保详图"),
+    "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "客厅 JZ-N2 施工接线图"),
+    "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "卧室 JZ-N2 与吊扇分离施工图"),
+    "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "全屋逐段下料与端接图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
@@ -32,7 +35,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_eleven_svg_files(self) -> None:
+    def test_generates_exactly_fourteen_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -86,6 +89,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-outlet-branch="LR-SOFA-ROBOT"', furniture)
         self.assertIn('data-outlet="robot-always-on"', points)
         self.assertIn('data-outlet="sofa-charge"', points)
+        self.assertIn('data-outlet="sofa-background-always-on"', points)
+        self.assertNotIn('data-outlet="sofa-background-controlled"', points)
 
     def test_bath_slider_opens_east_and_temporarily_intrudes_hall_b(self) -> None:
         doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
@@ -225,6 +230,39 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-branch-pattern="distributed"', detail)
         self.assertIn("PE端子保持未连接并贴标", detail)
 
+    def test_35_living_jz_n2_has_two_lighting_returns_and_three_independent_sofa_branches(self) -> None:
+        detail = (self.output_dir / "35-living-jz-n2-wiring.svg").read_text(encoding="utf-8")
+        self.assertIn('data-drawing-property="construction-wiring-final"', detail)
+        self.assertIn('data-device="JZ-N2-living"', detail)
+        self.assertIn('data-connector="221-613-L"', detail)
+        self.assertIn('data-connector="221-615-N"', detail)
+        self.assertEqual(detail.count('data-connector="221-412-'), 2)
+        self.assertIn('data-controlled-return="living-main"', detail)
+        self.assertIn('data-controlled-return="living-dining"', detail)
+        self.assertIn('data-sofa-branches="three-independent-always-on"', detail)
+        self.assertIn('data-outlet="robot-always-on"', detail)
+        self.assertIn('data-outlet="sofa-background-always-on"', detail)
+        self.assertNotIn("第3键", detail)
+
+    def test_36_bedroom_jz_n2_separates_underbed_light_and_fan_controller(self) -> None:
+        detail = (self.output_dir / "36-bedroom-jz-n2-wiring.svg").read_text(encoding="utf-8")
+        self.assertIn('data-device="JZ-N2-bedroom"', detail)
+        self.assertIn('data-connector="221-413-bedroom-N"', detail)
+        self.assertIn('data-connector="221-412-bedroom-main"', detail)
+        self.assertIn('data-outlet="underbed-light-controlled" data-type="10A-two-pin"', detail)
+        self.assertIn('data-fan-separation="true"', detail)
+        self.assertIn('data-device="fan-speed-controller"', detail)
+        self.assertIn('data-fan-feed="existing-concealed"', detail)
+        self.assertIn("不剪插头、不裸接铜箔", detail)
+
+    def test_37_lists_every_frozen_segment_and_totals(self) -> None:
+        detail = (self.output_dir / "37-electrical-segment-takeoff.svg").read_text(encoding="utf-8")
+        for segment_id in ("E6-01", "E6-08", "EB-01A", "EB-01B", "EL-07A", "EL-07B", "EL-11", "EW-05", "EC-01", "EC-07"):
+            self.assertIn(segment_id, detail)
+        self.assertIn("6mm² 每根净21m / 下料24m", detail)
+        self.assertIn("BVVB 2×2.5净69m / 下料77m / 买100m", detail)
+        self.assertIn("BV 1×2.5净20.5m / 下料24m / 买30m", detail)
+
     def test_electrical_bom_excludes_recolored_blue_wire_and_switched_outlets(self) -> None:
         root = Path(__file__).resolve().parents[1]
         procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
@@ -252,7 +290,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "50-kitchen-bath-details.svg"}:
+            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "35-living-jz-n2-wiring.svg", "36-bedroom-jz-n2-wiring.svg", "37-electrical-segment-takeoff.svg", "50-kitchen-bath-details.svg"}:
                 self.assertIn('data-connection="hall-a-b-open"', svg)
                 self.assertNotIn("M475 450H600", svg)
 
