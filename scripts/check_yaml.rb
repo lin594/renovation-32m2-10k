@@ -216,8 +216,9 @@ errors << "MCB-04两个负载必须各自具有末端漏保" unless device_ids.i
 panel_snapshot = electrical.dig("confirmed_conditions", "panel_snapshot") || {}
 panel_positions = Array(panel_snapshot["branch_positions"])
 errors << "配电箱现场快照必须记录3×C40 RCBO + 2×C32 MCB" unless panel_positions.length == 5 && panel_positions.count { |x| x["existing"].to_s.include?("C40") } == 3 && panel_positions.count { |x| x["existing"].to_s.include?("C32") } == 2
-errors << "五个支路保护器目标必须统一到C20基线" unless panel_positions.all? { |x| x["target"].to_s.include?("C20") }
-errors << "支路保护器采购应为3只C20 RCBO + 2只C20 MCB" unless procurement_by_id.dig("BUY-0036", "planned_quantity") == 3 && procurement_by_id.dig("BUY-0037", "planned_quantity") == 2
+errors << "五个主箱支路器件都应标记为保留并由副保护盒承担C20过流保护" unless panel_positions.all? { |x| x["target"].to_s.include?("保留") && x["target"].to_s.include?("C20") }
+errors << "BUY-0036应为主箱旁明装副保护盒方案" unless procurement_by_id.dig("BUY-0036", "item").to_s.include?("副保护盒") && procurement_by_id.dig("BUY-0036", "planned_quantity") == 1
+errors << "原位更换C20断路器旧方案应取消" unless procurement_by_id.dig("BUY-0037", "status") == "cancelled"
 
 
 electrical_text = electrical.to_s
