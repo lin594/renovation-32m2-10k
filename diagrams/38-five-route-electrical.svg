@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220" data-diagram-role="five-route-electrical-freeze" role="img">
+<title>38 五路明装路线冻结图</title>
+<desc>按真实空间路径展开卧室、厨房、玄关客厅生活、空调冰箱和卫生间五路明装电路</desc>
 <style>
   .title{font:700 28px sans-serif;fill:#111827}.h{font:700 18px sans-serif;fill:#111827}.t{font:15px sans-serif;fill:#111827}.s{font:13px sans-serif;fill:#374151}
   .box{fill:#fff;stroke:#64748b;stroke-width:2;rx:8}.pct{fill:#f8fafc;stroke:#334155;stroke-width:2;rx:8}.note{fill:#fff7ed;stroke:#f59e0b;stroke-width:2;rx:8}
