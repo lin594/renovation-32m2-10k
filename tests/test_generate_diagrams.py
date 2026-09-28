@@ -20,6 +20,7 @@ EXPECTED = {
     "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "客厅 JZ-N2 施工接线图"),
     "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "卧室 JZ-N2 与吊扇分离施工图"),
     "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "全屋逐段下料与端接图"),
+    "38-five-route-electrical.svg": ("five-route-electrical-freeze", "五路明装路线冻结图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
@@ -35,7 +36,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_fourteen_svg_files(self) -> None:
+    def test_generates_exactly_fifteen_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -290,7 +291,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "35-living-jz-n2-wiring.svg", "36-bedroom-jz-n2-wiring.svg", "37-electrical-segment-takeoff.svg", "50-kitchen-bath-details.svg"}:
+            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "35-living-jz-n2-wiring.svg", "36-bedroom-jz-n2-wiring.svg", "37-electrical-segment-takeoff.svg", "38-five-route-electrical.svg", "50-kitchen-bath-details.svg"}:
                 self.assertIn('data-connection="hall-a-b-open"', svg)
                 self.assertNotIn("M475 450H600", svg)
 
