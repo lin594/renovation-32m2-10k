@@ -330,21 +330,20 @@ items:
   - id: BUY-0036
     category: electrical_protection
     room: panel
-    item: "C20 1P+N RCBO（替换现有3只C40）"
+    item: "主配电箱旁明装副保护盒 + 五路C20过流保护"
     status: not_purchased
-    planned_quantity: 3
-    preferred_brand: "CHINT/正泰，优先同系列或同安装尺寸"
-    requirements: ["C20", "1P+N", "额定剩余动作电流≤30mA", "A型优先", "6kA或不低于现有", "与现有导轨/箱体模数匹配", "用于RCBO-01/02/03"]
+    planned_quantity: 1
+    requirements:
+      - "主配电箱本体和现有C40/C32器件全部保留"
+      - "副箱紧邻主箱安装，DIN导轨明装，预留不少于10~12模数"
+      - "五个回路各设C20过流保护基线；优先1P+N/2P，若采用1P则N线必须各回路独立直通"
+      - "主箱到副箱的短馈线按上游C40/C32选线，优先统一6mm² L/N短跳线"
+      - "由合格电工完成主箱接出、核相/核N和端子复紧"
     quantity_status: panel_confirmed
-    installation: "配电箱内部更换由合格电工完成"
 
   - id: BUY-0037
     category: electrical_protection
     room: panel
-    item: "C20 1P MCB（替换现有2只C32）"
-    status: not_purchased
-    planned_quantity: 2
-    preferred_brand: "CHINT/正泰，优先NXB-63同系列"
-    requirements: ["C20", "1P", "6kA或不低于现有", "与现有单模数位置匹配", "用于MCB-04/05"]
-    quantity_status: panel_confirmed
-    installation: "配电箱内部更换由合格电工完成"
+    item: "原位更换C20断路器旧方案"
+    status: cancelled
+    cancel_reason: "用户希望保留2026-08刚更换的主配电箱与现有3×C40 RCBO、2×C32 MCB；改由邻近副保护盒承担C20过流保护"
