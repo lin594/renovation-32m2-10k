@@ -14,12 +14,12 @@ confirmed_conditions:
     main: { model: "CHINT NXB-63", poles: 2, curve_current: "C63", action: retain_pending_terminal_check }
     over_under_voltage: { rating: "63A/230V", action: retain_pending_terminal_check }
     branch_positions:
-      - { id: RCBO-01, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "C20 1P+N RCBO，≤30mA，A型优先" }
-      - { id: RCBO-02, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "C20 1P+N RCBO，≤30mA，A型优先" }
-      - { id: RCBO-03, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "C20 1P+N RCBO，≤30mA，A型优先" }
-      - { id: MCB-04, existing: "CHINT NXB-63 C32", breaking_capacity_ka: 6, target: "C20 1P MCB" }
-      - { id: MCB-05, existing: "CHINT NXB-63 C32", breaking_capacity_ka: 6, target: "C20 1P MCB" }
-    color_warning: "箱内现有多根导体均为蓝色，不能按颜色判断L/N；更换支路保护器时由电工重新核相、核N并按新线路统一标识"
+      - { id: RCBO-01, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "保留；作为上游馈线RCBO，副保护盒内另设C20过流保护" }
+      - { id: RCBO-02, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "保留；作为上游馈线RCBO，副保护盒内另设C20过流保护" }
+      - { id: RCBO-03, existing: "CHINT NXBLE-63YH C40", residual_ma: 30, breaking_capacity_ka: 6, target: "保留；作为上游馈线RCBO，副保护盒内另设C20过流保护" }
+      - { id: MCB-04, existing: "CHINT NXB-63 C32", breaking_capacity_ka: 6, target: "保留；作为上游馈线MCB，副保护盒内另设C20过流保护" }
+      - { id: MCB-05, existing: "CHINT NXB-63 C32", breaking_capacity_ka: 6, target: "保留；作为上游馈线MCB，副保护盒内另设C20过流保护" }
+    color_warning: "箱内现有多根导体均为蓝色，不能按颜色判断L/N；接出新副保护盒时由电工重新核相、核N并按新线路统一标识"
   branch_device_capacity: "共5个支路位置：3个漏电保护器+2个空气开关，不增加不存在的回路位置"
   home_server: "EVE V1可长期运行，固定放在走廊A南墙玄关置物架"
   balcony:
@@ -49,8 +49,8 @@ design_principles:
   - "剩余蓝色6mm²线优先只作为中性导体候选，不把端部胶布改色直接视为相线方案获批"
   - "允许三孔面板进入两线制方案，但PE端子保持未连接并粘贴“本户无PE”标识；严禁N/PE短接或借用水管、燃气管作接地"
   - "配电箱漏保与设备末端漏保属于风险降低措施，不补足PE，也不把无PE设备标记为接地验收合格"
-  - "为配合全屋2.5mm²末端统一方案，五个支路保护器以C20为基线；现有C40/C32不得直接作为2.5mm²末端支线的最终过流保护。若未来某回路需要高于C20，则必须同步重新核定该回路全部最小线径和下游过流保护"
-  - "配电箱内部换断路器、重新核相/核N和端子复紧属于带电风险最高部分，交由合格电工处理；业主DIY范围从各支路断电后的出线端之后开始"
+  - "保留2026-08新换的主配电箱及C40/C32五个支路器件；它们只作为上游馈线保护，不直接作为2.5mm²末端的最终过流保护。紧邻主箱增加一个明装副保护盒，在各回路缩径/进入新线路前设置C20过流保护基线"
+  - "主配电箱内部不更换器件；仅由合格电工从现有五个支路安全接出到邻近副保护盒并核相/核N、复紧端子。业主DIY范围从副保护盒出线端之后开始"
 
 provisional_five_circuit_allocation:
   recommendation: "以配电箱和四个既有穿线孔的方向为第一约束；按空间形成卧室、厨房、客厅生活、客厅高负载、卫生间五条路径，减少重复穿洞和跨房间回线"
@@ -106,15 +106,18 @@ provisional_five_circuit_allocation:
     - "RCBO-03承担洗烘+客厅普通插座+普通照明时的同时负载"
     - "MCB-04承担客厅空调+冰箱时的额定值、线径及两个末端漏保插座/空调伴侣匹配"
     - "零火智能开关、普通开关、吊扇调速器和灯具端子是否均明确支持2.5mm²导体"
-  fixed_physical_constraint: "照片确认第4、5支路位当前各为1模数C32空开；为保持现有箱体布局，目标原位替换为C20 1P MCB。MCB-04采用空调/冰箱各自末端漏保，MCB-05采用卫生间门外RCD-BATH-01总漏保"
-  panel_retrofit:
-    rationale: "现有3×C40 RCBO + 2×C32 MCB与全屋2.5mm²末端统一策略不匹配；若保留高额定值就必须在每个缩径处分设二级过流保护，显著增加DIY复杂度"
-    target: ["RCBO-01/02/03→C20 30mA A型优先", "MCB-04/05→C20"]
-    retain: ["总开关NXB-63 C63", "63A自复式过欠压保护器，前提是端子/外观检查正常"]
-    execution: "配电箱内部更换和复紧由合格电工完成；更换后逐路测试RCBO TEST、极性及漏保动作"
+  fixed_physical_constraint: "主配电箱保持2026-08刚更换后的现状：3×C40/30mA RCBO + 2×C32 MCB均不更换。紧邻主箱新增副保护盒承担2.5mm²新线路的过流保护；MCB-04仍采用空调/冰箱各自末端漏保，MCB-05仍采用卫生间门外RCD-BATH-01总漏保"
+  downstream_protection_box:
+    rationale: "用户不希望改动2026-08刚更换的主配电箱；同时GB 50054要求过负荷保护满足In≤Iz，因此C40/C32不能直接作为新2.5mm²末端的最终过流保护"
+    location: "紧邻现有主配电箱的明装DIN副箱，便于集中检修且不把小空开分散到各房间"
+    upstream_feeders: "现有五支路到副箱的短连接段按各自上游C40/C32选线；为简化并利用库存，优先统一6mm² L/N短跳线，具体端接由电工确认"
+    target_devices: "五路各设C20过流保护基线；优先1P+N/2P便于成对断开L/N，如采用1P则各回路N必须独立直通、严禁跨RCBO共用N"
+    downstream: "副箱C20之后才进入2.5mm²普通插座/照明/开关新线路；若某回路实测负载确需超过C20，不直接升额定值，而是重新核定线径或拆分负载"
+    retain_main_panel: ["总开关NXB-63 C63", "63A自复式过欠压保护器", "3×NXBLE-63YH C40/30mA", "2×NXB-63 C32"]
+    execution: "主箱到副箱的接出、核相/核N和端子复紧由合格电工完成；主箱器件本身不拆换"
 
 layered_residual_protection:
-  coordination: "RCBO-01/02/03目标更换为C20、≤30mA后，卧室/厨房/客厅生活回路不再默认叠加同灵敏度设备级漏保；MCB-04以客厅空调和冰箱两个负载端各自漏保补充剩余电流保护；MCB-05在卫生间全部负载分支前设置总RCD"
+  coordination: "RCBO-01/02/03保留原C40/30mA作为上游剩余电流保护，副箱C20只负责下游2.5mm²过流保护；MCB-04副箱C20后由客厅空调和冰箱两个末端漏保提供剩余电流保护；MCB-05副箱C20后在卫生间全部负载分支前设置总RCD"
   product_minimums: ["额定剩余动作电流不大于30mA", "能够同时切断L和N", "具有TEST/RESET", "额定电流与上游C20、导线和负载匹配", "A型优先", "具备CCC/合格证及明确产品说明"]
   forbidden_substitutes: ["仅有过欠压保护的空调伴侣", "仅有计量或远程控制的智能插座", "单极只切相线的所谓漏保", "以末端漏保代替过流保护或PE"]
   devices:
@@ -123,7 +126,7 @@ layered_residual_protection:
     - id: RCD-BATH-01
       upstream: MCB-05
       load: "卫生间全部用电"
-      form: "2P、≤30mA RCD，2~4位DIN导轨明装小箱；上游C20 MCB承担过流/短路保护"
+      form: "2P、≤30mA RCD，2~4位DIN导轨明装小箱；上游副保护盒C20承担过流/短路保护"
       preferred_location: "走廊A卫生间门外，便于干燥环境检修和跳闸复位"
       fallback_location: "只有在产品说明、安装区域和防护条件均确认合格时才考虑卫生间内干区高位"
       upstream_segment: "连续、受机械保护、无中间接头、无任何负载分支"
@@ -239,7 +242,7 @@ bedroom_detail:
 
 cable_plan:
   wiring_system: "高位主干走阻燃线槽。普通插座采用最简单的单次垂直下落：高位T接后用2×2.5mm²两芯护套线直达低位盒；其中距地1.8m以下仍用小规格阻燃PVC管或窄槽作机械保护，不再使用与主干同规格的大线槽。灯控因存在下到开关再返回高位灯具的往返导体，优先用一条窄明线槽统一收纳。6mm²库存主干仍按单芯线规则处理"
-  trunk_policy: "C20基线下，2.5mm²末端由上游保护器统一保护；蓝色6mm²若使用，只作N且与同回路等截面合规相色6mm² L成对作为高位主干。使用优先级：RCBO-03客厅生活长主干 > RCBO-01卧室较直主干 > RCBO-02厨房；MCB-04/05路径较短默认直接2.5mm²。6mm²主干在分支节点可剪断后用明确支持6mm²的连接器继续+分2.5mm²，不再强求不断线T接"
+  trunk_policy: "副保护盒C20之后，2.5mm²末端由该C20统一过流保护；蓝色6mm²若使用，只作N且与同回路等截面合规相色6mm² L成对作为高位主干。使用优先级：RCBO-03客厅生活长主干 > RCBO-01卧室较直主干 > RCBO-02厨房；MCB-04/05路径较短默认直接2.5mm²。6mm²主干在分支节点可剪断后用明确支持6mm²的连接器继续+分2.5mm²"
   buy_now:
     - { item: "BVVB 2×2.5mm²", quantity_m: 50, rolls: 1, purpose: "插座支路", requirements: ["内芯为合规相线色+淡蓝色", "CCC", "合格证"] }
   socket_takeoff:
