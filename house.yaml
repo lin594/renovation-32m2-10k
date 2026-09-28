@@ -133,8 +133,8 @@ electrical:
     devices:
       - { item: "总开关", model: "CHINT NXB-63", spec: "2P C63", count: 1, action: "保留，检查端子" }
       - { item: "自复式过欠压保护器", spec: "63A/230V", count: 1, action: "保留，检查端子/外观" }
-      - { item: "支路RCBO", model: "CHINT NXBLE-63YH", existing_spec: "C40 / 30mA / 6kA", count: 3, target: "原位换C20 1P+N / ≤30mA / A型优先" }
-      - { item: "支路MCB", model: "CHINT NXB-63", existing_spec: "C32 / 6kA", count: 2, target: "原位换C20 1P" }
+      - { item: "支路RCBO", model: "CHINT NXBLE-63YH", existing_spec: "C40 / 30mA / 6kA", count: 3, target: "保留；副保护盒内另设C20过流保护" }
+      - { item: "支路MCB", model: "CHINT NXB-63", existing_spec: "C32 / 6kA", count: 2, target: "保留；副保护盒内另设C20过流保护" }
     branch_capacity: "固定5个支路位置仍保留；第1~3路为2模数RCBO位置，第4~5路为1模数MCB位置"
     marking_note: "2026-09-28现场照片已确认完整额定值；箱内现有导体大量为蓝色，后续更换支路保护器时必须重新核相/核N，不能沿用颜色推断"
     provisional_allocation_ref: "data/electrical.yaml#provisional_five_circuit_allocation"
@@ -146,15 +146,15 @@ electrical:
     installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
     schedule_ref: "data/schedule.yaml"
     main_feed_proposal: "余下蓝色6平方线只作为中性导体候选；若用于单相主干，须与同回路等截面的合规相色6平方相线成对敷设，优先评估RCBO-03长直主干"
-    proposal_status: "配电箱保护器基线已冻结；待设备铭牌和实际路线长度确认6mm²主干使用范围及材料数量"
+    proposal_status: "主配电箱确定保留；新增邻近副保护盒承担C20过流保护。待设备铭牌和实际路线长度确认6mm²主干使用范围及材料数量"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
       lighting: "新建照明/开关短支线统一2.5mm²；L/N优先BVVB 2×2.5，开关受控回线用BV 1×2.5并统一标识"
       general_sockets: "BVVB 2×2.5mm²；低位末端统一2.5mm²"
-      trunk: "C20基线下允许高位主干使用6mm² L/N并在高位节点分2.5mm²；优先RCBO-03，其次卧室，短路径默认2.5mm²"
+      trunk: "副保护盒C20之后允许高位主干使用6mm² L/N并在高位节点分2.5mm²；优先RCBO-03，其次卧室，短路径默认2.5mm²"
       dedicated_loads: "客厅空调/冰箱在MCB-04 C20下分别做末端漏保；卫生间MCB-05 C20后先经门外总RCD"
     terminal_gate: "高位分支首选WAGO 221-613类三孔端子：6mm²来+6mm²去+2.5mm²支；L/N各一只，具体SKU说明书核验后购买"
-    protection_gate: "3只支路RCBO目标C20/≤30mA，2只MCB目标C20；任何回路若要提高过流保护额定值，须同步重新核定全部最小导体截面"
+    protection_gate: "现有主箱3×C40 RCBO + 2×C32 MCB全部保留；邻近副保护盒五路C20作为2.5mm²新线路的过流保护基线。若提高下游保护额定值，须同步重新核定全部最小导体截面"
     smart_control_rule: "普通插座保持常电；智能墙壁开关一律使用零火版且只控制灯具，不向普通插座供电"
     bathroom_dedicated_feeder: "MCB-05目标C20，从配电箱连续到走廊A卫生间门外RCD-BATH-01，再经E-HOLE-03进入卫生间；浴霸、浴室柜/镜灯和照明全部在该2P≤30mA总RCD下游"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
