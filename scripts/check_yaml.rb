@@ -197,7 +197,7 @@ errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" un
 
 terminal_buy = procurement_by_id["BUY-0025"] || {}
 errors << "BUY-0025不得保留旧PCT-62+五孔型固定最低购物车" if terminal_buy.key?("provisional_minimum_cart")
-errors << "BUY-0025应等待现场T接端子适配核验" unless terminal_buy.to_s.include?("T接") && terminal_buy["status"] == "not_purchased"
+errors << "BUY-0025应使用支持6mm²的三孔分支端子候选" unless terminal_buy.to_s.include?("221-613") && terminal_buy["status"] == "not_purchased"
 
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
@@ -208,11 +208,17 @@ errors << "RCBO-03不得再承载客厅空调或冰箱" if Array(circuits_by_id.
 
 layered_devices = Array(electrical.dig("layered_residual_protection", "devices"))
 device_ids = layered_devices.map { |device| device["id"] }.to_set
-expected_devices = Set["SRCD-AC-BED", "SRCD-AC-LIV", "SRCD-FRIDGE", "SRCD-WASHER", "SRCD-DISHWASHER", "RCD-BATH-01", "SRCD-BATH-HEATER", "SRCD-BATH-MIRROR"]
-errors << "分级漏保设备表必须覆盖两台空调、冰箱、洗烘/洗碗机候选保护和卫生间总保护" unless device_ids == expected_devices
+expected_devices = Set["SRCD-AC-LIV", "SRCD-FRIDGE", "RCD-BATH-01"]
+errors << "分级漏保设备表应只保留MCB-04两端末端漏保和卫生间总RCD" unless device_ids == expected_devices
 bath_rcd = layered_devices.find { |device| device["id"] == "RCD-BATH-01" } || {}
 errors << "卫生间三个负载必须全部位于RCD-BATH-01下游" unless Array(bath_rcd["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间基础照明"]
 errors << "MCB-04两个负载必须各自具有末端漏保" unless device_ids.include?("SRCD-AC-LIV") && device_ids.include?("SRCD-FRIDGE")
+panel_snapshot = electrical.dig("confirmed_conditions", "panel_snapshot") || {}
+panel_positions = Array(panel_snapshot["branch_positions"])
+errors << "配电箱现场快照必须记录3×C40 RCBO + 2×C32 MCB" unless panel_positions.length == 5 && panel_positions.count { |x| x["existing"].to_s.include?("C40") } == 3 && panel_positions.count { |x| x["existing"].to_s.include?("C32") } == 2
+errors << "五个支路保护器目标必须统一到C20基线" unless panel_positions.all? { |x| x["target"].to_s.include?("C20") }
+errors << "支路保护器采购应为3只C20 RCBO + 2只C20 MCB" unless procurement_by_id.dig("BUY-0036", "planned_quantity") == 3 && procurement_by_id.dig("BUY-0037", "planned_quantity") == 2
+
 
 electrical_text = electrical.to_s
 errors << "智能墙壁开关必须使用零火版且不得控制普通插座" unless electrical_text.include?("零火版") && electrical_text.include?("不把其受控输出接到通用插座")
@@ -241,8 +247,8 @@ errors << "BUY-0006应同时承担沙发和临时客卧，并保留隐私帘候�
 dishwasher = inventory_by_id["INV-0013"] || {}
 dishwasher_kit = procurement_by_id["BUY-0034"] || {}
 errors << "现有洗碗机必须进入库存而非重复采购设备" unless dishwasher["condition"].to_s.start_with?("owned") && dishwasher["planned_use"].to_s.include?("不采购新机")
-errors << "洗碗机连接包必须覆盖止水、排水、无PE标识和设备级漏保" unless dishwasher_kit.to_s.include?("独立") && dishwasher_kit.to_s.include?("排水") && dishwasher_kit.to_s.include?("本户无PE") && dishwasher_kit.to_s.include?("双极")
-errors << "厨房插座应新增洗碗机三孔常电点" unless outlets.dig("kitchen", "count") == 4 && outlets.dig("kitchen", "dishwasher", "device_protection") == "SRCD-DISHWASHER"
+errors << "洗碗机连接包必须覆盖止水、排水和无PE标识，且不得默认叠加设备级漏保" unless dishwasher_kit.to_s.include?("独立") && dishwasher_kit.to_s.include?("排水") && dishwasher_kit.to_s.include?("本户无PE") && dishwasher_kit.to_s.include?("不再默认增加同灵敏度设备级漏保")
+errors << "厨房插座应新增洗碗机三孔常电点并由RCBO-02统一保护" unless outlets.dig("kitchen", "count") == 4 && outlets.dig("kitchen", "dishwasher", "upstream") == "RCBO-02" && outlets.dig("kitchen", "dishwasher", "protection").to_s.include?("C20/30mA")
 
 # The remaining balance is not a feasibility claim until mandatory quotes exist.
 budget_feasibility = budget.fetch("feasibility", {})
