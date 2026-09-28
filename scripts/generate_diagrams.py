@@ -384,11 +384,11 @@ def electrical_routes() -> str:
 def electrical_topology_v5() -> str:
     topology = '''
 <rect x="55" y="115" width="205" height="575" rx="14" class="panel"/><text x="157" y="150" class="note bold center">配电箱｜固定5支路</text>
-<g data-circuit="RCBO-01"><rect x="78" y="180" width="160" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="158" y="202" class="small bold center">漏保1｜RCBO-01</text><text x="158" y="222" class="micro center">C40→C20｜卧室主干</text></g>
-<g data-circuit="RCBO-02"><rect x="78" y="270" width="160" height="58" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="158" y="292" class="small bold center">漏保2｜RCBO-02</text><text x="158" y="312" class="micro center">C40→C20｜厨房主干</text></g>
-<g data-circuit="RCBO-03"><rect x="78" y="360" width="160" height="72" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/><text x="158" y="382" class="small bold center">漏保3｜RCBO-03</text><text x="158" y="402" class="micro center">C40→C20｜客厅生活</text><text x="158" y="418" class="micro center">玄关 / 洗烘 / 照明</text></g>
-<g data-circuit="MCB-04"><rect x="78" y="470" width="160" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/><text x="158" y="492" class="small bold center">空开4｜MCB-04</text><text x="158" y="512" class="micro center">C32→C20｜空调+冰箱</text><text x="158" y="528" class="micro center">两端各自漏保</text></g>
-<g data-circuit="MCB-05"><rect x="78" y="580" width="160" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="158" y="602" class="small bold center">空开5｜MCB-05</text><text x="158" y="622" class="micro center">C32→C20｜卫生间馈线</text><text x="158" y="638" class="micro center">门外总RCD</text></g>
+<g data-circuit="RCBO-01"><rect x="78" y="180" width="160" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="158" y="202" class="small bold center">漏保1｜RCBO-01</text><text x="158" y="222" class="micro center">保留C40｜卧室上游</text></g>
+<g data-circuit="RCBO-02"><rect x="78" y="270" width="160" height="58" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="158" y="292" class="small bold center">漏保2｜RCBO-02</text><text x="158" y="312" class="micro center">保留C40｜厨房上游</text></g>
+<g data-circuit="RCBO-03"><rect x="78" y="360" width="160" height="72" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/><text x="158" y="382" class="small bold center">漏保3｜RCBO-03</text><text x="158" y="402" class="micro center">保留C40｜客厅上游</text><text x="158" y="418" class="micro center">玄关 / 洗烘 / 照明</text></g>
+<g data-circuit="MCB-04"><rect x="78" y="470" width="160" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/><text x="158" y="492" class="small bold center">空开4｜MCB-04</text><text x="158" y="512" class="micro center">保留C32｜空调+冰箱</text><text x="158" y="528" class="micro center">两端各自漏保</text></g>
+<g data-circuit="MCB-05"><rect x="78" y="580" width="160" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="158" y="602" class="small bold center">空开5｜MCB-05</text><text x="158" y="622" class="micro center">保留C32｜卫生间馈线</text><text x="158" y="638" class="micro center">门外总RCD</text></g>
 
 <g fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"><path d="M238 209H305"/><path d="M238 299H305"/><path d="M238 396H305"/><path d="M238 506H305"/><path d="M238 616H305"/></g>
 <g data-branch-pattern="distributed" data-node-example="TN-BED"><rect x="305" y="175" width="140" height="68" rx="9" class="fixed"/><text x="375" y="200" class="small bold center">TN-BED</text><text x="375" y="220" class="micro center">连续主干｜就地T接</text></g>
@@ -410,19 +410,19 @@ def electrical_topology_v5() -> str:
 <rect x="55" y="710" width="920" height="72" rx="12" class="danger"/><text x="78" y="737" class="note red bold">两线制边界：</text><text x="190" y="737" class="note red">三孔面板PE端子不连接并贴“本户无PE”；严禁N/PE短接或管道接地。</text><text x="78" y="764" class="small red">T接端子型号和数量现场按线径/节点冻结；取消PCT固定最低购物车。</text>
 '''
     side = sidebar("五回路与保护层", [
-        "恰好3个RCBO + 2个MCB",
+        "主箱3×C40 RCBO + 2×C32 MCB全部保留",
         "MCB-04：客厅空调+冰箱短主干",
         "MCB-05：仅卫生间连续馈线",
-        "MCB-04两端各自漏保；MCB-05分支前总RCD",
+        "主箱旁副保护盒：五路C20过流保护",
         "T接节点沿连续主干分布，数量现场冻结",
-        "客厅门洞前可共槽，过洞后两路自然分流",
+        "C20副保护后才进入2.5mm²新线路",
         "插座共15组，卫浴2点另计设备连接",
         "客厅空调与冰箱故障互不连带断电",
         "普通插座常电；智能墙壁开关零火版",
         "机器人常电不受智能控制",
         "不再预设PCT-62/五孔端子组合",
         "连接器须适配主线/支线截面并可检修",
-        "!所有参数仍受铭牌、负载和专业检测门禁",
+        "!主箱保留；副保护盒规格与负载仍需电工核定",
     ])
     return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、连续空间主干、分布式T接与MCB末端/总漏保", topology + side)
 
