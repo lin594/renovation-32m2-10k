@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-26"
+updated: "2026-09-28"
 
 severity_order: [critical, high, medium, low]
 status_values: [open, investigating, mitigated, accepted, closed]
@@ -36,7 +36,7 @@ risks:
     status: open
     confirmed_fact: "浴霸位于卫生间东墙偏北；卫生间按全间湿区设计"
     unknowns: ["型号", "防护等级", "安装高度", "距淋浴出水范围", "最大功率", "是否允许插头连接"]
-    guardrail: "浴霸必须在RCD-BATH-01下游；按产品说明选择防水插座式漏保或双极隔离开关+带盖接线盒，完成位置核验前不继续使用"
+    guardrail: "浴霸必须在门外RCD-BATH-01下游；默认不再叠加同灵敏度设备级漏保，按产品说明选择防溅插座或双极隔离开关+带盖接线盒，完成位置核验前不继续使用"
     next_action: "拍摄铭牌和全景，测量喷溅范围与干区；由电工核验MCB-05、馈线、末端漏保、连接方式及安装位置"
     task_ref: TASK-0005
 
@@ -146,14 +146,14 @@ risks:
 
   - id: SAF-0014
     domain: electrical_branch_protection
-    title: "1.5mm²照明支线与未知36A保护器可能不匹配"
+    title: "现有C40/C32支路保护器与2.5mm²统一末端方案不匹配"
     severity: critical
-    status: open
-    confirmed_fact: "计划购买1.5mm²铜线用于照明；配电箱器件仅被口述为约500V、36A，完整铭牌未知"
-    concern: "6mm²主干缩径后若仍由过大的上级保护器保护，1.5mm²导线可能无法获得适当的过载和短路保护"
-    guardrail: "1.5mm²仅列为照明候选，不用于普通插座、大功率设备或未经匹配的36A回路"
-    next_action: "9月28日拍摄每个器件正面和侧面铭牌，由合格电工结合敷设条件、负载和线路长度冻结保护器与线径"
-    blocks: ["最终回路表", "保护器采购", "1.5mm²支路通电"]
+    status: mitigated
+    confirmed_fact: "2026-09-28照片确认：3只NXBLE-63YH支路漏保均为C40/30mA，2只NXB-63支路空开均为C32；新方案普通插座、照明和开关短支线统一2.5mm²"
+    concern: "若直接沿用C40/C32并在下游缩径到2.5mm²，最小导体不能按当前简化方案获得合适的统一过流保护"
+    guardrail: "保持5个回路位置不变，但在新建固定线路通电前将3只支路RCBO原位换为C20/≤30mA、两只支路MCB原位换为C20；若某回路未来需要高于C20，则重新核定该回路全部最小线径和下游保护"
+    next_action: "采购与现有模数匹配的3×C20 1P+N RCBO（A型优先）和2×C20 1P MCB，由合格电工完成箱内更换、核相/核N、端子复紧和测试"
+    blocks: ["保留C40/C32直接给2.5mm²新支线通电"]
     task_ref: TASK-0028
 
   - id: SAF-0015
@@ -180,14 +180,14 @@ risks:
 
   - id: SAF-0017
     domain: electrical_terminal
-    title: "T接/分支连接器与上级保护器、最小下游线径可能不匹配"
-    severity: critical
-    status: open
-    confirmed_fact: "已取消PCT固定最低SKU；当前拟采用连续主干+分布式T接，但具体连接器型号、额定电流、主/支线适用截面和配电箱支路器件铭牌均待现场核实"
-    concern: "端子额定值可能低于上级保护器，且用其向2.5mm²/1.5mm²分支时，故障或过载可能不能由上级及时限制在端子和支线额定范围内"
-    guardrail: "上级≤32A只是必要条件；其额定值还须匹配最小下游导线在实际敷设下的允许值以及负载/故障切断条件。任一条件未知则不接线、不通电"
-    next_action: "9月28日拍摄五个支路器件铭牌，确认各主干/支线线种与截面、节点数量；再核对候选T接连接器认证、额定值和主/支线适配范围"
-    blocks: ["PCT节点安装", "相关2.5mm²分支通电"]
+    title: "6mm²主干分支端子的导体适配和可检修性"
+    severity: high
+    status: mitigated
+    confirmed_fact: "支路保护器目标已降为C20；高位分支允许剪断主干，WAGO 221-613类三孔端子作为首选候选，每个电位实现6mm²来线+6mm²去线+2.5mm²支线"
+    concern: "具体SKU若不支持实际导体类型/截面，或端子被塞入不可检修位置，仍可能造成接触不良、发热或后续无法维护"
+    guardrail: "只用说明书明确支持实际铜导体与0.5~6mm²范围的正规连接器；L/N各独立一只；节点固定在高位带盖可开启盒内；不使用汽车线束类穿刺夹"
+    next_action: "购买前核对221-613具体SKU、导体类型和剥线长度；现场按分支节点×2统计数量并留10%备用"
+    blocks: ["未核对实物规格的端子批量采购", "不可检修接头"]
     task_ref: TASK-0028
 
   - id: SAF-0018
@@ -218,22 +218,21 @@ risks:
 
   - id: SAF-0020
     domain: residual_current_coordination
-    title: "上下级30mA漏保可能发生非选择性同时跳闸"
-    severity: medium
-    status: accepted
-    confirmed_fact: "业主选择保留低成本分级漏保，并接受故障时上级与设备末端保护器可能同时动作"
-    concern: "故障定位和恢复供电需要逐级复位，不能保证只隔离单台设备"
-    guardrail: "每只漏保分别使用TEST按钮并由专业仪表记录动作电流/时间；图纸和验收不得宣称具备选择性"
+    title: "重复30mA漏保造成非选择性动作"
+    severity: low
+    status: closed
+    confirmed_fact: "2026-09-28方案已取消RCBO-01/02/03下游默认设备级漏保；MCB-04只有设备末端漏保，MCB-05只有卫生间总RCD，不再形成同一支路上下级30mA串联的默认结构"
+    guardrail: "后续若具体设备说明要求额外RCD，再单独评估，不默认叠加"
 
   - id: SAF-0021
     domain: bathroom_electrical
-    title: "卫生间末端漏保箱的干区位置尚未实测"
-    severity: critical
-    status: open
-    confirmed_fact: "MCB-05计划作为卫生间专用馈线，进入后先接双极30mA末端漏保"
-    concern: "卫生间按全间湿区设计，高位并不自动等于避开淋浴喷溅或满足产品安装条件"
-    guardrail: "优先在室内实测干区高位；无法证明存在合格位置时自动改到走廊A门外，不降级为湿区裸露安装"
-    next_action: "9月28日按淋浴设备、浴帘、浴霸和镜柜位置实测喷溅范围，并核对候选漏保箱产品说明"
+    title: "卫生间总RCD安装位置与负载待最终核验"
+    severity: high
+    status: mitigated
+    confirmed_fact: "MCB-05目标原位换为C20；RCD-BATH-01优先设置在走廊A卫生间门外，之后所有浴霸、浴室柜/镜灯和基础照明均在其下游"
+    concern: "最终浴霸和浴室柜功率、连接方式仍未确认；RCD额定电流和箱体位置需匹配实物"
+    guardrail: "优先门外2~4位DIN明装箱；2P、≤30mA、A型优先、额定电流不低于上游C20；卫生间内不再作为默认安装位置"
+    next_action: "拍浴霸铭牌、确定浴室柜/镜灯后冻结RCD额定电流与下游接线"
     task_ref: TASK-0031
 
   - id: SAF-0022
@@ -244,6 +243,7 @@ risks:
     confirmed_fact: "洗碗机为现有物资，计划叠放在水槽北侧二层木柜或同位置替代柜上；从水槽进水处经独立开关供水，排水软管直接排入水槽"
     unknowns: ["型号与额定功率", "机身及开门尺寸", "进排水软管说明", "木柜剩余承载能力", "替代柜预算", "软管固定方式"]
     concern: "水槽附近用电且本户无PE；受潮木柜承重不足、机器振动、排水软管脱落或插座受潮会放大风险"
-    guardrail: "RCBO-02下设置设备级双极漏保候选和带本户无PE标识的三孔常电点；进水有独立开关，直排水槽软管可靠固定，不用普通智能插座控制"
-    next_action: "9月拍摄铭牌和接口；9月28日复测柜体承重/水平和水槽边固定位置，再决定修复木柜或购买同位置替代柜"
+    guardrail: "洗碗机接目标C20/30mA RCBO-02下游三孔常电点，不再默认叠加设备级30mA漏保；三孔PE保持未连接并标注本户无PE，进水有独立开关，直排水槽软管可靠固定"
+    next_action: "拍摄铭牌和接口；复测柜体承重/水平和水槽边固定位置，再决定修复木柜或购买同位置替代柜"
     task_ref: TASK-0033
+
