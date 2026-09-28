@@ -54,6 +54,7 @@
 <path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
 <path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/>
 <rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="626" y="426" class="small blue">配电箱｜5支路</text>
+<rect x="545" y="462" width="68" height="30" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-subpanel="18-module-five-2p-c20"/><text x="579" y="481" class="micro orange center">副箱5×2P C20</text>
 <g data-route-kind="surface" fill="none" stroke="#2563eb" stroke-width="4">
   <path d="M590 442L600 345V255" data-circuit="RCBO-01"/><path d="M590 442L520 330V235" data-circuit="RCBO-02"/>
   <path d="M590 442H400V315" data-circuit="RCBO-03"/>
@@ -67,10 +68,10 @@
 </g>
 <path d="M590 446H517V456" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
 <path d="M495 470L475 450" fill="none" stroke="#dc2626" stroke-width="3" data-bath-after-rcd="true"/>
-<circle cx="600" cy="345" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="600" y="349" class="micro center">01</text>
-<circle cx="520" cy="330" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-02"/><text x="520" y="334" class="micro center">02</text>
-<circle cx="475" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-03"/><text x="475" y="454" class="micro center">03</text>
-<circle cx="400" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-04"/><text x="400" y="454" class="micro center">04</text>
+<rect x="590" y="335" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-01"/><text x="616" y="343" class="micro blue">绕卧室门框</text>
+<rect x="510" y="323" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-02"/><text x="536" y="331" class="micro blue">绕厨房门框</text>
+<rect x="465" y="444" width="20" height="10" fill="#fff" stroke="#dc2626" stroke-width="2" data-route-transition="E-ROUTE-03"/><text x="455" y="440" class="micro red" text-anchor="end">绕卫浴门框</text>
+<rect x="390" y="444" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-04"/><text x="384" y="440" class="micro blue" text-anchor="end">绕客厅门框</text>
 <g data-device-protection="RCD-BATH-01" data-location-preference="hall-a-outside" data-fallback="bath-dry-high">
   <rect x="495" y="456" width="44" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
   <text x="517" y="468" class="micro red center">2P</text><text x="517" y="480" class="micro red center">30mA</text>
@@ -84,7 +85,7 @@
 
 <rect x="594" y="244" width="15" height="28" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-box="E-BOX-BED-FAN"/>
 <text x="618" y="292" class="micro orange">调速器暗盒</text>
-<path d="M600 345V258" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="surface-after-E-HOLE-01"/>
+<path d="M600 345V258" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="surface-from-bedroom-trunk"/>
 <path d="M609 258C655 250 695 260 750 280" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="2 7" data-fan-feed="existing-concealed"/>
 <circle cx="750" cy="280" r="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="284" class="micro center">吊扇</text>
 <text x="665" y="238" class="micro purple center">既有暗埋线｜先测通断与绝缘</text>
@@ -100,6 +101,6 @@
 <text x="450" y="390" class="small center bold">卫生间</text><text x="830" y="335" class="room">卧室</text>
 <text x="550" y="390" class="small center bold">走廊B</text><text x="520" y="490" class="small center bold">玄关 / 走廊A</text>
 <text x="250" y="585" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">31 只看真实空间路径</text><text x="994" y="196" class="note">四个圆点：现有穿线孔01～04</text><text x="994" y="225" class="note">蓝实线：三个RCBO空间主干</text><text x="994" y="254" class="note">橙实线：MCB-04客厅空调+冰箱短主干</text><text x="994" y="283" class="note">红实线：MCB-05卫生间连续专用馈线</text><text x="994" y="312" class="note">紫点线：吊扇既有暗埋线</text><text x="994" y="341" class="note">设备架背面与走廊A南墙相接</text><text x="994" y="370" class="note">卧室调速器只用原西墙暗盒</text><text x="994" y="399" class="note">阳台没有穿线孔，本期不设永久供电</text><text x="994" y="428" class="note">所有线路止于客厅侧，不跨阳台移门</text><text x="994" y="457" class="note">卫生间门外先接RCD-BATH-01，再进E-HOLE-03</text><text x="994" y="486" class="note">RCD-BATH-01优先走廊A门外；合格时才可改卫生间干区</text><text x="994" y="515" class="note">扫地机已定在沙发/书桌之间，余量2m</text><text x="994" y="544" class="note red">主干T接型号/线径仍待现场冻结；本图不代表通电批准</text><line x1="994" y1="565" x2="1316" y2="565" stroke="#e2e8f0"/><line x1="998" y1="583" x2="1030" y2="583" stroke="#2563eb" stroke-width="5"/><text x="1044" y="587" class="small">三个RCBO空间主干</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="616" class="small">MCB-04空调+冰箱短主干</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#dc2626" stroke-width="5"/><text x="1044" y="645" class="small">MCB-05卫浴馈线</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="674" class="small">既有暗线/弱电</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">31 只看真实空间路径</text><text x="994" y="196" class="note">四个小框：绕门框的明装路径转换</text><text x="994" y="225" class="note">四个既有暗盒均无暗管，不参与走线</text><text x="994" y="254" class="note">蓝实线：前三路6mm²空间主干</text><text x="994" y="283" class="note">橙实线：MCB-04客厅空调+冰箱短主干</text><text x="994" y="312" class="note">红实线：MCB-05卫生间连续专用馈线</text><text x="994" y="341" class="note">紫点线：吊扇既有暗埋线</text><text x="994" y="370" class="note">设备架背面与走廊A南墙相接</text><text x="994" y="399" class="note">卧室调速器只用原西墙暗盒</text><text x="994" y="428" class="note">阳台没有进线通道，本期不设永久供电</text><text x="994" y="457" class="note">所有线路止于客厅侧，不跨阳台移门</text><text x="994" y="486" class="note">卫生间门外先接RCD-BATH-01，再绕门框明装进入</text><text x="994" y="515" class="note">RCD-BATH-01优先走廊A门外；合格时才可改卫生间干区</text><text x="994" y="544" class="note">扫地机已定在沙发/书桌之间，余量2m</text><text x="994" y="573" class="note">6mm²每根计划24m；MCB-04/05副箱后直接2.5mm²</text><text x="994" y="602" class="note red">本图不代表通电批准，端子/负载仍需现场核验</text><line x1="994" y1="623" x2="1316" y2="623" stroke="#e2e8f0"/><line x1="998" y1="641" x2="1030" y2="641" stroke="#2563eb" stroke-width="5"/><text x="1044" y="645" class="small">三个RCBO空间主干</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#f59e0b" stroke-width="5"/><text x="1044" y="674" class="small">MCB-04空调+冰箱短主干</text><line x1="998" y1="699" x2="1030" y2="699" stroke="#dc2626" stroke-width="5"/><text x="1044" y="703" class="small">MCB-05卫浴馈线</text><line x1="998" y1="728" x2="1030" y2="728" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="732" class="small">既有暗线/弱电</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>

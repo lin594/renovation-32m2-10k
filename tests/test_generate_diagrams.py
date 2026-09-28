@@ -134,13 +134,15 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertEqual(circuits.count('data-circuit="'), 5)
         self.assertIn('data-wall-anchor="hall-a-south-wall"', routes)
 
-    def test_31_has_real_boundaries_holes_and_distinct_fan_routes(self) -> None:
+    def test_31_has_real_surface_transitions_and_distinct_fan_routes(self) -> None:
         routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
-        for hole_id in ("E-HOLE-01", "E-HOLE-02", "E-HOLE-03", "E-HOLE-04"):
-            self.assertIn(f'data-electrical-hole="{hole_id}"', routes)
+        for route_id in ("E-ROUTE-01", "E-ROUTE-02", "E-ROUTE-03", "E-ROUTE-04"):
+            self.assertIn(f'data-route-transition="{route_id}"', routes)
+        self.assertNotIn("E-HOLE", routes)
         self.assertIn('data-shelf-wall-contact="true"', routes)
-        self.assertIn('data-fan-feed="surface-after-E-HOLE-01"', routes)
+        self.assertIn('data-fan-feed="surface-from-bedroom-trunk"', routes)
         self.assertIn('data-fan-feed="existing-concealed"', routes)
+        self.assertIn('data-subpanel="18-module-five-2p-c20"', routes)
         self.assertIn('data-no-electrical-penetration="true"', routes)
         self.assertIn('data-balcony-power="deferred"', routes)
 
@@ -173,11 +175,16 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertNotIn('data-device-protection="SRCD-WASHER"', topology)
         self.assertNotIn('data-device-protection="SRCD-DISHWASHER"', topology)
         self.assertIn("保留C40", topology)
+        self.assertIn("插座共19组", topology)
+        self.assertIn("共15个", topology)
+        self.assertIn("5×2P C20", topology)
+        self.assertIn('data-subpanel="five-independent-2p-c20"', topology)
+        self.assertEqual(topology.count('data-subpanel-device="C20-'), 5)
         self.assertIn("保留C32", topology)
         self.assertIn("副保护盒", topology)
         self.assertNotIn('data-device-protection="RCD-LIV-01"', topology)
         self.assertNotIn('data-terminal-candidate="PCT-62"', topology)
-        self.assertIn("取消PCT固定最低购物车", topology)
+        self.assertIn("15个分支节点按221-61x/41x表执行", topology)
 
     def test_31_routes_mcb05_only_to_bath_rcd(self) -> None:
         routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
@@ -232,7 +239,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
         electrical = (root / "data/electrical.yaml").read_text(encoding="utf-8")
-        self.assertIn("WAGO 221-613", procurement)
+        for sku in ("221-615", "221-613", "221-612", "221-415", "221-413", "221-412"):
+            self.assertIn(sku, procurement)
         self.assertIn("分布式T接优先", electrical)
         self.assertIn("汽车线束类廉价穿刺夹", procurement + electrical)
         self.assertNotIn("provisional_minimum_cart", procurement)

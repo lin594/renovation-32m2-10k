@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-01"
+updated: "2026-09-28"
 
 items:
   - id: INV-0001
@@ -12,8 +12,11 @@ items:
     quantity_accuracy: estimated
     location: "现场，具体存放位置待补"
     condition: usable
-    planned_use: "仅作为中性导体或其他与蓝色标识一致的用途候选；具体使用量待电工冻结"
-    note: "不再计划用端部胶布把蓝线改作相线；无法合规利用的余线继续入库"
+    planned_use: "候选作为主箱至副箱五路短馈线及RCBO-01/02/03三条6mm²主干的中性导体；计划下料24m"
+    planned_consumption_m: 24
+    expected_remaining_after_plan_m: 36
+    use_gate: "先确认BV/BVR线种、铜芯、绝缘电压、外观和与新购相线的类型匹配；不通过则不用于新线路"
+    note: "不把蓝线改作相线；无法合规利用的余线继续入库。计划不是实际领用，施工后再更新used_quantity。"
     risk_ref: SAF-0002
 
   - id: INV-0002

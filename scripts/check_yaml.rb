@@ -175,13 +175,13 @@ actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
 errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
-errors << "electrical.yaml 应改为分布式T接树干模型且节点数现场冻结" unless electrical.dig("branch_nodes", "model") == "distributed_along_trunk" && electrical.dig("branch_nodes", "fixed_count").nil?
+errors << "electrical.yaml 应为15个固定分布式T接节点" unless electrical.dig("branch_nodes", "model") == "distributed_along_trunk" && electrical.dig("branch_nodes", "fixed_count") == 15 && branch_nodes.length == 15
 errors << "客厅高负载节点必须在MCB-04下分为空调与冰箱两个独立末端漏保" unless branch_nodes.any? { |node| node["id"] == "JB-LIV-HIGH" && Array(node["branches"]).to_set == Set["SRCD-AC-LIV→客厅空调", "SRCD-FRIDGE→冰箱"] }
 errors << "卫生间节点必须位于RCD-BATH-01下游" unless branch_nodes.any? { |node| node["id"] == "JB-BATH" && node["upstream_node"] == "RCD-BATH-01" }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
-errors << "electrical.yaml 插座组数明细应合计15组" unless outlets["total_planned"] == 15 && outlet_sum == 15
+errors << "electrical.yaml 插座组数明细应合计19组" unless outlets["total_planned"] == 19 && outlet_sum == 19
 errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
 
 sofa_robot = outlets.dig("living_room", "sofa_robot_branch") || {}
@@ -191,13 +191,21 @@ balcony = electrical.dig("confirmed_conditions", "balcony") || {}
 errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
 
 terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
-errors << "T接端子不得在现场线种/截面与产品适配核验前写死采购数量" unless electrical.dig("terminal_policy", "strategy").to_s.include?("分布式T接") && terminal_procurement["physical_quantity"].nil? && terminal_procurement["status"] == "blocked_by_onsite_wire_and_terminal_survey"
+expected_terminal_quantity = {
+  "221-615_6mm2" => 20,
+  "221-613_6mm2" => 10,
+  "221-612_6mm2" => 10,
+  "221-415_4mm2" => 10,
+  "221-413_4mm2" => 5,
+  "221-412_4mm2" => 10
+}
+errors << "T接端子组合应按15个固定节点冻结并保留产品适配门禁" unless electrical.dig("terminal_policy", "strategy").to_s.include?("分布式T接") && terminal_procurement["physical_quantity"] == expected_terminal_quantity && terminal_procurement["status"] == "planned_pending_conductor_type_and_product_authenticity_check"
 errors << "固定布线T接方案必须明确拒绝汽车线束类穿刺夹" unless electrical.to_s.include?("汽车线束类廉价穿刺夹")
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
 
 terminal_buy = procurement_by_id["BUY-0025"] || {}
 errors << "BUY-0025不得保留旧PCT-62+五孔型固定最低购物车" if terminal_buy.key?("provisional_minimum_cart")
-errors << "BUY-0025应使用支持6mm²的三孔分支端子候选" unless terminal_buy.to_s.include?("221-613") && terminal_buy["status"] == "not_purchased"
+errors << "BUY-0025应同时覆盖6mm²与2.5mm²的221端子组合" unless %w[221-615 221-613 221-612 221-415 221-413 221-412].all? { |sku| terminal_buy.to_s.include?(sku) } && terminal_buy["status"] == "not_purchased"
 
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
@@ -218,6 +226,7 @@ panel_positions = Array(panel_snapshot["branch_positions"])
 errors << "配电箱现场快照必须记录3×C40 RCBO + 2×C32 MCB" unless panel_positions.length == 5 && panel_positions.count { |x| x["existing"].to_s.include?("C40") } == 3 && panel_positions.count { |x| x["existing"].to_s.include?("C32") } == 2
 errors << "五个主箱支路器件都应标记为保留并由副保护盒承担C20过流保护" unless panel_positions.all? { |x| x["target"].to_s.include?("保留") && x["target"].to_s.include?("C20") }
 errors << "BUY-0036应为主箱旁明装副保护盒方案" unless procurement_by_id.dig("BUY-0036", "item").to_s.include?("副保护盒") && procurement_by_id.dig("BUY-0036", "planned_quantity") == 1
+errors << "BUY-0036必须锁定18模副箱和5只2P C20/6kA" unless procurement_by_id.dig("BUY-0036", "requirements").to_s.include?("18模数") && procurement_by_id.dig("BUY-0036", "requirements").to_s.include?("2P C20") && procurement_by_id.dig("BUY-0036", "requirements").to_s.include?("共5只")
 errors << "原位更换C20断路器旧方案应取消" unless procurement_by_id.dig("BUY-0037", "status") == "cancelled"
 
 
@@ -226,7 +235,19 @@ errors << "智能墙壁开关必须使用零火版且不得控制普通插座" u
 errors << "两线制方案必须禁止N/PE短接和管道接地" unless electrical_text.include?("N/PE短接") && electrical_text.include?("水管") && electrical_text.include?("燃气管")
 
 socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item["item"] == "BVVB 2×2.5mm²" } || {}
-errors << "electrical.yaml BVVB 2×2.5mm²首卷应为50m" unless socket_wire["quantity_m"] == 50 && socket_wire["rolls"] == 1
+errors << "electrical.yaml BVVB 2×2.5mm²应按100m两卷采购" unless socket_wire["quantity_m"] == 100 && socket_wire["rolls"] == 2
+six_mm_takeoff = electrical.dig("cable_plan", "six_mm_takeoff") || {}
+errors << "6mm²单根导体应按净21m、计划24m冻结且不得宣称超过30m" unless six_mm_takeoff.dig("totals", "net_m_per_conductor") == 21.0 && six_mm_takeoff.dig("totals", "planned_cut_m_per_conductor") == 24.0 && six_mm_takeoff.dig("totals", "purchase_l_m") == 30 && six_mm_takeoff["decision"].to_s.include?("不超过30m")
+bvvb_takeoff = electrical.dig("cable_plan", "bvvd_2x2_5_takeoff") || {}
+errors << "BVVB 2×2.5mm²应按净66m、下料73m、采购100m冻结" unless bvvb_takeoff["net_total_m"] == 66 && bvvb_takeoff["planned_cut_total_m"] == 73 && bvvb_takeoff["purchase_m"] == 100
+control_takeoff = electrical.dig("cable_plan", "control_return_takeoff") || {}
+errors << "BV 1×2.5mm²回线应按净24m、下料27m、采购30m冻结" unless control_takeoff["net_total_m"] == 24.0 && control_takeoff["planned_cut_total_m"] == 27.0 && control_takeoff["purchase_m"] == 30
+errors << "采购表应同步6mm²相线30m" unless procurement_by_id.dig("BUY-0038", "planned_quantity_m") == 30
+errors << "采购表应同步BV 1×2.5mm²回线30m" unless procurement_by_id.dig("BUY-0039", "planned_quantity_m") == 30
+device_takeoff = electrical.fetch("surface_device_takeoff", {})
+errors << "末端材料应锁定15个普通插座点、1个卧室空调点和2个客厅漏保点" unless device_takeoff.dig("outlet_faceplates", "ordinary_points", "quantity") == 15 && device_takeoff.dig("outlet_faceplates", "bedroom_ac_dedicated", "quantity") == 1 && device_takeoff.dig("outlet_faceplates", "living_endpoint_rcd", "quantity") == 2
+errors << "客厅必须锁定一只三键面板和三条受控回线" unless device_takeoff.dig("switch_faceplates", "living_three_key", "quantity") == 1 && device_takeoff.dig("switch_faceplates", "living_three_key", "returns") == 3
+errors << "采购表应包含插座、开关和六个基础灯具的末端材料包" unless procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("普通插座面板") && procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("餐区双头可调明装射灯") && procurement_by_id.dig("BUY-0040", "status") == "not_purchased"
 errors << "照明线旧1.5mm²采购项应取消" unless procurement_by_id.dig("BUY-0023", "status") == "cancelled"
 errors << "应新增冰箱漏保型插座采购项" unless procurement_by_id.dig("BUY-0035", "item").to_s.include?("冰箱漏保型插座")
 

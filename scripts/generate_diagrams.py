@@ -270,14 +270,11 @@ def plumbing_gas() -> str:
 def electrical_low_voltage() -> str:
     points = '''
 <rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="625" y="424" class="small blue">入户配电箱</text>
-<circle cx="600" cy="345" r="11" fill="#2563eb"/><text x="600" y="349" fill="#fff" class="small center">1</text>
-<circle cx="520" cy="330" r="11" fill="#2563eb"/><text x="520" y="334" fill="#fff" class="small center">2</text>
-<circle cx="475" cy="450" r="11" fill="#2563eb"/><text x="475" y="454" fill="#fff" class="small center">3</text>
-<circle cx="400" cy="450" r="11" fill="#2563eb"/><text x="400" y="454" fill="#fff" class="small center">4</text>
-<path class="power" d="M590 442L600 345M590 442L520 330M590 442L475 450M590 442L400 450" stroke-dasharray="7 6" opacity=".45"/>
+<rect x="540" y="458" width="58" height="28" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-subpanel="five-2p-c20"/><text x="569" y="476" class="micro orange center">副箱5×C20</text>
 <rect x="190" y="518" width="11" height="11" fill="#1e3a8a"/><text x="180" y="550" class="micro">冰箱南侧暗盒</text>
 <rect x="394" y="402" width="11" height="11" fill="#1e3a8a"/><text x="318" y="398" class="micro">洗衣机东侧暗盒</text>
 <rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text x="610" y="321" class="micro">卧室门北侧暗盒</text>
+<rect x="250" y="405" width="11" height="11" fill="#1e3a8a"/><text x="245" y="397" class="micro">入户/卧室门间暗盒</text>
 <rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
 <rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="636" y="151" class="small">卧室空调</text>
 <circle cx="176" cy="520" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-LIV"/><text x="154" y="548" class="micro red">空调末端漏保</text>
@@ -289,32 +286,36 @@ def electrical_low_voltage() -> str:
 <rect x="470" y="410" width="28" height="20" rx="3" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-device-protection="RCD-BATH-01"/><text x="466" y="440" class="micro red" text-anchor="end">双极30mA</text>
 <rect x="102" y="305" width="12" height="12" fill="#2563eb" data-outlet="robot-always-on"/><rect x="102" y="337" width="12" height="12" fill="#7c3aed" data-outlet="sofa-charge"/>
 <text x="122" y="315" class="micro blue">扫地机常电</text><text x="122" y="348" class="micro purple">沙发上部充电</text>
+<rect x="102" y="270" width="12" height="12" fill="#f59e0b" data-outlet="sofa-background-controlled"/><text x="122" y="280" class="micro orange">背景光高位受控</text>
+<rect x="80" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-lower"/><rect x="102" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-upper"/><text x="122" y="190" class="micro blue">书桌上下常电</text>
 <circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V506"/>
 <rect x="488" y="506" width="104" height="24" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" data-device-shelf="hall-a" data-wall-anchor="hall-a-south-wall"/><text x="540" y="520" class="micro purple center">光猫 / Wi-Fi / EVE V</text>
 <text x="540" y="550" class="micro purple center">背面贴走廊A南墙｜至少4个常电位</text>
 <text x="610" y="466" class="micro purple">网线与入户电线同洞口位置</text>
 '''
     side = sidebar("点位图，不是最终回路图", [
-        "1卧室门北端；2厨房门西端",
-        "3卫生间门东端；4客厅通道北端",
-        "深蓝方块：优先复用的现有暗盒",
+        "四个深蓝方块：既有暗盒，无暗管",
+        "暗盒只作末端候选；不作为穿线入口",
+        "主箱旁增加18模副箱，五路各2P C20",
         "紫：网线入口和玄关设备架",
         "EVE V长期运行，架内短网线接路由器",
         "光猫/路由器/EVE V需至少4个常电位",
-        "扫地机低位常电+沙发上部充电各1点",
+        "扫地机低位、沙发上部、书桌上下均常电",
+        "沙发背景光高位插座受客厅第3键控制",
         "洗碗机三孔常电，由RCBO-02统一30mA保护",
         "卧室空调/洗烘由C20 RCBO统一保护；客厅空调与冰箱各自末端漏保",
         "卫生间由MCB-05经门外RCD-BATH-01总漏保供电",
         "已确认两线制无PE；三孔面板须持久标识",
-        "!蓝色6mm²余线改色方案未批准",
-        "不在本图假定线径和最终线槽路线",
-    ], [("#2563eb", "强电/穿墙点"), ("#1e3a8a", "现有暗盒"), ("#7c3aed", "弱电/网络"), ("#dc2626", "安全待核验")])
-    return document("electrical-low-voltage", "30 强弱电点位图", "强电、设备、暗盒、穿墙洞和网络设备点位", plan_base(False, True) + points + room_labels() + side)
+        "!蓝色6mm²库存只作N候选，不改色作L",
+        "本图为点位图，路线见31图",
+    ], [("#2563eb", "强电点位"), ("#1e3a8a", "现有暗盒"), ("#7c3aed", "弱电/网络"), ("#dc2626", "安全待核验")])
+    return document("electrical-low-voltage", "30 强弱电点位图", "强电、设备、既有暗盒和网络设备点位", plan_base(False, True) + points + room_labels() + side)
 
 
 def electrical_routes() -> str:
     routes = '''
 <rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="626" y="426" class="small blue">配电箱｜5支路</text>
+<rect x="545" y="462" width="68" height="30" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-subpanel="18-module-five-2p-c20"/><text x="579" y="481" class="micro orange center">副箱5×2P C20</text>
 <g data-route-kind="surface" fill="none" stroke="#2563eb" stroke-width="4">
   <path d="M590 442L600 345V255" data-circuit="RCBO-01"/><path d="M590 442L520 330V235" data-circuit="RCBO-02"/>
   <path d="M590 442H400V315" data-circuit="RCBO-03"/>
@@ -328,10 +329,10 @@ def electrical_routes() -> str:
 </g>
 <path d="M590 446H517V456" fill="none" stroke="#dc2626" stroke-width="4" data-circuit="MCB-05" data-bath-feeder="continuous-no-joint"/>
 <path d="M495 470L475 450" fill="none" stroke="#dc2626" stroke-width="3" data-bath-after-rcd="true"/>
-<circle cx="600" cy="345" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="600" y="349" class="micro center">01</text>
-<circle cx="520" cy="330" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-02"/><text x="520" y="334" class="micro center">02</text>
-<circle cx="475" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-03"/><text x="475" y="454" class="micro center">03</text>
-<circle cx="400" cy="450" r="11" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-04"/><text x="400" y="454" class="micro center">04</text>
+<rect x="590" y="335" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-01"/><text x="616" y="343" class="micro blue">绕卧室门框</text>
+<rect x="510" y="323" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-02"/><text x="536" y="331" class="micro blue">绕厨房门框</text>
+<rect x="465" y="444" width="20" height="10" fill="#fff" stroke="#dc2626" stroke-width="2" data-route-transition="E-ROUTE-03"/><text x="455" y="440" class="micro red" text-anchor="end">绕卫浴门框</text>
+<rect x="390" y="444" width="20" height="10" fill="#fff" stroke="#2563eb" stroke-width="2" data-route-transition="E-ROUTE-04"/><text x="384" y="440" class="micro blue" text-anchor="end">绕客厅门框</text>
 <g data-device-protection="RCD-BATH-01" data-location-preference="hall-a-outside" data-fallback="bath-dry-high">
   <rect x="495" y="456" width="44" height="28" rx="4" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
   <text x="517" y="468" class="micro red center">2P</text><text x="517" y="480" class="micro red center">30mA</text>
@@ -345,7 +346,7 @@ def electrical_routes() -> str:
 
 <rect x="594" y="244" width="15" height="28" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-box="E-BOX-BED-FAN"/>
 <text x="618" y="292" class="micro orange">调速器暗盒</text>
-<path d="M600 345V258" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="surface-after-E-HOLE-01"/>
+<path d="M600 345V258" fill="none" stroke="#f59e0b" stroke-width="4" data-fan-feed="surface-from-bedroom-trunk"/>
 <path d="M609 258C655 250 695 260 750 280" fill="none" stroke="#7c3aed" stroke-width="4" stroke-dasharray="2 7" data-fan-feed="existing-concealed"/>
 <circle cx="750" cy="280" r="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="750" y="284" class="micro center">吊扇</text>
 <text x="665" y="238" class="micro purple center">既有暗埋线｜先测通断与绝缘</text>
@@ -358,19 +359,21 @@ def electrical_routes() -> str:
 </g>
 '''
     side = sidebar("31 只看真实空间路径", [
-        "四个圆点：现有穿线孔01～04",
-        "蓝实线：三个RCBO空间主干",
+        "四个小框：绕门框的明装路径转换",
+        "四个既有暗盒均无暗管，不参与走线",
+        "蓝实线：前三路6mm²空间主干",
         "橙实线：MCB-04客厅空调+冰箱短主干",
         "红实线：MCB-05卫生间连续专用馈线",
         "紫点线：吊扇既有暗埋线",
         "设备架背面与走廊A南墙相接",
         "卧室调速器只用原西墙暗盒",
-        "阳台没有穿线孔，本期不设永久供电",
+        "阳台没有进线通道，本期不设永久供电",
         "所有线路止于客厅侧，不跨阳台移门",
-        "卫生间门外先接RCD-BATH-01，再进E-HOLE-03",
+        "卫生间门外先接RCD-BATH-01，再绕门框明装进入",
         "RCD-BATH-01优先走廊A门外；合格时才可改卫生间干区",
         "扫地机已定在沙发/书桌之间，余量2m",
-        "!主干T接型号/线径仍待现场冻结；本图不代表通电批准",
+        "6mm²每根计划24m；MCB-04/05副箱后直接2.5mm²",
+        "!本图不代表通电批准，端子/负载仍需现场核验",
     ], [("#2563eb", "三个RCBO空间主干"), ("#f59e0b", "MCB-04空调+冰箱短主干"), ("#dc2626", "MCB-05卫浴馈线"), ("#7c3aed", "既有暗线/弱电")])
     labels = '''
 <text x="230" y="230" class="room">客厅</text><text x="475" y="190" class="room">厨房</text>
@@ -383,14 +386,21 @@ def electrical_routes() -> str:
 
 def electrical_topology_v5() -> str:
     topology = '''
-<rect x="55" y="115" width="205" height="575" rx="14" class="panel"/><text x="157" y="150" class="note bold center">配电箱｜固定5支路</text>
+<rect x="55" y="115" width="205" height="575" rx="14" class="panel"/><text x="157" y="150" class="note bold center">主箱保留｜固定5支路</text>
 <g data-circuit="RCBO-01"><rect x="78" y="180" width="160" height="58" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="158" y="202" class="small bold center">漏保1｜RCBO-01</text><text x="158" y="222" class="micro center">保留C40｜卧室上游</text></g>
 <g data-circuit="RCBO-02"><rect x="78" y="270" width="160" height="58" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="158" y="292" class="small bold center">漏保2｜RCBO-02</text><text x="158" y="312" class="micro center">保留C40｜厨房上游</text></g>
 <g data-circuit="RCBO-03"><rect x="78" y="360" width="160" height="72" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/><text x="158" y="382" class="small bold center">漏保3｜RCBO-03</text><text x="158" y="402" class="micro center">保留C40｜客厅上游</text><text x="158" y="418" class="micro center">玄关 / 洗烘 / 照明</text></g>
 <g data-circuit="MCB-04"><rect x="78" y="470" width="160" height="72" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/><text x="158" y="492" class="small bold center">空开4｜MCB-04</text><text x="158" y="512" class="micro center">保留C32｜空调+冰箱</text><text x="158" y="528" class="micro center">两端各自漏保</text></g>
 <g data-circuit="MCB-05"><rect x="78" y="580" width="160" height="72" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/><text x="158" y="602" class="small bold center">空开5｜MCB-05</text><text x="158" y="622" class="micro center">保留C32｜卫生间馈线</text><text x="158" y="638" class="micro center">门外总RCD</text></g>
 
+<text x="272" y="158" class="micro orange center">18模副保护盒｜每路2P C20</text>
 <g fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"><path d="M238 209H305"/><path d="M238 299H305"/><path d="M238 396H305"/><path d="M238 506H305"/><path d="M238 616H305"/></g>
+<g data-subpanel="five-independent-2p-c20" fill="#fffbeb" stroke="#f59e0b" stroke-width="2">
+  <rect x="250" y="194" width="44" height="30" rx="4" data-subpanel-device="C20-01"/><rect x="250" y="284" width="44" height="30" rx="4" data-subpanel-device="C20-02"/>
+  <rect x="250" y="381" width="44" height="30" rx="4" data-subpanel-device="C20-03"/><rect x="250" y="491" width="44" height="30" rx="4" data-subpanel-device="C20-04"/>
+  <rect x="250" y="601" width="44" height="30" rx="4" data-subpanel-device="C20-05"/>
+</g>
+<g class="micro orange center"><text x="272" y="213">C20</text><text x="272" y="303">C20</text><text x="272" y="400">C20</text><text x="272" y="510">C20</text><text x="272" y="620">C20</text></g>
 <g data-branch-pattern="distributed" data-node-example="TN-BED"><rect x="305" y="175" width="140" height="68" rx="9" class="fixed"/><text x="375" y="200" class="small bold center">TN-BED</text><text x="375" y="220" class="micro center">连续主干｜就地T接</text></g>
 <g data-branch-pattern="distributed" data-node-example="TN-KIT"><rect x="305" y="265" width="140" height="68" rx="9" class="fixed"/><text x="375" y="290" class="small bold center">TN-KIT</text><text x="375" y="310" class="micro center">连续主干｜就地T接</text></g>
 <g data-branch-pattern="distributed" data-node-example="TN-HALL"><rect x="305" y="360" width="140" height="68" rx="9" class="fixed"/><text x="375" y="385" class="small bold center">TN-HALL</text><text x="375" y="405" class="micro center">玄关就地T接</text></g>
@@ -407,22 +417,22 @@ def electrical_topology_v5() -> str:
 <g data-junction="JB-BATH" data-bath-load-downstream="true"><rect x="505" y="575" width="145" height="82" rx="9" class="fixed"/><text x="577" y="600" class="small bold center">JB-BATH</text><text x="577" y="620" class="micro center">漏保后短距离分线</text><text x="577" y="638" class="micro center">最终设备现场冻结</text></g>
 <text x="675" y="588" class="small" data-device-connection="BATH-HEATER">浴霸连接点｜总RCD下游</text><text x="675" y="616" class="small" data-device-connection="BATH-MIRROR">除雾镜柜设备连接保护</text><text x="675" y="644" class="small">卫生间基础照明</text>
 
-<rect x="55" y="710" width="920" height="72" rx="12" class="danger"/><text x="78" y="737" class="note red bold">两线制边界：</text><text x="190" y="737" class="note red">三孔面板PE端子不连接并贴“本户无PE”；严禁N/PE短接或管道接地。</text><text x="78" y="764" class="small red">T接端子型号和数量现场按线径/节点冻结；取消PCT固定最低购物车。</text>
+<rect x="55" y="710" width="920" height="72" rx="12" class="danger"/><text x="78" y="737" class="note red bold">两线制边界：</text><text x="190" y="737" class="note red">三孔面板PE端子不连接并贴“本户无PE”；严禁N/PE短接或管道接地。</text><text x="78" y="764" class="small red">主箱后接18模副箱5×2P C20；15个分支节点按221-61x/41x表执行，SKU仍须核验。</text>
 '''
     side = sidebar("五回路与保护层", [
         "主箱3×C40 RCBO + 2×C32 MCB全部保留",
         "MCB-04：客厅空调+冰箱短主干",
         "MCB-05：仅卫生间连续馈线",
-        "主箱旁副保护盒：五路C20过流保护",
-        "T接节点沿连续主干分布，数量现场冻结",
+        "主箱旁18模副保护盒：5×2P C20/6kA",
+        "T接节点沿连续主干分布，共15个",
         "C20副保护后才进入2.5mm²新线路",
-        "插座共15组，卫浴2点另计设备连接",
+        "插座共19组，卫浴2点另计设备连接",
         "客厅空调与冰箱故障互不连带断电",
         "普通插座常电；智能墙壁开关零火版",
         "机器人常电不受智能控制",
-        "不再预设PCT-62/五孔端子组合",
+        "6mm²每根24m；BVVB下料73m；回线27m",
         "连接器须适配主线/支线截面并可检修",
-        "!主箱保留；副保护盒规格与负载仍需电工核定",
+        "!主箱保留；副箱端接与负载仍需电工核定",
     ])
     return document("electrical-topology", "32 五回路与分级漏保拓扑图", "固定五支路、连续空间主干、分布式T接与MCB末端/总漏保", topology + side)
 
@@ -472,7 +482,7 @@ def bedroom_electrical_detail() -> str:
 <rect x="90" y="120" width="820" height="560" rx="16" fill="#ece8f7" stroke="#475569" stroke-width="5"/>
 <text x="500" y="154" class="note bold center">卧室西墙与床两侧｜局部展开示意</text>
 <rect x="255" y="230" width="440" height="250" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="475" y="355" class="room">双人床</text><text x="475" y="379" class="roomsub">北侧与南侧各需常电插座</text>
-<circle cx="120" cy="520" r="14" fill="#fff" stroke="#2563eb" stroke-width="3" data-electrical-hole="E-HOLE-01"/><text x="120" y="524" class="micro center">01</text><text x="92" y="548" class="micro blue">卧室门洞北端</text>
+<rect x="108" y="508" width="24" height="14" fill="#fff" stroke="#2563eb" stroke-width="3" data-route-transition="E-ROUTE-01"/><text x="92" y="548" class="micro blue">明装绕卧室门框</text>
 
 <g data-circuit="RCBO-01" data-terminal-scope="fan-control-branch">
  <path d="M134 520H165V430H205" fill="none" stroke="#f59e0b" stroke-width="5" data-route-kind="surface"/>

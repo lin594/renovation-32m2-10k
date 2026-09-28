@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="electrical-low-voltage" role="img">
 <title>30 强弱电点位图</title>
-<desc>强电、设备、暗盒、穿墙洞和网络设备点位</desc>
+<desc>强电、设备、既有暗盒和网络设备点位</desc>
 
 <defs>
   <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -32,7 +32,7 @@
 
 <rect width="1400" height="850" fill="#fbfaf7"/>
 <text x="70" y="52" class="title">30 强弱电点位图</text>
-<text x="70" y="78" class="subtitle">强电、设备、暗盒、穿墙洞和网络设备点位</text>
+<text x="70" y="78" class="subtitle">强电、设备、既有暗盒和网络设备点位</text>
 
 <rect x="100" y="130" width="300" height="400" fill="#f7ead7" opacity="0.68"/>
 <rect x="100" y="530" width="300" height="100" fill="#e6f3e8" opacity="0.68"/>
@@ -54,14 +54,11 @@
 <path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
 <path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/>
 <rect x="575" y="430" width="44" height="25" rx="3" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="625" y="424" class="small blue">入户配电箱</text>
-<circle cx="600" cy="345" r="11" fill="#2563eb"/><text x="600" y="349" fill="#fff" class="small center">1</text>
-<circle cx="520" cy="330" r="11" fill="#2563eb"/><text x="520" y="334" fill="#fff" class="small center">2</text>
-<circle cx="475" cy="450" r="11" fill="#2563eb"/><text x="475" y="454" fill="#fff" class="small center">3</text>
-<circle cx="400" cy="450" r="11" fill="#2563eb"/><text x="400" y="454" fill="#fff" class="small center">4</text>
-<path class="power" d="M590 442L600 345M590 442L520 330M590 442L475 450M590 442L400 450" stroke-dasharray="7 6" opacity=".45"/>
+<rect x="540" y="458" width="58" height="28" rx="3" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" data-subpanel="five-2p-c20"/><text x="569" y="476" class="micro orange center">副箱5×C20</text>
 <rect x="190" y="518" width="11" height="11" fill="#1e3a8a"/><text x="180" y="550" class="micro">冰箱南侧暗盒</text>
 <rect x="394" y="402" width="11" height="11" fill="#1e3a8a"/><text x="318" y="398" class="micro">洗衣机东侧暗盒</text>
 <rect x="594" y="326" width="11" height="11" fill="#1e3a8a"/><text x="610" y="321" class="micro">卧室门北侧暗盒</text>
+<rect x="250" y="405" width="11" height="11" fill="#1e3a8a"/><text x="245" y="397" class="micro">入户/卧室门间暗盒</text>
 <rect x="160" y="509" width="74" height="20" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="197" y="500" class="small center">客厅空调</text>
 <rect x="602" y="155" width="20" height="74" rx="5" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/><text x="636" y="151" class="small">卧室空调</text>
 <circle cx="176" cy="520" r="8" fill="#fff" stroke="#dc2626" stroke-width="2" data-device-protection="SRCD-AC-LIV"/><text x="154" y="548" class="micro red">空调末端漏保</text>
@@ -73,6 +70,8 @@
 <rect x="470" y="410" width="28" height="20" rx="3" fill="#fff1f2" stroke="#dc2626" stroke-width="2" data-device-protection="RCD-BATH-01"/><text x="466" y="440" class="micro red" text-anchor="end">双极30mA</text>
 <rect x="102" y="305" width="12" height="12" fill="#2563eb" data-outlet="robot-always-on"/><rect x="102" y="337" width="12" height="12" fill="#7c3aed" data-outlet="sofa-charge"/>
 <text x="122" y="315" class="micro blue">扫地机常电</text><text x="122" y="348" class="micro purple">沙发上部充电</text>
+<rect x="102" y="270" width="12" height="12" fill="#f59e0b" data-outlet="sofa-background-controlled"/><text x="122" y="280" class="micro orange">背景光高位受控</text>
+<rect x="80" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-lower"/><rect x="102" y="180" width="12" height="12" fill="#2563eb" data-outlet="desk-upper"/><text x="122" y="190" class="micro blue">书桌上下常电</text>
 <circle cx="600" cy="450" r="9" fill="#7c3aed"/><path class="network" d="M600 450H540V506"/>
 <rect x="488" y="506" width="104" height="24" rx="3" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" data-device-shelf="hall-a" data-wall-anchor="hall-a-south-wall"/><text x="540" y="520" class="micro purple center">光猫 / Wi-Fi / EVE V</text>
 <text x="540" y="550" class="micro purple center">背面贴走廊A南墙｜至少4个常电位</text>
@@ -84,6 +83,6 @@
 <text x="750" y="280" class="room">卧室</text><text x="750" y="301" class="roomsub">净3.0×3.0m</text>
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">点位图，不是最终回路图</text><text x="994" y="196" class="note">1卧室门北端；2厨房门西端</text><text x="994" y="225" class="note">3卫生间门东端；4客厅通道北端</text><text x="994" y="254" class="note">深蓝方块：优先复用的现有暗盒</text><text x="994" y="283" class="note">紫：网线入口和玄关设备架</text><text x="994" y="312" class="note">EVE V长期运行，架内短网线接路由器</text><text x="994" y="341" class="note">光猫/路由器/EVE V需至少4个常电位</text><text x="994" y="370" class="note">扫地机低位常电+沙发上部充电各1点</text><text x="994" y="399" class="note">洗碗机三孔常电，由RCBO-02统一30mA保护</text><text x="994" y="428" class="note">卧室空调/洗烘由C20 RCBO统一保护；客厅空调与冰箱各自末端漏保</text><text x="994" y="457" class="note">卫生间由MCB-05经门外RCD-BATH-01总漏保供电</text><text x="994" y="486" class="note">已确认两线制无PE；三孔面板须持久标识</text><text x="994" y="515" class="note red">蓝色6mm²余线改色方案未批准</text><text x="994" y="544" class="note">不在本图假定线径和最终线槽路线</text><line x1="994" y1="565" x2="1316" y2="565" stroke="#e2e8f0"/><line x1="998" y1="583" x2="1030" y2="583" stroke="#2563eb" stroke-width="5"/><text x="1044" y="587" class="small">强电/穿墙点</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#1e3a8a" stroke-width="5"/><text x="1044" y="616" class="small">现有暗盒</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="645" class="small">弱电/网络</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#dc2626" stroke-width="5"/><text x="1044" y="674" class="small">安全待核验</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">点位图，不是最终回路图</text><text x="994" y="196" class="note">四个深蓝方块：既有暗盒，无暗管</text><text x="994" y="225" class="note">暗盒只作末端候选；不作为穿线入口</text><text x="994" y="254" class="note">主箱旁增加18模副箱，五路各2P C20</text><text x="994" y="283" class="note">紫：网线入口和玄关设备架</text><text x="994" y="312" class="note">EVE V长期运行，架内短网线接路由器</text><text x="994" y="341" class="note">光猫/路由器/EVE V需至少4个常电位</text><text x="994" y="370" class="note">扫地机低位、沙发上部、书桌上下均常电</text><text x="994" y="399" class="note">沙发背景光高位插座受客厅第3键控制</text><text x="994" y="428" class="note">洗碗机三孔常电，由RCBO-02统一30mA保护</text><text x="994" y="457" class="note">卧室空调/洗烘由C20 RCBO统一保护；客厅空调与冰箱各自末端漏保</text><text x="994" y="486" class="note">卫生间由MCB-05经门外RCD-BATH-01总漏保供电</text><text x="994" y="515" class="note">已确认两线制无PE；三孔面板须持久标识</text><text x="994" y="544" class="note red">蓝色6mm²库存只作N候选，不改色作L</text><text x="994" y="573" class="note">本图为点位图，路线见31图</text><line x1="994" y1="594" x2="1316" y2="594" stroke="#e2e8f0"/><line x1="998" y1="612" x2="1030" y2="612" stroke="#2563eb" stroke-width="5"/><text x="1044" y="616" class="small">强电点位</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#1e3a8a" stroke-width="5"/><text x="1044" y="645" class="small">现有暗盒</text><line x1="998" y1="670" x2="1030" y2="670" stroke="#7c3aed" stroke-width="5"/><text x="1044" y="674" class="small">弱电/网络</text><line x1="998" y1="699" x2="1030" y2="699" stroke="#dc2626" stroke-width="5"/><text x="1044" y="703" class="small">安全待核验</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
 </svg>

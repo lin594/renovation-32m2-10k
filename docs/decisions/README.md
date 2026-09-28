@@ -19,5 +19,7 @@
 | [0006](0006-five-circuits-bathroom-feeder.md) | 五回路与卫生间馈线 | 部分被取代 | 回路仍有效，端子实购由 0007 接管 |
 | [0007](0007-terminal-minimum-sku.md) | 端子最低 SKU | 暂定 | 9 月 28 日实物与铭牌复测后冻结 |
 | [0008](0008-public-photo-and-repository-policy.md) | 公开范围、照片与互动边界 | 已采纳 | 更新 0001 的照片默认策略 |
+| [0008-电气](0008-diy-trunk-t-branch-electrical.md) | DIY空间主干与分布式T接 | 部分被取代 | 物理原则保留，施工定稿由0009接管 |
+| [0009](0009-final-surface-electrical.md) | 明装电路施工方案定稿 | 已采纳 | 通电仍受设备铭牌、现场放样和专业检测门禁约束 |
 
 旧结论无需另建 archive；完整变化使用 Git 历史查看。
