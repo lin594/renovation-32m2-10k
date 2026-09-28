@@ -960,6 +960,67 @@ def finishes_materials() -> str:
     return document("finishes-materials", "60 墙地面饰面图", "墙顶地面材料分区、基层处理顺序与风格方向", body)
 
 
+FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220" data-diagram-role="five-route-electrical-freeze" role="img">
+<title>38 五路明装路线冻结图</title>
+<desc>按真实空间路径展开卧室、厨房、玄关客厅生活、空调冰箱和卫生间五路明装电路</desc>
+<style>
+  .title{font:700 28px sans-serif;fill:#111827}.h{font:700 18px sans-serif;fill:#111827}.t{font:15px sans-serif;fill:#111827}.s{font:13px sans-serif;fill:#374151}
+  .box{fill:#fff;stroke:#64748b;stroke-width:2;rx:8}.pct{fill:#f8fafc;stroke:#334155;stroke-width:2;rx:8}.note{fill:#fff7ed;stroke:#f59e0b;stroke-width:2;rx:8}
+  .line{stroke:#111827;stroke-width:4;fill:none}.branch{stroke:#64748b;stroke-width:3;fill:none}.ctrl{stroke:#b91c1c;stroke-width:3;stroke-dasharray:8 6;fill:none}
+</style>
+<text x="60" y="55" class="title">开封32㎡｜五路明装电路路线冻结（2026-09-29）</text>
+<text x="60" y="85" class="s">路线/节点图，不代表可直接通电；第五路主箱原位换2P/30mA漏保为当前设计假设。</text>
+
+<!-- lane 1 -->
+<text x="60" y="140" class="h">1 卧室｜现有漏保</text>
+<rect x="60" y="165" width="205" height="78" class="box"/><text x="78" y="195" class="t">卧室入口 6mm² L/N</text>
+<path d="M265 204 H350" class="line"/>
+<rect x="350" y="160" width="250" height="88" class="pct"/><text x="370" y="190" class="h">近门高位总盒</text><text x="370" y="218" class="t">PCT-42 → 短6mm² → PCT-62</text>
+<path d="M600 204 H920" class="line"/><text x="690" y="192" class="s">6mm²继续北侧</text>
+<rect x="920" y="160" width="220" height="88" class="pct"/><text x="940" y="190" class="h">北侧终点 PCT-42</text><text x="940" y="218" class="t">床北插座 + 卧室空调</text>
+<path d="M470 248 V292 H300" class="branch"/><text x="105" y="310" class="t">BVVB → 吊扇调速器</text>
+<path d="M500 248 V320 H620" class="branch"/><text x="625" y="325" class="t">BVVB → JZ-N2（真实L/N）</text>
+<path d="M530 248 V350 H940" class="branch"/><text x="945" y="355" class="t">BVVB → 南侧/近门常电插座</text>
+
+<!-- lane 2 -->
+<text x="60" y="420" class="h">2 厨房｜现有漏保</text>
+<rect x="60" y="445" width="235" height="86" class="pct"/><text x="80" y="477" class="h">东入口/主灯 PCT-42</text><text x="80" y="507" class="t">中央灯N高位直取；机械开关在东侧</text>
+<path d="M295 488 H720" class="line"/><text x="420" y="475" class="s">6mm²向西 → 再向北</text>
+<rect x="720" y="445" width="225" height="86" class="pct"/><text x="742" y="477" class="h">西墙末端 PCT-42</text><text x="742" y="507" class="t">6mm²在此结束，不进插座</text>
+<path d="M180 531 V585" class="ctrl"/><text x="65" y="610" class="t">BVVB：红=L↓；蓝标红=Lsw↑</text>
+<path d="M820 531 V590 H650" class="branch"/>
+<rect x="380" y="565" width="270" height="75" class="pct"/><text x="400" y="595" class="h">西墙家电组 PCT-62</text><text x="400" y="622" class="t">洗碗机 / 电饭煲 / 预留三孔</text>
+<path d="M865 531 V690 H650" class="branch"/>
+<rect x="380" y="665" width="270" height="75" class="pct"/><text x="400" y="695" class="h">台面/油烟机组 PCT-62</text><text x="400" y="722" class="t">油烟机 / 台面 / 微波炉预留</text>
+
+<!-- lane 3 -->
+<text x="60" y="800" class="h">3 玄关/客厅生活｜现有漏保</text>
+<rect x="60" y="825" width="215" height="82" class="pct"/><text x="80" y="857" class="h">玄关 PCT-62</text><text x="80" y="885" class="t">设备架 + 灯带 + 主干继续</text>
+<path d="M275 866 H430" class="line"/>
+<rect x="430" y="820" width="270" height="92" class="pct"/><text x="450" y="852" class="h">客厅入口总盒</text><text x="450" y="880" class="t">PCT-42 → PCT-62</text><text x="450" y="902" class="s">洗烘 / 餐桌插座 / JZ-N2</text>
+<path d="M700 866 H900" class="line"/>
+<rect x="900" y="820" width="235" height="92" class="pct"/><text x="920" y="852" class="h">西墙 PCT-62</text><text x="920" y="880" class="t">投影 + 沙发组 + 主干继续</text>
+<path d="M1135 866 H1295" class="line"/>
+<rect x="1295" y="820" width="220" height="92" class="pct"/><text x="1315" y="852" class="h">书桌终点 PCT-42</text><text x="1315" y="880" class="t">桌下 + 桌面上方</text>
+<path d="M1000 912 V965" class="branch"/>
+<rect x="875" y="965" width="270" height="78" class="pct"/><text x="895" y="996" class="h">沙发局部分线 PCT-62</text><text x="895" y="1023" class="t">扫地机 / 娱乐插座 / 备用</text>
+<text x="450" y="945" class="s">客厅JZ：一根BVVB送L/N；第二根红=L1、蓝标红=L2</text>
+
+<!-- lane 4/5 -->
+<text x="60" y="1095" class="h">4 空调+冰箱</text>
+<rect x="210" y="1060" width="230" height="76" class="pct"/><text x="230" y="1090" class="h">高位 PCT-42</text><text x="230" y="1118" class="t">→ 客厅空调　→ 冰箱暗盒</text>
+
+<text x="780" y="1095" class="h">5 卫生间</text>
+<rect x="920" y="1055" width="260" height="88" class="pct"/><text x="940" y="1086" class="h">主箱2P/30mA漏保（假定）</text><text x="940" y="1114" class="t">→ 卫生间 PCT-62</text><text x="940" y="1137" class="s">浴霸 / 镜柜 / 基础灯</text>
+
+<rect x="60" y="1160" width="1455" height="42" class="note"/><text x="80" y="1187" class="s">机械灯控：BVVB红芯=常火L下行；蓝芯仅在专用开关环路作为受控L返回，所有可触及端点必须红色胶带重标并写“Lsw，非N”。</text>
+</svg>"""
+
+
+def five_route_electrical_freeze() -> str:
+    return FIVE_ROUTE_ELECTRICAL_SVG
+
+
 OUTPUTS = {
     "00-existing-survey.svg": ("existing-survey", "00 现状测量图", existing_survey),
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
@@ -972,6 +1033,7 @@ OUTPUTS = {
     "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "35 客厅 JZ-N2 施工接线图", living_jz_n2_wiring),
     "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "36 卧室 JZ-N2 与吊扇分离施工图", bedroom_jz_n2_wiring),
     "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "37 全屋逐段下料与端接图", electrical_segment_takeoff),
+    "38-five-route-electrical.svg": ("five-route-electrical-freeze", "38 五路明装路线冻结图", five_route_electrical_freeze),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
     "60-finishes-materials.svg": ("finishes-materials", "60 墙地面饰面图", finishes_materials),
