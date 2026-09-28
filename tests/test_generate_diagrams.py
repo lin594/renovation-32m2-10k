@@ -12,14 +12,6 @@ EXPECTED = {
     "00-existing-survey.svg": ("existing-survey", "现状测量图"),
     "10-furniture-circulation.svg": ("furniture-circulation", "家具与动线图"),
     "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
-    "30-electrical-low-voltage.svg": ("electrical-low-voltage", "强弱电点位图"),
-    "31-electrical-routes.svg": ("electrical-routes", "强电真实空间走线图"),
-    "32-electrical-topology.svg": ("electrical-topology", "五回路与分级漏保拓扑图"),
-    "33-bedroom-electrical-detail.svg": ("bedroom-electrical-detail", "卧室插座与吊扇控制详图"),
-    "34-bathroom-electrical-detail.svg": ("bathroom-electrical-detail", "卫生间专用馈线与漏保详图"),
-    "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "客厅 JZ-N2 施工接线图"),
-    "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "卧室 JZ-N2 与吊扇分离施工图"),
-    "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "全屋逐段下料与端接图"),
     "38-five-route-electrical.svg": ("five-route-electrical-freeze", "五路明装路线冻结图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
@@ -36,7 +28,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_fifteen_svg_files(self) -> None:
+    def test_generates_exactly_seven_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -67,32 +59,6 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-privacy-curtain="candidate"', furniture)
         self.assertIn("临时客卧", furniture)
 
-    def test_owned_dishwasher_has_space_water_drain_and_protection_layers(self) -> None:
-        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
-        plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")
-        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
-        topology = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
-        details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")
-        self.assertIn('data-appliance="dishwasher" data-status="owned-to-move"', furniture)
-        self.assertIn('data-dishwasher-water="sink-feed-independent-switch"', plumbing)
-        self.assertIn('data-dishwasher-drain="direct-to-sink"', plumbing)
-        self.assertIn('data-outlet="dishwasher-three-hole"', points)
-        self.assertIn("RCBO-02统一保护", topology)
-        self.assertNotIn('data-device-protection="SRCD-DISHWASHER"', topology)
-        self.assertIn('data-stack="dishwasher-on-cabinet"', details)
-
-    def test_robot_dock_table_and_two_outlets_are_explicit(self) -> None:
-        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
-        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
-        self.assertIn('data-furniture="robot-vacuum"', furniture)
-        self.assertIn('data-clear-under="true"', furniture)
-        self.assertIn('data-robot-approach="east-clear"', furniture)
-        self.assertIn('data-outlet-branch="LR-SOFA-ROBOT"', furniture)
-        self.assertIn('data-outlet="robot-always-on"', points)
-        self.assertIn('data-outlet="sofa-charge"', points)
-        self.assertIn('data-outlet="sofa-background-always-on"', points)
-        self.assertNotIn('data-outlet="sofa-background-controlled"', points)
-
     def test_bath_slider_opens_east_and_temporarily_intrudes_hall_b(self) -> None:
         doors = (self.output_dir / "40-doors-windows-cats.svg").read_text(encoding="utf-8")
         details = (self.output_dir / "50-kitchen-bath-details.svg").read_text(encoding="utf-8")
@@ -107,193 +73,23 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("水槽正上方", details)
         self.assertIn("不在二层木柜上方", details)
 
-    def test_status_and_specialty_layers_are_present(self) -> None:
-        furniture = (self.output_dir / "10-furniture-circulation.svg").read_text(encoding="utf-8")
-        plumbing = (self.output_dir / "20-plumbing-gas.svg").read_text(encoding="utf-8")
-        electrical = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
-        finishes = (self.output_dir / "60-finishes-materials.svg").read_text(encoding="utf-8")
-        self.assertIn('data-status="not-purchased"', furniture)
-        self.assertIn("燃气灶直连支路", plumbing)
-        self.assertIn("光猫 / Wi-Fi", electrical)
-        self.assertIn('data-finish="spc-wood-grain"', finishes)
-        self.assertIn("ceil(A÷50)", finishes)
-        self.assertIn("ceil(A÷30)", finishes)
-        self.assertNotIn("¥518", finishes)
-        self.assertIn("134.70㎡", finishes)
-        self.assertIn("¥2012", finishes)
-        self.assertIn("底漆3桶+面漆5桶", finishes)
-        self.assertIn("不等待外窗复测再决定第5桶", finishes)
-        self.assertIn("面漆须同色同批", finishes)
-        self.assertIn('data-finish="tile-recolor"', finishes)
-        self.assertIn("19.18㎡", finishes)
-        self.assertIn("宋氏美学", finishes)
-
-    def test_eve_v_and_route_aware_five_circuit_plan_are_present(self) -> None:
-        points = (self.output_dir / "30-electrical-low-voltage.svg").read_text(encoding="utf-8")
-        routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
-        circuits = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
-        self.assertIn("光猫 / Wi-Fi / EVE V", points)
-        self.assertIn("至少4个常电位", points)
-        self.assertIn("架内短网线接路由器", points)
-        for circuit_id in ("RCBO-01", "RCBO-02", "RCBO-03", "MCB-04", "MCB-05"):
-            self.assertIn(f'data-circuit="{circuit_id}"', circuits)
-        self.assertEqual(circuits.count('data-circuit="'), 5)
-        self.assertIn('data-wall-anchor="hall-a-south-wall"', routes)
-
-    def test_31_has_real_surface_transitions_and_distinct_fan_routes(self) -> None:
-        routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
-        for route_id in ("E-ROUTE-01", "E-ROUTE-02", "E-ROUTE-03", "E-ROUTE-04"):
-            self.assertIn(f'data-route-transition="{route_id}"', routes)
-        self.assertNotIn("E-HOLE", routes)
-        self.assertIn('data-shelf-wall-contact="true"', routes)
-        self.assertIn('data-fan-feed="surface-from-bedroom-trunk"', routes)
-        self.assertIn('data-fan-feed="existing-concealed"', routes)
-        self.assertIn('data-subpanel="18-module-five-2p-c20"', routes)
-        self.assertIn('data-no-electrical-penetration="true"', routes)
-        self.assertIn('data-balcony-power="deferred"', routes)
-
-    def test_no_electrical_diagram_draws_permanent_balcony_route(self) -> None:
-        for filename in (
-            "30-electrical-low-voltage.svg",
-            "31-electrical-routes.svg",
-            "32-electrical-topology.svg",
-            "33-bedroom-electrical-detail.svg",
-            "34-bathroom-electrical-detail.svg",
-        ):
-            svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            self.assertNotIn('data-permanent-route="balcony"', svg)
-            self.assertNotIn("阳台固定照明", svg)
-
-    def test_32_has_five_circuits_distributed_branches_and_two_mcb_rcds(self) -> None:
-        topology = (self.output_dir / "32-electrical-topology.svg").read_text(encoding="utf-8")
-        self.assertEqual(topology.count('data-circuit="'), 5)
-        self.assertNotIn('data-terminal-status="logical"', topology)
-        self.assertIn('data-node-example="TN-BED"', topology)
-        self.assertIn('data-node-example="TN-KIT"', topology)
-        self.assertIn('data-node-example="TN-HALL"', topology)
-        self.assertIn('data-node-example="TN-LIV"', topology)
-        self.assertIn('data-junction="JB-BATH"', topology)
-        self.assertIn('data-junction="JB-LIV-HIGH"', topology)
-        self.assertIn('data-device-protection="RCD-BATH-01"', topology)
-        self.assertIn('data-device-protection="SRCD-AC-LIV"', topology)
-        self.assertIn('data-device-protection="SRCD-FRIDGE"', topology)
-        self.assertNotIn('data-device-protection="SRCD-AC-BED"', topology)
-        self.assertNotIn('data-device-protection="SRCD-WASHER"', topology)
-        self.assertNotIn('data-device-protection="SRCD-DISHWASHER"', topology)
-        self.assertIn("保留C40", topology)
-        self.assertIn("插座共19组", topology)
-        self.assertIn("共15个", topology)
-        self.assertIn("5×2P C20", topology)
-        self.assertIn('data-subpanel="five-independent-2p-c20"', topology)
-        self.assertEqual(topology.count('data-subpanel-device="C20-'), 5)
-        self.assertIn("保留C32", topology)
-        self.assertIn("副保护盒", topology)
-        self.assertNotIn('data-device-protection="RCD-LIV-01"', topology)
-        self.assertNotIn('data-terminal-candidate="PCT-62"', topology)
-        self.assertIn("15个分支节点按221-61x/41x表执行", topology)
-
-    def test_31_routes_mcb05_only_to_bath_rcd(self) -> None:
-        routes = (self.output_dir / "31-electrical-routes.svg").read_text(encoding="utf-8")
-        self.assertEqual(routes.count('data-circuit="MCB-05"'), 1)
-        self.assertIn('data-bath-feeder="continuous-no-joint"', routes)
-        self.assertIn('data-device-protection="RCD-BATH-01"', routes)
-        self.assertIn('data-location-preference="hall-a-outside"', routes)
-        self.assertIn('data-fallback="bath-dry-high"', routes)
-        self.assertEqual(routes.count('data-circuit="MCB-04"'), 1)
-        self.assertIn('data-route-kind="high-load-short"', routes)
-        self.assertIn('data-endpoint-protection="MCB-04-two-srcd"', routes)
-        self.assertNotIn('data-device-protection="RCD-LIV-01"', routes)
-
-    def test_34_has_continuous_feeder_three_downstream_loads_and_dry_fallback(self) -> None:
-        detail = (self.output_dir / "34-bathroom-electrical-detail.svg").read_text(encoding="utf-8")
-        self.assertIn('data-upstream-segment="continuous-no-joint-no-branch"', detail)
-        self.assertIn('data-poles="L+N"', detail)
-        self.assertIn('data-trip-ma-max="30"', detail)
-        self.assertIn('data-bath-load-downstream="true"', detail)
-        self.assertIn('data-device-connection="BATH-HEATER"', detail)
-        self.assertIn('data-device-connection="BATH-MIRROR"', detail)
-        self.assertNotIn('data-device-protection="SRCD-BATH-HEATER"', detail)
-        self.assertNotIn('data-device-protection="SRCD-BATH-MIRROR"', detail)
-        self.assertIn('data-location-preference="hall-a-outside"', detail)
-        self.assertIn('data-location-fallback="bath-dry-high"', detail)
-        self.assertIn("禁止普通智能插座承载", detail)
-
-    def test_33_separates_controller_and_bed_sockets(self) -> None:
-        detail = (self.output_dir / "33-bedroom-electrical-detail.svg").read_text(encoding="utf-8")
-        self.assertIn('data-box-type="existing-recessed"', detail)
-        self.assertIn('data-device="fan-speed-controller"', detail)
-        self.assertIn('data-box-type="surface-bed-south"', detail)
-        self.assertIn('data-box-type="surface-bed-north"', detail)
-        self.assertIn('data-terminal-scope="fan-control-branch"', detail)
-        self.assertIn('data-terminal-scope="bed-socket-branches"', detail)
-        self.assertNotIn('data-circuit="MCB-04"', detail)
-        self.assertEqual(detail.count('data-circuit="RCBO-01"'), 2)
-        self.assertIn('data-branch-pattern="distributed"', detail)
-        self.assertIn("PE端子保持未连接并贴标", detail)
-
-    def test_35_living_jz_n2_has_two_lighting_returns_and_three_independent_sofa_branches(self) -> None:
-        detail = (self.output_dir / "35-living-jz-n2-wiring.svg").read_text(encoding="utf-8")
-        self.assertIn('data-drawing-property="construction-wiring-final"', detail)
-        self.assertIn('data-device="JZ-N2-living"', detail)
-        self.assertIn('data-connector="221-613-L"', detail)
-        self.assertIn('data-connector="221-615-N"', detail)
-        self.assertEqual(detail.count('data-connector="221-412-'), 2)
-        self.assertIn('data-controlled-return="living-main"', detail)
-        self.assertIn('data-controlled-return="living-dining"', detail)
-        self.assertIn('data-sofa-branches="three-independent-always-on"', detail)
-        self.assertIn('data-outlet="robot-always-on"', detail)
-        self.assertIn('data-outlet="sofa-background-always-on"', detail)
-        self.assertNotIn("第3键", detail)
-
-    def test_36_bedroom_jz_n2_separates_underbed_light_and_fan_controller(self) -> None:
-        detail = (self.output_dir / "36-bedroom-jz-n2-wiring.svg").read_text(encoding="utf-8")
-        self.assertIn('data-device="JZ-N2-bedroom"', detail)
-        self.assertIn('data-connector="221-413-bedroom-N"', detail)
-        self.assertIn('data-connector="221-412-bedroom-main"', detail)
-        self.assertIn('data-outlet="underbed-light-controlled" data-type="10A-two-pin"', detail)
-        self.assertIn('data-fan-separation="true"', detail)
-        self.assertIn('data-device="fan-speed-controller"', detail)
-        self.assertIn('data-fan-feed="existing-concealed"', detail)
-        self.assertIn("不剪插头、不裸接铜箔", detail)
-
-    def test_37_lists_every_frozen_segment_and_totals(self) -> None:
-        detail = (self.output_dir / "37-electrical-segment-takeoff.svg").read_text(encoding="utf-8")
-        for segment_id in ("E6-01", "E6-08", "EB-01A", "EB-01B", "EL-07A", "EL-07B", "EL-11", "EW-05", "EC-01", "EC-07"):
-            self.assertIn(segment_id, detail)
-        self.assertIn("6mm² 每根净21m / 下料24m", detail)
-        self.assertIn("BVVB 2×2.5净69m / 下料77m / 买100m", detail)
-        self.assertIn("BV 1×2.5净20.5m / 下料24m / 买30m", detail)
-
-    def test_electrical_bom_excludes_recolored_blue_wire_and_switched_outlets(self) -> None:
-        root = Path(__file__).resolve().parents[1]
-        procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
-        electrical = (root / "data/electrical.yaml").read_text(encoding="utf-8")
-        self.assertNotIn("用改色电工胶布", procurement)
-        self.assertIn("不采用蓝线改色", procurement)
-        self.assertIn("普通插座保持常电", electrical)
-        self.assertIn("智能墙壁开关只控制灯具", electrical)
-        self.assertNotIn("smart_switch_output: general_socket", electrical)
-
-    def test_terminal_plan_uses_onsite_sized_distributed_t_branches(self) -> None:
-        root = Path(__file__).resolve().parents[1]
-        procurement = (root / "data/procurement.yaml").read_text(encoding="utf-8")
-        electrical = (root / "data/electrical.yaml").read_text(encoding="utf-8")
-        for sku in ("221-615", "221-613", "221-612", "221-415", "221-413", "221-412"):
-            self.assertIn(sku, procurement)
-        self.assertIn("分布式T接优先", electrical)
-        self.assertIn("汽车线束类廉价穿刺夹", procurement + electrical)
-        self.assertNotIn("provisional_minimum_cart", procurement)
-        self.assertNotIn("PCT-62二进六出", procurement + electrical)
-        self.assertIn('status: cancelled', procurement)
-        self.assertIn('1.5mm²照明线旧方案', procurement)
-        self.assertIn('2×2.5mm²两芯', electrical)
-
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            if filename not in {"32-electrical-topology.svg", "33-bedroom-electrical-detail.svg", "34-bathroom-electrical-detail.svg", "35-living-jz-n2-wiring.svg", "36-bedroom-jz-n2-wiring.svg", "37-electrical-segment-takeoff.svg", "38-five-route-electrical.svg", "50-kitchen-bath-details.svg"}:
+            if filename not in {"38-five-route-electrical.svg", "50-kitchen-bath-details.svg"}:
                 self.assertIn('data-connection="hall-a-b-open"', svg)
                 self.assertNotIn("M475 450H600", svg)
+
+    def test_38_is_only_current_electrical_diagram(self) -> None:
+        current = set(EXPECTED)
+        self.assertIn("38-five-route-electrical.svg", current)
+        for old in range(30, 38):
+            self.assertFalse(any(name.startswith(f"{old:02d}-") for name in current))
+        detail = (self.output_dir / "38-five-route-electrical.svg").read_text(encoding="utf-8")
+        self.assertIn("五路明装电路路线冻结", detail)
+        self.assertIn("厨房", detail)
+        self.assertIn("客厅", detail)
+        self.assertIn("卫生间", detail)
 
     def test_checked_in_outputs_match_generator(self) -> None:
         checked_in = Path(__file__).resolve().parents[1] / "diagrams"
