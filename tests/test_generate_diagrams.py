@@ -73,7 +73,8 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn('data-dishwasher-water="sink-feed-independent-switch"', plumbing)
         self.assertIn('data-dishwasher-drain="direct-to-sink"', plumbing)
         self.assertIn('data-outlet="dishwasher-three-hole"', points)
-        self.assertIn('data-device-protection="SRCD-DISHWASHER"', topology)
+        self.assertIn("RCBO-02统一保护", topology)
+        self.assertNotIn('data-device-protection="SRCD-DISHWASHER"', topology)
         self.assertIn('data-stack="dishwasher-on-cabinet"', details)
 
     def test_robot_dock_table_and_two_outlets_are_explicit(self) -> None:
