@@ -1021,18 +1021,14 @@ def five_route_electrical_freeze() -> str:
     return FIVE_ROUTE_ELECTRICAL_SVG
 
 
+# 2026-09-29: 30~37 are intentionally retired because they encode the superseded
+# electrical topology. Do not re-add them to OUTPUTS; Git history preserves them.
+LEGACY_ELECTRICAL_OUTPUTS_RETIRED = tuple(f"{n:02d}" for n in range(30, 38))
+
 OUTPUTS = {
     "00-existing-survey.svg": ("existing-survey", "00 现状测量图", existing_survey),
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
     "20-plumbing-gas.svg": ("plumbing-gas", "20 给排水与燃气图", plumbing_gas),
-    "30-electrical-low-voltage.svg": ("electrical-low-voltage", "30 强弱电点位图", electrical_low_voltage),
-    "31-electrical-routes.svg": ("electrical-routes", "31 强电真实空间走线图", electrical_routes),
-    "32-electrical-topology.svg": ("electrical-topology", "32 五回路与分级漏保拓扑图", electrical_topology_v5),
-    "33-bedroom-electrical-detail.svg": ("bedroom-electrical-detail", "33 卧室插座与吊扇控制详图", bedroom_electrical_detail),
-    "34-bathroom-electrical-detail.svg": ("bathroom-electrical-detail", "34 卫生间专用馈线与漏保详图", bathroom_electrical_detail),
-    "35-living-jz-n2-wiring.svg": ("living-jz-n2-wiring", "35 客厅 JZ-N2 施工接线图", living_jz_n2_wiring),
-    "36-bedroom-jz-n2-wiring.svg": ("bedroom-jz-n2-wiring", "36 卧室 JZ-N2 与吊扇分离施工图", bedroom_jz_n2_wiring),
-    "37-electrical-segment-takeoff.svg": ("electrical-segment-takeoff", "37 全屋逐段下料与端接图", electrical_segment_takeoff),
     "38-five-route-electrical.svg": ("five-route-electrical-freeze", "38 五路明装路线冻结图", five_route_electrical_freeze),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
