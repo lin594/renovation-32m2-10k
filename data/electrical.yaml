@@ -212,8 +212,9 @@ terminal_policy:
     - "末端相邻插座的局部分配不升级成全屋拓扑节点；在对应家具/设备附近可检修明盒内用正规2.5mm²端子或备用PCT解决"
     - "库存蓝色6mm²只作为N候选；不得靠端部胶带把整段蓝线改作L"
     - "普通设备端子只接适配短尾线，不把6mm²主干硬塞进普通插座、灯具或开关"
+    - "固定布线禁止使用汽车线束类廉价穿刺夹，也禁止胶布缠绕裸接；所有分叉/接续使用适配导体截面且可检修的正规端子"
   procurement:
-    status: "corrected_2026_09_30_nine_main_nodes_pending_fit_test"
+    status: "corrected_2026_09_30_dual_pole_topology_nine_main_nodes_pending_fit_test"
     pct42: { fixed_main_quantity: 4, purchase_quantity: 10, pack: "10只装×1", nodes: ["B2", "K1", "K2", "A1"] }
     pct62: { fixed_main_quantity: 5, purchase_quantity: 10, pack: "10只装×1", nodes: ["B1", "H1", "L1", "W1", "BATH1"] }
     local_distribution: "洗烘、小厨电、书桌上下插座、沙发娱乐区及厨房设备簇在末端局部明盒内分配；不预先固定额外PCT数量，从10只装余量或正规2.5mm²小端子按实装取用"
