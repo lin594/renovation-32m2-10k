@@ -8,7 +8,7 @@
 | 10 | [家具与动线图](10-furniture-circulation.svg) | 改造后如何使用，哪些家具已有或待购？ |
 | 20 | [给排水与燃气图](20-plumbing-gas.svg) | 水、排水和燃气分别如何连接？ |
 | 38 | [五路最终墙面走槽图](38-five-route-electrical.svg) | 配电箱出线后具体贴哪面侧墙、五路如何并行/分流、9个分支位置和现场A/B回退怎么做？ |
-| 39 | [九节点接线与材料复算图](39-electrical-node-schedule.svg) | 每个节点几进几出、PCT-42怎么分、机械开关/JZ-N2怎么接、材料需要多少？ |
+| 39 | [节点接线与材料复算图](39-electrical-node-schedule.svg) | 9个主节点+4个局部子节点如何分线、PCT-42/62怎么选、机械开关/JZ-N2怎么接、材料需要多少？ |
 | 40 | [门窗与猫安全图](40-doors-windows-cats.svg) | 门扇、纱窗和三猫防逃如何处理？ |
 | 50 | [厨卫详图](50-kitchen-bath-details.svg) | 小空间内的关键尺寸和冲突是什么？ |
 | 60 | [墙地面饰面图](60-finishes-materials.svg) | 防水、涂装和地面材料如何分区？ |
