@@ -101,10 +101,14 @@ class GenerateDiagramsTest(unittest.TestCase):
         detail = (self.output_dir / "39-electrical-node-schedule.svg").read_text(encoding="utf-8")
         for node in ("B1", "B2", "K1", "K2", "H1", "L1", "W1", "A1", "BATH1"):
             self.assertIn(node, detail)
-        self.assertIn("PCT-42×2", detail)
-        self.assertIn("1进4出", detail)
-        self.assertIn("厨房K1", detail)
-        self.assertIn("目标40m", detail)
+        self.assertIn("PCT-42：1对L/N输入→2对L/N输出", detail)
+        self.assertIn("PCT-62：1对L/N输入→3对L/N输出", detail)
+        self.assertIn("K2A", detail)
+        self.assertIn("L1A", detail)
+        self.assertIn("W1A", detail)
+        self.assertIn("W1B", detail)
+        self.assertIn("理论6只", detail)
+        self.assertIn("理论7只", detail)
         self.assertIn("采购100m继续成立", detail)
 
     def test_checked_in_outputs_match_generator(self) -> None:
