@@ -76,7 +76,7 @@
 <text x="1045" y="654" class="small">用低轮廓的线槽配套接线/分线构件或短段加宽、可独立开盖的分线腔。</text>
 <text x="1020" y="690" class="small">B｜放不下：纯2.5mm²用86深明盒/小分线盒；6mm²多分支用约100×100×50。</text>
 <text x="1020" y="728" class="small">普通线槽本体能打开，不等于随便把接头裸塞在线槽腔里。</text>
-<text x="1020" y="756" class="small">9个是“最多9个电气分支位置”，不是9个大白盒。</text>
+<text x="1020" y="756" class="small">9个主节点负责高位骨架；另4个局部子节点放设备/家具附近，详见39图。</text>
 
 <rect x="990" y="800" width="550" height="215" rx="12" class="panel"/>
 <text x="1020" y="837" class="small bold">罗马杆/旧支架：两版放样</text>
