@@ -226,12 +226,12 @@ items:
   - id: BUY-0025
     category: electrical_connector
     room: whole_house
-    item: "PCT快速接线端子（PCT-42与PCT-62各一盒）"
+    item: "PCT快速接线端子（PCT-42 / PCT-62）"
     status: not_purchased
-    candidate: "PCT-42二进四出与PCT-62二进六出配合使用。正确结构：一只器件同时处理L/N；PCT-42=1对L/N输入→2对L/N输出，PCT-62=1对L/N输入→3对L/N输出"
+    candidate: "PCT-42二进四出与PCT-62二进六出配合使用。一只器件同时处理L/N：PCT-42=1对L/N输入→2对L/N输出；PCT-62=1对L/N输入→3对L/N输出"
     planned_quantity:
-      "PCT-42": "理论6只；若10只装则买1盒=10只"
-      "PCT-62": "理论7只；若10只装则买1盒=10只"
+      "PCT-42": "固定主节点理论4只（B2/K1/K2/A1）；10只装×1"
+      "PCT-62": "固定主节点理论5只（B1/H1/L1/W1/BATH1）；10只装×1"
     requirements:
       - "用于220V固定铜导体并有明确合格证明/适用说明"
       - "到货先确认2进4出/2进6出的双极内部拓扑，不再按L一只、N一只错误计数"
@@ -240,7 +240,7 @@ items:
       - "必须连同真实导线在四分槽/配套分线件内试装：导线弯曲自然、盖板无需强压、端子可固定"
       - "普通四分线槽本体不是默认接线腔；接头使用可独立开盖的配套分线腔，空间不足则回退86深盒或100方盒"
     selection_gate: "先确认内部拓扑和现场空间；任何参数或空间不满足即换正规同等级产品/改盒"
-    note: "正确理论用量：PCT-42=6只（B2/K1/A1/K2A/L1A/W1A）；PCT-62=7只（B1/K2/H1/L1/W1/BATH1/W1B）。另准备2孔2.5mm²小端子5只、4孔单极2.5mm²并联端子4~6只"
+    note: "全屋拓扑只固定9个主节点。末端局部分配不再升级成额外全屋节点；需要额外端子时，从PCT采购余量或正规2.5mm²小端子按实装取用。另准备2孔2.5mm²小端子5只、4孔单极2.5mm²并联端子4~6只"
 
   - id: BUY-0026
     category: lighting
@@ -387,7 +387,7 @@ items:
     item: "明装插座、开关和基础灯具包"
     status: not_purchased
     planned_bom:
-      - { item: "普通插座面板", quantity: 15, scope: "床侧2、厨房4、客厅生活9", gate: "洗烘/洗碗机等10A或16A按设备插头冻结" }
+      - { item: "普通插座面板", quantity: 14, scope: "床侧2、厨房4、RCBO-03客厅生活8", gate: "洗烘/洗碗机等10A或16A按设备插头冻结" }
       - { item: "卧室空调专用插座面板", quantity: 1, gate: "按空调插头和铭牌冻结10A/16A" }
       - { item: "客厅空调末端漏保型连接装置", quantity: 1, procurement_ref: BUY-0029 }
       - { item: "冰箱漏保型插座", quantity: 1, procurement_ref: BUY-0035 }

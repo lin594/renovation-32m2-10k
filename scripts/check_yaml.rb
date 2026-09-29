@@ -175,13 +175,16 @@ actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
 errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
-errors << "electrical.yaml 应冻结9个主节点+4个局部子节点" unless electrical.dig("branch_nodes", "model") == "nine_main_plus_four_local_subnodes" && electrical.dig("branch_nodes", "main_count") == 9 && electrical.dig("branch_nodes", "local_subnode_count") == 4 && electrical.dig("branch_nodes", "total_distribution_points") == 13 && branch_nodes.length == 13
+errors << "electrical.yaml 应只冻结9个全屋主节点" unless electrical.dig("branch_nodes", "model") == "nine_main_nodes_with_local_endpoint_distribution" && electrical.dig("branch_nodes", "main_count") == 9 && electrical.dig("branch_nodes", "total_distribution_points") == 9 && branch_nodes.length == 9
 errors << "A1必须在MCB-04下分为空调与冰箱两支" unless branch_nodes.any? { |node| node["id"] == "A1" && Array(node["outputs"]).to_set == Set["客厅空调", "冰箱"] }
 errors << "BATH1必须包含浴霸、镜柜和独立主灯三支" unless branch_nodes.any? { |node| node["id"] == "BATH1" && Array(node["outputs"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间独立主灯/机械开关支路"] }
+errors << "K2必须只分两个厨房设备簇" unless branch_nodes.any? { |node| node["id"] == "K2" && Array(node["outputs"]).length == 2 }
+errors << "L1必须固定为W1主干+洗烘小厨电+客厅JZ三路" unless branch_nodes.any? { |node| node["id"] == "L1" && Array(node["outputs"]).to_set == Set["W1主干", "洗烘/小厨电局部组", "客厅JZ-N2供电"] }
+errors << "W1必须直接分投影/沙发娱乐区/书桌三路" unless branch_nodes.any? { |node| node["id"] == "W1" && Array(node["outputs"]).to_set == Set["高位投影仪", "沙发娱乐区", "书桌区域"] }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
-errors << "electrical.yaml 插座组数明细应合计19组" unless outlets["total_planned"] == 19 && outlet_sum == 19
+errors << "electrical.yaml 插座组数明细应合计18组" unless outlets["total_planned"] == 18 && outlet_sum == 18
 errors << "electrical.yaml 卫生间本期不应新增普通插座" unless outlets.dig("bathroom", "general_socket_count") == 0
 
 sofa_robot = outlets.dig("living_room", "sofa_robot_branch") || {}
@@ -196,7 +199,7 @@ errors << "固定布线T接方案必须明确拒绝汽车线束类穿刺夹" unl
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
 
 terminal_buy = procurement_by_id["BUY-0025"] || {}
-errors << "BUY-0025应冻结PCT-42理论6只/PCT-62理论7只并各按10只装采购" unless terminal_buy.to_s.include?("理论6只") && terminal_buy.to_s.include?("理论7只") && terminal_buy.to_s.include?("10只") && terminal_buy["status"] == "not_purchased"
+errors << "BUY-0025应冻结PCT-42固定主节点4只/PCT-62固定主节点5只并各按10只装采购" unless terminal_buy.to_s.include?("理论4只") && terminal_buy.to_s.include?("理论5只") && terminal_buy.to_s.include?("10只") && terminal_buy["status"] == "not_purchased"
 
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
@@ -234,11 +237,11 @@ errors << "BVVB 2×2.5mm²应按净63.5m、下料85m、采购100m冻结" unless 
 control_takeoff = electrical.dig("cable_plan", "control_return_takeoff") || {}
 errors << "BV 1×2.5mm²单芯灯控回线应取消" unless control_takeoff["purchase_bv_1x2_5_m"] == 0 && control_takeoff["strategy"].to_s.include?("取消单独BV 1×2.5")
 segment_takeoff = electrical.dig("cable_plan", "segment_takeoff") || {}
-errors << "旧逐段下料表应退役并等待2026-09-30墙面放样重测" unless segment_takeoff["status"] == "superseded_by_2026_09_30_final_route_remeasure_required" && Array(segment_takeoff["canonical_main_nodes"]).length == 9 && Array(segment_takeoff["canonical_local_subnodes"]).length == 4
+errors << "旧逐段下料表应退役并等待2026-09-30墙面放样重测" unless segment_takeoff["status"] == "superseded_by_2026_09_30_final_route_remeasure_required" && Array(segment_takeoff["canonical_main_nodes"]).length == 9 && Array(segment_takeoff["local_endpoint_groups"]).length == 4
 errors << "采购表应同步6mm²相线30m、计划下料25m" unless procurement_by_id.dig("BUY-0038", "planned_quantity_m") == 30 && procurement_by_id.dig("BUY-0038", "planned_cut_m") == 25
 errors << "BV 1×2.5mm²旧采购项应取消" unless procurement_by_id.dig("BUY-0039", "status") == "cancelled" && procurement_by_id.dig("BUY-0039", "planned_quantity_m") == 0
 device_takeoff = electrical.fetch("surface_device_takeoff", {})
-errors << "末端材料应锁定15个普通插座点、1个卧室空调点和2个客厅漏保点" unless device_takeoff.dig("outlet_faceplates", "ordinary_points", "quantity") == 15 && device_takeoff.dig("outlet_faceplates", "bedroom_ac_dedicated", "quantity") == 1 && device_takeoff.dig("outlet_faceplates", "living_endpoint_rcd", "quantity") == 2
+errors << "末端材料应锁定14个普通插座点、1个卧室空调点和2个客厅漏保点" unless device_takeoff.dig("outlet_faceplates", "ordinary_points", "quantity") == 14 && device_takeoff.dig("outlet_faceplates", "bedroom_ac_dedicated", "quantity") == 1 && device_takeoff.dig("outlet_faceplates", "living_endpoint_rcd", "quantity") == 2
 errors << "客厅和卧室必须各锁定一只JZ-N2零火双开" unless device_takeoff.dig("switch_faceplates", "jz_n2_zero_neutral_dual", "quantity") == 2 && device_takeoff.dig("switch_faceplates", "jz_n2_zero_neutral_dual", "returns_per_device") == 2
 errors << "卧室床下灯必须另计10A二孔专用照明连接点" unless device_takeoff.dig("outlet_faceplates", "bedroom_underbed_light_controlled", "quantity") == 1 && device_takeoff.dig("outlet_faceplates", "bedroom_underbed_light_controlled", "type").to_s.include?("10A二孔")
 errors << "BUY-0041应记录两只JZ-N2和99.8元计划总价" unless procurement_by_id.dig("BUY-0041", "planned_quantity") == 2 && procurement_by_id.dig("BUY-0041", "planned_total_cny") == 99.8

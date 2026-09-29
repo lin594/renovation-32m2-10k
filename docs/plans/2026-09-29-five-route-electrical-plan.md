@@ -5,6 +5,6 @@
 请只使用：
 
 - [2026-09-30 最终明装电路施工方案](2026-09-30-final-surface-electrical-plan.md)
-- [38 五路最终墙面走槽图](../../diagrams/38-five-route-electrical.svg)
+- [30 五路最终墙面走槽图](../../diagrams/30-five-route-electrical.svg)
 
 旧版中关于卧室吊扇供电、抽象 flowchart 路线、节点数量和线槽方向的内容均已退役。

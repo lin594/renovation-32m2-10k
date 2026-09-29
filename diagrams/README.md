@@ -1,31 +1,18 @@
-# 现行图纸
+# 图纸索引
 
-仓库只保留当前方案。图纸编号表达职责，不表达版本；被替代的方案从 Git 历史查看。
+所有SVG均由 `scripts/generate_diagrams.py` 生成，执行 `make diagrams` 可重建。
 
-| 编号 | 图纸 | 回答的问题 |
+| 编号 | 图纸 | 用途 |
 |---|---|---|
-| 00 | [现状测量图](00-existing-survey.svg) | 房子原来有什么固定边界和点位？ |
-| 10 | [家具与动线图](10-furniture-circulation.svg) | 改造后如何使用，哪些家具已有或待购？ |
-| 20 | [给排水与燃气图](20-plumbing-gas.svg) | 水、排水和燃气分别如何连接？ |
-| 38 | [五路最终墙面走槽图](38-five-route-electrical.svg) | 配电箱出线后具体贴哪面侧墙、五路如何并行/分流、9个分支位置和现场A/B回退怎么做？ |
-| 39 | [节点接线与材料复算图](39-electrical-node-schedule.svg) | 9个主节点+4个局部子节点如何分线、PCT-42/62怎么选、机械开关/JZ-N2怎么接、材料需要多少？ |
-| 40 | [门窗与猫安全图](40-doors-windows-cats.svg) | 门扇、纱窗和三猫防逃如何处理？ |
-| 50 | [厨卫详图](50-kitchen-bath-details.svg) | 小空间内的关键尺寸和冲突是什么？ |
-| 60 | [墙地面饰面图](60-finishes-materials.svg) | 防水、涂装和地面材料如何分区？ |
+| 00 | [现状测量图](00-existing-survey.svg) | 固定边界和原始点位 |
+| 10 | [家具与动线图](10-furniture-circulation.svg) | 家具、通道、临时客卧 |
+| 20 | [给排水与燃气图](20-plumbing-gas.svg) | 水、排水、燃气 |
+| **30** | [五路最终墙面走槽图](30-five-route-electrical.svg) | 五路真实墙面路径、9主节点 |
+| **31** | [九主节点接线与材料复算图](31-electrical-node-schedule.svg) | PCT选型、九节点进出线、材料 |
+| 40 | [门窗与猫安全图](40-doors-windows-cats.svg) | 门窗、纱窗、防逃 |
+| 50 | [厨卫详图](50-kitchen-bath-details.svg) | 厨卫尺寸和冲突 |
+| 60 | [墙地面饰面图](60-finishes-materials.svg) | 防水、涂装、地面 |
 
-## 强电图纸退役说明
+2026-09-29以前30～37号强电SVG的**旧内容**已经退役，不得从Git历史恢复。图号本身重新从30使用：30=现行五路路线，31=现行九主节点/材料，32～37留空。
 
-**30～37号旧强电SVG已于2026-09-29主动删除。** 它们由Codex依据此前方案生成，包含已经被推翻的15个抽象分支节点、221端子、门外卫生间RCD、副保护盒和旧下料表。继续保留会误导施工，也会让自动生成器在后续合并时把旧方案重新带回来。
-
-因此：
-
-- 现行强电施工图只认 **38（墙面路线）+39（节点/材料）**；
-- 30～37只能从Git历史查看；
-- `scripts/generate_diagrams.py` 不得重新把30～37加入 `OUTPUTS`；
-- 后续Codex修改电气内容时，必须先读ADR 0011和2026-09-29五路方案，不得以旧SVG反推当前设计。
-
-README 的“前后对比”直接并列 00 与 10。所有图使用系统中文字体栈，由浏览器渲染；仓库不保存光栅预览。
-
-重新生成：`make diagrams`。完整校验：`make check`。
-
-- 38 的文字施工依据：[2026-09-30 最终明装电路施工方案](../docs/plans/2026-09-30-final-surface-electrical-plan.md)。
+现行文字真源为 [最终明装电路施工方案](../docs/plans/2026-09-30-final-surface-electrical-plan.md) 和 [ADR 0011](../docs/decisions/0011-five-route-electrical-freeze.md)。关键语义：6mm²是前三路主干；2.5mm²是末端护套支线；全屋只编号9个主节点。
