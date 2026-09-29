@@ -252,7 +252,7 @@ outlet_groups:
     laundry_cluster:
       circuit: RCBO-03
       washer_box: { type: adjacent_surface_mounted, use: washer_only, relocation_reason: "洗烘机东侧/客厅通道左侧既有暗盒改作客厅JZ-N2", accessibility_gate: "装机后侧面可直接拔插和检修" }
-      small_appliance_branch: { cable: "BVVB 2×2.5mm²独立支线", five_hole_points: 2, future_three_point_option: true, connector: "低位组合盒内221-415类L/N各1，第三点端口预留" }
+      small_appliance_branch: { cable: "BVVB 2×2.5mm²独立支线", five_hole_points: 2, future_three_point_option: true, connector: "低位组合盒内正规4孔2.5mm²并联端子L/N各1，第三点端口预留" }
       capacity_rule: "两条支线共用RCBO-03下游C20，不增加回路容量；洗烘烘干、电暖器和大功率小厨电三者一次只运行一类"
     desk_branch:
       lower: "桌下常电，电脑/显示器/NAS"
@@ -283,7 +283,7 @@ outlet_groups:
     - "所有智能墙壁开关只采用零火版，开关盒必须到达L/N，受控相线仅通往灯具或标注明确的专用照明连接点"
     - "空调、洗烘机、洗碗机和浴霸不得以普通智能插座作为主保护或负载开关；RCBO-01/02/03下游设备不再默认重复叠加30mA漏保"
     - "两芯线路只有L/N；三孔面板PE端子保持未连接并粘贴‘本户无PE’标识，不与N短接，漏保不能替代PE"
-    - "所有固定照明开关盒使用≥50mm深86明装盒并送达L/N；受控相线使用明确相色的BV 1×2.5mm²，禁止黄绿线改作回线"
+    - "JZ-N2开关盒送达L/N；厨房/玄关/卫生间机械开关采用BVVB红芯送常火L、另一芯两端重标为Lsw返回。禁止黄绿线改作回线"
     - "客厅JZ-N2第1键只控制主吸顶灯，第2键只控制餐区双头射灯；沙发背景光改由W1局部分支后的独立常电专用插座供电"
     - "卧室JZ-N2第1键只控制主灯，第2键只控制床下灯专用插座；任何一键关闭均不得影响床侧常电；吊扇/调速器已退役不接新电"
 
@@ -313,7 +313,7 @@ bedroom_detail:
   smart_switch:
     box: "卧室门内右手既有暗盒"
     device: "京东京造JZ-N2零火双开"
-    connections: ["L常电进线", "N经221-413分至开关和床下灯专用插座", "L1经BV 1×2.5及221-412到主灯", "L2经BVVB相线到床下灯专用插座"]
+    connections: ["B1以BVVB送L/N常电", "N在JZ盒内经4孔2.5mm²并联端子分给JZ-N2、主灯和床下灯", "L1+N用一根BVVB去主灯", "L2+N用一根BVVB去床下灯专用插座"]
     underbed_socket: { type: "10A二孔", supply: controlled_by_jz_n2_key_2, label: "仅床下灯", placement: "可拔插且不被床体压住" }
     placement_rules: ["灯带远离床品", "避开猫可啃咬位置", "避开积尘散热死角", "不剪厂家插头或裸接铜箔"]
   retired_fan_point:
@@ -419,7 +419,7 @@ onsite_freeze_gate:
     - "逐回路确认现有临时线路和实际负载"
     - "测量各端点路线长度和同槽导线数量"
     - "确认四个既有暗盒均无可利用暗管；按卧室、厨房、客厅、卫生间逐条在墙面和门框弹出明装路径"
-    - "核对6mm²计划24m/根、BVVB 2×2.5计划77m、BV 1×2.5回线24m；任一实测超出计划时先更新下料表再采购"
+    - "按2026-09-30复算核对6mm²每极25m下料预算、BVVB 2×2.5约85m下料预算、四分线槽目标40m；任一现场实测超出计划时先更新下料表再采购"
     - "到货核对两只JZ-N2端子2.5mm²兼容性、盒深和LED负载范围；不兼容即停工，不削细导体硬塞"
     - "确认走廊A灯带长度、安装高度、剪切单位、成套电源接头与末端封帽"
   outputs: ["墙面放样尺寸表", "逐段下料表", "线径和颜色表", "保护器匹配签字", "2/3/5孔端子核对表", "逐房间材料包"]
