@@ -1,7 +1,7 @@
 version: 1
 updated: "2026-09-28"
 
-status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
+status_values: [not_purchased, partially_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
 items:
   - id: BUY-0001
