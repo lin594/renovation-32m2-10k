@@ -47,6 +47,7 @@ REQUIRED = (
     "diagrams/10-furniture-circulation.svg",
     "diagrams/20-plumbing-gas.svg",
     "diagrams/38-five-route-electrical.svg",
+    "diagrams/39-electrical-node-schedule.svg",
     "diagrams/40-doors-windows-cats.svg",
     "diagrams/50-kitchen-bath-details.svg",
     "diagrams/60-finishes-materials.svg",
