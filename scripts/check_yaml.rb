@@ -175,9 +175,9 @@ actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
 errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
-errors << "electrical.yaml 应为15个固定分布式T接节点" unless electrical.dig("branch_nodes", "model") == "distributed_along_trunk" && electrical.dig("branch_nodes", "fixed_count") == 15 && branch_nodes.length == 15
-errors << "客厅高负载节点必须在MCB-04下分为空调与冰箱两个独立末端漏保" unless branch_nodes.any? { |node| node["id"] == "JB-LIV-HIGH" && Array(node["branches"]).to_set == Set["SRCD-AC-LIV→客厅空调", "SRCD-FRIDGE→冰箱"] }
-errors << "卫生间节点必须位于RCD-BATH-01下游" unless branch_nodes.any? { |node| node["id"] == "JB-BATH" && node["upstream_node"] == "RCD-BATH-01" }
+errors << "electrical.yaml 应冻结9个物理分支位置" unless electrical.dig("branch_nodes", "model") == "nine_physical_branch_positions" && electrical.dig("branch_nodes", "fixed_count_max") == 9 && branch_nodes.length == 9
+errors << "A1必须在MCB-04下分为空调与冰箱两支" unless branch_nodes.any? { |node| node["id"] == "A1" && Array(node["branches"]).to_set == Set["客厅空调", "冰箱"] }
+errors << "BATH1必须包含浴霸、镜柜和独立主灯三支" unless branch_nodes.any? { |node| node["id"] == "BATH1" && Array(node["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间独立主灯"] }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
@@ -258,7 +258,7 @@ robot = inventory_by_id["INV-0006"] || {}
 errors << "INV-0006应同步沙发与书桌之间的固定停靠区域" unless robot["location"].to_s.include?("沙发与书桌之间")
 
 mirror_cabinet = procurement_by_id["BUY-0005"] || {}
-errors << "BUY-0005应明确智能除雾镜柜及其RCD-BATH-01下游电源" unless mirror_cabinet["item"].to_s.include?("智能除雾镜柜") && mirror_cabinet.to_s.include?("RCD-BATH-01")
+errors << "BUY-0005应明确智能除雾镜柜及其BATH-RCD-05下游电源" unless mirror_cabinet["item"].to_s.include?("智能除雾镜柜") && mirror_cabinet.to_s.include?("BATH-RCD-05")
 
 sofa_bed = procurement_by_id["BUY-0006"] || {}
 errors << "BUY-0006应同时承担沙发和临时客卧，并保留隐私帘候选" unless sofa_bed["item"].to_s.include?("沙发床") && sofa_bed["privacy_option"].to_s.include?("隐私帘")
