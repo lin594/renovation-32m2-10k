@@ -1125,7 +1125,7 @@ OUTPUTS = {
     "00-existing-survey.svg": ("existing-survey", "00 现状测量图", existing_survey),
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
     "20-plumbing-gas.svg": ("plumbing-gas", "20 给排水与燃气图", plumbing_gas),
-    "38-five-route-electrical.svg": ("five-route-electrical-freeze", "38 五路明装路线冻结图", five_route_electrical_freeze),
+    "38-five-route-electrical.svg": ("five-route-electrical-freeze", "38 五路明装电路最终墙面走槽图", five_route_electrical_freeze),
     "39-electrical-node-schedule.svg": ("electrical-node-schedule", "39 九节点接线与材料复算图", electrical_node_schedule),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
