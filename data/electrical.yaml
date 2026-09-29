@@ -329,40 +329,38 @@ cable_plan:
   wiring_system: "全屋新增线路均明装。主干默认沿侧墙高位线槽，不走天花板平面；6mm²单芯L/N成对敷设。普通插座从高位分支位置用BVVB 2×2.5mm²下落；线槽90度转弯/续接不设盒，只有电气接续/分叉才设可开启接线空间"
   trunk_policy: "副保护盒C20之后，RCBO-01/02/03使用6mm²高位主干；蓝色库存线只作N，并与同类型、同长度、合规相色6mm² L成对敷设。MCB-04/05在C20后直接2.5mm²。6mm²节点优先按PCT-42/PCT-62实物试装，端子与L/N各自独立并置于可开启接线空间"
   six_mm_takeoff:
-    basis: "依据house.yaml名义尺寸、绕门明装路径、盒内余线和约10%施工余量；现场弹线后允许在各段间调剂，不得少于实测"
-    panel_to_subpanel_five_feeders: { net_m_per_conductor: 3.0, planned_cut_m_per_conductor: 4.0 }
-    RCBO_01_bedroom: { net_m_per_conductor: 4.0, planned_cut_m_per_conductor: 4.5 }
-    RCBO_02_kitchen: { net_m_per_conductor: 5.0, planned_cut_m_per_conductor: 5.5 }
-    RCBO_03_living: { net_m_per_conductor: 9.0, planned_cut_m_per_conductor: 10.0 }
-    totals: { net_m_per_conductor: 21.0, planned_cut_m_per_conductor: 24.0, purchase_l_m: 30, inventory_blue_n_planned_m: 24.0, inventory_blue_n_remaining_estimate_m: 36.0 }
-    decision: "单程6mm²主干不超过30m；L+N实际铜线计划用量约48m。第4、5路不占用6mm²主干"
+    basis: "按2026-09-30最终墙面路线复算；现场弹线前仅作采购级估算，真正剪线前必须用实测替换"
+    panel_to_subpanel_five_feeders: { net_m_per_conductor: 3.0, planned_cut_m_per_conductor: 3.5 }
+    RCBO_01_bedroom: { net_m_per_conductor: 3.2, planned_cut_m_per_conductor: 3.8 }
+    RCBO_02_kitchen: { net_m_per_conductor: 5.0, planned_cut_m_per_conductor: 5.8 }
+    RCBO_03_living: { net_m_per_conductor: 10.0, planned_cut_m_per_conductor: 11.5 }
+    totals: { net_m_per_conductor: 21.2, planned_cut_m_per_conductor: 25.0, purchase_l_m: 30, inventory_blue_n_planned_m: 25.0, inventory_blue_n_remaining_estimate_m: 35.0 }
+    decision: "前三路主干+五路主副箱短馈每极净约21.2m，按25m/极准备。第4、5路副箱C20后直接使用BVVB 2×2.5"
     material_gate: "先确认库存蓝线的BV/BVR类型、绝缘电压、铜芯和外观；L必须购买同类型合规相色，若无法匹配则整对重新选线"
   buy_now:
     - { item: "与库存N同类型的合规相色BV/BVR 1×6mm²", quantity_m: 30, purpose: "前三路主干及主副箱短馈线L", requirements: ["禁止蓝色或黄绿双色作L", "CCC", "合格证", "与库存导体类型匹配"] }
-    - { item: "BVVB 2×2.5mm²", quantity_m: 100, rolls: 2, roll_length_m: 50, purpose: "全部插座、设备、照明供电和开关L/N", requirements: ["内芯为合规相线色+淡蓝色", "CCC", "合格证"] }
-    - { item: "BV 1×2.5mm²受控相线", quantity_m: 30, purpose: "照明/灯带开关回线", requirements: ["红/棕等明确相色", "禁止蓝色和黄绿双色", "CCC", "合格证"] }
-  bvvd_2x2_5_takeoff:
-    net_m_by_circuit: { RCBO_01: 13, RCBO_02: 11, RCBO_03: 31, MCB_04: 7, MCB_05: 7 }
-    net_total_m: 69
-    planned_cut_total_m: 77
+    - { item: "BVVB 2×2.5mm²", quantity_m: 100, rolls: 2, roll_length_m: 50, purpose: "全部插座、设备、照明供电、机械开关L/Lsw及JZ-N2受控回线", requirements: ["内芯为合规相线色+淡蓝色", "CCC", "合格证"] }
+    - { item: "PCT-42二进四出", quantity: 20, purpose: "9个主分支节点L/N各1只，18只使用+2只备用", requirements: ["实物硬线6mm²适配", "额定参数与C20匹配", "先做四分槽+真导线试装"] }
+  bvvb_2x2_5_takeoff:
+    net_m_by_circuit: { RCBO_01: 12.0, RCBO_02: 10.0, RCBO_03: 22.0, MCB_04: 9.5, MCB_05: 10.0 }
+    net_total_m: 63.5
+    planned_cut_total_m: 85.0
     purchase_m: 100
-    expected_remainder_m: 23
-    included_scope: "19组通用插座、走廊A灯带和卧室床下灯2个专用受控插座、6个固定灯位/开关L/N、浴霸及镜柜连接支线"
+    expected_remainder_m: 15.0
+    included_scope: "通用插座、玄关灯带、床下灯专用插座、JZ-N2供电与两路受控BVVB、厨房/卫生间机械开关L+Lsw、浴霸及镜柜连接支线"
   control_return_takeoff:
-    net_m_by_zone: { living_two_returns: 7.0, hall_a: 2.5, hall_b: 2.5, bedroom_main: 3.0, kitchen: 3.0, bathroom: 2.5 }
-    net_total_m: 20.5
-    planned_cut_total_m: 24.0
-    purchase_m: 30
+    strategy: "取消单独BV 1×2.5采购；机械开关使用一根BVVB承载L下行+Lsw返回，JZ-N2用BVVB承载L1/L2或Lx+N"
+    purchase_bv_1x2_5_m: 0
   segment_takeoff:
     status: superseded_by_2026_09_30_final_route_remeasure_required
     canonical_nodes: ["B1", "B2", "K1", "K2", "H1", "L1", "W1", "A1", "BATH1"]
     rule: "旧TN/JB逐段编号和净长已经退役。明天按最终墙面路线弹线后重新逐段量取，再更新下料表；采购级总量估算可暂作上限参考，不得按旧段号直接剪线"
-  cancelled_materials: ["BVVB 2×1.5mm²", "BV 1×1.5mm²控制线"]
+  cancelled_materials: ["BVVB 2×1.5mm²", "BV 1×1.5mm²控制线", "BV 1×2.5mm²单芯灯控回线"]
   lighting_terminal_gate: "JZ-N2实物L/N/L1/L2端子、其他开关和灯具端子必须明确接受2.5mm²；到货后同时核对JZ-N2盒深和LED负载范围。不接受即停工，使用可检修盒内的合规短尾转换或改盒，不削细导体或硬塞端子"
   raceway_takeoff:
-    high_trunk: { candidate_size_mm: "40×20", purchase_m: 30, use: "6mm² L/N高位主干及客厅JZ-N2双回线段" }
-    branch_and_drop: { candidate_size_mm: "25×16", purchase_m: 60, use: "BVVB 2×2.5支线、2.5受控回线和低位机械保护" }
-    gate: "以上为采购下限候选；先用实际电缆和端子试装1m，槽内占用目标≤40%，共享路径按同槽线缆数量放大或拆槽"
+    four_fen_high_trunk: { net_m: 33.0, target_total_m: 40, purchased_m: 20, additional_m: 20, use: "五路侧墙高位主干及节点短段；③④⑤公共墙段按三根独立槽分别计长" }
+    direct_clipped_bvvb: { strategy: "低位/短支线优先BVVB护套线卡扣直固定，是否改进线槽按现场观感决定", clip_target_quantity: "180~200", purchased_clip_quantity: 100, suggested_additional_if_most_branches_clipped: 100 }
+    gate: "四分槽尺寸只按实物称呼，不预设40×20；先用实际6mm²、BVVB和PCT-42试装，盖板不得强压，空间不足处局部加宽或加分线盒"
   junction_box_takeoff:
     branch_positions_max: 9
     compact_option: { use: "PCT-42/纯2.5mm²节点实测空间足够时，优先低轮廓线槽配套接线/分线构件或短段加宽可独立开盖分线腔", gate: "端子+真实导线自然放入，盖板无需强压，端子可固定且可重新检修" }
