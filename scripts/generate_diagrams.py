@@ -960,60 +960,99 @@ def finishes_materials() -> str:
     return document("finishes-materials", "60 墙地面饰面图", "墙顶地面材料分区、基层处理顺序与风格方向", body)
 
 
-FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220" data-diagram-role="five-route-electrical-freeze" role="img">
-<title>38 五路明装路线冻结图</title>
-<desc>按真实空间路径展开卧室、厨房、玄关客厅生活、空调冰箱和卫生间五路明装电路</desc>
+FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" data-diagram-role="five-route-electrical-freeze" role="img">
+<title>38 五路明装电路最终墙面走槽图</title>
+<desc>按真实户型和侧墙高位施工语言冻结五路明装路线；卧室吊扇拆除，无新供电。</desc>
 <style>
-  .title{font:700 28px sans-serif;fill:#111827}.h{font:700 18px sans-serif;fill:#111827}.t{font:15px sans-serif;fill:#111827}.s{font:13px sans-serif;fill:#374151}
-  .box{fill:#fff;stroke:#64748b;stroke-width:2;rx:8}.pct{fill:#f8fafc;stroke:#334155;stroke-width:2;rx:8}.note{fill:#fff7ed;stroke:#f59e0b;stroke-width:2;rx:8}
-  .line{stroke:#111827;stroke-width:4;fill:none}.branch{stroke:#64748b;stroke-width:3;fill:none}.ctrl{stroke:#b91c1c;stroke-width:3;stroke-dasharray:8 6;fill:none}
+  text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+  .title{font-size:28px;font-weight:800;fill:#111827}.sub{font-size:14px;fill:#475569}
+  .room{font-size:18px;font-weight:700;fill:#334155;text-anchor:middle}.micro{font-size:12px;fill:#475569}.small{font-size:14px;fill:#334155}.bold{font-weight:700}
+  .wall{fill:none;stroke:#1f2937;stroke-width:7}.iw{fill:none;stroke:#64748b;stroke-width:5}.panel{fill:#fff;stroke:#cbd5e1;stroke-width:1.5}.node{fill:#fff;stroke:#111827;stroke-width:2}
+  .c1{fill:none;stroke:#7c3aed;stroke-width:6}.c2{fill:none;stroke:#ea580c;stroke-width:6}.c3{fill:none;stroke:#2563eb;stroke-width:6}.c4{fill:none;stroke:#dc2626;stroke-width:6}.c5{fill:none;stroke:#0f766e;stroke-width:6}
+  .drop{fill:none;stroke:#64748b;stroke-width:3;stroke-dasharray:7 5}.retired{fill:none;stroke:#94a3b8;stroke-width:3;stroke-dasharray:6 5}
 </style>
-<text x="60" y="55" class="title">开封32㎡｜五路明装电路路线冻结（2026-09-29）</text>
-<text x="60" y="85" class="s">路线/节点图，不代表可直接通电；第五路主箱原位换2P/30mA漏保为当前设计假设。</text>
+<rect width="1600" height="1120" fill="#fbfaf7"/>
+<text x="60" y="52" class="title">开封32㎡｜38 五路明装电路最终墙面走槽图（2026-09-30）</text>
+<text x="60" y="80" class="sub">主干默认钉在侧墙高位，不走天花板平面；90°转弯只是线槽拼接，不设盒；只有导体接续/分叉才设电气节点。</text>
 
-<!-- lane 1 -->
-<text x="60" y="140" class="h">1 卧室｜现有漏保</text>
-<rect x="60" y="165" width="205" height="78" class="box"/><text x="78" y="195" class="t">卧室入口 6mm² L/N</text>
-<path d="M265 204 H350" class="line"/>
-<rect x="350" y="160" width="250" height="88" class="pct"/><text x="370" y="190" class="h">近门高位总盒</text><text x="370" y="218" class="t">PCT-42 → 短6mm² → PCT-62</text>
-<path d="M600 204 H920" class="line"/><text x="690" y="192" class="s">6mm²继续北侧</text>
-<rect x="920" y="160" width="220" height="88" class="pct"/><text x="940" y="190" class="h">北侧终点 PCT-42</text><text x="940" y="218" class="t">床北插座 + 卧室空调</text>
-<path d="M470 248 V292 H300" class="branch"/><text x="105" y="310" class="t">BVVB → 吊扇调速器</text>
-<path d="M500 248 V320 H620" class="branch"/><text x="625" y="325" class="t">BVVB → JZ-N2（真实L/N）</text>
-<path d="M530 248 V350 H940" class="branch"/><text x="945" y="355" class="t">BVVB → 南侧/近门常电插座</text>
+<rect x="90" y="120" width="320" height="430" fill="#f7ead7"/>
+<rect x="410" y="120" width="210" height="215" fill="#f9efd0"/>
+<rect x="410" y="335" width="105" height="130" fill="#dff3f7"/>
+<rect x="515" y="335" width="105" height="130" fill="#edf1f5"/>
+<rect x="410" y="465" width="210" height="85" fill="#edf1f5"/>
+<rect x="620" y="120" width="320" height="325" fill="#ece8f7"/>
+<rect x="620" y="445" width="320" height="105" fill="#f1f5f9"/>
+<path class="wall" d="M90 120H940V445H620V550H410V550H90Z"/>
+<path class="iw" d="M410 120V465M410 335H535M515 335V465M410 465H620M620 120V350M620 430V550M620 445H940"/>
+<text x="250" y="285" class="room">客厅</text><text x="515" y="225" class="room">厨房</text><text x="462" y="402" class="room">卫生间</text>
+<text x="567" y="402" class="room">走廊B</text><text x="515" y="515" class="room">玄关 / 走廊A</text><text x="780" y="290" class="room">卧室</text><text x="780" y="505" class="room">公共走廊</text>
 
-<!-- lane 2 -->
-<text x="60" y="420" class="h">2 厨房｜现有漏保</text>
-<rect x="60" y="445" width="235" height="86" class="pct"/><text x="80" y="477" class="h">东入口/主灯 PCT-42</text><text x="80" y="507" class="t">中央灯N高位直取；机械开关在东侧</text>
-<path d="M295 488 H720" class="line"/><text x="420" y="475" class="s">6mm²向西 → 再向北</text>
-<rect x="720" y="445" width="225" height="86" class="pct"/><text x="742" y="477" class="h">西墙末端 PCT-42</text><text x="742" y="507" class="t">6mm²在此结束，不进插座</text>
-<path d="M180 531 V585" class="ctrl"/><text x="65" y="610" class="t">BVVB：红=L↓；蓝标红=Lsw↑</text>
-<path d="M820 531 V590 H650" class="branch"/>
-<rect x="380" y="565" width="270" height="75" class="pct"/><text x="400" y="595" class="h">西墙家电组 PCT-62</text><text x="400" y="622" class="t">洗碗机 / 电饭煲 / 预留三孔</text>
-<path d="M865 531 V690 H650" class="branch"/>
-<rect x="380" y="665" width="270" height="75" class="pct"/><text x="400" y="695" class="h">台面/油烟机组 PCT-62</text><text x="400" y="722" class="t">油烟机 / 台面 / 微波炉预留</text>
+<rect x="595" y="435" width="48" height="32" rx="4" fill="#fff" stroke="#111827" stroke-width="2"/>
+<text x="650" y="431" class="small bold">配电箱｜卧室门与入户门之间</text>
 
-<!-- lane 3 -->
-<text x="60" y="800" class="h">3 玄关/客厅生活｜现有漏保</text>
-<rect x="60" y="825" width="215" height="82" class="pct"/><text x="80" y="857" class="h">玄关 PCT-62</text><text x="80" y="885" class="t">设备架 + 灯带 + 主干继续</text>
-<path d="M275 866 H430" class="line"/>
-<rect x="430" y="820" width="270" height="92" class="pct"/><text x="450" y="852" class="h">客厅入口总盒</text><text x="450" y="880" class="t">PCT-42 → PCT-62</text><text x="450" y="902" class="s">洗烘 / 餐桌插座 / JZ-N2</text>
-<path d="M700 866 H900" class="line"/>
-<rect x="900" y="820" width="235" height="92" class="pct"/><text x="920" y="852" class="h">西墙 PCT-62</text><text x="920" y="880" class="t">投影 + 沙发组 + 主干继续</text>
-<path d="M1135 866 H1295" class="line"/>
-<rect x="1295" y="820" width="220" height="92" class="pct"/><text x="1315" y="852" class="h">书桌终点 PCT-42</text><text x="1315" y="880" class="t">桌下 + 桌面上方</text>
-<path d="M1000 912 V965" class="branch"/>
-<rect x="875" y="965" width="270" height="78" class="pct"/><text x="895" y="996" class="h">沙发局部分线 PCT-62</text><text x="895" y="1023" class="t">扫地机 / 娱乐插座 / 备用</text>
-<text x="450" y="945" class="s">客厅JZ：一根BVVB送L/N；第二根红=L1、蓝标红=L2</text>
+<path class="c1" d="M618 450 L618 350 L640 350 L640 205"/>
+<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="310" class="micro">B1：JZ-N2 + 床南；主干继续</text>
+<circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">B2：卧室空调 + 床北</text>
+<path class="drop" d="M640 305 H760M640 205 H760"/>
+<text x="675" y="335" class="micro" fill="#7c3aed">① C1-BED：配电箱→北→卧室门头→西墙高位→B1→B2</text>
 
-<!-- lane 4/5 -->
-<text x="60" y="1095" class="h">4 空调+冰箱</text>
-<rect x="210" y="1060" width="230" height="76" class="pct"/><text x="230" y="1090" class="h">高位 PCT-42</text><text x="230" y="1118" class="t">→ 客厅空调　→ 冰箱暗盒</text>
+<circle cx="790" cy="285" r="16" class="retired"/><path d="M780 275L800 295M800 275L780 295" class="retired"/>
+<text x="790" y="315" class="micro" text-anchor="middle">吊扇拆除｜无新供电</text>
 
-<text x="780" y="1095" class="h">5 卫生间</text>
-<rect x="920" y="1055" width="260" height="88" class="pct"/><text x="940" y="1086" class="h">主箱2P/30mA漏保（假定）</text><text x="940" y="1114" class="t">→ 卫生间 PCT-62</text><text x="940" y="1137" class="s">浴霸 / 镜柜 / 基础灯</text>
+<path class="c2" d="M610 450 L610 335 L535 335 L535 275 L445 275 L445 180"/>
+<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">K1：主灯/入口开关</text>
+<circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">K2：西墙家电组</text>
+<text x="430" y="315" class="micro" fill="#ea580c">② C2-KIT：与①向北并行，①退出后继续到厨房门头</text>
 
-<rect x="60" y="1160" width="1455" height="42" class="note"/><text x="80" y="1187" class="s">机械灯控：BVVB红芯=常火L下行；蓝芯仅在专用开关环路作为受控L返回，所有可触及端点必须红色胶带重标并写“Lsw，非N”。</text>
+<path class="c4" d="M602 450 L602 530 L420 530 L420 485 L235 485"/>
+<path class="c3" d="M594 450 L594 520 L430 520 L430 475 L385 475 L385 455 L125 455 L125 245"/>
+<path class="c5" d="M586 450 L586 510 L440 510 L440 465 L485 465 L485 420"/>
+<text x="655" y="566" class="micro">玄关公共墙段，侧墙从靠顶到靠下建议：④ / ③ / ⑤；三路独立槽并排</text>
+
+<circle cx="520" cy="520" r="9" class="node"/><text x="530" y="505" class="micro">H1：设备架 + 玄关灯带</text>
+<circle cx="385" cy="455" r="9" class="node"/><text x="335" y="438" class="micro">L1：洗烘 / 餐桌 / JZ-N2</text>
+<circle cx="125" cy="300" r="9" class="node"/><text x="142" y="305" class="micro">W1：书桌 / 沙发 / 扫地机 / 投影</text>
+<text x="145" y="475" class="micro" fill="#2563eb">③ C3-LIV：南→西→通道→客厅南侧高位向西→西墙向北</text>
+
+<circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">A1：客厅空调 + 冰箱</text>
+<text x="245" y="472" class="micro" fill="#dc2626">④ C4-AC-FR：与③共走墙边骨架，到空调/冰箱即结束</text>
+
+<circle cx="485" cy="420" r="9" class="node"/><text x="500" y="410" class="micro">BATH1：浴霸 / 镜柜 / 独立主灯</text>
+<text x="495" y="446" class="micro" fill="#0f766e">⑤ C5-BATH：公共墙段→通道/门头→卫生间南墙向东→门头进入</text>
+
+<rect x="990" y="120" width="550" height="410" rx="12" class="panel"/>
+<text x="1020" y="158" class="small bold">现场走槽规则</text>
+<text x="1020" y="192" class="small">1. 主干钉在侧墙高位；默认上沿距顶约50mm，可统一调到30～80mm。</text>
+<text x="1020" y="224" class="small">2. 北向①②；南向③④⑤。公共段不交叉，保持固定上下顺序。</text>
+<text x="1020" y="256" class="small">3. 90°转弯、续槽、绕门框：直接拼线槽，不加盒。</text>
+<text x="1020" y="288" class="small">4. 只有导体接续/分叉/缩径才形成 B1…BATH1 电气节点。</text>
+<text x="1020" y="320" class="small">5. 四分槽优先承载单回路；③④⑤公共段基线为三根独立槽并排。</text>
+<text x="1020" y="352" class="small">6. 底槽先钉，腻子可收到底槽边，但不要堵盖板卡槽；最终穿线后再扣盖。</text>
+<text x="1020" y="384" class="small">7. 每段底槽内部标 C1-BED / C2-KIT / C3-LIV / C4-AC-FR / C5-BATH。</text>
+<text x="1020" y="416" class="small">8. 阳台不做永久220V；吊扇拆除，不复用原调速器线路。</text>
+<text x="1020" y="456" class="small bold">图上的路线表示“贴哪面墙、在哪处分流”；实际离顶尺寸以明天放样为准。</text>
+
+<rect x="990" y="555" width="550" height="220" rx="12" class="panel"/>
+<text x="1020" y="592" class="small bold">PCT-42 / 分线盒：两版现场实现</text>
+<text x="1020" y="626" class="small">A｜实测放得下：PCT-42约39.5×23.4×14.6mm，连导线试装；</text>
+<text x="1045" y="654" class="small">用低轮廓的线槽配套接线/分线构件或短段加宽、可独立开盖的分线腔。</text>
+<text x="1020" y="690" class="small">B｜放不下：纯2.5mm²用86深明盒/小分线盒；6mm²多分支用约100×100×50。</text>
+<text x="1020" y="728" class="small">普通线槽本体能打开，不等于随便把接头裸塞在线槽腔里。</text>
+<text x="1020" y="756" class="small">9个是“最多9个电气分支位置”，不是9个大白盒。</text>
+
+<rect x="990" y="800" width="550" height="215" rx="12" class="panel"/>
+<text x="1020" y="837" class="small bold">罗马杆/旧支架：两版放样</text>
+<text x="1020" y="872" class="small">A｜不冲突：拆杆；支架易拆则临时拆下并保留原孔，线槽保持统一高位。</text>
+<text x="1020" y="908" class="small">B｜冲突：优先整体调整罗马杆；若支架位置必须保留，则整段线槽统一降低。</text>
+<text x="1020" y="944" class="small">不要为了单个支架做“下去—绕过—再上来”的蛇形。</text>
+<text x="1020" y="980" class="small">明天先用一根2m底槽全屋比划，再正式钉槽。</text>
+
+<line x1="110" y1="1045" x2="165" y2="1045" class="c1"/><text x="175" y="1050" class="micro">①卧室</text>
+<line x1="270" y1="1045" x2="325" y2="1045" class="c2"/><text x="335" y="1050" class="micro">②厨房</text>
+<line x1="430" y1="1045" x2="485" y2="1045" class="c3"/><text x="495" y="1050" class="micro">③客厅生活</text>
+<line x1="620" y1="1045" x2="675" y2="1045" class="c4"/><text x="685" y="1050" class="micro">④空调+冰箱</text>
+<line x1="830" y1="1045" x2="885" y2="1045" class="c5"/><text x="895" y="1050" class="micro">⑤卫生间</text>
+<text x="110" y="1085" class="micro">施工图属性：断电状态下用于放样、线槽底座和分支位置；最终端接/通电仍受 data/electrical.yaml 保护与验收门禁约束。</text>
 </svg>"""
 
 
