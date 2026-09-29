@@ -1060,56 +1060,61 @@ def five_route_electrical_freeze() -> str:
     return FIVE_ROUTE_ELECTRICAL_SVG
 
 
-ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220" data-diagram-role="electrical-node-schedule" role="img">
-<title>39 九节点接线与材料复算图</title>
-<desc>九个主分支位置的PCT-42实际进出线、复杂开关接法和2026-09-30材料复算</desc>
+ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1420" viewBox="0 0 1600 1420" data-diagram-role="electrical-node-schedule" role="img">
+<title>39 节点接线与材料复算图</title>
+<desc>纠正PCT-42/62双极逻辑后，列出9个主节点、4个局部子节点、复杂开关接法和材料复算</desc>
 <style>
  text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
  .title{font-size:28px;font-weight:800;fill:#111827}.sub{font-size:14px;fill:#475569}
- .h{font-size:17px;font-weight:700;fill:#111827}.t{font-size:13px;fill:#1f2937}.s{font-size:12px;fill:#475569}
- .box{fill:#fff;stroke:#cbd5e1;stroke-width:1.5}.head{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.5}
- .warn{fill:#fff7ed;stroke:#f59e0b;stroke-width:1.5}.ok{fill:#f0fdf4;stroke:#16a34a;stroke-width:1.5}
+ .h{font-size:16px;font-weight:700;fill:#111827}.t{font-size:13px;fill:#1f2937}.s{font-size:12px;fill:#475569}
+ .box{fill:#fff;stroke:#cbd5e1;stroke-width:1.4}.head{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.4}
+ .main{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.4}.local{fill:#f5f3ff;stroke:#a78bfa;stroke-width:1.4}
+ .warn{fill:#fff7ed;stroke:#f59e0b;stroke-width:1.4}.ok{fill:#f0fdf4;stroke:#16a34a;stroke-width:1.4}
 </style>
-<rect width="1600" height="1220" fill="#fbfaf7"/>
-<text x="55" y="52" class="title">39 九节点接线与材料复算图｜2026-09-30</text>
-<text x="55" y="80" class="sub">PCT-42×2 = L一只、N一只；“1进3出”是项目实际占孔，不是产品铭牌。90°转弯/续槽不属于电气节点。</text>
+<rect width="1600" height="1420" fill="#fbfaf7"/>
+<text x="55" y="52" class="title">39 节点接线与材料复算图｜PCT双极逻辑纠正版</text>
+<text x="55" y="80" class="sub">PCT-42：1对L/N输入→2对L/N输出；PCT-62：1对L/N输入→3对L/N输出。一只PCT已同时处理L/N，不再“L一只、N一只”。</text>
 
-<rect x="55" y="110" width="1490" height="45" class="head"/>
-<text x="70" y="139" class="h">节点</text><text x="145" y="139" class="h">回路</text><text x="255" y="139" class="h">L / N 主端子实际占用</text><text x="670" y="139" class="h">分别去哪</text><text x="1250" y="139" class="h">放不下四分槽时</text>
+<rect x="55" y="110" width="1490" height="44" class="head"/>
+<text x="70" y="138" class="h">节点</text><text x="140" y="138" class="h">类型</text><text x="245" y="138" class="h">端子</text><text x="420" y="138" class="h">输入</text><text x="640" y="138" class="h">输出</text><text x="1240" y="138" class="h">空间不足时</text>
 
-<g>
-<rect x="55" y="155" width="1490" height="78" class="box"/><text x="70" y="188" class="h">B1</text><text x="145" y="188" class="t">①卧室</text><text x="255" y="180" class="t">PCT-42×2｜L/N各1进3出</text><text x="255" y="205" class="s">进=6mm²；出=B2主干 / JZ-N2供电 / 床南常电</text><text x="670" y="188" class="t">吊扇退出；JZ盒内再分主灯N、床下灯N</text><text x="1250" y="188" class="t">100×100×50</text>
-<rect x="55" y="233" width="1490" height="70" class="box"/><text x="70" y="275" class="h">B2</text><text x="145" y="275" class="t">①卧室</text><text x="255" y="263" class="t">PCT-42×2｜L/N各1进2出</text><text x="255" y="286" class="s">卧室空调 / 床北常电</text><text x="670" y="275" class="t">主干在此结束</text><text x="1250" y="275" class="t">86深够则86；否则100方</text>
-<rect x="55" y="303" width="1490" height="82" class="box"/><text x="70" y="347" class="h">K1</text><text x="145" y="347" class="t">②厨房</text><text x="255" y="335" class="t">PCT-42×2｜L 1进2出；N 1进2出</text><text x="255" y="360" class="s">L→K2主干+机械开关L；N→K2主干+主灯N</text><text x="670" y="335" class="t">开关返回Lsw用2孔2.5端子接主灯L</text><text x="1250" y="347" class="t">100×100×50</text>
-<rect x="55" y="385" width="1490" height="78" class="box"/><text x="70" y="428" class="h">K2</text><text x="145" y="428" class="t">②厨房</text><text x="255" y="416" class="t">PCT-42×2｜L/N各1进3出</text><text x="255" y="441" class="s">洗碗机组 / 台面电饭煲组 / 油烟机热水器组</text><text x="670" y="428" class="t">局部器具组在可触及器具盒内再短分</text><text x="1250" y="428" class="t">100×100×50</text>
-<rect x="55" y="463" width="1490" height="82" class="box"/><text x="70" y="507" class="h">H1</text><text x="145" y="507" class="t">③玄关</text><text x="255" y="495" class="t">PCT-42×2｜L/N各1进3出</text><text x="255" y="520" class="s">L1主干 / 设备架常电 / 玄关灯带支路</text><text x="670" y="495" class="t">若机械开关：Lsw经2孔端子接受控插座L</text><text x="1250" y="507" class="t">设备架上方100×100×50</text>
-<rect x="55" y="545" width="1490" height="82" class="box"/><text x="70" y="589" class="h">L1</text><text x="145" y="589" class="t">③客厅</text><text x="255" y="577" class="t">PCT-42×2｜L/N各1进4出（满4出）</text><text x="255" y="602" class="s">W1主干 / 洗烘 / 餐桌小厨电组 / JZ-N2供电</text><text x="670" y="577" class="t">JZ盒内分灯N；L1/L2分别随BVVB去主灯/餐灯</text><text x="1250" y="589" class="t">100×100×50，最不建议硬塞</text>
-<rect x="55" y="627" width="1490" height="78" class="box"/><text x="70" y="670" class="h">W1</text><text x="145" y="670" class="t">③客厅</text><text x="255" y="658" class="t">PCT-42×2｜L/N各1进3出</text><text x="255" y="683" class="s">书桌组 / 沙发扫地背景光组 / 投影</text><text x="670" y="670" class="t">主干结束；局部组在器具盒内再短分</text><text x="1250" y="670" class="t">100×100×50</text>
-<rect x="55" y="705" width="1490" height="70" class="box"/><text x="70" y="747" class="h">A1</text><text x="145" y="747" class="t">④高负载</text><text x="255" y="735" class="t">PCT-42×2｜2.5mm²，L/N各1进2出</text><text x="255" y="758" class="s">客厅空调 / 冰箱</text><text x="670" y="747" class="t">也可换更小的正规2.5端子</text><text x="1250" y="747" class="t">86深明盒</text>
-<rect x="55" y="775" width="1490" height="82" class="box"/><text x="70" y="819" class="h">BATH1</text><text x="145" y="819" class="t">⑤卫生间</text><text x="255" y="807" class="t">PCT-42×2｜L/N各1进3出</text><text x="255" y="832" class="s">L→浴霸/镜柜/灯开关；N→浴霸/镜柜/主灯</text><text x="670" y="807" class="t">灯开关Lsw经2孔端子接主灯L</text><text x="1250" y="819" class="t">固定带盖、防潮位置分线盒</text>
-</g>
+<!-- 9 main nodes -->
+<rect x="55" y="154" width="1490" height="66" class="main"/><text x="70" y="194" class="h">B1</text><text x="140" y="194" class="t">主节点</text><text x="245" y="194" class="t">PCT-62×1</text><text x="420" y="194" class="t">C1 6mm² L/N</text><text x="640" y="182" class="t">B2主干 / 卧室JZ-N2 / 床南常电</text><text x="640" y="205" class="s">3对输出</text><text x="1240" y="194" class="t">100×100×50</text>
+<rect x="55" y="220" width="1490" height="62" class="main"/><text x="70" y="258" class="h">B2</text><text x="140" y="258" class="t">主节点</text><text x="245" y="258" class="t">PCT-42×1</text><text x="420" y="258" class="t">B1 6mm² L/N</text><text x="640" y="258" class="t">卧室空调 / 床北常电</text><text x="1240" y="258" class="t">86深够则86</text>
+<rect x="55" y="282" width="1490" height="72" class="main"/><text x="70" y="323" class="h">K1</text><text x="140" y="323" class="t">主节点</text><text x="245" y="323" class="t">PCT-42×1</text><text x="420" y="323" class="t">C2 6mm² L/N</text><text x="640" y="310" class="t">输出1→K2主干；输出2：L→机械开关、N→主灯</text><text x="640" y="334" class="s">开关返回Lsw另用2孔单极端子接主灯L</text><text x="1240" y="323" class="t">100×100×50</text>
+<rect x="55" y="354" width="1490" height="66" class="main"/><text x="70" y="394" class="h">K2</text><text x="140" y="394" class="t">主节点</text><text x="245" y="394" class="t">PCT-62×1</text><text x="420" y="394" class="t">K1 6mm² L/N</text><text x="640" y="382" class="t">K2A西南设备组 / 台面电器 / 油烟机</text><text x="640" y="405" class="s">3对输出；主干结束</text><text x="1240" y="394" class="t">100×100×50</text>
+<rect x="55" y="420" width="1490" height="66" class="main"/><text x="70" y="460" class="h">H1</text><text x="140" y="460" class="t">主节点</text><text x="245" y="460" class="t">PCT-62×1</text><text x="420" y="460" class="t">C3 6mm² L/N</text><text x="640" y="448" class="t">L1主干 / 玄关设备架 / 灯带开关支路</text><text x="640" y="471" class="s">PCT-62塞不进四分槽→设备架上方加100方盒</text><text x="1240" y="460" class="t">100×100×50</text>
+<rect x="55" y="486" width="1490" height="66" class="main"/><text x="70" y="526" class="h">L1</text><text x="140" y="526" class="t">主节点</text><text x="245" y="526" class="t">PCT-62×1</text><text x="420" y="526" class="t">H1 6mm² L/N</text><text x="640" y="514" class="t">W1主干 / L1A洗烘小厨电组 / 客厅JZ-N2</text><text x="640" y="537" class="s">用局部子节点避免4对输出</text><text x="1240" y="526" class="t">100×100×50</text>
+<rect x="55" y="552" width="1490" height="66" class="main"/><text x="70" y="592" class="h">W1</text><text x="140" y="592" class="t">主节点</text><text x="245" y="592" class="t">PCT-62×1</text><text x="420" y="592" class="t">L1 6mm² L/N</text><text x="640" y="580" class="t">W1A书桌组 / W1B沙发扫地组 / 投影</text><text x="640" y="603" class="s">3对输出；主干结束</text><text x="1240" y="592" class="t">100×100×50</text>
+<rect x="55" y="618" width="1490" height="62" class="main"/><text x="70" y="656" class="h">A1</text><text x="140" y="656" class="t">主节点</text><text x="245" y="656" class="t">PCT-42×1</text><text x="420" y="656" class="t">C4 BVVB L/N</text><text x="640" y="656" class="t">客厅空调 / 冰箱</text><text x="1240" y="656" class="t">86深明盒</text>
+<rect x="55" y="680" width="1490" height="72" class="main"/><text x="70" y="722" class="h">BATH1</text><text x="140" y="722" class="t">主节点</text><text x="245" y="722" class="t">PCT-62×1</text><text x="420" y="722" class="t">C5 BVVB L/N</text><text x="640" y="709" class="t">浴霸 / 镜柜 / 主灯机械开关支路</text><text x="640" y="733" class="s">Lsw另用2孔单极端子接主灯L</text><text x="1240" y="722" class="t">固定带盖可检修盒</text>
 
-<rect x="55" y="885" width="720" height="270" rx="10" class="warn"/>
-<text x="75" y="918" class="h">复杂接法速记</text>
-<text x="75" y="952" class="t">厨房K1：BVVB#1 红=L下行，蓝两端标红=Lsw返回；BVVB#2 红=Lsw去灯，蓝=N去灯。</text>
-<text x="75" y="982" class="t">卧室JZ：B1只送常电L/N；JZ盒N经4孔端子分给JZ、主灯、床下灯。</text>
-<text x="75" y="1012" class="t">客厅JZ：L1只送常电L/N；JZ盒N经4孔端子分给JZ、主灯、餐灯。</text>
-<text x="75" y="1042" class="t">H1塞不下：直接在设备架上方加100方带盖盒，L/N各放一只PCT-42，实际1进3出。</text>
-<text x="75" y="1072" class="t">PCT-42到货先断电用H31通断档核对孔位关系；内部拓扑与说明不符时不安装。</text>
-<text x="75" y="1102" class="t">主节点统一PCT-42：18只实际使用 + 2只备用 = 建议20只（10只装×2）。</text>
-<text x="75" y="1132" class="t">PCT-62当前0只刚需；只有现场出现超过4个输出的节点再补。</text>
+<!-- local subnodes -->
+<rect x="55" y="774" width="1490" height="42" class="head"/><text x="70" y="801" class="h">4个局部子节点：放在设备/家具附近可触及明盒或组合盒，不等于4个高位大白盒</text>
+<rect x="55" y="816" width="1490" height="58" class="local"/><text x="70" y="852" class="h">K2A</text><text x="140" y="852" class="t">局部</text><text x="245" y="852" class="t">PCT-42×1</text><text x="420" y="852" class="t">K2一条BVVB</text><text x="640" y="852" class="t">洗碗机 / 燃气热水器控制电源</text><text x="1240" y="852" class="t">设备附近可触及盒</text>
+<rect x="55" y="874" width="1490" height="58" class="local"/><text x="70" y="910" class="h">L1A</text><text x="140" y="910" class="t">局部</text><text x="245" y="910" class="t">PCT-42×1</text><text x="420" y="910" class="t">L1一条BVVB</text><text x="640" y="910" class="t">洗烘一体机 / 小厨电五孔组合盒馈线</text><text x="1240" y="910" class="t">洗烘附近组合盒</text>
+<rect x="55" y="932" width="1490" height="58" class="local"/><text x="70" y="968" class="h">W1A</text><text x="140" y="968" class="t">局部</text><text x="245" y="968" class="t">PCT-42×1</text><text x="420" y="968" class="t">W1一条BVVB</text><text x="640" y="968" class="t">书桌下常电 / 书桌上常电</text><text x="1240" y="968" class="t">书桌附近可触及盒</text>
+<rect x="55" y="990" width="1490" height="58" class="local"/><text x="70" y="1026" class="h">W1B</text><text x="140" y="1026" class="t">局部</text><text x="245" y="1026" class="t">PCT-62×1</text><text x="420" y="1026" class="t">W1一条BVVB</text><text x="640" y="1026" class="t">扫地机 / 沙发上部 / 背景光</text><text x="1240" y="1026" class="t">沙发储物台附近盒</text>
 
-<rect x="800" y="885" width="745" height="270" rx="10" class="ok"/>
-<text x="820" y="918" class="h">材料复算（放样前采购级）</text>
-<text x="820" y="952" class="t">高位主干：C1 3.2m / C2 5.0m / C3 10.0m / C4 6.8m / C5 5.0m = 30.0m净长。</text>
-<text x="820" y="982" class="t">四分线槽：净约33m（含节点短段）→ 加余量约38m → 冻结目标40m；已购20m，再补20m。</text>
-<text x="820" y="1012" class="t">6mm²：主副箱短馈+前三路，每极净约21.2m，按25m下料；L买30m，蓝色N库存约60m足够。</text>
-<text x="820" y="1042" class="t">BVVB 2×2.5：净约63.5m，考虑灯具/盒内余线与绕行按80～85m下料；采购100m继续成立。</text>
-<text x="820" y="1072" class="t">小端子：2孔2.5mm² 5只；4孔2.5mm² 6只。BV 1×2.5单芯灯控线不再购买。</text>
-<text x="820" y="1102" class="t">护套线卡扣：目标180～200只；现有100只，若支线多数直接卡扣固定，再补100只。</text>
-<text x="820" y="1132" class="t">大盒不批量买：先试PCT-42+真导线+四分槽，失败的节点才按右栏回退。</text>
+<rect x="55" y="1075" width="720" height="275" rx="10" class="warn"/>
+<text x="75" y="1107" class="h">复杂接法</text>
+<text x="75" y="1138" class="t">K1：PCT-42输出1→K2；输出2的L→开关、N→主灯；Lsw返回后用2孔单极端子接主灯L。</text>
+<text x="75" y="1170" class="t">卧室JZ：B1只送常电L/N；JZ盒N用4孔单极端子分给JZ、主灯、床下灯。</text>
+<text x="75" y="1202" class="t">客厅JZ：L1只送常电L/N；JZ盒N用4孔单极端子分给JZ、主灯、餐灯。</text>
+<text x="75" y="1234" class="t">H1：正确型号是PCT-62×1；塞不进四分槽就放设备架上方100方盒，不改变供电拓扑。</text>
+<text x="75" y="1266" class="t">PCT到货先看极性标识/说明书；完全断电时可用H31通断档辅助复核。</text>
+<text x="75" y="1298" class="t">错误说法“一个节点PCT-42×2，L/N各一只”已经废止。</text>
 
-<text x="55" y="1190" class="s">本图只负责节点与采购复算；墙面具体路线看38图。实际剪线前必须以明天墙面弹线实测替换采购级估算。</text>
+<rect x="800" y="1075" width="745" height="275" rx="10" class="ok"/>
+<text x="820" y="1107" class="h">材料复算（采购级）</text>
+<text x="820" y="1138" class="t">PCT-42：理论6只 → 若10只装，买1盒。</text>
+<text x="820" y="1170" class="t">PCT-62：理论7只 → 若10只装，买1盒。</text>
+<text x="820" y="1202" class="t">四分线槽：目标40m；已购20m，仍补20m。6mm²：每极净约21.2m，按25m下料。</text>
+<text x="820" y="1234" class="t">BVVB 2×2.5：净量约59～65m，按80～85m施工预算；采购100m继续成立。</text>
+<text x="820" y="1266" class="t">2孔2.5mm²单极端子：5只；4孔2.5mm²单极并联端子：4～6只。</text>
+<text x="820" y="1298" class="t">PCT纠错不改变五路墙面主干，因此线槽/6mm²总量不重新翻倍。</text>
+
+<text x="55" y="1385" class="s">墙面具体路线看38图。真正剪线前仍以明天墙面实测替换采购级长度。</text>
 </svg>"""
 
 
