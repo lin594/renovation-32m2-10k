@@ -156,7 +156,7 @@ electrical:
     terminal_gate: "6mm²一分支用221-613类、两分支用221-615类、末端转换用221-612类；L/N各自独立并固定在可开启盒内，具体SKU和导体类型核验后购买"
     protection_gate: "现有主箱3×C40 RCBO + 2×C32 MCB全部保留；邻近副保护盒五路C20作为2.5mm²新线路的过流保护基线。若提高下游保护额定值，须同步重新核定全部最小导体截面"
     smart_control_rule: "客厅和卧室各装一只京东京造JZ-N2零火双开；客厅只控主灯/餐灯，卧室只控主灯/标注仅床下灯的专用照明插座；普通插座保持常电"
-    bathroom_dedicated_feeder: "MCB-05目标C20，从副保护盒连续到走廊A卫生间门外RCD-BATH-01，再沿门框明装进入卫生间；浴霸、浴室柜/镜灯和照明全部在该2P≤30mA总RCD下游"
+    bathroom_dedicated_feeder: "第五路保持独立；副保护盒C20之后，卫生间全部负载必须位于2P、≤30mA剩余电流保护下游。优先核验主箱第五位原位更换方案；若模数/端子/产品不合适，则回退为卫生间门外DIN明装RCD小箱。两种保护形式不改变已冻结的墙面走槽路线"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     fact: "现场确认只有暗盒盒位，没有可利用暗管或暗线；全部新增线路按墙面/门框明装"
@@ -169,7 +169,7 @@ electrical:
   surface_route_transitions:
     - { id: E-ROUTE-01, location: "卧室门框上方", rule: "明装绕门，不利用暗盒穿线" }
     - { id: E-ROUTE-02, location: "厨房门框/走廊B", rule: "明装绕门，不利用暗盒穿线" }
-    - { id: E-ROUTE-03, location: "卫生间门框", rule: "门外RCD后明装绕门进入" }
+    - { id: E-ROUTE-03, location: "卫生间门框", rule: "第五路在剩余电流保护下游后，沿侧墙/门头明装进入；保护器在主箱原位或门外回退均不改变本段路线" }
     - { id: E-ROUTE-04, location: "客厅通道门框", rule: "RCBO-03与MCB-04保持电气独立后明装绕行" }
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
@@ -177,7 +177,7 @@ electrical:
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, protection: "目标C20/30mA RCBO-01上游统一保护，不再默认叠加设备级漏保" }
     - { item: "卧室吊扇", location: "卧室中心上方", status: remove_no_reuse, wiring: "拆除；不再为其提供新电源。原暗埋线两端断开并分别绝缘封护", acceptance: "不得重新接入卧室新回路" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
-    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, risk_ref: SAF-0003 }
+    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: "BATH-RCD-05（2P、≤30mA；位置待主箱原位/门外回退二选一）", risk_ref: SAF-0003 }
   planned_outlets:
     total_groups: 19
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
@@ -194,7 +194,7 @@ electrical:
     color_rendering: "优先Ra/CRI≥90"
     zones_ref: "data/electrical.yaml#lighting_zones"
     hall_a: "计划约2m、220V厂家成套插头灯带；插入由零火墙壁开关控制并标注‘仅灯带’的高位专用插座，不剪插头硬接"
-    living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机只共用TN-LIV-SOFA高位分线节点，分别以独立BVVB支线接常电插座"
+    living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机在W1高位节点附近分支，分别以独立BVVB支线接常电插座"
     bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；卧室吊扇与旧调速器退出新电路"
 
 low_voltage:
@@ -311,7 +311,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       procurement_ref: BUY-0004
       note: "按预计长度估算，至设计基准南墙约余0.47m；最终以成品尺寸和完成面复测"
     - { item: "淋浴设备（已有）", rect: [2.5, 3.15, 3, 3.55], status: existing, inventory_ref: INV-0011, note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
-    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在RCD-BATH-01下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
+    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在BATH-RCD-05下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
     - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "全部尚未购买；东墙整面；北段仍被床挡（见issues）" }
