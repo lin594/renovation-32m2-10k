@@ -7,7 +7,7 @@
 | 00 | [现状测量图](00-existing-survey.svg) | 房子原来有什么固定边界和点位？ |
 | 10 | [家具与动线图](10-furniture-circulation.svg) | 改造后如何使用，哪些家具已有或待购？ |
 | 20 | [给排水与燃气图](20-plumbing-gas.svg) | 水、排水和燃气分别如何连接？ |
-| 38 | [五路明装路线冻结图](38-five-route-electrical.svg) | 当前五路强电分别怎么走、在哪里分支、哪些旧节点已经取消？ |
+| 38 | [五路最终墙面走槽图](38-five-route-electrical.svg) | 配电箱出线后具体贴哪面侧墙、五路如何并行/分流、9个分支位置和现场A/B回退怎么做？ |
 | 40 | [门窗与猫安全图](40-doors-windows-cats.svg) | 门扇、纱窗和三猫防逃如何处理？ |
 | 50 | [厨卫详图](50-kitchen-bath-details.svg) | 小空间内的关键尺寸和冲突是什么？ |
 | 60 | [墙地面饰面图](60-finishes-materials.svg) | 防水、涂装和地面材料如何分区？ |
@@ -26,3 +26,5 @@
 README 的“前后对比”直接并列 00 与 10。所有图使用系统中文字体栈，由浏览器渲染；仓库不保存光栅预览。
 
 重新生成：`make diagrams`。完整校验：`make check`。
+
+- 38 的文字施工依据：[2026-09-30 最终明装电路施工方案](../docs/plans/2026-09-30-final-surface-electrical-plan.md)。
