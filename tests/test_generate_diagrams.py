@@ -13,6 +13,7 @@ EXPECTED = {
     "10-furniture-circulation.svg": ("furniture-circulation", "家具与动线图"),
     "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
     "38-five-route-electrical.svg": ("five-route-electrical-freeze", "五路明装路线冻结图"),
+    "39-electrical-node-schedule.svg": ("electrical-node-schedule", "九节点接线与材料复算图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
@@ -28,7 +29,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
-    def test_generates_exactly_seven_svg_files(self) -> None:
+    def test_generates_exactly_eight_svg_files(self) -> None:
         actual = {path.name for path in self.output_dir.glob("*.svg")}
         self.assertEqual(actual, set(EXPECTED))
 
@@ -76,7 +77,7 @@ class GenerateDiagramsTest(unittest.TestCase):
     def test_hall_a_and_hall_b_are_openly_connected(self) -> None:
         for filename in EXPECTED:
             svg = (self.output_dir / filename).read_text(encoding="utf-8")
-            if filename not in {"38-five-route-electrical.svg", "50-kitchen-bath-details.svg"}:
+            if filename not in {"38-five-route-electrical.svg", "39-electrical-node-schedule.svg", "50-kitchen-bath-details.svg"}:
                 self.assertIn('data-connection="hall-a-b-open"', svg)
                 self.assertNotIn("M475 450H600", svg)
 
@@ -95,6 +96,16 @@ class GenerateDiagramsTest(unittest.TestCase):
         self.assertIn("90°转弯", detail)
         self.assertIn("PCT-42", detail)
         self.assertIn("罗马杆", detail)
+
+    def test_39_has_nine_nodes_and_recomputed_takeoff(self) -> None:
+        detail = (self.output_dir / "39-electrical-node-schedule.svg").read_text(encoding="utf-8")
+        for node in ("B1", "B2", "K1", "K2", "H1", "L1", "W1", "A1", "BATH1"):
+            self.assertIn(node, detail)
+        self.assertIn("PCT-42×2", detail)
+        self.assertIn("1进4出", detail)
+        self.assertIn("厨房K1", detail)
+        self.assertIn("目标40m", detail)
+        self.assertIn("采购100m继续成立", detail)
 
     def test_checked_in_outputs_match_generator(self) -> None:
         checked_in = Path(__file__).resolve().parents[1] / "diagrams"
