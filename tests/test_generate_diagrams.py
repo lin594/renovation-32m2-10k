@@ -13,7 +13,7 @@ EXPECTED = {
     "10-furniture-circulation.svg": ("furniture-circulation", "家具与动线图"),
     "20-plumbing-gas.svg": ("plumbing-gas", "给排水与燃气图"),
     "38-five-route-electrical.svg": ("five-route-electrical-freeze", "五路明装电路最终墙面走槽图"),
-    "39-electrical-node-schedule.svg": ("electrical-node-schedule", "九节点接线与材料复算图"),
+    "39-electrical-node-schedule.svg": ("electrical-node-schedule", "节点接线与材料复算图"),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "门窗与猫安全图"),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "厨卫详图"),
     "60-finishes-materials.svg": ("finishes-materials", "墙地面饰面图"),
