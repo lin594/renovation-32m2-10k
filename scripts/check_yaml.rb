@@ -175,7 +175,7 @@ actual_circuits = circuits.map { |circuit| circuit["id"] }.to_set
 errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路" unless circuits.length == 5 && actual_circuits == expected_circuits
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
-errors << "electrical.yaml 应冻结9个物理分支位置" unless electrical.dig("branch_nodes", "model") == "nine_physical_branch_positions" && electrical.dig("branch_nodes", "fixed_count_max") == 9 && branch_nodes.length == 9
+errors << "electrical.yaml 应冻结9个主节点+4个局部子节点" unless electrical.dig("branch_nodes", "model") == "nine_main_plus_four_local_subnodes" && electrical.dig("branch_nodes", "main_count") == 9 && electrical.dig("branch_nodes", "local_subnode_count") == 4 && electrical.dig("branch_nodes", "total_distribution_points") == 13 && branch_nodes.length == 13
 errors << "A1必须在MCB-04下分为空调与冰箱两支" unless branch_nodes.any? { |node| node["id"] == "A1" && Array(node["branches"]).to_set == Set["客厅空调", "冰箱"] }
 errors << "BATH1必须包含浴霸、镜柜和独立主灯三支" unless branch_nodes.any? { |node| node["id"] == "BATH1" && Array(node["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间独立主灯"] }
 
@@ -191,12 +191,12 @@ balcony = electrical.dig("confirmed_conditions", "balcony") || {}
 errors << "electrical.yaml 阳台必须保持无穿线孔且永久供电延期" unless balcony["no_electrical_penetration"] == true && balcony["permanent_power"] == "deferred"
 
 terminal_procurement = electrical.dig("terminal_policy", "procurement") || {}
-errors << "端子策略应按九个物理分支位置和PCT-42现场试装冻结" unless electrical.dig("terminal_policy", "strategy").to_s.include?("九个物理分支位置") && terminal_procurement["status"].to_s.include?("PCT-42")
+errors << "端子策略应明确PCT-42/62双极分配逻辑" unless electrical.dig("terminal_policy", "pct42_semantics").to_s.include?("1对L/N输入") && electrical.dig("terminal_policy", "pct62_semantics").to_s.include?("3对L/N输出") && terminal_procurement["status"].to_s.include?("dual_pole_topology")
 errors << "固定布线T接方案必须明确拒绝汽车线束类穿刺夹" unless electrical.to_s.include?("汽车线束类廉价穿刺夹")
 errors << "electrical.yaml 新建固定线路通电门禁必须保持blocked" unless electrical.dig("commissioning_gate", "status") == "blocked"
 
 terminal_buy = procurement_by_id["BUY-0025"] || {}
-errors << "BUY-0025应冻结PCT-42 20只且PCT-62非刚需" unless terminal_buy.to_s.include?("PCT-42") && terminal_buy.to_s.include?("20只") && terminal_buy.to_s.include?("PCT-62") && terminal_buy.to_s.include?("0只刚需") && terminal_buy["status"] == "not_purchased"
+errors << "BUY-0025应冻结PCT-42理论6只/PCT-62理论7只并各按10只装采购" unless terminal_buy.to_s.include?("理论6只") && terminal_buy.to_s.include?("理论7只") && terminal_buy.to_s.include?("10只") && terminal_buy["status"] == "not_purchased"
 
 circuits_by_id = circuits.to_h { |circuit| [circuit["id"], circuit] }
 errors << "MCB-05只能承载卫生间专用馈线" unless Array(circuits_by_id.dig("MCB-05", "scope")) == ["卫生间专用馈线"]
@@ -243,7 +243,7 @@ errors << "客厅和卧室必须各锁定一只JZ-N2零火双开" unless device_
 errors << "卧室床下灯必须另计10A二孔专用照明连接点" unless device_takeoff.dig("outlet_faceplates", "bedroom_underbed_light_controlled", "quantity") == 1 && device_takeoff.dig("outlet_faceplates", "bedroom_underbed_light_controlled", "type").to_s.include?("10A二孔")
 errors << "BUY-0041应记录两只JZ-N2和99.8元计划总价" unless procurement_by_id.dig("BUY-0041", "planned_quantity") == 2 && procurement_by_id.dig("BUY-0041", "planned_total_cny") == 99.8
 errors << "BUY-0024应同步BVVB净63.5m、下料85m、采购100m" unless procurement_by_id.dig("BUY-0024", "estimated_net_m") == 63.5 && procurement_by_id.dig("BUY-0024", "planned_cut_m") == 85 && procurement_by_id.dig("BUY-0024", "planned_quantity_m") == 100
-errors << "PCT-42主节点应冻结20只" unless electrical.dig("cable_plan", "buy_now").to_s.include?("PCT-42二进四出") && electrical.dig("cable_plan", "buy_now").to_s.include?("20")
+errors << "PCT-42/PCT-62采购应各冻结10只" unless electrical.dig("cable_plan", "buy_now").to_s.include?("PCT-42二进四出") && electrical.dig("cable_plan", "buy_now").to_s.include?("PCT-62二进六出") && electrical.dig("cable_plan", "buy_now").to_s.include?("10")
 errors << "采购表应包含插座、开关和六个基础灯具的末端材料包" unless procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("普通插座面板") && procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("餐区双头可调明装射灯") && procurement_by_id.dig("BUY-0040", "status") == "not_purchased"
 errors << "照明线旧1.5mm²采购项应取消" unless procurement_by_id.dig("BUY-0023", "status") == "cancelled"
 errors << "应新增冰箱漏保型插座采购项" unless procurement_by_id.dig("BUY-0035", "item").to_s.include?("冰箱漏保型插座")
