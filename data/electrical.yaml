@@ -202,8 +202,8 @@ smart_switches:
 terminal_policy:
   strategy: "PCT-42/PCT-62按L/N双极成对分配理解：PCT-42=1对L/N输入→2对L/N输出；PCT-62=1对L/N输入→3对L/N输出"
   device_role: "一只PCT已经同时处理L/N两极，不再按L一只、N一只计数。PCT只作连接与分线，不提供过载、短路或漏电保护"
-  pct42_semantics: "2进4出：输入侧L/N各1，输出侧L/N各2；适合一进二出的L/N成对分支"
-  pct62_semantics: "2进6出：输入侧L/N各1，输出侧L/N各3；适合一进三出的L/N成对分支"
+  pct42_semantics: "2进4出：1对L/N输入（输入侧L、N各1）→2对L/N输出（输出侧L、N各2）；适合一进二出的L/N成对分支"
+  pct62_semantics: "2进6出：1对L/N输入（输入侧L、N各1）→3对L/N输出（输出侧L、N各3）；适合一进三出的L/N成对分支"
   selection_gate: "到货后先按产品标识/说明书确认极性和内部拓扑；完全断电时可用H31通断档辅助复核。不得把2进4出误解为四个同极输出"
   enclosure: "PCT连真实导线后若能自然容纳，优先低轮廓、可独立开盖的配套分线件；放不下时，6mm²主节点用约100×100×50明装盒，纯2.5mm²局部分配可用86深盒/组合盒"
   rules:
