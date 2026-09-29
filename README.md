@@ -24,7 +24,7 @@
 - 安全边界：老小区户内已确认只有 L/N、无可用 PE；采用分级漏保降低风险，但不把漏保写成接地替代。
 - 入住门槛：三猫理想入住日 2027-01-15，硬截止 2027-02-07；防猫、地面、固化、用电和保洁任一项未通过就延期。
 - 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
-- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气施工当前优先看 [38 五路明装路线冻结图](diagrams/38-five-route-electrical.svg)、[39 九节点接线与材料复算图](diagrams/39-electrical-node-schedule.svg) 与 [2026-09-30 最终明装电路施工方案](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
+- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气施工当前优先看 [38 五路明装路线冻结图](diagrams/38-five-route-electrical.svg)、[39 节点接线与材料复算图](diagrams/39-electrical-node-schedule.svg) 与 [2026-09-30 最终明装电路施工方案](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
 - 重要方案的现行/已替代关系见 [决策记录索引](docs/decisions/README.md)。
 - 最新第三方复核见 [2026-09-01 公开仓库审计](docs/reviews/2026-09-01-public-repository-audit.md)。
 
