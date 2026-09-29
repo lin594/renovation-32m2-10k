@@ -229,7 +229,7 @@ socket_wire = Array(electrical.dig("cable_plan", "buy_now")).find { |item| item[
 errors << "electrical.yaml BVVB 2×2.5mm²应按100m两卷采购" unless socket_wire["quantity_m"] == 100 && socket_wire["rolls"] == 2
 six_mm_takeoff = electrical.dig("cable_plan", "six_mm_takeoff") || {}
 errors << "6mm²单根导体应按净21.2m、计划25m、相线采购30m冻结" unless six_mm_takeoff.dig("totals", "net_m_per_conductor") == 21.2 && six_mm_takeoff.dig("totals", "planned_cut_m_per_conductor") == 25.0 && six_mm_takeoff.dig("totals", "purchase_l_m") == 30
-bvvb_takeoff = electrical.dig("cable_plan", "bvvd_2x2_5_takeoff") || {}
+bvvb_takeoff = electrical.dig("cable_plan", "bvvb_2x2_5_takeoff") || {}
 errors << "BVVB 2×2.5mm²应按净63.5m、下料85m、采购100m冻结" unless bvvb_takeoff["net_total_m"] == 63.5 && bvvb_takeoff["planned_cut_total_m"] == 85.0 && bvvb_takeoff["purchase_m"] == 100
 control_takeoff = electrical.dig("cable_plan", "control_return_takeoff") || {}
 errors << "BV 1×2.5mm²单芯灯控回线应取消" unless control_takeoff["purchase_bv_1x2_5_m"] == 0 && control_takeoff["strategy"].to_s.include?("取消单独BV 1×2.5")
