@@ -327,7 +327,7 @@ bedroom_detail:
 
 cable_plan:
   wiring_system: "全屋新增线路均明装。主干默认沿侧墙高位线槽，不走天花板平面；6mm²单芯L/N成对敷设。普通插座从高位分支位置用BVVB 2×2.5mm²下落；线槽90度转弯/续接不设盒，只有电气接续/分叉才设可开启接线空间"
-  trunk_policy: "副保护盒C20之后，RCBO-01/02/03使用6mm²高位主干；蓝色库存线只作N，并与同类型、同长度、合规相色6mm² L成对敷设。MCB-04/05在C20后直接2.5mm²。6mm²在可开启高位盒内使用221-61x类连接器剪断续接和分2.5mm²"
+  trunk_policy: "副保护盒C20之后，RCBO-01/02/03使用6mm²高位主干；蓝色库存线只作N，并与同类型、同长度、合规相色6mm² L成对敷设。MCB-04/05在C20后直接2.5mm²。6mm²节点优先按PCT-42/PCT-62实物试装，端子与L/N各自独立并置于可开启接线空间"
   six_mm_takeoff:
     basis: "依据house.yaml名义尺寸、绕门明装路径、盒内余线和约10%施工余量；现场弹线后允许在各段间调剂，不得少于实测"
     panel_to_subpanel_five_feeders: { net_m_per_conductor: 3.0, planned_cut_m_per_conductor: 4.0 }
