@@ -48,7 +48,7 @@ items:
     item: "壁挂浴室柜+智能除雾镜柜"
     status: not_purchased
     target_size_m: [0.3, 0.4]
-    requirements: ["耐水", "压门洞不超过已接受的约5cm", "保留阀门和存水弯检修", "镜柜电源接RCD-BATH-01下游独立高位连接点", "核对除雾功率、插头/固定接线说明和喷溅范围"]
+    requirements: ["耐水", "压门洞不超过已接受的约5cm", "保留阀门和存水弯检修", "镜柜电源接BATH-RCD-05下游独立高位连接点", "核对除雾功率、插头/固定接线说明和喷溅范围"]
 
   - id: BUY-0006
     category: furniture
