@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-28"
+updated: "2026-09-29"
 
 status_values: [not_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
 
@@ -83,14 +83,17 @@ items:
     room: multiple
     item: "防水涂料"
     candidate: "三棵树漆室内防水涂料 柔韧型S2，灰色18kg、卫生间/厨房通用（京东自营在售）"
-    status: not_purchased
-    purchase_gate: ["确认具体S2 SKU", "适用卫生间地面/墙根", "组分配比", "推荐厚度", "单位用量", "施工与固化温度", "贴砖兼容性", "18kg余料是否可分组分保存"]
+    status: ordered
+    purchase_gate: ["到货确认具体S2 SKU", "适用卫生间地面/墙根", "组分配比", "推荐厚度", "单位用量", "施工与固化温度", "贴砖兼容性", "18kg余料是否可分组分保存"]
+    order_date: "2026-09-28"
+    order_evidence: "京东订单截图确认S2防水已购；与其他三棵树辅材同批/多单采购，单品成交价未可靠拆分"
+    ledger_refs: [EXP-0017, EXP-0018]
     quantity_note: "卫生间设计净地面约0.79㎡；若加约30cm墙根上翻，总施工面约1.87㎡。按三棵树聚合物水泥防水同类产品1mm厚约2.1–2.3kg/㎡量级估算，约需3.9–4.3kg；18kg对本卫生间单独使用明显偏大，不因包装大而无意义加厚。"
     channel: "计划2026-09-27通过京东下单并直送装修房；开封通常次日达，少数第三天到。18kg重货不寄2km外代收点"
     order_timing: "2026-09-27；目标9/28到，慢则9/29到，仍衔接9/29防水施工"
     mixing_rule: "到货后读取桶身/合格证确认液粉组分、实际配比、遍数/厚度与固化时间；不要一次把18kg全部混合，只有标签明确允许时才按比例分批配料"
-  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "10月到开封后线下比价购买", status: not_purchased }
-  - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "10月到开封后线下比价购买", status: not_purchased }
+  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "京东；2026-09-28订单截图确认已购", status: ordered, order_date: "2026-09-28", ledger_refs: [EXP-0017, EXP-0018], note: "截图可确认18kg规格/多件订单，但无法可靠拆分每件成交价" }
+  - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "到开封后再决定", status: not_purchased, note: "2026-09-28订单复核：腻子明确未购买，不得把三棵树辅材订单误记为含腻子" }
   - id: BUY-0013
     category: paint
     room: whole_house
@@ -176,17 +179,18 @@ items:
     room: whole_house
     item: "明装电路材料包"
     status: not_purchased
-    purchase_strategy: "先用实际线缆试装1m并确认槽内占用不高于约40%；尺寸不够就分槽或升级规格，不强塞。乳胶漆达到允许安装状态后再固定。"
+    purchase_strategy: "按2026-09-29简化口径：BVVB护套线在可接受位置优先用线卡直接明敷；线槽集中给6mm²主干和确有收口需求的局部。先用实际线缆试装，尺寸不够再补更宽规格，不恢复旧版全屋大批量支线槽。"
     planned_bom:
-      - { item: "40×20mm阻燃PVC高位主线槽候选", quantity_m: 30, gate: "实际线缆试装通过" }
-      - { item: "25×16mm阻燃PVC支线/下落线槽候选", quantity_m: 60, gate: "实际线缆试装通过" }
-      - { item: "120×120×50mm及以上阻燃带盖接线盒", quantity: 12, use: "6mm²多分支节点" }
-      - { item: "100×100×50mm及以上阻燃带盖接线盒", quantity: 6, use: "2.5mm²分支和收口" }
+      - { item: "四分PVC线槽（线下商家口径）", quantity_m_purchased: 20, procurement_ref: BUY-0042, gate: "两根6mm²实际试装后再确定主干是否全部使用该规格" }
+      - { item: "40×20mm阻燃PVC高位主线槽旧候选", old_quantity_m: 30, status: cancelled, reason: "不再预先按旧方案整批采购；仅当四分槽试装不适合6mm²主干时局部补购" }
+      - { item: "25×16mm阻燃PVC支线/下落线槽旧候选", old_quantity_m: 60, status: cancelled, reason: "BVVB 2×2.5护套线默认可用线卡明敷，不再为全部末端支线配槽" }
+      - { item: "120×120×50mm及以上阻燃带盖接线盒", quantity: 12, use: "6mm²多分支节点；数量仍待现场简化后复核" }
+      - { item: "100×100×50mm及以上阻燃带盖接线盒", quantity: 6, use: "2.5mm²分支和收口；数量仍待现场简化后复核" }
       - { item: "≥50mm深86型明装盒", quantity: 28, use: "开关、插座和高位设备点；按既有暗盒可用情况留备用" }
-      - { item: "同系列直接/平弯/阴阳角/三通和收口", quantity: "按最终放样每处+10%" }
+      - { item: "同系列直接/平弯/阴阳角/三通和收口", quantity: "按最终实际使用线槽处数+10%" }
       - { item: "线号管/回路标签/无PE警示贴", quantity: "1套" }
-      - { item: "水泥钉或经基层试验合格的固定件", quantity: "按不大于0.5m间距及转角加密统计" }
-    quantity_status: planned_takeoff_pending_one_meter_fit_test
+      - { item: "护套线线卡钉", quantity_purchased: 100, procurement_ref: BUY-0043, use: "BVVB护套线明敷；必要时兼作线槽固定" }
+    quantity_status: "线槽首批20m和线卡钉100粒已购；其余盒体/端子/标签等继续按现场需要采购"
     note: "仅有3个漏保+2个空开共五路。高位接头一律留在可开启盒内；接头不得藏进线槽、墙洞或设备背后。"
 
   - id: BUY-0022
@@ -376,13 +380,11 @@ items:
   - id: BUY-0039
     category: electrical_material
     room: whole_house
-    item: "BV 1×2.5mm²照明受控相线"
-    status: not_purchased
-    planned_quantity_m: 30
-    planned_cut_m: 24
-    requirements: ["红/棕等明确相色", "禁止蓝色和黄绿双色", "CCC及合格证"]
-    quantity_status: planned_takeoff_pending_setout
-    note: "净用约20.5m；用于客厅主灯/餐灯两路、走廊A/B、卧室主灯、厨房和卫生间灯控回线。卧室床下灯L2使用BVVB相线，不另占单芯回线；开关盒由BVVB 2×2.5送达L/N。"
+    item: "BV 1×2.5mm²照明受控相线旧方案"
+    status: cancelled
+    cancel_reason: "2026-09-29最新简化口径已将相关照明/开关布线尽量改为BVVB护套线；不再单独采购这30m单芯2.5mm²"
+    replacement_ref: BUY-0024
+    note: "仓库内此前20.5m/24m单芯回线下料仅属旧版，不再作为采购依据。"
 
   - id: BUY-0040
     category: electrical_fixture
@@ -431,3 +433,181 @@ items:
     item: "原位更换C20断路器旧方案"
     status: cancelled
     cancel_reason: "用户希望保留2026-08刚更换的主配电箱与现有3×C40 RCBO、2×C32 MCB；改由邻近副保护盒承担C20过流保护"
+
+  - id: BUY-0042
+    category: electrical_material
+    room: whole_house
+    item: "四分PVC线槽"
+    status: delivered
+    purchase_date: "2026-09-29"
+    channel: "开封线下商家"
+    quantity: 10
+    unit: 根
+    length_each_m: 2
+    total_length_m: 20
+    actual_total_cny: 20
+    ledger_ref: EXP-0022
+    inventory_ref: INV-0014
+    note: "“四分”为商家口径；具体毫米截面按实物确认。首要用于6mm²主干/必要收口，使用前先试装两根6mm²。"
+
+  - id: BUY-0043
+    category: electrical_material
+    room: whole_house
+    item: "护套线线卡钉"
+    status: delivered
+    purchase_date: "2026-09-29"
+    channel: "开封线下商家"
+    quantity: 1
+    unit: 袋
+    pieces_per_bag: 100
+    actual_total_cny: 5
+    ledger_ref: EXP-0023
+    inventory_ref: INV-0015
+    note: "用于BVVB护套线明敷；商家称也可用于固定线槽。"
+
+  - id: BUY-0044
+    category: tool
+    room: whole_house
+    item: "德力西H31万用表"
+    status: ordered
+    purchase_date: "2026-09-26"
+    channel: "京东"
+    quantity: 1
+    actual_total_cny: 33.01
+    ledger_ref: EXP-0009
+    note: "订单截图确认已购；用于装修期间市电电压、通断和NCV等基础验测。"
+
+  - id: BUY-0045
+    category: electrical_material
+    room: whole_house
+    item: "绝缘胶带70×16mm红色"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 10
+    unit: 卷
+    actual_total_cny: 8.80
+    ledger_ref: EXP-0010
+
+  - id: BUY-0046
+    category: cleaning
+    room: whole_house
+    item: "玻璃清洁剂5斤+全套工具"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    actual_total_cny: 10.63
+    ledger_ref: EXP-0011
+
+  - id: BUY-0047
+    category: cleaning
+    room: whole_house
+    item: "塑钢门窗清洗剂500ml×5"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 5
+    unit: 瓶
+    actual_total_cny: 18.04
+    ledger_ref: EXP-0012
+
+  - id: BUY-0048
+    category: tool
+    room: whole_house
+    item: "五步碳钢梯"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 1
+    actual_total_cny: 60.08
+    ledger_ref: EXP-0013
+
+  - id: BUY-0049
+    category: tool_bundle
+    room: whole_house
+    item: "钢丝刷等装修工具耗材订单"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    actual_total_cny: 39.99
+    ledger_ref: EXP-0014
+    note: "截图可可靠确认订单总额，但不足以逐件拆分商品及价格；按订单包记录，避免臆测。"
+
+  - id: BUY-0050
+    category: protection
+    room: whole_house
+    item: "一次性防护服"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 1
+    actual_total_cny: 3.90
+    ledger_ref: EXP-0015
+
+  - id: BUY-0051
+    category: material
+    room: whole_house
+    item: "网格带5cm×30m"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 1
+    unit: 卷
+    actual_total_cny: 6.80
+    ledger_ref: EXP-0016
+
+  - id: BUY-0052
+    category: electrical_fixture
+    room: whole_house
+    item: "4插位+2USB 2.8m排插"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 1
+    actual_total_cny: 14.79
+    ledger_ref: EXP-0019
+    note: "装修临时使用并兼顾后续长期使用。"
+
+  - id: BUY-0053
+    category: tool
+    room: whole_house
+    item: "承重170爬楼小推车等订单"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    actual_total_cny: 60.80
+    ledger_ref: EXP-0020
+    note: "截图为多件订单；已知爬楼小推车为核心商品，按订单总额记录。"
+
+  - id: BUY-0054
+    category: tool
+    room: whole_house
+    item: "5m钢卷尺"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    quantity: 1
+    actual_total_cny: 5.56
+    ledger_ref: EXP-0021
+
+  - id: BUY-0055
+    category: material_bundle
+    room: multiple
+    item: "三棵树防水/修补/密封辅材订单内其他项目"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "京东"
+    contents_confirmed_from_order: ["堵漏王", "防霉美容胶", "美缝类材料", "玻璃胶"]
+    ledger_refs: [EXP-0017, EXP-0018]
+    cost_allocation: "与S2防水、墙固/界面剂处于同批/多单订单截图中；只确认两笔订单总额114.55元和246.40元，不人为拆分单品价格"
+    note: "墙面腻子明确不在本次已购范围。"
+
+  - id: BUY-0056
+    category: tool
+    room: whole_house
+    item: "批刀和刮板"
+    status: ordered
+    purchase_date: "2026-09-28"
+    channel: "拼多多"
+    quantity_status: "已买、在途；成交价当前聊天记录无法可靠恢复"
+    note: "仅记录购买状态，不写虚构价格；后续拿到订单明细再补账。"
