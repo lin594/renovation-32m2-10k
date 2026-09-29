@@ -175,19 +175,19 @@ items:
     category: electrical_material
     room: whole_house
     item: "明装电路材料包"
-    status: not_purchased
-    purchase_strategy: "先用实际线缆试装1m并确认槽内占用不高于约40%；尺寸不够就分槽或升级规格，不强塞。乳胶漆达到允许安装状态后再固定。"
+    status: partially_purchased
+    purchase_strategy: "已购四分PVC线槽2m×10根=20m作为首批；先全屋放样和PCT-42实物试装，再按缺口补线槽/分线盒。空底槽在腻子/乳胶漆前先固定，最终穿线和扣盖在墙面干燥后进行。"
     planned_bom:
-      - { item: "40×20mm阻燃PVC高位主线槽候选", quantity_m: 30, gate: "实际线缆试装通过" }
-      - { item: "25×16mm阻燃PVC支线/下落线槽候选", quantity_m: 60, gate: "实际线缆试装通过" }
-      - { item: "120×120×50mm及以上阻燃带盖接线盒", quantity: 12, use: "6mm²多分支节点" }
-      - { item: "100×100×50mm及以上阻燃带盖接线盒", quantity: 6, use: "2.5mm²分支和收口" }
+      - { item: "四分阻燃PVC明线槽", quantity_m: 20, status: purchased_first_batch, gate: "单回路/单支线优先；实际导线自然放入且盖板无需强压" }
+      - { item: "更宽线槽/配套加宽分线件", quantity: "按PCT-42+6mm²实物试装结果补购", gate: "只在四分槽空间不足处升级，不全屋统一加宽" }
+      - { item: "86深明盒/小型分线盒", quantity: "按9个分支位置中纯2.5mm²节点实测补购", use: "PCT/导线无法在低轮廓配套分线腔中自然容纳时" }
+      - { item: "约100×100×50mm及以上阻燃带盖接线盒", quantity: "按9个分支位置中6mm²多支路节点实测补购", use: "仅空间不足的6mm²节点" }
       - { item: "≥50mm深86型明装盒", quantity: 28, use: "开关、插座和高位设备点；按既有暗盒可用情况留备用" }
       - { item: "同系列直接/平弯/阴阳角/三通和收口", quantity: "按最终放样每处+10%" }
       - { item: "线号管/回路标签/无PE警示贴", quantity: "1套" }
       - { item: "水泥钉或经基层试验合格的固定件", quantity: "按不大于0.5m间距及转角加密统计" }
     quantity_status: planned_takeoff_pending_one_meter_fit_test
-    note: "仅有3个漏保+2个空开共五路。高位接头一律留在可开启盒内；接头不得藏进线槽、墙洞或设备背后。"
+    note: "仅有3个漏保+2个空开共五路。90°转弯/续槽不设盒；只有导体接续、分叉、缩径才形成电气节点。节点采用低轮廓可独立开盖分线腔或按空间回退明盒。"
 
   - id: BUY-0022
     category: windows
@@ -225,25 +225,21 @@ items:
   - id: BUY-0025
     category: electrical_connector
     room: whole_house
-    item: "WAGO 221系列明装接线端子组合"
+    item: "PCT快速接线端子（PCT-42优先试装，PCT-62按需）"
     status: not_purchased
-    candidate: "优先正品WAGO 221-615/613/612及221-415/413/412，或具有同等明确认证和参数的正规产品"
+    candidate: "PCT-42二进四出作为首选；实物图示约39.5×23.4×14.6mm、硬线0.2~6mm²、标称32A/600V。更多出口再核PCT-62"
     planned_quantity:
-      "221-615_5孔_最大6mm²": 20
-      "221-613_3孔_最大6mm²": 10
-      "221-612_2孔_最大6mm²": 10
-      "221-415_5孔_最大4mm²": 10
-      "221-413_3孔_最大4mm²": 5
-      "221-412_2孔_最大4mm²": 10
+      "PCT-42": "先按10只装候选，实物试装通过后再下单"
+      "PCT-62": "按K2/L1/W1等实际出口数补购，不预先囤货"
     requirements:
-      - "用于220V固定建筑布线和铜导体，具有明确认证/合格证明"
-      - "221-61x类明确支持现场实际6mm²铜导体；221-41x类用于纯2.5mm²节点"
-      - "额定电流须高于本项目C20支路保护器"
-      - "L与N各用独立一只，不混接不同回路"
-      - "节点放在高位主干旁带盖可开启接线盒内"
-      - "允许主干在节点剪断，不再强求不断线T接"
-    selection_gate: "购买前核对每个具体SKU说明书、正品渠道、实际导体类型和剥线长度；任一不匹配就重新选型，不以外形相似替代"
-    note: "数量覆盖15个固定分支节点、灯控回线收口和备用；主干允许在盒内剪断续接，L/N永远分别用端子"
+      - "用于220V固定铜导体并有明确合格证明/适用说明"
+      - "6mm²硬线与2.5mm²导体均在具体型号允许范围内"
+      - "额定电流与本项目下游C20保护匹配"
+      - "L与N分别用独立端子，不混接不同回路"
+      - "必须连同真实导线在四分槽/配套分线件内试装：导线弯曲自然、盖板无需强压、端子可固定"
+      - "普通四分线槽本体不是默认接线腔；接头使用可独立开盖的配套分线腔，空间不足则回退86深盒或100方盒"
+    selection_gate: "先现场试装再冻结数量；任何参数或空间不满足即换正规同等级产品/改盒"
+    note: "当前最多9个电气分支位置，不再按旧15节点/WAGO组合批量采购"
 
   - id: BUY-0026
     category: lighting
@@ -297,11 +293,11 @@ items:
   - id: BUY-0031
     category: electrical_protection
     room: bathroom
-    item: "卫生间双极总RCD及门外DIN明装小箱"
+    item: "卫生间第五路2P≤30mA剩余电流保护（二选一）"
     status: not_purchased
     planned_quantity: 1
-    requirements: ["2P", "额定剩余动作电流不大于30mA", "A型优先", "L/N双极切断", "TEST/RESET", "额定电流不低于上游目标C20 MCB并匹配馈线/卫浴总负载", "优先走廊A卫生间门外2~4位DIN明装小箱"]
-    quantity_status: panel_confirmed_pending_bath_load_and_product_selection
+    requirements: ["2P", "额定剩余动作电流不大于30mA", "A型优先", "L/N双极切断", "TEST/RESET", "额定电流与上游C20、馈线和卫浴总负载匹配", "优先核验主箱第五位原位方案；若模数/端子方向/产品不匹配，则回退到走廊A卫生间门外2~4位DIN明装RCD小箱"]
+    quantity_status: pending_main_panel_fit_or_fallback_selection
 
   - id: BUY-0032
     category: electrical_fixture
@@ -309,7 +305,7 @@ items:
     item: "浴霸与浴室柜/镜灯高位连接点"
     status: not_purchased
     planned_quantity: 2
-    requirements: ["均位于RCD-BATH-01下游", "先核对设备说明和喷溅范围", "普通情况下不再额外叠加30mA设备级漏保", "允许插头时使用匹配负载的防溅/防护插座", "只允许固定接线时使用双极隔离开关和带盖接线盒", "浴霸不接普通智能插座"]
+    requirements: ["均位于BATH-RCD-05下游", "先核对设备说明和喷溅范围", "普通情况下不再额外叠加30mA设备级漏保", "允许插头时使用匹配负载的防溅/防护插座", "只允许固定接线时使用双极隔离开关和带盖接线盒", "浴霸不接普通智能插座"]
     quantity_status: blocked_by_product_manuals_and_splash_survey
 
   - id: BUY-0033
@@ -354,7 +350,7 @@ items:
     status: not_purchased
     planned_quantity: 1
     requirements:
-      - "主配电箱本体和现有C40/C32器件全部保留"
+      - "主配电箱箱体、总开关、过欠压、前三路RCBO和第四路MCB保留；第五路仅在原位2P≤30mA方案通过时由电工更换，否则保留现MCB并采用门外RCD回退"
       - "副箱紧邻主箱安装，18模数DIN导轨明装，五路器件后仍保留至少4模数维护余量"
       - "五个回路各设1只2P C20、6kA小型断路器作为过流保护基线，共5只"
       - "五路分别由原有五个支路引入；严禁用汇流排把不同上游回路并接"
@@ -421,7 +417,7 @@ items:
     requirements:
       - "到货按实物说明确认L/N/L1/L2端子明确支持2.5mm²导体"
       - "核对LED负载范围、模块厚度和现有暗盒有效深度"
-      - "开关端子不并压两根导体；盒内分线使用对应221-41x类端子"
+      - "开关端子不并压两根导体；盒内分线使用与2.5mm²导体明确匹配的正规并联端子/PCT小端子"
       - "不兼容即停工，使用86延长框或相邻深明盒，不削细导体硬塞"
     quantity_status: owner_selected_pending_physical_terminal_box_and_load_check
 
