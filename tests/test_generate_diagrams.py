@@ -86,10 +86,15 @@ class GenerateDiagramsTest(unittest.TestCase):
         for old in range(30, 38):
             self.assertFalse(any(name.startswith(f"{old:02d}-") for name in current))
         detail = (self.output_dir / "38-five-route-electrical.svg").read_text(encoding="utf-8")
-        self.assertIn("五路明装电路路线冻结", detail)
-        self.assertIn("厨房", detail)
-        self.assertIn("客厅", detail)
-        self.assertIn("卫生间", detail)
+        self.assertIn("五路明装电路最终墙面走槽图", detail)
+        for circuit in ("C1-BED", "C2-KIT", "C3-LIV", "C4-AC-FR", "C5-BATH"):
+            self.assertIn(circuit, detail)
+        for node in ("B1", "B2", "K1", "K2", "H1", "L1", "W1", "A1", "BATH1"):
+            self.assertIn(node, detail)
+        self.assertIn("吊扇拆除", detail)
+        self.assertIn("90°转弯", detail)
+        self.assertIn("PCT-42", detail)
+        self.assertIn("罗马杆", detail)
 
     def test_checked_in_outputs_match_generator(self) -> None:
         checked_in = Path(__file__).resolve().parents[1] / "diagrams"
