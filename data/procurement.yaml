@@ -226,7 +226,7 @@ items:
   - id: BUY-0025
     category: electrical_connector
     room: whole_house
-    item: "PCT快速接线端子（PCT-42优先试装，PCT-62按需）"
+    item: "PCT快速接线端子（PCT-42与PCT-62各一盒）"
     status: not_purchased
     candidate: "PCT-42二进四出与PCT-62二进六出配合使用。正确结构：一只器件同时处理L/N；PCT-42=1对L/N输入→2对L/N输出，PCT-62=1对L/N输入→3对L/N输出"
     planned_quantity:
