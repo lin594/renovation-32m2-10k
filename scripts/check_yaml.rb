@@ -176,8 +176,8 @@ errors << "electrical.yaml 必须恰好包含3漏保+2空开的5个既定回路"
 
 branch_nodes = Array(electrical.dig("branch_nodes", "examples"))
 errors << "electrical.yaml 应冻结9个主节点+4个局部子节点" unless electrical.dig("branch_nodes", "model") == "nine_main_plus_four_local_subnodes" && electrical.dig("branch_nodes", "main_count") == 9 && electrical.dig("branch_nodes", "local_subnode_count") == 4 && electrical.dig("branch_nodes", "total_distribution_points") == 13 && branch_nodes.length == 13
-errors << "A1必须在MCB-04下分为空调与冰箱两支" unless branch_nodes.any? { |node| node["id"] == "A1" && Array(node["branches"]).to_set == Set["客厅空调", "冰箱"] }
-errors << "BATH1必须包含浴霸、镜柜和独立主灯三支" unless branch_nodes.any? { |node| node["id"] == "BATH1" && Array(node["branches"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间独立主灯"] }
+errors << "A1必须在MCB-04下分为空调与冰箱两支" unless branch_nodes.any? { |node| node["id"] == "A1" && Array(node["outputs"]).to_set == Set["客厅空调", "冰箱"] }
+errors << "BATH1必须包含浴霸、镜柜和独立主灯三支" unless branch_nodes.any? { |node| node["id"] == "BATH1" && Array(node["outputs"]).to_set == Set["浴霸", "浴室柜/镜灯", "卫生间独立主灯/机械开关支路"] }
 
 outlets = electrical.fetch("outlet_groups", {})
 outlet_sum = %w[bedroom kitchen living_room hall_a_shelf].sum { |key| outlets.dig(key, "count").to_i }
@@ -234,7 +234,7 @@ errors << "BVVB 2×2.5mm²应按净63.5m、下料85m、采购100m冻结" unless 
 control_takeoff = electrical.dig("cable_plan", "control_return_takeoff") || {}
 errors << "BV 1×2.5mm²单芯灯控回线应取消" unless control_takeoff["purchase_bv_1x2_5_m"] == 0 && control_takeoff["strategy"].to_s.include?("取消单独BV 1×2.5")
 segment_takeoff = electrical.dig("cable_plan", "segment_takeoff") || {}
-errors << "旧逐段下料表应退役并等待2026-09-30墙面放样重测" unless segment_takeoff["status"] == "superseded_by_2026_09_30_final_route_remeasure_required" && Array(segment_takeoff["canonical_nodes"]).length == 9
+errors << "旧逐段下料表应退役并等待2026-09-30墙面放样重测" unless segment_takeoff["status"] == "superseded_by_2026_09_30_final_route_remeasure_required" && Array(segment_takeoff["canonical_main_nodes"]).length == 9 && Array(segment_takeoff["canonical_local_subnodes"]).length == 4
 errors << "采购表应同步6mm²相线30m、计划下料25m" unless procurement_by_id.dig("BUY-0038", "planned_quantity_m") == 30 && procurement_by_id.dig("BUY-0038", "planned_cut_m") == 25
 errors << "BV 1×2.5mm²旧采购项应取消" unless procurement_by_id.dig("BUY-0039", "status") == "cancelled" && procurement_by_id.dig("BUY-0039", "planned_quantity_m") == 0
 device_takeoff = electrical.fetch("surface_device_takeoff", {})
