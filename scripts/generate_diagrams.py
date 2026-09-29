@@ -1038,7 +1038,7 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 <text x="1045" y="654" class="small">用低轮廓的线槽配套接线/分线构件或短段加宽、可独立开盖的分线腔。</text>
 <text x="1020" y="690" class="small">B｜放不下：纯2.5mm²用86深明盒/小分线盒；6mm²多分支用约100×100×50。</text>
 <text x="1020" y="728" class="small">普通线槽本体能打开，不等于随便把接头裸塞在线槽腔里。</text>
-<text x="1020" y="756" class="small">9个是“最多9个电气分支位置”，不是9个大白盒。</text>
+<text x="1020" y="756" class="small">9个主节点负责高位骨架；另4个局部子节点放设备/家具附近，详见39图。</text>
 
 <rect x="990" y="800" width="550" height="215" rx="12" class="panel"/>
 <text x="1020" y="837" class="small bold">罗马杆/旧支架：两版放样</text>
@@ -1131,7 +1131,7 @@ OUTPUTS = {
     "10-furniture-circulation.svg": ("furniture-circulation", "10 家具与动线图", furniture_circulation),
     "20-plumbing-gas.svg": ("plumbing-gas", "20 给排水与燃气图", plumbing_gas),
     "38-five-route-electrical.svg": ("five-route-electrical-freeze", "38 五路明装电路最终墙面走槽图", five_route_electrical_freeze),
-    "39-electrical-node-schedule.svg": ("electrical-node-schedule", "39 九节点接线与材料复算图", electrical_node_schedule),
+    "39-electrical-node-schedule.svg": ("electrical-node-schedule", "39 节点接线与材料复算图", electrical_node_schedule),
     "40-doors-windows-cats.svg": ("doors-windows-cats", "40 门窗与猫安全图", doors_windows_cats),
     "50-kitchen-bath-details.svg": ("kitchen-bath-details", "50 厨卫详图", kitchen_bath_details),
     "60-finishes-materials.svg": ("finishes-materials", "60 墙地面饰面图", finishes_materials),
