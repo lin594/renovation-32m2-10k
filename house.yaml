@@ -1,6 +1,6 @@
 # ============================================================================
 # 老房装修改造 · 户型与方案上下文数据包（机器可读）
-# version: 8    date: 2026-09-28
+# version: 9    date: 2026-09-30
 # 用途：将本文件整体转发给 AI / 设计师，即可在其基础上继续装修方案咨询
 # 坐标系：原点=客厅西北角；+x=南(图向下)；+y=东(图向右)；单位=米
 # ============================================================================
@@ -164,7 +164,7 @@ electrical:
       - { location: "冰箱位置南侧", status: existing, plan: "作为冰箱末端插座候选；保持可触及" }
       - { id: E-BOX-LIV-JZ, location: "洗衣机东侧/客厅通道左侧", status: existing, plan: "安装客厅京东京造JZ-N2零火双开；原洗烘插座迁到相邻独立明盒" }
       - { id: E-BOX-BED-JZ, location: "卧室门北侧/门内右侧", status: existing, plan: "安装卧室京东京造JZ-N2零火双开；不视为穿线入口" }
-      - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing, exclusive_use: "卧室吊扇调速器", note: "不与床南插座共盒或共用端子" }
+      - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing_retired, plan: "吊扇拆除后盖空白盖板；不接新电、不作分线盒", note: "原吊扇暗线两端断开并分别绝缘封护" }
     fallback: "暗盒不适用的位置再增加明盒"
   surface_route_transitions:
     - { id: E-ROUTE-01, location: "卧室门框上方", rule: "明装绕门，不利用暗盒穿线" }
@@ -175,7 +175,7 @@ electrical:
   fixed_equipment:
     - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, device_protection: SRCD-AC-LIV }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, protection: "目标C20/30mA RCBO-01上游统一保护，不再默认叠加设备级漏保" }
-    - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；卧室高位主干至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
+    - { item: "卧室吊扇", location: "卧室中心上方", status: remove_no_reuse, wiring: "拆除；不再为其提供新电源。原暗埋线两端断开并分别绝缘封护", acceptance: "不得重新接入卧室新回路" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
     - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, risk_ref: SAF-0003 }
   planned_outlets:
@@ -195,7 +195,7 @@ electrical:
     zones_ref: "data/electrical.yaml#lighting_zones"
     hall_a: "计划约2m、220V厂家成套插头灯带；插入由零火墙壁开关控制并标注‘仅灯带’的高位专用插座，不剪插头硬接"
     living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机只共用TN-LIV-SOFA高位分线节点，分别以独立BVVB支线接常电插座"
-    bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；西墙吊扇调速器保持独立"
+    bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；卧室吊扇与旧调速器退出新电路"
 
 low_voltage:
   internet_entry:
@@ -366,6 +366,7 @@ confirmed_facts:   # 已确认，无需再问
   - "给排水点位全部确定且已施工（不可改）"
   - "配电箱在y=5墙门垛上方（留检修）"
   - "全屋原有室内电路已拆除；后续计划采用明装线路"
+  - "卧室吊扇确定拆除，不再供电；原调速器暗盒盖板封闭，原暗线两端绝缘封护"
   - "老小区户内仅有L/N两线、无可用PE；作为四楼无法独立增设接地"
   - "厨房原台面为约0.5×2.0m；架空层拟用0.4×0.6m瓷砖三块"
   - "阳台有两条升降晾衣架：靠客厅一条可用，另一条无法升降"
