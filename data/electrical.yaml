@@ -1,11 +1,11 @@
 version: 1
-updated: "2026-09-28"
-status: surface_wiring_plan_frozen_pending_setout_appliance_and_professional_acceptance
+updated: "2026-09-30"
+status: final_wall_route_frozen_pending_setout_appliance_and_professional_acceptance
 drawing_property: "施工接线与下料定稿，可用于断电放样和端点核对，但不是自行通电批准；无PE为既定条件，线径、保护器、端子及绝缘/极性/漏保测试结果仍须现场核验与合格电工复核"
 
 confirmed_conditions:
   wiring_method: "全屋明装线槽/明管"
-  installation_sequence: "乳胶漆达到产品允许安装和触碰的干燥状态后施工"
+  installation_sequence: "基层/墙固/S2完成后先放样并安装空线槽底座；再挂网/腻子/乳胶漆；墙面干燥后穿线、装端子并扣盖。腻子可收到底槽边但不得堵盖板卡槽"
   protective_earth: "已确认老小区户内仅有L/N两线、无可用PE；四楼无法独立增设接地"
   remaining_conductor: "约60m蓝色6mm²铜线"
   panel_markings: "2026-09-28现场照片已确认：总开关CHINT NXB-63 C63双极；其后自复式过欠压保护器63A/230V；三个支路漏保均为CHINT NXBLE-63YH C40、IΔn=0.03A、6kA；最后两个支路空开均为CHINT NXB-63 C32、6kA"
@@ -27,10 +27,10 @@ confirmed_conditions:
     permanent_power: deferred
     current_phase_rule: "不钻孔、不把电线夹过阳台移门、不设置永久220V线路"
     later_option: "入住后再决定充电灯，或仅在阳台门开启时使用可拔除的临时插电设备"
-  bedroom_fan_existing_wiring:
-    surface_segment: "副保护盒出线后沿门框/墙边明装至卧室西墙E-BOX-BED-FAN调速器暗盒"
-    concealed_segment: "E-BOX-BED-FAN至卧室中心吊扇"
-    reuse_gate: "施工前完成通断与绝缘检查"
+  bedroom_fan_retirement:
+    decision: "卧室吊扇拆除，不再供电"
+    old_controller_box: "E-BOX-BED-FAN保留盒体并盖空白盖板，不作新线路分线盒"
+    old_concealed_segment: "E-BOX-BED-FAN至原吊扇暗线两端断开并分别绝缘封护，不复用"
   existing_recessed_boxes:
     fact: "现场确认只有4个既有暗盒盒位，没有可利用暗管或暗线；全部新增线路按墙面/门框明装放样"
     points: ["卧室门内侧/门北侧", "入户门与卧室门之间", "客厅通道左侧/洗烘机东侧", "冰箱旁"]
@@ -61,22 +61,22 @@ provisional_five_circuit_allocation:
   circuits:
     - id: RCBO-01
       existing_device_type: "漏电保护器"
-      scope: ["卧室普通插座", "卧室已有空调", "卧室固定照明", "卧室吊扇"]
-      route: "副保护盒后以6mm² L/N沿卧室门框上方明装进入卧室，沿西墙/顶边形成高位主干，就地T接插座、空调、基础灯和吊扇调速器"
+      scope: ["卧室普通插座", "卧室已有空调", "卧室固定照明"]
+      route: "副保护盒后以6mm² L/N从配电箱向北，沿卧室门头进入卧室并贴西墙高位走；B1分JZ-N2/床南并继续，B2分卧室空调/床北后结束；吊扇不接入"
       reason: "卧室所有新建用电共用同一受RCBO保护的空间主干，避免重复绕门和多条长线"
       conductor: "6mm²主干计划下料4.5m/根；所有新建插座、照明和开关短支线统一2.5mm²"
       status: planned_pending_setout_and_appliance_nameplate
     - id: RCBO-02
       existing_device_type: "漏电保护器"
       scope: ["厨房插座", "厨房固定设备", "厨房固定照明"]
-      route: "副保护盒后以6mm² L/N沿走廊B和厨房门框上方明装进入厨房，沿主要设备墙顶边形成主干并就地T接"
+      route: "副保护盒后与卧室路一起向北；卧室路退出后继续到厨房门区，沿门头进入厨房；K1分主灯/入口开关并继续向西，K2在西墙分家电组"
       reason: "厨房负载集中且路径短；照明并入厨房RCBO可避免从走廊重复绕门敷设长线"
       conductor: "6mm²主干计划下料5.5m/根；所有新建插座、照明和开关短支线统一2.5mm²"
       status: planned_pending_setout_and_appliance_nameplate
     - id: RCBO-03
       existing_device_type: "漏电保护器"
       scope: ["玄关设备架常电", "走廊A/B生活照明", "客厅普通插座", "客厅洗烘一体机", "洗烘旁两个小厨电五孔点", "客厅主灯和餐灯"]
-      route: "副保护盒后以6mm² L/N沿走廊A高位明装；设备架就近T接，绕客厅通道门框进入洗烘上方，再向北并向西横穿客厅高位，依次服务照明、投影、沙发/扫地机和书桌"
+      route: "副保护盒后从配电箱向南，经入户门头到玄关南墙后向西；H1分设备架/灯带，继续到客厅通道后沿侧墙/门头进入客厅；L1分洗烘/餐桌/JZ-N2，主干沿客厅高位向西再沿西墙向北到W1分书桌/沙发/扫地机/投影"
       reason: "把真正需要长距离绕行的负载压缩到一条生活主干；冰箱和客厅空调从该长主干剥离"
       conductor: "6mm²主干计划下料10m/根；库存蓝色线只作N，另购同类型合规相色6mm²作L；所有末端统一2.5mm²"
       status: planned_pending_setout_and_washer_nameplate
@@ -84,7 +84,7 @@ provisional_five_circuit_allocation:
       existing_device_type: "空气开关"
       physical_position: 4
       scope: ["客厅已有空调", "客厅冰箱"]
-      route: "副保护盒C20后以BVVB 2×2.5mm²沿走廊A/客厅门框明装到客厅南侧，就地分客厅空调与冰箱；与RCBO-03可共用机械路径但L/N、端子和保护完全独立"
+      route: "副保护盒C20后从配电箱向南，经入户门头和玄关南墙向西，与RCBO-03相邻但独立进入客厅；沿客厅南侧高位最短墙边路径到A1，一分二供客厅空调与冰箱"
       reason: "空调和冰箱物理位置相邻且相对独立；用短主干释放RCBO-03容量，同时避免原MCB-04照明线路分别穿多个房间"
       conductor: "副箱C20后直接使用BVVB 2×2.5mm²，不使用6mm²主干；仍须按空调铭牌和启动电流复核"
       protection: "MCB-04仅提供过流/短路保护；客厅空调端使用真正具备≤30mA剩余电流保护、L/N双极切断和TEST/RESET的固定式漏保插座/空调伴侣，冰箱端使用同等级漏保型插座；不得以普通智能插座或仅过欠压保护产品替代"
@@ -93,23 +93,29 @@ provisional_five_circuit_allocation:
       existing_device_type: "空气开关"
       physical_position: 5
       scope: ["卫生间专用馈线"]
-      route: "副保护盒C20后以BVVB 2×2.5mm²沿走廊A明装到卫生间门外RCD-BATH-01；该段连续、受机械保护、无分支，RCD后再绕门框明装进入卫生间分浴霸、浴室柜/镜灯和基础照明"
+      route: "副保护盒C20后从配电箱向南，经入户门头和玄关南墙向西，与第3/4路并行；到客厅通道附近脱离，利用侧墙/门头向北，再沿卫生间南墙高位向东并从门头进入；所有卫生间分支汇于BATH1"
       reason: "卫生间最终设备仍待定；保留独立馈线和本地总漏保，使后续设备变化仅影响卫生间门口之后的短距离布线"
       conductor: "副箱C20后直接使用BVVB 2×2.5mm²，不使用6mm²主干；按浴霸、镜柜/镜灯和照明总铭牌复核"
       protection: "MCB-05本身不提供剩余电流保护；RCD-BATH-01优先装在走廊A卫生间门外的2~4位DIN明装箱内，所有卫生间负载均位于其下游"
       status: panel_confirmed_pending_bath_load_measurement
   physical_trunk_strategy:
-    hall_to_living: "RCBO-03与MCB-04可沿走廊A使用相邻或经截面核算后的共用线槽；仅共享机械路径，不共享导体、N线、端子或保护器"
-    after_living_door: "绕客厅门框后自然分流：RCBO-03先到洗烘再北上西穿；MCB-04只去空调/冰箱短路径"
-    room_rule: "所有房间都绕门框/墙边明装；照明随所在房间空间主干就地分支；四个既有暗盒仅作为末端候选，不虚构暗管或穿线孔"
-    t_branch_rule: "主干沿顶边/高位线槽连续敷设，T接放在高位可检修带盖盒。普通插座只做一次垂直下落，低位盒为纯末端；低于1.8m部分用细管/窄槽保护。灯控采用高位主干→开关下落→受控相线回高位灯具的模式，往返导体集中在一条窄明线槽内。投影仪、空调、油烟机等高位设备直接从高位主干就近短接"
+    canonical_plan: "docs/plans/2026-09-30-final-surface-electrical-plan.md"
+    wall_plane_rule: "高位主干默认固定在侧墙，不走天花板平面；普通墙以线槽上沿距顶约50mm为基准，可按墙面和障碍统一调整到约30~80mm"
+    panel_split: "配电箱北向为RCBO-01卧室+RCBO-02厨房；南向为RCBO-03客厅生活+MCB-04空调冰箱+MCB-05卫生间"
+    north_parallel_order: "卧室与厨房向北并行；厨房走得更远，优先放在更靠顶位置，卧室在卧室门头提前退出"
+    south_parallel_order: "玄关公共墙段从靠顶到靠下建议MCB-04、RCBO-03、MCB-05；三路各用独立四分槽并排，不共享导体/N/端子"
+    living_split: "RCBO-03和MCB-04经通道进入客厅；MCB-05在通道附近脱离并沿卫生间门墙进入卫生间"
+    bend_rule: "90度转弯、续槽、绕门框只是机械路径变化，直接拼线槽，不因此增加接线盒"
+    branch_rule: "只有导体接续、分叉、缩径才形成电气分支位置；当前最多B1/B2/K1/K2/H1/L1/W1/A1/BATH1共9处"
+    pct42_fallback: "PCT-42约39.5×23.4×14.6mm必须用真实四分槽和真实导线试装；放得下时用低轮廓、可独立开盖的线槽配套分线构件/加宽分线腔；放不下则改86深明盒或约100×100×50分线盒"
+    curtain_rod_fallback: "罗马杆不冲突则保持统一高位；冲突时优先整体调整支架，无法调整则整段线槽统一降低，禁止逐个支架蛇形绕行"
   unresolved_high_loads:
     - "两台空调铭牌功率、启动/最大输入电流和现有连接方式"
     - "洗烘一体机最终型号和最大输入功率"
     - "浴霸、浴室柜/镜灯是否保留及其功率、防护和接线方式"
     - "RCBO-03承担洗烘+客厅普通插座+普通照明时的同时负载"
     - "MCB-04承担客厅空调+冰箱时的额定值、线径及两个末端漏保插座/空调伴侣匹配"
-    - "零火智能开关、普通开关、吊扇调速器和灯具端子是否均明确支持2.5mm²导体"
+    - "零火智能开关、普通开关和灯具端子是否均明确支持2.5mm²导体"
   fixed_physical_constraint: "主配电箱保持2026-08刚更换后的现状：3×C40/30mA RCBO + 2×C32 MCB均不更换。紧邻主箱新增副保护盒承担2.5mm²新线路的过流保护；MCB-04仍采用空调/冰箱各自末端漏保，MCB-05仍采用卫生间门外RCD-BATH-01总漏保"
   downstream_protection_box:
     rationale: "用户不希望改动2026-08刚更换的主配电箱；同时GB 50054要求过负荷保护满足In≤Iz，因此C40/C32不能直接作为新2.5mm²末端的最终过流保护"
@@ -191,7 +197,7 @@ smart_switches:
     terminals: { L: "常电相线", N: "常电中性线", L1: "卧室主灯受控相线", L2: "床下灯专用插座受控相线" }
     key_1: "卧室主灯"
     key_2: "床下220V灯带专用10A二孔插座"
-    fan_separation: "西墙E-BOX-BED-FAN仅保留吊扇调速器；不与JZ-N2共盒或共输出"
+    retired_fan_point: "卧室吊扇拆除；E-BOX-BED-FAN只盖空白盖板，不接新电、不与JZ-N2共盒或共输出"
 
 terminal_policy:
   strategy: "分布式T接优先，不再把六个集中JB节点当作固定拓扑或采购数量"
@@ -211,24 +217,19 @@ terminal_policy:
     note: "数量已按13个高位6mm²节点、2个纯2.5mm²集中分线点、灯控回线收口及备用量统计；购买前仍须核对正品渠道、CCC/适用标准、实物导体类型与剥线长度"
 
 branch_nodes:
-  model: "distributed_along_trunk"
-  fixed_count: 15
+  model: "nine_physical_branch_positions"
+  fixed_count_max: 9
+  enclosure_policy: "9处是电气分支位置上限，不等于9个100方盒；优先按真实端子和弯线空间选择低轮廓配套分线腔、86深明盒或约100×100×50分线盒"
   examples:
-    - { id: TN-BED-01, circuit: RCBO-01, connector: "221-615类，L/N各1；门内开关盒N分线另用221-413类1只；主灯受控L收口用221-412类1只", branches: ["卧室JZ-N2及主灯", "床下灯专用受控插座", "吊扇调速器"] }
-    - { id: TN-BED-02, circuit: RCBO-01, connector: "221-615类，L/N各1", branches: ["卧室空调", "床南插座"] }
-    - { id: TN-BED-03, circuit: RCBO-01, connector: "221-613类，L/N各1", branches: ["床北插座"], trunk_end: true }
-    - { id: TN-KIT-01, circuit: RCBO-02, connector: "221-615类，L/N各1", branches: ["燃气热水器", "洗碗机"] }
-    - { id: TN-KIT-02, circuit: RCBO-02, connector: "221-615类，L/N各1", branches: ["油烟机", "台面插座"] }
-    - { id: TN-KIT-03, circuit: RCBO-02, connector: "221-615类，L/N各1", branches: ["厨房基础灯/开关"], trunk_end: true }
-    - { id: TN-HALL-01, circuit: RCBO-03, connector: "221-615类，L/N各1", branches: ["设备架常电", "走廊A灯带开关及专用插座"] }
-    - { id: TN-HALLB-01, circuit: RCBO-03, connector: "L用221-613类、N用221-615类、受控L收口用221-612类", branches: ["走廊B基础灯/开关"] }
-    - { id: TN-LIV-WASH, circuit: RCBO-03, connector: "221-615类，L/N各1", branches: ["洗烘相邻独立明盒", "两个小厨电五孔明装点"] }
-    - { id: TN-LIV-LIGHT, circuit: RCBO-03, connector: "L用221-613类、N用221-615类、两路受控回线各用221-412类", branches: ["客厅JZ-N2双开", "主吸顶灯", "餐区双头射灯"] }
-    - { id: TN-LIV-PROJ, circuit: RCBO-03, connector: "221-613类，L/N各1", branches: ["投影仪高位插座"] }
-    - { id: TN-LIV-SOFA, circuit: RCBO-03, connector: "221-615类，L/N各1", branches: ["扫地机低位常电", "沙发上部常电", "沙发背景光独立常电"] }
-    - { id: TN-LIV-DESK, circuit: RCBO-03, connector: "221-613类，L/N各1", branches: ["书桌下常电", "桌面上20~30cm常电"], trunk_end: true }
-    - { id: JB-LIV-HIGH, circuit: MCB-04, connector: "221-413类，L/N各1", branches: ["SRCD-AC-LIV→客厅空调", "SRCD-FRIDGE→冰箱"], note: "全段2.5mm²；两端各自漏保，不与RCBO-03电气连接" }
-    - { id: JB-BATH, circuit: MCB-05, upstream_node: RCD-BATH-01, connector: "221-415类，L/N各1", branches: ["浴霸", "浴室柜/镜灯", "卫生间基础照明"] }
+    - { id: B1, circuit: RCBO-01, branches: ["卧室JZ-N2/主灯", "床南常电", "主干继续至B2"] }
+    - { id: B2, circuit: RCBO-01, branches: ["卧室空调", "床北常电"], trunk_end: true }
+    - { id: K1, circuit: RCBO-02, branches: ["厨房主灯/入口开关", "主干继续至K2"] }
+    - { id: K2, circuit: RCBO-02, branches: ["洗碗机/电饭煲/预留组", "台面/油烟机/未来设备组"], trunk_end: true }
+    - { id: H1, circuit: RCBO-03, branches: ["玄关设备架", "玄关灯带/开关", "主干继续至L1"] }
+    - { id: L1, circuit: RCBO-03, branches: ["洗烘", "餐桌插座", "客厅JZ-N2/主灯/餐灯", "主干继续至W1"] }
+    - { id: W1, circuit: RCBO-03, branches: ["书桌上/下常电", "扫地机/沙发/背景光", "投影仪"], trunk_end: true }
+    - { id: A1, circuit: MCB-04, branches: ["客厅空调", "冰箱"], trunk_end: true }
+    - { id: BATH1, circuit: MCB-05, branches: ["浴霸", "浴室柜/镜灯", "卫生间独立主灯"], trunk_end: true }
 
 outlet_groups:
   total_planned: 19
@@ -314,20 +315,17 @@ bedroom_detail:
     connections: ["L常电进线", "N经221-413分至开关和床下灯专用插座", "L1经BV 1×2.5及221-412到主灯", "L2经BVVB相线到床下灯专用插座"]
     underbed_socket: { type: "10A二孔", supply: controlled_by_jz_n2_key_2, label: "仅床下灯", placement: "可拔插且不被床体压住" }
     placement_rules: ["灯带远离床品", "避开猫可啃咬位置", "避开积尘散热死角", "不剪厂家插头或裸接铜箔"]
-  fan_controller:
+  retired_fan_point:
     box: E-BOX-BED-FAN
     box_type: existing_recessed
-    exclusive_use: "吊扇调速器"
-    circuit: RCBO-01
-    feed: "卧室明装主干由TN-BED-01就地T接，沿西墙短距离进入调速器暗盒"
-    fan_output: "调速器至吊扇复用既有暗埋线"
-    test_before_reuse: ["通断", "绝缘"]
+    action: "盖空白盖板，不接新电"
+    old_concealed_wiring: "两端断开并分别绝缘封护，不复用"
   bed_south_socket: { box_type: new_surface_mounted, placement: "调速器相邻但独立明盒", circuit: RCBO-01, separate_from_fan_control: true }
   bed_north_socket: { box_type: new_surface_mounted, placement: "床北侧", circuit: RCBO-01, separate_from_fan_control: true }
-  expansion_rule: "单暗盒不足时采用86延长框或原暗盒+相邻深明盒；JZ-N2与吊扇调速器分盒、分输出，床侧常电不受智能开关控制"
+  expansion_rule: "单暗盒不足时采用86延长框或原暗盒+相邻深明盒；床侧常电不受智能开关控制；E-BOX-BED-FAN已退役，仅盖空白盖板"
 
 cable_plan:
-  wiring_system: "全屋新增线路均明装。6mm²单芯L/N成对走高位阻燃线槽；普通插座从高位T接盒用BVVB 2×2.5mm²单次下落，距地1.8m以下全程进入窄阻燃线槽。开关盒送达L/N，BV 1×2.5mm²受控相线与供电线同槽返回。灯带和电线槽错开且不共用固定件"
+  wiring_system: "全屋新增线路均明装。主干默认沿侧墙高位线槽，不走天花板平面；6mm²单芯L/N成对敷设。普通插座从高位分支位置用BVVB 2×2.5mm²下落；线槽90度转弯/续接不设盒，只有电气接续/分叉才设可开启接线空间"
   trunk_policy: "副保护盒C20之后，RCBO-01/02/03使用6mm²高位主干；蓝色库存线只作N，并与同类型、同长度、合规相色6mm² L成对敷设。MCB-04/05在C20后直接2.5mm²。6mm²在可开启高位盒内使用221-61x类连接器剪断续接和分2.5mm²"
   six_mm_takeoff:
     basis: "依据house.yaml名义尺寸、绕门明装路径、盒内余线和约10%施工余量；现场弹线后允许在各段间调剂，不得少于实测"
@@ -355,7 +353,7 @@ cable_plan:
     planned_cut_total_m: 24.0
     purchase_m: 30
   segment_takeoff:
-    status: planned_pending_wall_setout
+    status: superseded_by_2026_09_30_final_route_remeasure_required
     length_basis: "6mm²长度为每根单芯导体净长，L/N各一根；BVVB长度为一根两芯成品线缆净长；BV回线长度为一根单芯受控相线净长。所有长度均须现场弹线复核"
     six_mm:
       - { id: E6-01, cable: "BV/BVR 1×6mm²", count: "L/N各1", net_m_each: 0.6, from: "主箱RCBO-01", to: "副箱C20-01", connector: "保护器端子，电工端接" }
@@ -370,7 +368,7 @@ cable_plan:
       - { id: EB-01A, circuit: RCBO-01, net_m: 2.0, from: "TN-BED-01", to: "卧室JZ-N2", connector: "高位221-615→开关L/N端子" }
       - { id: EB-01B, circuit: RCBO-01, net_m: 1.0, from: "TN-BED-01", to: "卧室主灯N", connector: "N用221-615；另一芯封护备用" }
       - { id: EB-02, circuit: RCBO-01, net_m: 3.0, from: "卧室JZ-N2", to: "床下灯专用插座", connector: "L2直出；N经221-413" }
-      - { id: EB-03, circuit: RCBO-01, net_m: 1.0, from: "TN-BED-01", to: "吊扇调速器", connector: "221-615→调速器；既有暗线另测" }
+      - { id: EB-03, circuit: RCBO-01, status: cancelled, net_m: 0.0, from: "B1", to: "原吊扇调速器暗盒", connector: "吊扇拆除，不供电；旧暗线两端绝缘封护" }
       - { id: EB-04, circuit: RCBO-01, net_m: 1.5, from: "TN-BED-02", to: "床南常电", connector: "221-615→插座端子" }
       - { id: EB-05, circuit: RCBO-01, net_m: 2.0, from: "TN-BED-02", to: "卧室空调", connector: "221-615→专用插座" }
       - { id: EB-06, circuit: RCBO-01, net_m: 2.5, from: "TN-BED-03", to: "床北常电", connector: "221-613→插座端子" }
@@ -410,15 +408,16 @@ cable_plan:
       - { id: EC-06, net_m: 3.0, from: "厨房开关", to: "基础灯L", connector: "221-412/设备端子" }
       - { id: EC-07, net_m: 2.5, from: "卫生间开关", to: "基础灯L", connector: "221-412/设备端子" }
   cancelled_materials: ["BVVB 2×1.5mm²", "BV 1×1.5mm²控制线"]
-  lighting_terminal_gate: "JZ-N2实物L/N/L1/L2端子、其他开关、吊扇调速器和灯具端子必须明确接受2.5mm²；到货后同时核对JZ-N2盒深和LED负载范围。不接受即停工，使用可检修盒内的合规短尾转换或改盒，不削细导体或硬塞端子"
+  lighting_terminal_gate: "JZ-N2实物L/N/L1/L2端子、其他开关和灯具端子必须明确接受2.5mm²；到货后同时核对JZ-N2盒深和LED负载范围。不接受即停工，使用可检修盒内的合规短尾转换或改盒，不削细导体或硬塞端子"
   raceway_takeoff:
     high_trunk: { candidate_size_mm: "40×20", purchase_m: 30, use: "6mm² L/N高位主干及客厅JZ-N2双回线段" }
     branch_and_drop: { candidate_size_mm: "25×16", purchase_m: 60, use: "BVVB 2×2.5支线、2.5受控回线和低位机械保护" }
     gate: "以上为采购下限候选；先用实际电缆和端子试装1m，槽内占用目标≤40%，共享路径按同槽线缆数量放大或拆槽"
   junction_box_takeoff:
-    large: { size_mm: "120×120×50及以上", quantity: 12, use: "221-615类多分支6mm²高位节点" }
-    standard: { size_mm: "100×100×50及以上", quantity: 6, use: "简单端点、2.5mm²分支和回线收口" }
-    rule: "均为阻燃、带盖、可固定端子且施工后可开启；禁止把接头藏入线槽、墙洞或设备背后"
+    branch_positions_max: 9
+    compact_option: { use: "PCT-42/纯2.5mm²节点实测空间足够时，优先低轮廓线槽配套接线/分线构件或短段加宽可独立开盖分线腔", gate: "端子+真实导线自然放入，盖板无需强压，端子可固定且可重新检修" }
+    fallback_option: { use: "空间不足时，纯2.5mm²用86深明盒/小分线盒；6mm²多支路用约100×100×50或更大", gate: "满足导线弯曲和端子操作空间" }
+    rule: "90度转弯和线槽续接不设盒；普通线槽本体不是默认接线腔，所有导体接续/分叉必须位于独立可开启、可固定端子的接线空间"
   trunking_rule: "按BVVB成品实际外径选线槽，成品线缆占槽内截面约40%以内，并为未来PE留空间"
   design_minimums: { lighting_mm2: 2.5, sockets_mm2: 2.5 }
   socket_cable_limit: "BVVB 2×2.5mm²只包含L/N；允许用于已明确接受剩余风险的两线制方案，但三孔面板PE端子必须保持未连接并标识“本户无PE”，不得称为带PE完整回路"
@@ -428,7 +427,7 @@ load_management:
   c20_nominal_power_kw: 4.4
   note: "4.4kW只是P=UI算术值，不是建议持续满载值；实际允许负载还受导线敷设、环境温度、端子、启动电流和保护器曲线影响"
   circuits:
-    RCBO_01: { planned_typical_kw: "1.5~2.5", loads: ["卧室空调", "床侧小负载", "卧室主灯", "床下灯", "吊扇"], rule: "空调铭牌和JZ-N2实物规格通过后启用" }
+    RCBO_01: { planned_typical_kw: "1.5~2.5", loads: ["卧室空调", "床侧小负载", "卧室主灯", "床下灯"], rule: "空调铭牌和JZ-N2实物规格通过后启用；吊扇已拆除不计负载" }
     RCBO_02: { planned_typical_kw: "2.0~3.5", theoretical_peak_kw: "约4.2", loads: ["洗碗机", "台面电器", "油烟机", "燃气热水器控制", "厨房灯"], rule: "洗碗机加热与约2kW台面电器尽量错峰" }
     RCBO_03: { planned_typical_kw: "2.5~3.8", theoretical_peak_kw: ">5.5", loads: ["洗烘", "两个小厨电五孔点", "书桌", "投影", "普通/场景照明", "电暖器候选"], rule: "洗烘烘干、约2kW小厨电、约2kW电暖器三者一次只运行一类；两个小厨电插座一次只运行一台大功率设备" }
     MCB_04: { planned_typical_kw: "1.0~2.0", loads: ["客厅空调", "冰箱"], rule: "按空调最大输入/启动电流和冰箱压缩机启动复核，冰箱保持常电" }
@@ -448,7 +447,7 @@ commissioning_gate:
   functional_acceptance:
     - "客厅第1键只控制主灯，第2键只控制餐灯"
     - "卧室第1键只控制主灯，第2键只控制床下灯专用插座"
-    - "关闭任一灯光不得切断扫地机、床侧常电、沙发背景灯常电插座或吊扇调速器"
+    - "关闭任一灯光不得切断扫地机、床侧常电或沙发背景灯常电插座；卧室吊扇/调速器已退役不接新电"
   diy_limit: "万用表和测电笔只能做辅助通断/验电，不能替代上述竣工安全与功能检验"
   energization_rule: "无PE由业主作为剩余风险接受，但未形成合格电工签字/照片/绝缘、极性、保护器匹配和漏保动作实测记录前，新建固定线路保持断开"
 
