@@ -138,7 +138,7 @@ field_progress:
     status: confirmed
     source: "本任务业主首轮答复及后续逐题QA"
     application_reported:
-      material: "三棵树S2防水（桶身/批次/使用说明待实物核对）"
+      material: "业主确认：四处均为此前下单的三棵树柔韧型S2灰色18kg防水涂料；批次及桶身使用说明仍待核对"
       areas: ["厨房西墙", "卫生间地面", "客厅东南角及其他部分区域（范围待标注）", "厨房现有瓷砖水槽内（未来将由不锈钢水槽覆盖）"]
       coats: "约1遍（业主估计）"
       application_date: todo
