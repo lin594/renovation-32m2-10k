@@ -8,3 +8,19 @@ INC-0001,,income,recycling,bedroom,旧书回收,废品回收方,55,received,comp
 EXP-0006,,expense,material,bathroom,立邦堵漏王,建材商,20,paid,consumed,用于固定蹲便器改坐便器相关水管
 EXP-0007,,expense,material,bathroom,30cm×30cm卫生间地砖12块,建材商,18,paid,inventory,名义总面积1.08平方米；尚未铺贴
 EXP-0008,2026-09-26,expense,paint,whole_house,3桶底漆+4桶S2 1875面漆+工具套装,小建刷新,1713,paid,ordered,底漆149×3=447；S2面漆299×4=1196；工具套装70；墙顶统一1875；9/26沈阳发货
+EXP-0009,2026-09-26,expense,electrical,whole_house,德力西H31万用表,京东,33.01,paid,ordered,订单截图确认已购；用于市电电压/通断/NCV等装修验测
+EXP-0010,2026-09-28,expense,electrical,whole_house,绝缘胶带70×16mm红色10卷,京东,8.80,paid,ordered,订单截图确认已购
+EXP-0011,2026-09-28,expense,cleaning,whole_house,玻璃清洁剂5斤+全套工具,京东,10.63,paid,ordered,订单截图确认已购
+EXP-0012,2026-09-28,expense,cleaning,whole_house,塑钢门窗清洗剂500ml×5,京东,18.04,paid,ordered,订单截图确认已购
+EXP-0013,2026-09-28,expense,tool,whole_house,五步碳钢梯,京东,60.08,paid,ordered,订单截图确认已购
+EXP-0014,2026-09-28,expense,tool,whole_house,钢丝刷等装修工具耗材订单,京东,39.99,paid,ordered,截图只能可靠确认订单总额；不拆分猜测单品价格
+EXP-0015,2026-09-28,expense,protection,whole_house,一次性防护服1件,京东,3.90,paid,ordered,订单截图确认已购
+EXP-0016,2026-09-28,expense,material,whole_house,网格带5cm×30m×1卷,京东,6.80,paid,ordered,订单截图确认已购
+EXP-0017,2026-09-28,expense,material,whole_house,三棵树装修辅材订单A,京东,114.55,paid,ordered,订单截图确认；含墙固/界面剂等装修辅材；单品价格不可靠拆分
+EXP-0018,2026-09-28,expense,material,whole_house,三棵树装修辅材订单B,京东,246.40,paid,ordered,订单截图确认；相关订单含S2防水/堵漏王/防霉美容胶/美缝类/玻璃胶等；不重复拆账
+EXP-0019,2026-09-28,expense,electrical,whole_house,4插位+2USB 2.8m排插,京东,14.79,paid,ordered,订单截图确认已购
+EXP-0020,2026-09-28,expense,tool,whole_house,承重170爬楼小推车等订单,京东,60.80,paid,ordered,订单截图确认；多件订单按总额记账
+EXP-0021,2026-09-28,expense,tool,whole_house,5m钢卷尺,京东,5.56,paid,ordered,订单截图确认已购
+EXP-0022,2026-09-29,expense,electrical,whole_house,四分PVC线槽2m×10根,线下商家,20.00,paid,inventory,现场购买；共20m；商家口径“四分”
+EXP-0023,2026-09-29,expense,electrical,whole_house,护套线线卡钉100粒×1袋,线下商家,5.00,paid,inventory,可用于固定护套线；商家称也可用于固定线槽
+INC-0002,2026-09-29,income,recycling,whole_house,拆除旧铁门回收,废品回收方,65.00,received,completed,本批拆除旧铁门售出；对应INV-0002

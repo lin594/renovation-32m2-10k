@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-28"
+updated: "2026-09-29"
 
 items:
   - id: INV-0001
@@ -24,10 +24,12 @@ items:
     item: "拆除的旧铁门"
     quantity: 4
     unit: 扇
-    location: "现场，具体存放位置待补"
-    condition: removed_pending_sale
-    planned_use: "废品回收"
-    expected_income_cny: null
+    location: "已由废品回收方运走"
+    condition: sold
+    planned_use: "已完成废品回收"
+    sale_date: "2026-09-29"
+    sale_total_cny: 65
+    sale_income_ref: INC-0002
     task_ref: TASK-0004
 
   - id: INV-0003
@@ -145,3 +147,27 @@ items:
     requirements: ["实测机身与开门尺寸", "水槽进水处独立开关供水", "排水软管按说明直接排入水槽并可靠固定", "RCBO-02常电三孔插座并标注本户无PE", "设备级漏保候选", "复核受潮木柜或替代柜的承重、抗振和防潮"]
     task_ref: TASK-0033
     risk_ref: SAF-0022
+
+  - id: INV-0014
+    category: electrical_material
+    item: "四分PVC线槽"
+    quantity: 10
+    unit: 根
+    length_each_m: 2
+    total_length_m: 20
+    location: "开封装修现场"
+    condition: new
+    acquisition_cost_ref: EXP-0022
+    planned_use: "明装电路主干/必要收口；先用实际线缆试装后确定具体使用段"
+    note: "“四分”为线下商家口径，具体毫米截面待按实物确认；不把旧版40×20/25×16大量线槽计划继续当成已冻结采购"
+
+  - id: INV-0015
+    category: electrical_material
+    item: "护套线线卡钉"
+    quantity: 100
+    unit: 粒
+    package_quantity: 1
+    location: "开封装修现场"
+    condition: new
+    acquisition_cost_ref: EXP-0023
+    planned_use: "BVVB护套线明敷固定；必要时可用于线槽固定"
