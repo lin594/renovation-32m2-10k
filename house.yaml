@@ -1,6 +1,6 @@
 # ============================================================================
 # 老房装修改造 · 户型与方案上下文数据包（机器可读）
-# version: 8    date: 2026-09-28
+# version: 9    date: 2026-09-30
 # 用途：将本文件整体转发给 AI / 设计师，即可在其基础上继续装修方案咨询
 # 坐标系：原点=客厅西北角；+x=南(图向下)；+y=东(图向右)；单位=米
 # ============================================================================
@@ -123,7 +123,8 @@ electrical:
       panel_energized: true
       general_outlet: "临时五孔插座回路1路"
       air_conditioner: "由配电箱另一条临时回路供电，与五孔插座不同回路"
-      available_test_tools: ["测电笔", "德力西H31万用表"]
+      available_test_tools: ["测电笔"]
+      ordered_test_tools: ["德力西H31万用表；已购，到货待确认"]
       planned_owner_test_tools: []
       deferred_test_tools: ["绝缘电阻测试仪", "漏保专用测试仪"]
       acceptance_limit: "只能完成DIY能力范围检查，不得称为绝缘、接地或漏保专业验收"
@@ -143,20 +144,20 @@ electrical:
     cable: { spec: "6平方毫米铜线", color: "蓝色", purchased_m: 100, used_m_approx: 40, remaining_m_approx: 60, inventory_ref: INV-0001 }
   plan:
     wiring_method: "全屋明装线槽/明管"
-    installation_sequence: "乳胶漆达到厂家允许安装和触碰的干燥状态后再施工"
+    installation_sequence: "基层/墙固/S2完成后先放样并固定空线槽底座，再挂网/腻子/乳胶漆；墙面干燥后穿线、装端子和扣盖"
     schedule_ref: "data/schedule.yaml"
-    main_feed_proposal: "余下蓝色6平方线只作中性导体N：计划用于主箱至副箱五路短馈线及RCBO-01/02/03三条主干，计划下料24m；另购同类型合规相色6平方L 30m。MCB-04/05副箱C20后直接2.5平方"
-    proposal_status: "施工准备定稿；待墙面弹线、库存导体类型和设备铭牌复核后下料，未经合格电工检测不得通电"
+    main_feed_proposal: "余下蓝色6平方线只作中性导体N：按2026-09-30最终墙面路线复算，主箱至副箱五路短馈线及RCBO-01/02/03三条主干每极净约21.2m、按25m下料；另购同类型合规相色6平方L 30m。MCB-04/05副箱C20后直接2.5平方"
+    proposal_status: "planned；客厅走墙、走廊B照明和机械开关导体配置待确认；现为讨论图，不得据旧估算下料"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
-      lighting: "新建照明/开关统一2.5mm²；BVVB 2×2.5送L/N，BV 1×2.5明确相色作受控回线；所有开关盒带N并使用≥50mm深明盒"
-      general_sockets: "BVVB 2×2.5mm²；含卧室床下灯新增约3m后预计净用69m、计划下料77m，采购2卷×50m"
-      trunk: "副保护盒C20之后仅RCBO-01/02/03使用6mm² L/N高位主干；计划每根导体总下料24m。MCB-04/05直接2.5mm²"
-      dedicated_loads: "客厅空调/冰箱在MCB-04 C20下分别做末端漏保；卫生间MCB-05 C20后先经门外总RCD"
-    terminal_gate: "6mm²一分支用221-613类、两分支用221-615类、末端转换用221-612类；L/N各自独立并固定在可开启盒内，具体SKU和导体类型核验后购买"
-    protection_gate: "现有主箱3×C40 RCBO + 2×C32 MCB全部保留；邻近副保护盒五路C20作为2.5mm²新线路的过流保护基线。若提高下游保护额定值，须同步重新核定全部最小导体截面"
+      lighting: "新建照明/开关统一2.5mm²；不再购买BV 1×2.5单芯回线。机械开关BVVB承载L/Lsw仅为待核验候选；芯线标识与是否保留N尚未确认，JZ-N2灯控也用BVVB组织；所有智能开关盒带N并使用足够深度盒体"
+      general_sockets: "BVVB 2×2.5mm²；最新净用约63.5m，考虑灯控BVVB化、盒内余线和现场绕行按80~85m下料，采购2卷×50m"
+      trunk: "副保护盒C20之后仅RCBO-01/02/03使用6mm² L/N高位主干；每极净约21.2m、按25m下料。MCB-04/05直接2.5mm²"
+      dedicated_loads: "客厅空调/冰箱在MCB-04 C20下分别做末端漏保；卫生间第五路全部负载必须位于BATH-RCD-05下游，主箱原位2P≤30mA优先、门外DIN RCD为回退"
+    terminal_gate: "PCT仅为候选，批量采购前必须取得对应制造商/SKU的额定值、导体适配和内部隔离证据；概念按双极分配理解：PCT-42=1对L/N输入→2对L/N输出，PCT-62=1对L/N输入→3对L/N输出；一只器件已同时处理L/N，不再按L一只、N一只计数。端子必须连真实导线试装，放不下再回退86深盒/100方盒"
+    protection_gate: "主箱箱体、总开关、过欠压、前三路RCBO和第四路MCB保留；第五路优先核验原位2P≤30mA方案，失败则保留现MCB并使用门外RCD回退。邻近副保护盒五路C20作为2.5mm²新线路过流保护基线"
     smart_control_rule: "客厅和卧室各装一只京东京造JZ-N2零火双开；客厅只控主灯/餐灯，卧室只控主灯/标注仅床下灯的专用照明插座；普通插座保持常电"
-    bathroom_dedicated_feeder: "MCB-05目标C20，从副保护盒连续到走廊A卫生间门外RCD-BATH-01，再沿门框明装进入卫生间；浴霸、浴室柜/镜灯和照明全部在该2P≤30mA总RCD下游"
+    bathroom_dedicated_feeder: "第五路保持独立；副保护盒C20之后，卫生间全部负载必须位于2P、≤30mA剩余电流保护下游。优先核验主箱第五位原位更换方案；若模数/端子/产品不合适，则回退为卫生间门外DIN明装RCD小箱。两种保护形式不改变已冻结的墙面走槽路线"
     energization_gate: "无PE事实不再等待改造；但绝缘、极性、回路保护、插座接线及各级漏保动作未经合格电工实测记录前，新建固定线路不得通电"
   recessed_boxes:
     fact: "现场确认只有暗盒盒位，没有可利用暗管或暗线；全部新增线路按墙面/门框明装"
@@ -164,20 +165,20 @@ electrical:
       - { location: "冰箱位置南侧", status: existing, plan: "作为冰箱末端插座候选；保持可触及" }
       - { id: E-BOX-LIV-JZ, location: "洗衣机东侧/客厅通道左侧", status: existing, plan: "安装客厅京东京造JZ-N2零火双开；原洗烘插座迁到相邻独立明盒" }
       - { id: E-BOX-BED-JZ, location: "卧室门北侧/门内右侧", status: existing, plan: "安装卧室京东京造JZ-N2零火双开；不视为穿线入口" }
-      - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing, exclusive_use: "卧室吊扇调速器", note: "不与床南插座共盒或共用端子" }
+      - { id: E-BOX-BED-FAN, location: "卧室西墙、床南侧附近", status: existing_retired, plan: "吊扇拆除后盖空白盖板；不接新电、不作分线盒", note: "原吊扇暗线两端断开并分别绝缘封护" }
     fallback: "暗盒不适用的位置再增加明盒"
   surface_route_transitions:
     - { id: E-ROUTE-01, location: "卧室门框上方", rule: "明装绕门，不利用暗盒穿线" }
     - { id: E-ROUTE-02, location: "厨房门框/走廊B", rule: "明装绕门，不利用暗盒穿线" }
-    - { id: E-ROUTE-03, location: "卫生间门框", rule: "门外RCD后明装绕门进入" }
+    - { id: E-ROUTE-03, location: "卫生间门框", rule: "第五路在剩余电流保护下游后，沿侧墙/门头明装进入；保护器在主箱原位或门外回退均不改变本段路线" }
     - { id: E-ROUTE-04, location: "客厅通道门框", rule: "RCBO-03与MCB-04保持电气独立后明装绕行" }
     - { room: balcony, status: no_electrical_penetration, note: "阳台没有穿线洞；本期不钻孔，也不允许电线夹过阳台移门" }
   fixed_equipment:
     - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, device_protection: SRCD-AC-LIV }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, protection: "目标C20/30mA RCBO-01上游统一保护，不再默认叠加设备级漏保" }
-    - { item: "卧室吊扇", location: "卧室中心上方", status: existing, wiring: "西墙E-BOX-BED-FAN至吊扇已有暗埋线；卧室高位主干至调速器为待建明线", acceptance: "复用前做通断与绝缘检查" }
+    - { item: "卧室吊扇", location: "卧室中心上方", status: remove_no_reuse, wiring: "拆除；不再为其提供新电源。原暗埋线两端断开并分别绝缘封护", acceptance: "不得重新接入卧室新回路" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
-    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: RCD-BATH-01, risk_ref: SAF-0003 }
+    - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: "BATH-RCD-05（2P、≤30mA；位置待主箱原位/门外回退二选一）", risk_ref: SAF-0003 }
   planned_outlets:
     total_groups: 19
     bedroom: ["空调", "床北明装插座", "床南明装插座"]
@@ -194,8 +195,8 @@ electrical:
     color_rendering: "优先Ra/CRI≥90"
     zones_ref: "data/electrical.yaml#lighting_zones"
     hall_a: "计划约2m、220V厂家成套插头灯带；插入由零火墙壁开关控制并标注‘仅灯带’的高位专用插座，不剪插头硬接"
-    living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机只共用TN-LIV-SOFA高位分线节点，分别以独立BVVB支线接常电插座"
-    bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；西墙吊扇调速器保持独立"
+    living_room: "第1键主灯、第2键餐灯；沙发背景灯与扫地机在W1高位节点附近分支，分别以独立BVVB支线接常电插座"
+    bedroom: "第1键主灯、第2键床下灯10A二孔专用受控插座；使用厂家完整220V二脚插头灯带，不剪插头、不裸接铜箔；卧室吊扇与旧调速器退出新电路"
 
 low_voltage:
   internet_entry:
@@ -311,7 +312,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       procurement_ref: BUY-0004
       note: "按预计长度估算，至设计基准南墙约余0.47m；最终以成品尺寸和完成面复测"
     - { item: "淋浴设备（已有）", rect: [2.5, 3.15, 3, 3.55], status: existing, inventory_ref: INV-0011, note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
-    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在RCD-BATH-01下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
+    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在BATH-RCD-05下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
     - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "全部尚未购买；东墙整面；北段仍被床挡（见issues）" }
@@ -366,6 +367,7 @@ confirmed_facts:   # 已确认，无需再问
   - "给排水点位全部确定且已施工（不可改）"
   - "配电箱在y=5墙门垛上方（留检修）"
   - "全屋原有室内电路已拆除；后续计划采用明装线路"
+  - "卧室吊扇确定拆除，不再供电；原调速器暗盒盖板封闭，原暗线两端绝缘封护"
   - "老小区户内仅有L/N两线、无可用PE；作为四楼无法独立增设接地"
   - "厨房原台面为约0.5×2.0m；架空层拟用0.4×0.6m瓷砖三块"
   - "阳台有两条升降晾衣架：靠客厅一条可用，另一条无法升降"

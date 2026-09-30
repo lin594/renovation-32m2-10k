@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1110" viewBox="0 0 1600 1110" data-diagram-role="electrical-node-schedule" data-drawing-property="discussion" role="img">
+<title>31 九主节点接线与材料复算图</title>
+<desc>九个主节点、PCT-42/62双极语义、末端局部分配原则与材料复算</desc>
+<style>
+ text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+ .title{font-size:28px;font-weight:800;fill:#111827}.sub{font-size:14px;fill:#475569}
+ .h{font-size:16px;font-weight:700;fill:#111827}.t{font-size:13px;fill:#1f2937}.s{font-size:12px;fill:#475569}
+ .head{fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.4}.main{fill:#eff6ff;stroke:#60a5fa;stroke-width:1.4}
+ .warn{fill:#fff7ed;stroke:#f59e0b;stroke-width:1.4}.ok{fill:#f0fdf4;stroke:#16a34a;stroke-width:1.4}
+</style>
+<rect width="1600" height="1110" fill="#fbfaf7"/>
+<text x="55" y="52" class="title">31 九主节点接线与材料复算图｜讨论图，规格待核验</text>
+<text x="55" y="80" class="sub">目标拓扑（须具体SKU证实）：PCT-42：1对L/N输入→2对L/N输出；PCT-62：1对L/N输入→3对L/N输出。走廊B供电仍blocked。</text>
+<rect x="55" y="110" width="1490" height="44" class="head"/>
+<text x="70" y="138" class="h">节点</text><text x="150" y="138" class="h">端子</text><text x="350" y="138" class="h">输入</text><text x="590" y="138" class="h">输出</text><text x="1280" y="138" class="h">说明</text>
+<rect x="55" y="154" width="1490" height="62" class="main"/><text x="70" y="192" class="h">B1</text><text x="150" y="192" class="t">PCT-62×1</text><text x="350" y="192" class="t">C1 6mm² L/N</text><text x="590" y="192" class="t">B2主干 / 卧室JZ-N2 / 床南常电</text><text x="1280" y="192" class="t">6mm继续</text>
+<rect x="55" y="216" width="1490" height="62" class="main"/><text x="70" y="254" class="h">B2</text><text x="150" y="254" class="t">PCT-42×1</text><text x="350" y="254" class="t">B1 6mm² L/N</text><text x="590" y="254" class="t">卧室空调 / 床北常电</text><text x="1280" y="254" class="t">主干结束</text>
+<rect x="55" y="278" width="1490" height="70" class="main"/><text x="70" y="320" class="h">K1</text><text x="150" y="320" class="t">PCT-42×1</text><text x="350" y="320" class="t">C2 6mm² L/N</text><text x="590" y="307" class="t">K2主干 / 厨房照明支路</text><text x="590" y="332" class="s">L/Lsw、蓝芯重标及N预留待专业确认，不得照此端接</text><text x="1280" y="320" class="t">6mm继续</text>
+<rect x="55" y="348" width="1490" height="62" class="main"/><text x="70" y="386" class="h">K2</text><text x="150" y="386" class="t">PCT-42×1</text><text x="350" y="386" class="t">K1 6mm² L/N</text><text x="590" y="386" class="t">厨房西南设备组 / 台面·油烟机·预留设备组</text><text x="1280" y="386" class="t">两条2.5支线</text>
+<rect x="55" y="410" width="1490" height="62" class="main"/><text x="70" y="448" class="h">H1</text><text x="150" y="448" class="t">PCT-62×1</text><text x="350" y="448" class="t">C3 6mm² L/N</text><text x="590" y="448" class="t">L1主干 / 玄关设备架 / 玄关灯带·开关</text><text x="1280" y="448" class="t">6mm继续</text>
+<rect x="55" y="472" width="1490" height="62" class="main"/><text x="70" y="510" class="h">L1</text><text x="150" y="510" class="t">PCT-62×1</text><text x="350" y="510" class="t">H1 6mm² L/N</text><text x="590" y="510" class="t">W1主干 / 洗烘·小厨电区域 / 客厅JZ-N2</text><text x="1280" y="510" class="t">6mm继续</text>
+<rect x="55" y="534" width="1490" height="70" class="main"/><text x="70" y="576" class="h">W1</text><text x="150" y="576" class="t">PCT-62×1</text><text x="350" y="576" class="t">L1 6mm² L/N</text><text x="590" y="563" class="t">2.5→投影 / 2.5→沙发娱乐区 / 2.5→书桌</text><text x="590" y="588" class="s">沙发区本地分扫地机低位+置物台上部；书桌本地分上下插座</text><text x="1280" y="576" class="t">主干结束</text>
+<rect x="55" y="604" width="1490" height="62" class="main"/><text x="70" y="642" class="h">A1</text><text x="150" y="642" class="t">PCT-42×1</text><text x="350" y="642" class="t">C4 BVVB 2×2.5</text><text x="590" y="642" class="t">客厅空调 / 冰箱</text><text x="1280" y="642" class="t">独立第④路</text>
+<rect x="55" y="666" width="1490" height="70" class="main"/><text x="70" y="708" class="h">BATH1</text><text x="150" y="708" class="t">PCT-62×1</text><text x="350" y="708" class="t">C5 BVVB 2×2.5</text><text x="590" y="695" class="t">浴霸 / 镜柜 / 独立主灯·机械开关</text><text x="590" y="720" class="s">必须位于卫生间≤30mA剩余电流保护下游</text><text x="1280" y="708" class="t">独立第⑤路</text>
+<rect x="55" y="770" width="720" height="260" rx="10" class="warn"/>
+<text x="75" y="805" class="h">末端局部分配：供电尚未全部闭合</text>
+<text x="75" y="840" class="t">厨房：K2两条2.5支线到两个设备簇后，本地分相邻插座。</text>
+<text x="75" y="875" class="t">洗烘：L1一条2.5到洗烘/小厨电区，再局部分洗烘与1～2个小厨电点。</text>
+<text x="75" y="910" class="t">沙发：W1一条2.5到娱乐区，再局部分扫地机低位与置物台上部常电。</text>
+<text x="75" y="945" class="t">书桌：W1一条2.5到书桌区域，再局部分桌下/桌上常电。</text>
+<text x="75" y="980" class="t">走廊B灯保留，但上游分线/灯控未分配；不得宣称采购完结。</text>
+<rect x="800" y="770" width="745" height="260" rx="10" class="ok"/>
+<text x="820" y="805" class="h">候选端子与待复算预算（未放行采购）</text>
+<text x="820" y="840" class="t">PCT-42：固定主节点理论4只（B2/K1/K2/A1）→ 暂按10只装估价。</text>
+<text x="820" y="875" class="t">PCT-62：固定主节点理论5只（B1/H1/L1/W1/BATH1）→ 暂按10只装估价。</text>
+<text x="820" y="910" class="t">四分线槽：目标40m；已购20m，预计再补20m。</text>
+<text x="820" y="945" class="t">6mm²：每极净约21.2m，按25m准备；相线买30m。</text>
+<text x="820" y="980" class="t">BVVB 2×2.5：净约59～65m，按80～85m施工预算；原采购预算100m，待复核。</text>
+<text x="55" y="1070" class="s">讨论图：先闭合走廊B、灯控导体、PCT规格并复测客厅转弯位置/长度；不得据此施工或下料，通电另须专业验收。</text>
+</svg>

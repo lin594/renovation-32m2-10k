@@ -106,8 +106,8 @@ content = <<~MARKDOWN
   ## 执行状态
 
   - 阶段：进行中 #{phase_counts.fetch('in_progress', 0)}，待开始 #{phase_counts.fetch('todo', 0)}，完成 #{phase_counts.fetch('done', 0)}。
-  - 任务：进行中 #{task_counts.fetch('in_progress', 0)}，待办 #{task_counts.fetch('todo', 0)}，安全复核阻断 #{task_counts.fetch('blocked_by_safety_review', 0)}。
-  - 采购：未购买 #{buy_counts.fetch('not_purchased', 0)}，待定制 #{buy_counts.fetch('pending_custom_order', 0)}，已到货 #{buy_counts.fetch('delivered', 0)}。
+  - 任务：进行中 #{task_counts.fetch('in_progress', 0)}，待办 #{task_counts.fetch('todo', 0)}，安全复核阻断 #{task_counts.fetch('blocked_by_safety_review', 0)}，完成 #{task_counts.fetch('done', 0)}，取消 #{task_counts.fetch('cancelled', 0)}。
+  - 采购：未购买 #{buy_counts.fetch('not_purchased', 0)}，部分已购 #{buy_counts.fetch('partially_purchased', 0)}，待定制 #{buy_counts.fetch('pending_custom_order', 0)}，已报价 #{buy_counts.fetch('quoted', 0)}，已下单 #{buy_counts.fetch('ordered', 0)}，已到货 #{buy_counts.fetch('delivered', 0)}，已验收 #{buy_counts.fetch('accepted', 0)}，已取消 #{buy_counts.fetch('cancelled', 0)}。
   - 开放风险：#{open_risks} 项，其中 critical #{critical_open} 项。开放风险不是已发生事故，而是尚未关闭的决策或验收门禁。
 
   ## 关键日期
