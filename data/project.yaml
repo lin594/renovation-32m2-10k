@@ -140,11 +140,11 @@ field_progress:
     application_reported:
       material: "三棵树S2防水（桶身/批次/使用说明待实物核对）"
       areas: ["厨房西墙", "卫生间地面", "客厅东南角及其他部分区域（范围待标注）", "厨房现有瓷砖水槽内（未来将由不锈钢水槽覆盖）"]
-      coats: todo
+      coats: "约1遍（业主估计）"
       application_date: todo
       acceptance_status: blocked_pending_product_and_site_verification
-      note: "已涂刷不代表规定遍数、厚度、固化、附着或防水验收完成"
-    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补", "S2施工遍数/日期及卫生间闭水验收待补证据"]
+      note: "遍数为业主估计；已涂刷不代表达到产品规定厚度、固化、附着或防水验收完成"
+    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补", "S2施工日期和卫生间闭水验收待补证据"]
     observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划", "S2已涂刷区域已确认，尚未等同验收完成"]
 finalization:
   status: blocked
