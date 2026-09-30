@@ -63,7 +63,7 @@ active_tasks:
     status: todo
   - id: TASK-0002
     phase: utilities
-    item: "按最终五回路明装方案完成墙面弹线、逐段下料、主副箱及9个主节点编号；客厅走墙和走廊B照明待确认"
+    item: "按最终五回路明装方案完成墙面弹线、逐段下料、主副箱及9个主节点编号；客厅沿未来隔帘线横穿兼顾主照明，精确放样和走廊B照明待确认"
     status: in_progress
     schedule_window: "2026-09-28放样；2026-10-03安装与终检"
   - id: TASK-0003

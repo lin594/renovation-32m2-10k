@@ -155,7 +155,7 @@ electrical:
     installation_sequence: "基层/墙固/S2完成后先放样并固定空线槽底座，再挂网/腻子/乳胶漆；墙面干燥后穿线、装端子和扣盖"
     schedule_ref: "data/schedule.yaml"
     main_feed_proposal: "余下蓝色6平方线只作中性导体N：按2026-09-30最终墙面路线复算，主箱至副箱五路短馈线及RCBO-01/02/03三条主干每极净约21.2m、按25m下料；另购同类型合规相色6平方L 30m。MCB-04/05副箱C20后直接2.5平方"
-    proposal_status: "planned；客厅走墙、走廊B照明和机械开关导体配置待确认；现为讨论图，不得据旧估算下料"
+    proposal_status: "planned；客厅已定沿未来隔帘线横穿兼顾主照明、精确放样待做；走廊B照明和机械开关导体配置待确认；现为讨论图，不得据旧估算下料"
     preliminary_design_ref: "data/electrical.yaml"
     branch_conductor_baseline:
       lighting: "新建照明/开关统一2.5mm²；不再购买BV 1×2.5单芯回线。机械开关BVVB承载L/Lsw仅为待核验候选；芯线标识与是否保留N尚未确认，JZ-N2灯控也用BVVB组织；所有智能开关盒带N并使用足够深度盒体"

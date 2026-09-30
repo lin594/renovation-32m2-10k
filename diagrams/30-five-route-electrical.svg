@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" data-diagram-role="five-route-electrical-freeze" data-drawing-property="discussion" role="img">
 <title>30 五路明装电路讨论墙面走槽图</title>
-<desc>讨论图：客厅先北后西方向已确认，转弯位置待复测；走廊B供电尚未分配，不得据图施工。</desc>
+<desc>讨论图：客厅先北后西沿未来隔帘线横穿并兼顾主照明，精确位置待放样；走廊B供电尚未分配，不得据图施工。</desc>
 <style>
   text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
   .title{font-size:28px;font-weight:800;fill:#111827}.sub{font-size:14px;fill:#475569}
@@ -11,7 +11,7 @@
 </style>
 <rect width="1600" height="1120" fill="#fbfaf7"/>
 <text x="60" y="52" class="title">开封32㎡｜30 五路明装电路讨论墙面走槽图（2026-09-30）</text>
-<text x="60" y="80" class="sub">讨论图｜走廊B供电、灯控导体和PCT规格blocked；L1→W1先北后西，转弯位置/长度TBD，不能据图施工。</text>
+<text x="60" y="80" class="sub">讨论图｜走廊B供电、灯控导体和PCT规格blocked；L1→W1先北后西沿未来隔帘线，标高/长度TBD，不能据图施工。</text>
 
 <rect x="90" y="120" width="320" height="430" fill="#f7ead7"/>
 <rect x="410" y="120" width="210" height="215" fill="#f9efd0"/>
@@ -51,7 +51,7 @@
 <circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">H1：设备架 / 灯带</text>
 <circle cx="385" cy="455" r="9" class="node"/><text x="335" y="438" class="micro">L1：洗烘/小厨电 / JZ-N2</text>
 <circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">W1：投影 / 沙发娱乐区 / 书桌（定位TBD）</text>
-<text x="110" y="695" class="small" fill="#2563eb">③ 客厅生活：H1 → L1后先北再西 → W1；虚线转弯/位置/长度TBD。</text>
+<text x="110" y="695" class="small" fill="#2563eb">③ L1先北再沿未来隔帘线西穿→W1；兼顾主照明，标高/位置TBD。</text>
 
 <circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">A1：客厅空调 + 冰箱</text>
 <text x="110" y="730" class="small" fill="#dc2626">④ 空调冰箱：独立回路，经客厅南侧到A1后分两个末端。</text>
