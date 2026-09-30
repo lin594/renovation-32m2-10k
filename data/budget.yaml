@@ -62,6 +62,7 @@ protected_scope:
 
 unpriced_commitments:
   - { procurement_ref: BUY-0056, status: todo, issue: "批刀/刮板已购但金额未恢复，实际支出尚未完整入账" }
+  - { procurement_ref: BUY-0058, status: todo, issue: "铸工胶已购到货但金额、日期及数量未提供；与业主暂缓补录的京东约1000元明细可能重叠，金额确认前不重复计入" }
   - { status: todo, approximate_cny: 1000, source: "9/30业主称今晚京东新增购买约1000元", issue: "按业主要求暂不追明细、不入核实账本，后续补账时避免与既有订单重复" }
 reserve_review:
   status: done

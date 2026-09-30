@@ -642,3 +642,15 @@ items:
     measured_min_cm: [22, 22]
     estimated_total_cny: 65
     note: "9/30业主计划网购，价格约65元；长度、实际净空和检修方式待核，未记为已购"
+
+  - id: BUY-0058
+    category: plumbing_repair_material
+    room: kitchen
+    item: "铸工胶（用于厨房水槽/排水管漏点的计划修补）"
+    status: delivered
+    delivery_evidence: "业主本轮确认已购买并到货"
+    payment_status: amount_and_date_unknown
+    actual_total_cny: null
+    remaining_details: ["具体数量/包装规格", "购买日期和金额；按业主要求后续补账"]
+    planned_use: "业主计划明天修补砖砌水槽/管道接缝及铁管靠上方破损处；尚未施工，不代表该材料适配或修补有效"
+    risk_ref: SAF-0011

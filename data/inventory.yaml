@@ -171,3 +171,14 @@ items:
     condition: new
     acquisition_cost_ref: EXP-0023
     planned_use: "BVVB护套线明敷固定；必要时可用于线槽固定"
+
+  - id: INV-0016
+    category: plumbing_repair_material
+    item: "铸工胶"
+    location: "已到货；现场具体存放处待盘点"
+    condition: "new_uninstalled"
+    quantity_status: "业主确认已购买并到货；数量和包装规格待核"
+    cost_status: "购买金额和日期未知，后续补账"
+    planned_use: "计划修补厨房砖砌水槽/排水管接缝及铁管靠上方破损处；修补后仍须观察是否渗漏"
+    procurement_ref: BUY-0058
+    risk_ref: SAF-0011
