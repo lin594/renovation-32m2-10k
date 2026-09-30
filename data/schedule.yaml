@@ -48,6 +48,8 @@ onsite_windows:
   october_main:
     start: "2026-09-28"
     end: "2026-10-04"
+    departure_at: "2026-10-04T22:00:00+08:00"
+    confirmation_status: confirmed
     people: 2
     main_leader_present: true
     trip_cost_budget_cny: 700
@@ -63,7 +65,7 @@ onsite_windows:
     people: 1
     main_leader_present: false
     stay_type: continuous_residence
-    permitted_work: "仅执行主窗口已经冻结、编号、示范的重复性任务，接收商家安装并按清单验收"
+    permitted_work: "执行已冻结、编号、示范的收尾任务；厨卫门计划自拼材料安装，轨道及固定方案须先明确，其他商家安装项目按清单验收"
 
 remote_preparation_0926_0927:
   - id: PREP-01
@@ -163,7 +165,7 @@ main_window_daily_plan:
 
 between_main_window_and_january:
   - "不安排装修专项往返，也不依赖代理人执行需要现场判断的施工"
-  - "厨卫门仍咨询中，若下单后本窗口不能安装则安排1月；纱窗已定做，按9/28口述约10/2安装，确切日期待核实"
+  - "厨卫门计划拼多多定制材料约100元/扇、1月自行拼装；纱窗已定做总价500元、已付200元，按9/28口述约10/2安装，确切日期待核实"
   - "远程整理逐回路线图、地板编号、门窗验收和马桶购买清单"
   - "顶楼雨漏如仍持续，由物业/防水人员处理屋面迎水面；业主不自行登高"
 
@@ -171,7 +173,7 @@ january_single_worker_sequence:
   - order: 1
     item: "检查墙面、天花板水迹、桌面、瓷砖漆和漏水痕迹"
   - order: 2
-    item: "接收商家安装三扇门与全部防猫纱窗并拍照验收"
+    item: "按预先确认的方案自拼并安装厨卫门；卧室门方案待定；复查已装纱窗，补完未验收项并留档"
   - order: 3
     item: "按主窗口示范完成剩余石塑地板、踢脚线和压条"
   - order: 4
@@ -186,11 +188,11 @@ january_single_worker_sequence:
 budget_gate:
   overall_budget_cny: 10000
   october_trip_reserve_cny: 700
-  paint_and_tools_plan_cny: 299
+  paint_and_tools_plan_cny: 0
   contingency_cny: 700
   actuals_source: "data/ledger.csv"
   generated_status_ref: "PROJECT_STATUS.md"
-  note: "9/26已支付乳胶漆与卖家工具套装1713元并记入ledger；当前仅保留299元作为未购小工具/耗材预留"
+  note: "9/30取消单独299元工具预留；账本记实际支付，采购表记已知尾款；约1000元京东新购明细按业主要求延后补录"
   feasibility_status: unproven_until_essential_quotes
   quote_gate_ref: "data/budget.yaml#feasibility"
 
@@ -218,5 +220,5 @@ reconciliation_2026_09_30:
     - "按产品体系施工防水/挂网/腻子；不得压缩固化和蓄水验收以追赶10/4"
     - "约10/2纱窗到场安排待商家确认，验收框网锁扣后再关闭防猫风险"
     - "10/3电气终检仍是目标，专业检测无法落实的线路保持断开"
-    - "10/4收尾离场；未完成非安全项编号留待1月，安全项保持blocked"
-  owner_confirmation: "10/4是主窗口离场边界；最终范围与1月收尾清单待集中答复后落稿"
+    - "10/4 22:00离场；未完成非安全项编号留待1月，安全项保持blocked"
+  owner_confirmation: "9/30确认两人施工至10/4 22:00，1月单人收尾、三猫理想1/15；后续逐题QA补齐最终范围；2/7保留为旧基线，未在本轮重新确认"

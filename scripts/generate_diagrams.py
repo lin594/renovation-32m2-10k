@@ -223,7 +223,7 @@ def furniture_circulation() -> str:
 {rect(1.6,2.4,2.2,3,"fixed")}<text x="360" y="330" class="small center">餐桌</text>
 {rect(.6,1.2,3,3.6,"fixed",'data-appliance="dishwasher" data-status="owned-to-move" data-stack-on="wood-cabinet"')}<text x="430" y="210" class="micro center">洗碗机｜已有</text><text x="430" y="226" class="micro center">叠放木柜/替代柜上</text><text x="430" y="242" class="micro center">承重待核</text>
 {rect(0,1.3,5,7,"fixed")}<text x="700" y="198" class="small center">双人床1.3×2.0</text>
-{rect(0,3,7.52,8,"planned")}<text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣架深0.48m×高2.05m｜位置TBD</text>
+{rect(0,3,7.52,8,"planned")}<text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣架空间深0.48m×高2.05m｜架子待购</text>
 {rect(1.3,1.7,5,7,"planned")}<text x="700" y="287" class="small center">长窄柜/书桌｜尺寸待定</text>
 {rect(2,2.58,3.1,3.5,"planned",'data-status="not-purchased"')}<text x="430" y="373" class="micro center">马桶</text>
 {rect(2.8,3.2,3.7,4,"planned",'data-status="not-purchased"')}<text x="485" y="438" class="micro center">浴室柜</text>
@@ -813,8 +813,8 @@ def doors_windows_cats() -> str:
     side_top = '''
 <rect x="970" y="120" width="370" height="210" rx="14" class="panel"/>
 <text x="994" y="158" class="note bold">门窗与三猫安全</text>
-<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨74×195 / 卫67×198cm：咨询中</text>
-<text x="994" y="252" class="note">纱窗5扇已定做；约10/2待确认</text><text x="994" y="281" class="note">95×47×2；90×47×1；128×74×2</text>
+<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨74×195 / 卫67×198cm：1月自拼</text>
+<text x="994" y="252" class="note">纱窗5扇：卧1/客1/阳台3；待装</text><text x="994" y="281" class="note">95×47×2；90×47×1；128×74×2</text>
 <text x="994" y="310" class="note red">纱网、边框、锁扣和缝隙需整体验收</text>
 '''
     return document("doors-windows-cats", "40 门窗与猫安全图", "门窗选购定制、防逃纱窗与阳台猫抓板", plan_base(False) + doors + room_labels() + side_top)
@@ -827,7 +827,7 @@ def kitchen_bath_details() -> str:
 <rect x="120" y="190" width="400" height="400" fill="#fbf3d9" stroke="#1f2937" stroke-width="5"/>
 <rect x="120" y="190" width="400" height="100" class="fixed"/><text x="320" y="245" class="note center">原台面1.93×0.46m，高0.65m</text>
 <rect x="140" y="198" width="360" height="80" class="planned"/><path d="M260 198V278M380 198V278" stroke="#f97316" stroke-width="2"/>
-<text x="320" y="220" class="small center orange">上层0.4×0.6m瓷砖×3（总长约1.8m）</text>
+<text x="320" y="220" class="small center orange">候选：40×60×3 / 40×80×2cm</text>
 <rect x="420" y="210" width="75" height="55" fill="#fee2e2" stroke="#b45309" stroke-width="2"/><text x="457" y="242" class="small center">燃气灶</text>
 <rect x="120" y="430" width="80" height="150" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="510" class="small center">水槽</text>
 <g data-stack="dishwasher-on-cabinet"><rect x="120" y="310" width="80" height="110" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/><text x="160" y="405" class="micro center">受潮木柜/替代柜</text><rect x="126" y="316" width="68" height="67" class="fixed" data-appliance="dishwasher" data-status="owned-to-move"/><circle cx="160" cy="350" r="20" fill="none" stroke="#64748b" stroke-width="2"/></g><text x="210" y="340" class="small">洗碗机｜已有</text><text x="210" y="360" class="micro">叠放在柜体上方</text><text x="210" y="380" class="micro red">承重/水平/抗振待核</text><text x="210" y="400" class="micro">进水独立开关；排水直入水槽</text>
@@ -852,7 +852,7 @@ def kitchen_bath_details() -> str:
   <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" stroke-width="5"/>
   <rect x="20" y="-70" width="360" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
   <line x1="50" y1="-50" x2="50" y2="0" stroke="#64748b" stroke-width="5"/><line x1="350" y1="-50" x2="350" y2="0" stroke="#64748b" stroke-width="5"/>
-  <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原0.46m深台面；高0.65m</text>
+  <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原砖固定；台面深0.46m、高0.65m</text>
 </g>
 <text x="85" y="687" class="small red">安全门禁：燃气管检修、台面承载、柜体承重、排水固定和无PE保护均未关闭。</text>
 '''

@@ -114,12 +114,12 @@ doors:
 
 windows:
   - { wall: "x=0", span: "y[1,2]",     room: "客厅",   width: 1.0 }
-  - { wall: "x=0", span: "y[3.5,4.5]", room: "厨房",   width: 1.0, note: "油烟机挂此窗上" }
+  - { wall: "x=0", span: "y[3.5,4.5]", room: "厨房",   width: 1.0, note: "油烟机挂此窗上；9/30 QA确认窗固定封闭，仅保留已封严排烟孔，不另做可开启纱窗" }
   - { wall: "x=0", span: "y[6,7]",     room: "卧室",   width: 1.0, note: "床沿窗下" }
   - { wall: "y=0", span: "x[4.05,4.95]", room: "阳台", note: "近整面非落地" }
   - { wall: "x=5", span: "y[0.1,2.9]",  room: "阳台", note: "近整面非落地" }
   - { wall: "x=2", span: "y[3.35,3.85]", rooms: "厨房↔卫生间", size: "0.5宽×0.5高", note: "高窗近顶，厨卫通风用" }
-  - { scope: "全部外窗", plan: "更换三猫家庭防逃纱窗", status: ordered, procurement_ref: BUY-0022, measure_window: "2026-09-28", installation_window: "业主9/28称4天后安装；暂推10/2，具体日期待商家确认", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
+  - { scope: "已定做五扇：卧室/客厅各1、阳台西1/南2；厨房窗固定封闭、排烟孔已封严", plan: "更换三猫家庭防逃纱窗", status: ordered, procurement_ref: BUY-0022, measure_window: "2026-09-28", installation_window: "业主9/28称4天后安装；暂推10/2，具体日期待商家确认", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
 
 electrical:
   current_state:
@@ -184,7 +184,7 @@ electrical:
   fixed_equipment:
     - { item: "客厅壁挂式空调", location: "客厅南墙冰箱上方", status: existing, circuit: MCB-04, device_protection: SRCD-AC-LIV }
     - { item: "卧室壁挂式空调", location: "卧室西墙双人床床头上方", status: existing, circuit: RCBO-01, protection: "目标C20/30mA RCBO-01上游统一保护，不再默认叠加设备级漏保" }
-    - { item: "卧室吊扇", location: "卧室中心上方", status: remove_no_reuse, wiring: "拆除；不再为其提供新电源。原暗埋线两端断开并分别绝缘封护", acceptance: "不得重新接入卧室新回路" }
+    - { item: "卧室吊扇", location: "卧室中心上方", status: remove_no_reuse, removal_status: todo, latest_confirmation: "9/30业主确认尚未拆除", wiring: "拆除；不再为其提供新电源。原暗埋线两端断开并分别绝缘封护", acceptance: "不得重新接入卧室新回路" }
     - { item: "客厅吊扇钩", location: "客厅中心上方", status: existing_hook_without_fan }
     - { item: "卫生间浴霸", location: "卫生间东墙偏北", status: existing_safety_concern, circuit: MCB-05, upstream_protection: "BATH-RCD-05（2P、≤30mA；位置待主箱原位/门外回退二选一）", risk_ref: SAF-0003 }
   planned_outlets:
@@ -296,15 +296,17 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "猫抓板", location: "阳台西墙和南墙窗户下方", status: planned }
     - { item: "永久220V供电", status: deferred, constraint: "无穿线孔；本期不钻孔、不夹门布线，充电灯或开门临时插电待入住后决定" }
   kitchen:
-    - { item: "瓷砖水泥台面(已有)", rect: [0, 0.5, 3, 5], size: "南北0.46×东西1.93，高0.65", measurement_status: confirmed, note: "9/28现场口述；保留原台面，rect为旧名义坐标待复位" }
+    - { item: "瓷砖水泥台面(已有)", rect: [0, 0.5, 3, 5], size: "南北0.46×东西1.93，高0.65", measurement_status: confirmed, note: "9/28现场口述；保留原台面；9/30确认原有三块瓷砖固定在台面上，不能当作可移动材料；rect为旧名义坐标待复位" }
     - item: "架空瓷砖台面（计划）"
-      footprint: "位于现有2m台面上方，立面叠层而非新增地面占地"
-      tiles: { count: 3, each_m: [0.4, 0.6], total_nominal_m: [0.4, 1.8] }
-      support: "伸缩杆"
+      footprint: "位于现有1.93×0.46m台面上方，立面叠层而非新增地面占地"
+      tile_candidates:
+        - { count: 3, each_m: [0.4, 0.6], total_nominal_m: [0.4, 1.8], status: planned }
+        - { count: 2, each_m: [0.4, 0.8], total_nominal_m: [0.4, 1.6], status: planned }
+      support: "待定；可调脚仅为旧候选，另在ChatGPT比较固定支墩/梁等，未定案"
       use: "夹层放锅具；灶台位于新架设台面上方"
       status: todo_safety_review
       note: "北侧燃气管计划被包含在该瓷砖台面下方"
-    - { item: "灶台", location: "架空瓷砖台面上方、厨房东端靠北", note: "油烟机挂北窗上；与燃气管、伸缩杆和瓷砖的净空待核验" }
+    - { item: "灶台", location: "架空瓷砖台面上方、厨房东端靠北", note: "油烟机挂北窗上；与燃气管、待定支撑和瓷砖的净空待核验" }
     - { item: "壁龛(已有)", location: "厨房东墙(y=5)近北端", use: "放调料" }
     - { item: "水槽", rect: [1.2, 2, 3, 3.4], note: "现为瓷砖砌水槽/台体；本轮计划清洁、修补并以S2作隐藏二道防水，后续定制304不锈钢内胆/整体包槽覆盖。内胆由原砌体承重，S2不承担结构或粘结；排水检修口不得永久封死。台面宽度仍受滑门停泊位限制（见issues）" }
     - { item: "二层木柜(已有)", location: "水槽与北墙现有台面之间", height_relation: "与现有台面平齐，洗碗机计划放在其上方", condition: "受潮略有损坏", decision: "预算允许时可换同位置替代柜；继续使用前须确认承重、水平、抗振和防潮" }
@@ -323,7 +325,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角尺寸为候选；67cm实测门洞下须重算压门洞与通行净宽；镜柜电源在BATH-RCD-05下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
-    - { item: "分上下部衣柜/衣架", rect: [0, 3, 7.52, 8], depth: 0.48, width: 3.0, height: 2.05, measurement_status: confirmed, closure: "计划约2.7m帘子覆盖上下部", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "9/28口述尺寸48深×300宽×205高；205cm以上有墙及上部储物空间。既有结构与待购衣架边界待核实，平面位置仍为planned" }
+    - { item: "衣架总体空间（计划放塑料架）", rect: [0, 3, 7.52, 8], depth: 0.48, width: 3.0, height: 2.05, measurement_status: confirmed, closure: "计划约2.7m帘子覆盖上下部；尚未购买", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "9/30确认48深×300宽×205高为总体空间；计划后续买塑料架形成衣架，205cm以上另有储物空间；并非现成衣架商品尺寸，平面位置仍为planned" }
     - { item: "长窄柜/书桌", rect_nominal: [1.3, 1.7, 5, 7], orient: "位于床南侧、与床平行，西端靠墙", use: ["床头柜", "书桌"], status: "尺寸待定" }
 
 surface_finishes:
@@ -355,9 +357,9 @@ issues:   # AI分析发现的问题，待用户决策
   - { id: bath_heater_splash, desc: "浴霸位于卫生间东墙偏北，业主担心触水/漏电风险", risk_ref: SAF-0003 }
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
   - { id: kitchen_sink_overlay, desc: "旧瓷砖砌水槽外观差，本轮仅做基层修补+S2隐藏防水，后续定制304不锈钢内胆/整体包槽作为最终接水与易清洁表面；定制前须复测内口长宽深、翻边、排水和龙头孔位", status: planned_deferred }
-  - { id: kitchen_upper_counter, desc: "伸缩杆+三块瓷砖架空台面同时承载锅具/灶台，并计划覆盖北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
+  - { id: kitchen_upper_counter, desc: "架空台面候选三块40×60或两块40×80瓷砖；支撑待定，同时承载锅具/灶台并可能影响北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
   - { id: dishwasher_cabinet_stack, desc: "洗碗机叠放在受潮二层木柜或同位置替代柜上；须先保证承重、水平、抗振、开门和软管固定", risk_ref: SAF-0022 }
-  - { id: top_floor_rain_leak, desc: "房屋位于四楼顶层；客厅西南角天花板存在疑似雨漏水迹。业主恐高，不自行上屋顶；室内只做观察、清理和明确点/缝的局部背水面堵漏，持续雨漏的屋面迎水面维修交物业/防水人员", risk_ref: SAF-0009 }
+  - { id: top_floor_rain_leak, desc: "9/30业主确认近期雨后无渗漏；排查发现阳台一块不规则窗玻璃有缝隙，计划玻璃胶/美缝剂填缝，材料适配和修复后复查待完成；历史天花板水迹不据此推定屋面漏水或已修好", risk_ref: SAF-0009 }
   - { id: no_protective_earth, desc: "已确认老小区户内仅有L/N、无可用PE且四楼无法独立增设；采用分级漏保降低风险，但不视为接地替代", risk_ref: SAF-0018 }
   - { id: balcony_door_narrow, desc: "阳台门有效开口仅0.7m（西扇），搬运大件受限" }
 
@@ -377,7 +379,7 @@ confirmed_facts:   # 已确认，无需再问
   - "全屋原有室内电路已拆除；后续计划采用明装线路"
   - "卧室吊扇确定拆除，不再供电；原调速器暗盒盖板封闭，原暗线两端绝缘封护"
   - "老小区户内仅有L/N两线、无可用PE；作为四楼无法独立增设接地"
-  - "厨房原台面为约0.5×2.0m；架空层拟用0.4×0.6m瓷砖三块"
+  - "厨房原台面实测1.93×0.46m、高0.65m；原三块瓷砖固定；新架空层候选40×60cm三块或40×80cm两块，支撑待定"
   - "阳台有两条升降晾衣架：靠客厅一条可用，另一条无法升降"
   - "全屋共有三只猫"
   - "马桶坑距北墙约0.35m；预计选择深约0.58m成品并背靠北墙"
@@ -393,7 +395,7 @@ confirmed_facts:   # 已确认，无需再问
 open_questions:   # 当前待定，咨询时可优先回答这些
   - "卫生间吊顶内有无排风井/风道？"
   - "卫生间浴霸的型号、防护等级、供电回路、安装高度及距淋浴出水范围是多少？"
-  - "厨房架空台面离原台面高度、伸缩杆数量/固定方式、灶台尺寸和燃气管检修净空是多少？"
+  - "厨房架空台面的目标高度、瓷砖候选、支撑固定方式、灶台尺寸和燃气管检修净空是多少？"
   - "厨房滑门面板是否改停走廊B侧以加宽水槽台面？"
   - "衣柜北段采用不常用区、缩短衣柜还是调整床位？"
   - "书桌/冰箱角落最终用途及是否需要保持人手可达？"
@@ -418,11 +420,15 @@ field_measurements_2026_09_28:
     - { width: 95, height: 47, quantity: 2 }
     - { width: 90, height: 47, quantity: 1 }
     - { width: 128, height: 74, quantity: 2 }
-  screen_room_mapping: todo
+  screen_room_mapping:
+    status: confirmed
+    source: "业主9/30本任务补充"
+    items: ["95×47：卧室1扇、客厅1扇", "90×47：阳台西窗活动区1扇，不含上部固定玻璃", "128×74：阳台南窗2扇"]
+    note: "尺寸顺序沿用原始口述；纱窗约半扇窗大小，整窗宽约为对应纱窗宽的2倍；未将估算整窗尺寸写入既有墙线坐标"
   kitchen_north_south_segments_cm: { sink: 55, cabinet: 80, counter: 46 }
   kitchen_segment_note: "三段口述约181cm，不等于已校核的厨房墙线坐标"
   bathroom_pipe_enclosure_min_cm: [22, 22]
-  bathroom_pipe_material: "业主口述pve，具体材质待核，不自动改成PVC"
+  bathroom_pipe_material: "9/30确认计划23×23cm的L型PVC护板，约65元，尚未购买"
   coordinate_reconciliation: todo
   drawing_rule: "新增实测尺寸优先于旧名义尺寸；当前图为讨论示意，未将局部尺寸强行传播成整屋墙线"
 

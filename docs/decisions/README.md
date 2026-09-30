@@ -13,7 +13,7 @@
 |---|---|---|---|
 | [0001](0001-git-and-data-workflow.md) | Git 与文本数据工作流 | 已采纳 | — |
 | [0002](0002-safety-gates.md) | 高风险施工门禁 | 已采纳 | — |
-| [0003](0003-october-main-january-closeout.md) | 9/28–10/4 主攻、1 月收尾 | 已采纳 | 2026-09-26更新主窗口 |
+| [0003](0003-october-main-january-closeout.md) | 9/28–10/4 主攻、1 月收尾 | 部分被取代 | 0012确认22:00离场及厨卫门自拼 |
 | [0004](0004-no-main-light-and-hall-hub.md) | 无主灯与玄关家庭中枢 | 部分被取代 | 回路由 0006 接管，端子由 0007 接管 |
 | [0005](0005-no-pe-layered-rcd.md) | 无 PE 与分级漏保 | 已采纳 | — |
 | [0006](0006-five-circuits-bathroom-feeder.md) | 五回路与卫生间馈线 | 部分被取代 | 回路仍有效，端子实购由 0007 接管 |
@@ -23,5 +23,7 @@
 | [0009](0009-final-surface-electrical.md) | 明装电路施工方案定稿 | 部分被取代 | 五回路和保护原则保留；照明控制由0010接管 |
 | [0010](0010-jz-n2-dual-smart-switches.md) | 两只JZ-N2零火双开落地 | 部分被取代 | 开关本体保留；线路路径与回线由0011接管 |
 | [0011](0011-five-route-electrical-freeze.md) | 五路真实空间路径与端子候选 | 暂定 | 当前整合入口；路线/灯控待确认，实物与专业检测门禁未关闭 |
+
+| [0012](0012-owner-qa-budget-closeout.md) | 首轮QA预算口径与1月自拼门 | 已采纳 | 台面支撑及现场验收仍待定 |
 
 旧结论无需另建 archive；完整变化使用 Git 历史查看。

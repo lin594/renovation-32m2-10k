@@ -131,13 +131,26 @@ errors << "budget.yaml overall_budget_cny 应为10000" unless budget["overall_bu
 errors << "budget.yaml contingency_cny 应为700" unless budget["contingency_cny"] == 700
 {
   "october_trip_reserve_cny" => 700,
-  "paint_and_tools_plan_cny" => 299,
+  "paint_and_tools_plan_cny" => 0,
   "contingency_cny" => 700
 }.each do |key, expected|
   budget_actual = budget_gate[key]
   schedule_actual = schedule_gate[key]
   errors << "budget.yaml current_gate.#{key} 应为 #{expected}，实际为 #{budget_actual.inspect}" unless budget_actual == expected
   errors << "schedule.yaml budget_gate.#{key} 应与预算一致" unless schedule_actual == expected
+end
+
+# 已付款只入现金账；已知尾款单独预留，避免整单和定金重复扣减。
+procurement.select { |item| item.key?("unpaid_balance_cny") }.each do |item|
+  unpaid = item["unpaid_balance_cny"]
+  total = item["actual_total_cny"]
+  unless unpaid.is_a?(Numeric) && unpaid >= 0 && total.is_a?(Numeric) && total >= unpaid
+    errors << "#{item['id']} 的总价/未付尾款必须是有效非负金额"
+    next
+  end
+  refs = Array(item["ledger_refs"]) + Array(item["ledger_ref"])
+  paid = ledger_rows.select { |row| refs.include?(row["id"]) && row["flow"] == "expense" && row["payment_status"] == "paid" }.sum { |row| row["amount_cny"].to_f }
+  errors << "#{item['id']} 已付账目加未付尾款与总价不一致" unless (paid + unpaid - total).abs < 0.005
 end
 
 snapshot_keys = %w[actual_expenses_cny actual_expenses_after_tile_cny actual_income_cny actual_net_outflow_cny available_for_other_work_cny formula]

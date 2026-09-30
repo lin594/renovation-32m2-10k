@@ -68,7 +68,7 @@ active_tasks:
     schedule_window: "2026-09-28放样；2026-10-03安装与终检"
   - id: TASK-0003
     phase: doors_windows
-    item: "五扇纱窗已定做；确认安装日、付款和防猫规格，安装后验收"
+    item: "五扇纱窗已定做；已付200元、尾款300元；确认安装日及防猫规格，安装后验收"
     status: in_progress
   - id: TASK-0004
     phase: demolition
@@ -112,7 +112,7 @@ active_tasks:
   - { id: TASK-0020, phase: waterproof_surfaces, item: "完成可施工区域局部基层修补、底漆和两遍面漆", status: todo, schedule_window: "2026-09-29至2026-10-02；漏源未关闭的西南角天花板跳过" }
   - { id: TASK-0021, phase: utilities, item: "完成或冻结明线回路、走向、端点编号和材料包", status: todo, schedule_window: "最迟2026-10-03" }
   - { id: TASK-0022, phase: waterproof_surfaces, item: "完成石塑地板主要区域；未完成部分留下首排示范和编号", status: todo, schedule_window: "2026-10-02至2026-10-03及2027年1月收尾" }
-  - { id: TASK-0023, phase: doors_windows, item: "厨卫门已复测并询价；五扇纱窗已定做，本窗口安装日待确认；门安装期仍待订单确认", status: in_progress, schedule_window: "纱窗约2026-10-02待核；厨卫门下单与安装期待确认" }
+  - { id: TASK-0023, phase: doors_windows, item: "厨卫门已复测并询价；五扇纱窗已定做，本窗口安装日待确认；厨卫门计划1月自拼安装", status: in_progress, schedule_window: "纱窗约2026-10-02待核；厨卫门1月自拼安装，约100元/扇，未确认下单" }
   - { id: TASK-0024, phase: commissioning, item: "由一名非主负责人按冻结图纸完成1月单人收尾", status: todo, schedule_window: "2027年1月中旬至2027-02-07" }
   - { id: TASK-0025, phase: commissioning, item: "完成三猫入住门槛验收", status: todo, schedule_window: "理想2027-01-15；最迟2027-02-07" }
   - { id: TASK-0026, phase: utilities, item: "安装两只京东京造JZ-N2零火双开：客厅主灯/餐灯，卧室主灯/床下220V专用插座；沙发背景灯使用置物台上部常电；吊扇及调速器退出新电路", status: in_progress, schedule_window: "2026-09-28方案定稿；到货核端子/盒深/负载；2026-10-03安装与终检" }
@@ -135,7 +135,12 @@ field_progress:
     completed: ["卫生间墙固一遍", "厨房墙固一遍", "客厅部分墙面墙固一遍"]
     not_started: ["三棵树S2防水"]
     note: "仅记录截至该消息的现场状态；未推定9/30以后已完成"
+  - date: "2026-09-30"
+    status: confirmed
+    source: "本任务业主首轮答复"
+    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补"]
+    observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划"]
 finalization:
   status: blocked
-  reason: "等待业主一次性答复整合问题清单；技术验收另需实测证据"
+  reason: "已收首轮答复；改为逐题QA，京东新增账目明细依业主要求延后；技术验收另需实测证据"
   review_ref: "docs/reviews/2026-09-30-channel-reconciliation.md"

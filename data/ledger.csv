@@ -24,3 +24,4 @@ EXP-0021,2026-09-28,expense,tool,whole_house,5m钢卷尺,京东,5.56,paid,ordere
 EXP-0022,2026-09-29,expense,electrical,whole_house,四分PVC线槽2m×10根,线下商家,20.00,paid,inventory,现场购买；共20m；商家口径“四分”
 EXP-0023,2026-09-29,expense,electrical,whole_house,护套线线卡钉100粒×1袋,线下商家,5.00,paid,inventory,可用于固定护套线；商家称也可用于固定线槽
 INC-0002,2026-09-29,income,recycling,whole_house,拆除旧铁门回收,废品回收方,65.00,received,completed,本批拆除旧铁门售出；对应INV-0002
+EXP-0024,,expense,windows,whole_house,五扇纱窗定金,纱窗商家,200.00,paid,ordered,9/30业主确认每扇100元共500元；已付定金200元；尾款300元未支付并登记BUY-0022；实际付款日期待补

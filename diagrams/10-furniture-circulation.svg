@@ -82,7 +82,7 @@
 <rect x="320" y="290" width="80" height="80" class="fixed" /><text x="360" y="330" class="small center">餐桌</text>
 <rect x="400" y="190" width="60" height="60" class="fixed" data-appliance="dishwasher" data-status="owned-to-move" data-stack-on="wood-cabinet"/><text x="430" y="210" class="micro center">洗碗机｜已有</text><text x="430" y="226" class="micro center">叠放木柜/替代柜上</text><text x="430" y="242" class="micro center">承重待核</text>
 <rect x="600" y="130" width="200" height="130" class="fixed" /><text x="700" y="198" class="small center">双人床1.3×2.0</text>
-<rect x="852" y="130" width="48" height="300" class="planned" /><text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣架深0.48m×高2.05m｜位置TBD</text>
+<rect x="852" y="130" width="48" height="300" class="planned" /><text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣架空间深0.48m×高2.05m｜架子待购</text>
 <rect x="600" y="260" width="200" height="40" class="planned" /><text x="700" y="287" class="small center">长窄柜/书桌｜尺寸待定</text>
 <rect x="410" y="330" width="40" height="58" class="planned" data-status="not-purchased"/><text x="430" y="373" class="micro center">马桶</text>
 <rect x="470" y="410" width="30" height="40" class="planned" data-status="not-purchased"/><text x="485" y="438" class="micro center">浴室柜</text>

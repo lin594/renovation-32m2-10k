@@ -10,7 +10,9 @@ items:
     item: "厨房隐藏移门"
     status: pending_custom_order
     requirements: ["9/28口述门洞宽74cm×高195cm", "上滑轨单扇推拉；轨道及停泊位与高窗/水槽台面协调", "可检修"]
-    order_status_note: "仍咨询中；商家称定制8～12天加快递3～4天，不假设本窗口能安装"
+    order_status_note: "9/30计划拼多多定制材料后自行拼装；约100元/扇，未确认下单；2027年1月入住收尾时安装"
+    estimated_total_cny: 100
+    assembly: "DIY拼接；轨道/安装辅件是否含价待核"
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
 
@@ -20,7 +22,9 @@ items:
     item: "卫生间移门（走廊A侧安装）"
     status: pending_custom_order
     requirements: ["9/28口述门洞宽67cm×高198cm", "有效净宽须扣除框轨/重叠/浴室柜后重测，旧65cm目标待重算", "安装在走廊A侧", "常闭不占走廊B", "向东开启时可临时侵入走廊B约0.4m", "允许按进出需要部分开启", "耐潮"]
-    note: "先按已确认运行方式完成门详图，再复测轨道、门板和停泊尺寸后下单"
+    note: "9/30计划拼多多定制材料后自行拼装；约100元/扇，未确认下单；先复测轨道、门板和停泊尺寸"
+    estimated_total_cny: 100
+    assembly: "2027年1月DIY拼接；轨道/安装辅件是否含价待核"
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
 
@@ -78,7 +82,7 @@ items:
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
 
-  - { id: BUY-0009, category: furniture, room: bedroom, item: "卧室下部衣架/收纳与上部储物配套", status: not_purchased, requirements: ["9/28口述深48cm×宽300cm×高205cm", "约2.7m帘子覆盖上下部", "205cm上方有墙及储物空间，既有/待购边界待确认", "处理被床遮挡的北段"] }
+  - { id: BUY-0009, category: furniture, room: bedroom, item: "卧室塑料收纳架及帘子", status: not_purchased, requirements: ["48cm深×300cm宽×205cm高是总体可用空间，不是单件架子尺寸", "计划后续买塑料架形成衣架；约2.7m帘子尚未购买", "205cm以上另有储物空间", "处理被床遮挡的北段"] }
   - id: BUY-0010
     category: waterproofing
     room: multiple
@@ -208,9 +212,14 @@ items:
     order_evidence: "业主9/28《更新装修现场数据》原话纱窗定做，4天后安装"
     ordered_sizes_cm: ["95×47×2扇", "90×47×1扇", "128×74×2扇"]
     quantity: 5
-    actual_total_cny: null
-    payment_status: todo
-    note: "已定做不等于已付款或已通过防猫验收；金额、房间对应、框网锁扣规格待补"
+    actual_unit_price_cny: 100
+    actual_total_cny: 500
+    paid_deposit_cny: 200
+    unpaid_balance_cny: 300
+    payment_status: partially_paid
+    ledger_ref: EXP-0024
+    room_mapping: ["95×47：卧室1扇、客厅1扇", "90×47：阳台西窗活动区1扇，不含上部固定玻璃", "128×74：阳台南窗2扇"]
+    note: "9/30业主确认；纱窗约半扇窗大小，整窗宽约为对应纱窗宽的2倍；尺寸方向及整窗洞口不直接推成施工坐标。厨房窗固定封闭、排烟孔已封严，不需另订该窗纱窗；安装费是否另计、框网锁扣规格待核；不视为防猫验收完成"
 
   - id: BUY-0023
     category: electrical_material
@@ -399,6 +408,9 @@ items:
     room: whole_house
     item: "明装插座、开关和基础灯具包"
     status: not_purchased
+    owner_candidates: ["德力西158系列明装10A五孔", "德力西CD815白色斜五孔暗装10A"]
+    candidate_status: planned
+    candidate_source: "ChatGPT《明装电路采购建议》业主0c208d11消息；明确称初步候选，不能推定已下单"
     planned_bom:
       - { item: "普通插座面板", quantity: 14, scope: "床侧2、厨房4、RCBO-03客厅生活8", gate: "洗烘/洗碗机等10A或16A按设备插头冻结" }
       - { item: "卧室空调专用插座面板", quantity: 1, gate: "按空调插头和铭牌冻结10A/16A" }
@@ -619,3 +631,13 @@ items:
     channel: "拼多多"
     quantity_status: "已买、在途；成交价当前聊天记录无法可靠恢复"
     note: "仅记录购买状态，不写虚构价格；后续拿到订单明细再补账。"
+
+  - id: BUY-0057
+    category: material
+    room: bathroom
+    item: "L型PVC管道护板"
+    status: not_purchased
+    planned_size_cm: [23, 23]
+    measured_min_cm: [22, 22]
+    estimated_total_cny: 65
+    note: "9/30业主计划网购，价格约65元；长度、实际净空和检修方式待核，未记为已购"
