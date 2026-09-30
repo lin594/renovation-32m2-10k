@@ -1,7 +1,7 @@
 version: 1
 updated: "2026-09-30"
 status: blocked
-drawing_property: "讨论图：五路分工与九个已编号主节点用于需求核对；L1至W1路线、走廊B供电、机械灯控导体与PCT规格未闭合，不得据此施工、下料或宣称采购完结；通电仍须现场核验与合格电工复核"
+drawing_property: "讨论图：五路分工与九个已编号主节点用于需求核对；L1至W1精确放样、机械灯控导体与PCT规格未闭合，不得据此施工、下料或宣称采购完结；通电仍须现场核验与合格电工复核"
 
 open_items:
   - id: ELEC-LIVING-ROUTE
@@ -9,9 +9,9 @@ open_items:
     question: "9/30 QA确认L1先北后西，沿未来沙发临时客卧隔帘位置横穿，线槽兼顾客厅主照明；精确位置/标高、W1及长度待现场放样"
     gate: "路线意图confirmed，实施仍blocked：隔帘线与主照明点位需放样，图中虚线无实测坐标；线槽不默认承担帘轨/灯具载荷，不因兼顾照明擅自增加节点或改变JZ-N2控制分工"
   - id: ELEC-HALL-B
-    status: blocked
-    requirement: "保留走廊B独立基础灯和实体开关需求，意向回路RCBO-03"
-    gate: "九个已编号主节点尚未分配走廊B供电/灯控；先补齐上游、分线位置、导体及长度，不得按现图施工或宣称全屋采购完结"
+    status: done
+    requirement: "9/30 QA暂时取消走廊B独立灯，由走廊A长灯条照明整个走廊；开关在入户门和卧室门之间"
+    gate: "仅关闭独立灯供电分配待办；现场确认长灯条覆盖效果，若恢复独立灯需重新设计并核量"
   - id: ELEC-CONTROL-CONDUCTORS
     status: blocked
     gate: "玄关继续保留零火控制需求；其他机械开关是否保留N待确认。两芯BVVB的L/Lsw候选不能同时提供N；蓝芯重标Lsw的适用性须按产品说明和合格电工意见确认，未通过不得实施"
@@ -92,7 +92,7 @@ provisional_five_circuit_allocation:
     - id: RCBO-03
       existing_device_type: "漏电保护器"
       scope: ["玄关设备架常电", "走廊A/B生活照明", "客厅普通插座", "客厅洗烘一体机", "洗烘旁两个小厨电五孔点", "客厅主灯和餐灯"]
-      route: "副保护盒后向南，经入户门头、玄关南墙H1到客厅入口L1；L1至W1先向北再沿未来沙发临时客卧隔帘线向西横穿，线槽兼顾客厅主照明；精确标高、W1位置与长度TBD。W1拟分投影、沙发娱乐区和书桌；走廊B灯供电未分配，回路拓扑尚未闭合"
+      route: "副保护盒后向南，经入户门头、玄关南墙H1到客厅入口L1；L1至W1先向北再沿未来沙发临时客卧隔帘线向西横穿，线槽兼顾客厅主照明；精确标高、W1位置与长度TBD。W1拟分投影、沙发娱乐区和书桌；走廊B独立灯已暂时取消，借走廊A长灯条；精确放样与导体配置仍待核"
       reason: "把真正需要长距离绕行的负载压缩到一条生活主干；冰箱和客厅空调从该长主干剥离"
       conductor: "6mm²主干原净长10m/极仅留作预算假设，路线未决不得下料；库存蓝色线只作N，L另用同类型合规相色；末端2.5mm²仍须适配"
       status: blocked
@@ -122,7 +122,7 @@ provisional_five_circuit_allocation:
     south_parallel_order: "玄关公共墙段从靠顶到靠下建议MCB-04、RCBO-03、MCB-05；三路各用独立四分槽并排，不共享导体/N/端子"
     living_split: "RCBO-03和MCB-04经通道进入客厅；MCB-05在通道附近脱离并沿卫生间门墙进入卫生间"
     bend_rule: "90度转弯、续槽、绕门框只是机械路径变化，直接拼线槽，不因此增加接线盒"
-    branch_rule: "当前已编号B1/B2/K1/K2/H1/L1/W1/A1/BATH1共9个主节点；走廊B供电尚未分配，9不是已闭合全屋分线点总量；设备簇另有局部分配"
+    branch_rule: "当前已编号B1/B2/K1/K2/H1/L1/W1/A1/BATH1共9个主节点；走廊B独立灯暂时取消，9不是全屋局部分线点总量；设备簇另有局部分配"
     pct42_fallback: "PCT具体尺寸与规格未有产品证据，先核对完整SKU和导体适配再连真实导线试装；空间不足则改可开启深明盒，不能以放得下代替电气适配核验"
     curtain_rod_fallback: "罗马杆不冲突则保持统一高位；冲突时优先整体调整支架，无法调整则整段线槽统一降低，禁止逐个支架蛇形绕行"
   unresolved_high_loads:
@@ -163,12 +163,13 @@ lighting_zones:
   - id: LZ-01
     room: hall_a
     fixture: "约2m、220V厂家成套插头灯带"
-    target: "玄关和走廊A基础/夜间照明"
+    target: "玄关及走廊A/B整个走廊区域照明；走廊B独立灯暂时取消"
+    switch_location: "入户门与卧室门之间"
     controls: ["门口零火墙壁开关", "可换零火智能开关", "网络失效时保留实体按键"]
     connection: "高位设置标注‘仅灯带’的受控插座；灯带保留厂家二脚插头、整流接头和尾塞，不剪插头硬接。开关盒到达L/N，受控L返回高位插座"
     forbidden: ["建筑导线与灯带铜箔/软引线裸接", "把接头埋进腻子或不可开启线槽", "剪切端不装绝缘端帽", "只保留依赖网络的控制方式"]
     status: selected_pending_product
-  - { id: LZ-02, room: hall_b, fixture: "小型漫射吸顶灯或壁灯", controls: ["普通实体开关"], status: blocked, upstream_intent: RCBO-03, supply_node: TBD, blocker_ref: ELEC-HALL-B }
+  - { id: LZ-02, room: hall_b, fixture: "独立漫射灯暂时取消", controls: [], status: cancelled, replacement_ref: LZ-01, note: "9/30 QA改用走廊A长灯条覆盖整个走廊" }
   - { id: LZ-03A, room: living_room, fixture: "24~36W大面积漫射吸顶灯", target: "打扫、找物、多人活动基础照明", color_temperature_k: "3500~4000", controls: ["客厅JZ-N2第1键", "本地实体按键"], status: planned }
   - { id: LZ-03B, room: living_room, fixture: "餐区明装双头可调射灯；单头5~8W", target: "餐桌和邻墙氛围光", color_temperature_k: "2700~3000", controls: ["客厅JZ-N2第2键", "本地实体按键"], status: planned }
   - { id: LZ-03C, room: living_room, fixture: "沙发背景光/220V插头灯带远期候选", target: "投影模式弱背景光，不直射幕布", controls: ["沙发娱乐区置物台上部常电插座", "灯具本体或智能插头"], fixed_wiring: false, status: reserved_plug_in_fixture }
@@ -241,7 +242,7 @@ branch_nodes:
   main_count: 9
   total_distribution_points: 9
   status: blocked
-  count_scope: "9仅计已编号主节点，走廊B供电未分配，局部分配不计在该数字内；不是完整分线点总量"
+  count_scope: "9仅计已编号主节点；走廊B独立灯暂时取消，局部分配不计在该数字内；不是完整分线点总量"
   endpoint_distribution_rule: "全屋拓扑只给9个主节点编号；K2/L1/W1送出的2.5mm²支线到设备簇后，可在本地可检修明盒内继续分给相邻插座，不再升级为全屋主节点"
   examples:
     - { id: B1, circuit: RCBO-01, connector: "PCT-62×1", outputs: ["B2主干", "卧室JZ-N2供电", "床南常电"] }
@@ -318,11 +319,11 @@ surface_device_takeoff:
     bedroom_underbed_light_controlled: { quantity: 1, type: "10A二孔", note: "专用照明连接点，不计入18组通用插座；标注仅床下灯" }
   switch_faceplates:
     jz_n2_zero_neutral_dual: { quantity: 2, unit_price_cny: 49.9, scope: "客厅1、卧室1", returns_per_device: 2, gate: "实物端子须接受2.5mm²，盒深及LED负载范围通过" }
-    other_lighting_positions: { quantity: 4, scope: "走廊A、走廊B、厨房、卫生间", box: "≥50mm深86明装盒", gate: "卫生间功能键数按浴霸/镜灯说明冻结" }
+    other_lighting_positions: { quantity: 3, scope: "走廊A（覆盖A/B）、厨房、卫生间", box: "≥50mm深86明装盒", gate: "卫生间功能键数按浴霸/镜灯说明冻结" }
   fixed_fixtures:
     living_diffuse_ceiling: 1
     dining_dual_adjustable_spot: 1
-    hall_b_diffuse: 1
+    hall_b_diffuse: 0
     bedroom_diffuse: 1
     kitchen_diffuse: 1
     bathroom_moisture_resistant: 1
@@ -350,7 +351,7 @@ cable_plan:
   wiring_system: "全屋新增线路均明装。主干通常沿侧墙高位线槽；客厅L1至W1按9/30 QA沿未来隔帘线横穿并兼顾主照明，其横穿构造/标高待放样，不以默认沿墙规则覆盖该意图；6mm²单芯L/N成对敷设。普通插座从高位分支位置用BVVB 2×2.5mm²下落；线槽90度转弯/续接不设盒，只有电气接续/分叉才设可开启接线空间"
   trunk_policy: "副保护盒C20之后，RCBO-01/02/03使用6mm²高位主干；蓝色库存线只作N，并与同类型、同长度、合规相色6mm² L成对敷设。MCB-04/05在C20后直接2.5mm²。6mm²节点优先按PCT-42/PCT-62实物试装，端子与L/N各自独立并置于可开启接线空间"
   six_mm_takeoff:
-    basis: "保留2026-09-30预算估算；客厅路线与走廊B支路未闭合，以下数字不得用作最终采购量或剪线依据，确认方案后以现场逐段实测替换"
+    basis: "保留2026-09-30预算估算；客厅精确放样与灯控导体未闭合；走廊B独立支路已暂时取消，以下数字不得用作最终采购量或剪线依据，确认方案后以现场逐段实测替换"
     panel_to_subpanel_five_feeders: { net_m_per_conductor: 3.0, planned_cut_m_per_conductor: 3.5 }
     RCBO_01_bedroom: { net_m_per_conductor: 3.2, planned_cut_m_per_conductor: 3.8 }
     RCBO_02_kitchen: { net_m_per_conductor: 5.0, planned_cut_m_per_conductor: 5.8 }
@@ -371,7 +372,7 @@ cable_plan:
     planned_cut_total_m: 85.0
     purchase_m: 100
     expected_remainder_m: 15.0
-    included_scope: "原预算包括通用插座、玄关灯带、床下灯、JZ-N2、厨房/卫生间灯控和卫浴设备；走廊B未分配、零火/N预留及导体颜色方案未闭合，63.5/85/100m均非最终足量结论"
+    included_scope: "原预算包括通用插座、玄关灯带、床下灯、JZ-N2、厨房/卫生间灯控和卫浴设备；走廊B独立灯暂时取消但尚未按实测重算；零火/N预留及导体颜色方案未闭合，63.5/85/100m均非最终足量结论"
   control_return_takeoff:
     status: blocked
     strategy: "取消单独BV 1×2.5旧采购计划；一根BVVB承载机械开关L下行+Lsw返回仅为候选，不能同时到达N；蓝芯重标方案需专业确认。玄关零火需求保留，其他开关N预留待业主确认；通过后重算线材，不把取消旧采购视为替代方案已获准"
@@ -380,7 +381,7 @@ cable_plan:
     status: superseded_by_2026_09_30_final_route_remeasure_required
     canonical_main_nodes: ["B1", "B2", "K1", "K2", "H1", "L1", "W1", "A1", "BATH1"]
     local_endpoint_groups: ["厨房两个设备簇", "洗烘/小厨电区域", "沙发娱乐区", "书桌区域"]
-    rule: "旧TN/JB逐段编号和净长已经退役。当前9个已编号主节点仍待走廊B分配闭合；末端设备簇做局部分配。方案完整并确认墙面路线后重新逐段量取，再更新下料表，不得按旧段号直接剪线"
+    rule: "旧TN/JB逐段编号和净长已经退役。当前9个已编号主节点不新增走廊B独立灯分配；末端设备簇做局部分配。方案完整并确认墙面路线后重新逐段量取，再更新下料表，不得按旧段号直接剪线"
   cancelled_materials: ["BVVB 2×1.5mm²", "BV 1×1.5mm²控制线", "BV 1×2.5mm²单芯灯控回线"]
   lighting_terminal_gate: "JZ-N2实物L/N/L1/L2端子、其他开关和灯具端子必须明确接受2.5mm²；到货后同时核对JZ-N2盒深和LED负载范围。不接受即停工，使用可检修盒内的合规短尾转换或改盒，不削细导体或硬塞端子"
   raceway_takeoff:
@@ -390,7 +391,7 @@ cable_plan:
   junction_box_takeoff:
     numbered_main_positions: 9
     quantity_status: blocked
-    count_note: "走廊B分配与局部端子未闭合，不能将9作为全屋分线盒上限"
+    count_note: "局部端子与实物布置未闭合，不能将9作为全屋分线盒上限"
     compact_option: { use: "PCT-42/纯2.5mm²节点实测空间足够时，优先低轮廓线槽配套接线/分线构件或短段加宽可独立开盖分线腔", gate: "端子+真实导线自然放入，盖板无需强压，端子可固定且可重新检修" }
     fallback_option: { use: "空间不足时，纯2.5mm²用86深明盒/小分线盒；6mm²多支路用约100×100×50或更大", gate: "满足导线弯曲和端子操作空间" }
     rule: "90度转弯和线槽续接不设盒；普通线槽本体不是默认接线腔，所有导体接续/分叉必须位于独立可开启、可固定端子的接线空间"
@@ -442,7 +443,7 @@ hall_a_shelf:
 onsite_freeze_gate:
   date: "2026-10-01"
   required_evidence:
-    - "先关闭open_items中的路线、走廊B、灯控导体和PCT规格阻碍，再形成逐段下料表；未关闭不得宣称施工图/采购完结"
+    - "先关闭open_items中的路线、灯控导体和PCT规格阻碍（走廊B独立灯已暂时取消），再形成逐段下料表；未关闭不得宣称施工图/采购完结"
     - "每个配电箱器件正面和侧面清晰照片"
     - "记录C/B曲线及额定电流、极数、漏电动作电流、分断能力和型号"
     - "逐回路确认现有临时线路和实际负载"

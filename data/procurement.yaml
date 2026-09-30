@@ -419,11 +419,11 @@ items:
       - { item: "玄关设备架至少4位常电插座组", quantity: 1, procurement_ref: BUY-0027 }
       - { item: "走廊A灯带高位专用受控插座", quantity: 1, note: "不计入19组通用插座" }
       - { item: "京东京造JZ-N2零火双开", quantity: 2, procurement_ref: BUY-0041, scope: "客厅1、卧室1" }
-      - { item: "其他固定照明开关面板", quantity: 4, scope: "走廊A/B、厨房、卫生间", gate: "卫生间键数按设备说明" }
+      - { item: "其他固定照明开关面板", quantity: 3, scope: "走廊A（覆盖A/B）、厨房、卫生间", gate: "卫生间键数按设备说明" }
       - { item: "卧室床下灯10A二孔受控专用插座", quantity: 1, note: "不计入19组通用插座；贴仅床下灯" }
       - { item: "客厅24~36W漫射吸顶灯", quantity: 1, requirements: "3500~4000K，Ra≥90优先" }
       - { item: "餐区双头可调明装射灯", quantity: 1, requirements: "每头5~8W，2700~3000K，Ra≥90优先" }
-      - { item: "走廊B小型漫射灯", quantity: 1 }
+      - { item: "走廊B小型漫射灯", quantity: 0, status: cancelled, note: "9/30暂时取消，改由走廊A长灯条覆盖整个走廊" }
       - { item: "卧室暖色漫射灯", quantity: 1 }
       - { item: "厨房基础漫射灯", quantity: 1 }
       - { item: "卫生间防潮基础灯", quantity: 1, gate: "防护等级、位置和RCD下游连接经安全复核" }

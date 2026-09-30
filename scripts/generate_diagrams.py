@@ -962,7 +962,7 @@ def finishes_materials() -> str:
 
 FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" data-diagram-role="five-route-electrical-freeze" data-drawing-property="discussion" role="img">
 <title>30 五路明装电路讨论墙面走槽图</title>
-<desc>讨论图：客厅先北后西沿未来隔帘线横穿并兼顾主照明，精确位置待放样；走廊B供电尚未分配，不得据图施工。</desc>
+<desc>讨论图：客厅先北后西沿未来隔帘线横穿并兼顾主照明，精确位置待放样；走廊B独立灯暂时取消，由A长灯条覆盖，不得据图施工。</desc>
 <style>
   text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
   .title{font-size:28px;font-weight:800;fill:#111827}.sub{font-size:14px;fill:#475569}
@@ -973,7 +973,7 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 </style>
 <rect width="1600" height="1120" fill="#fbfaf7"/>
 <text x="60" y="52" class="title">开封32㎡｜30 五路明装电路讨论墙面走槽图（2026-09-30）</text>
-<text x="60" y="80" class="sub">讨论图｜走廊B供电、灯控导体和PCT规格blocked；L1→W1先北后西沿未来隔帘线，标高/长度TBD，不能据图施工。</text>
+<text x="60" y="80" class="sub">讨论图｜灯控导体和PCT规格blocked；走廊B独立灯暂取消；L1→W1先北后西沿未来隔帘线，标高/长度TBD，不能据图施工。</text>
 
 <rect x="90" y="120" width="320" height="430" fill="#f7ead7"/>
 <rect x="410" y="120" width="210" height="215" fill="#f9efd0"/>
@@ -1031,7 +1031,7 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 <text x="1020" y="352" class="small">6. 底槽先钉，腻子可收到底槽边，但不要堵盖板卡槽；最终穿线后再扣盖。</text>
 <text x="1020" y="384" class="small">7. 每段底槽内部标 C1-BED / C2-KIT / C3-LIV / C4-AC-FR / C5-BATH。</text>
 <text x="1020" y="416" class="small">8. 阳台不做永久220V；吊扇拆除，不复用原调速器线路。</text>
-<text x="1020" y="456" class="small bold" data-unallocated-load="hall-b-light">走廊B灯保留需求：blocked，供电/灯控未分配，不能据图施工。</text>
+<text x="1020" y="456" class="small bold" data-cancelled-load="hall-b-light">走廊B独立灯暂取消；A长灯条覆盖，开关在入户与卧室门之间。</text>
 
 <rect x="990" y="555" width="550" height="220" rx="12" class="panel"/>
 <text x="1020" y="592" class="small bold">PCT-42 / 分线盒：两版现场实现</text>
@@ -1039,7 +1039,7 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 <text x="1045" y="654" class="small">用低轮廓的线槽配套接线/分线构件或短段加宽、可独立开盖的分线腔。</text>
 <text x="1020" y="690" class="small">B｜放不下：纯2.5mm²用86深明盒/小分线盒；6mm²多分支用约100×100×50。</text>
 <text x="1020" y="728" class="small">普通线槽本体能打开，不等于随便把接头裸塞在线槽腔里。</text>
-<text x="1020" y="756" class="small">9个已编号主节点+设备区局部分配；走廊B尚未分配，见31图。</text>
+<text x="1020" y="756" class="small">9个已编号主节点+设备区局部分配；走廊B独立灯暂取消，见31图。</text>
 
 <rect x="990" y="800" width="550" height="215" rx="12" class="panel"/>
 <text x="1020" y="837" class="small bold">罗马杆/旧支架：两版放样</text>
@@ -1073,7 +1073,7 @@ ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width
 </style>
 <rect width="1600" height="1110" fill="#fbfaf7"/>
 <text x="55" y="52" class="title">31 九主节点接线与材料复算图｜讨论图，规格待核验</text>
-<text x="55" y="80" class="sub">目标拓扑（须具体SKU证实）：PCT-42：1对L/N输入→2对L/N输出；PCT-62：1对L/N输入→3对L/N输出。走廊B供电仍blocked。</text>
+<text x="55" y="80" class="sub">目标拓扑（须具体SKU证实）：PCT-42：1对L/N输入→2对L/N输出；PCT-62：1对L/N输入→3对L/N输出。走廊B独立灯暂取消；灯控/PCT仍blocked。</text>
 <rect x="55" y="110" width="1490" height="44" class="head"/>
 <text x="70" y="138" class="h">节点</text><text x="150" y="138" class="h">端子</text><text x="350" y="138" class="h">输入</text><text x="590" y="138" class="h">输出</text><text x="1280" y="138" class="h">说明</text>
 <rect x="55" y="154" width="1490" height="62" class="main"/><text x="70" y="192" class="h">B1</text><text x="150" y="192" class="t">PCT-62×1</text><text x="350" y="192" class="t">C1 6mm² L/N</text><text x="590" y="192" class="t">B2主干 / 卧室JZ-N2 / 床南常电</text><text x="1280" y="192" class="t">6mm继续</text>
@@ -1091,7 +1091,7 @@ ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width
 <text x="75" y="875" class="t">洗烘：L1一条2.5到洗烘/小厨电区，再局部分洗烘与1～2个小厨电点。</text>
 <text x="75" y="910" class="t">沙发：W1一条2.5到娱乐区，再局部分扫地机低位与置物台上部常电。</text>
 <text x="75" y="945" class="t">书桌：W1一条2.5到书桌区域，再局部分桌下/桌上常电。</text>
-<text x="75" y="980" class="t">走廊B灯保留，但上游分线/灯控未分配；不得宣称采购完结。</text>
+<text x="75" y="980" class="t">走廊B独立灯暂取消：由A长灯条覆盖，开关在入户门与卧室门之间。</text>
 <rect x="800" y="770" width="745" height="260" rx="10" class="ok"/>
 <text x="820" y="805" class="h">候选端子与待复算预算（未放行采购）</text>
 <text x="820" y="840" class="t">PCT-42：固定主节点理论4只（B2/K1/K2/A1）→ 暂按10只装估价。</text>
@@ -1099,7 +1099,7 @@ ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width
 <text x="820" y="910" class="t">四分线槽：目标40m；已购20m，预计再补20m。</text>
 <text x="820" y="945" class="t">6mm²：每极净约21.2m，按25m准备；相线买30m。</text>
 <text x="820" y="980" class="t">BVVB 2×2.5：净约59～65m，按80～85m施工预算；原采购预算100m，待复核。</text>
-<text x="55" y="1070" class="s">讨论图：先闭合走廊B、灯控导体、PCT规格并复测客厅转弯位置/长度；不得据此施工或下料，通电另须专业验收。</text>
+<text x="55" y="1070" class="s">讨论图：先闭合灯控导体、PCT规格并复测客厅转弯位置/长度；不得据此施工或下料，通电另须专业验收。</text>
 </svg>"""
 
 
