@@ -25,7 +25,9 @@ coordinate_system:
   unit: "米"
   wall_thickness: 0.24
   door_height: 1.9
-  ceiling_height: 2.8
+  ceiling_height: 2.7
+  ceiling_height_status: confirmed
+  measurement_source: "2026-09-28业主现场口述；未复核照片中的标尺"
   suspended_ceiling: false
   accuracy: "坐标为名义值（≈墙中线），实测存在±0.1级墙厚误差"
 
@@ -41,7 +43,7 @@ rooms:
   - { id: kitchen, name: "厨房",        x: [0, 2],   y: [3, 5], net: "东西2.0 × 南北<2.0" }
   - { id: bath,    name: "卫生间",      x: [2, 3.2], y: [3, 4], net: "x<1.2, y<0.9", note: "外墙实测1.3×1.0；设计基准净≈1.05×0.75" }
   - { id: bedroom, name: "卧室",        x: [0, 3],   y: [5, 8], net: [3.0, 3.0], note: "净尺寸已确认" }
-  - { id: hall_a,  name: "走廊A(玄关)", x: [3.2, 4], y: [3, 5], net_width: 0.8 }
+  - { id: hall_a,  name: "走廊A(玄关)", x: [3.2, 4], y: [3, 5], net_width: 1.05, measurement_status: confirmed, note: "2026-09-28口述约105cm；平面坐标仍是旧名义框架，须复测关联墙线后重定位" }
   - { id: hall_b,  name: "走廊B",       x: [2, 3.2], y: [4, 5], note: "与走廊A成L形连通，无隔墙" }
 
 doors:
@@ -65,8 +67,10 @@ doors:
   - id: kitchen
     wall: "x=2（厨房南墙）"
     opening: { y: [4.2, 5] }
-    width: 0.8
-    type: "隐藏滑门"
+    width: 0.74
+    height: 1.95
+    measurement_status: confirmed
+    type: "上滑轨推拉门，商家咨询中，停泊位待复核"
     procurement_status: pending_custom_order
     procurement_ref: BUY-0001
     panel_park: "厨房内侧贴墙 y[3.4,4.1]（高窗下方，窗台无冲突）"
@@ -74,7 +78,9 @@ doors:
   - id: bath
     wall: "x=3.2（卫生间南墙）"
     opening: { y: [3.05, 3.75] }
-    width: 0.7
+    width: 0.67
+    height: 1.98
+    measurement_status: confirmed
     type: "移门，门板/轨道装在走廊A侧，沿墙东西滑；明装或暗藏结构待定制复测"
     installation_side: "走廊A"
     normal_state: closed
@@ -87,7 +93,9 @@ doors:
     practical_use: "无需每次完全滑到底；向东滑到卫生间能够进出即可"
     design_constraint: "常闭状态不占走廊B；使用时允许门板暂时侵入走廊B约0.4m，须能顺畅回关"
     drawing_rule: "总平面画关闭状态；门窗图和厨卫详图补充向东开启、临时侵入走廊B的状态"
-    effective_clear_width: 0.65   # 浴室柜压门洞东侧5cm
+    effective_clear_width: null
+    effective_clear_width_status: todo
+    effective_clear_width_note: "实测门洞67cm；原65cm净宽目标不能沿用，须按门框/重叠量/浴室柜复测"
     old_door_status: removed
   - id: balcony_slider
     wall: "x=4（客厅/阳台隔墙）"
@@ -111,7 +119,7 @@ windows:
   - { wall: "y=0", span: "x[4.05,4.95]", room: "阳台", note: "近整面非落地" }
   - { wall: "x=5", span: "y[0.1,2.9]",  room: "阳台", note: "近整面非落地" }
   - { wall: "x=2", span: "y[3.35,3.85]", rooms: "厨房↔卫生间", size: "0.5宽×0.5高", note: "高窗近顶，厨卫通风用" }
-  - { scope: "全部外窗", plan: "更换三猫家庭防逃纱窗", status: pending_custom_order, procurement_ref: BUY-0022, measure_window: "2026-10-01", installation_window: "2027年1月中旬", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
+  - { scope: "全部外窗", plan: "更换三猫家庭防逃纱窗", status: ordered, procurement_ref: BUY-0022, measure_window: "2026-09-28", installation_window: "业主9/28称4天后安装；暂推10/2，具体日期待商家确认", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
 
 electrical:
   current_state:
@@ -288,7 +296,7 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "猫抓板", location: "阳台西墙和南墙窗户下方", status: planned }
     - { item: "永久220V供电", status: deferred, constraint: "无穿线孔；本期不钻孔、不夹门布线，充电灯或开门临时插电待入住后决定" }
   kitchen:
-    - { item: "瓷砖水泥台面(已有)", rect: [0, 0.5, 3, 5], size: "南北0.5×东西2.0", note: "沿厨房北墙铺满，保留；本轮口述尺寸优先于旧版0.8m记录" }
+    - { item: "瓷砖水泥台面(已有)", rect: [0, 0.5, 3, 5], size: "南北0.46×东西1.93，高0.65", measurement_status: confirmed, note: "9/28现场口述；保留原台面，rect为旧名义坐标待复位" }
     - item: "架空瓷砖台面（计划）"
       footprint: "位于现有2m台面上方，立面叠层而非新增地面占地"
       tiles: { count: 3, each_m: [0.4, 0.6], total_nominal_m: [0.4, 1.8] }
@@ -312,15 +320,15 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
       procurement_ref: BUY-0004
       note: "按预计长度估算，至设计基准南墙约余0.47m；最终以成品尺寸和完成面复测"
     - { item: "淋浴设备（已有）", rect: [2.5, 3.15, 3, 3.55], status: existing, inventory_ref: INV-0011, note: "花洒装西墙南段+浴帘；地面整体向西北立管找坡" }
-    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角，壁挂+防水材质；压门洞5cm；镜柜电源在BATH-RCD-05下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
+    - { item: "浴室柜+智能除雾镜柜", rect: [2.8, 3.2, 3.7, 4], size: "0.3(东西)×0.4(南北)", note: "东南角尺寸为候选；67cm实测门洞下须重算压门洞与通行净宽；镜柜电源在BATH-RCD-05下游并按说明选择设备连接方式", procurement_status: not_purchased, procurement_ref: BUY-0005 }
   bedroom:
     - { item: "双人床1.3×2.0", rect: [0, 1.3, 5, 7], orient: "床头贴西墙(y=5)，北侧紧靠北墙(x=0)" }
-    - { item: "顶天立地衣柜", rect: [0, 3, 7.2, 8], depth: 0.8, closure: "帘子代替柜门", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "全部尚未购买；东墙整面；北段仍被床挡（见issues）" }
+    - { item: "分上下部衣柜/衣架", rect: [0, 3, 7.52, 8], depth: 0.48, width: 3.0, height: 2.05, measurement_status: confirmed, closure: "计划约2.7m帘子覆盖上下部", procurement_status: not_purchased, procurement_ref: BUY-0009, note: "9/28口述尺寸48深×300宽×205高；205cm以上有墙及上部储物空间。既有结构与待购衣架边界待核实，平面位置仍为planned" }
     - { item: "长窄柜/书桌", rect_nominal: [1.3, 1.7, 5, 7], orient: "位于床南侧、与床平行，西端靠墙", use: ["床头柜", "书桌"], status: "尺寸待定" }
 
 surface_finishes:
   source: "data/finishes.yaml"
-  wall_old_skin: "已基本铲平"
+  wall_old_skin: "旧基层有多层腻子，局部已铲、局部保留；9/29业主称坑洼，挂网/刮腻子范围待定"
   floor_existing: "瓷砖"
   style: "宋氏美学 + 侘寂中古，偏暖黄色"
   tile_recolor_scope: "厨房和卫生间四面墙约1.8m高的白色瓷砖，以及厨房现有瓷砖灶台"
@@ -402,3 +410,25 @@ discussion_roadmap:
   2: "玄关+走廊收纳（走廊A南墙y[3.05,3.7]×0.2m薄鞋柜位）"
   3: "阳台晾晒与收纳平衡"
   4: "客厅/卧室电路（投影仪取电）"
+
+field_measurements_2026_09_28:
+  status: confirmed
+  source: "ChatGPT《更新装修现场数据》业主9/28 19:04及19:09原话"
+  screen_order_sizes_cm:
+    - { width: 95, height: 47, quantity: 2 }
+    - { width: 90, height: 47, quantity: 1 }
+    - { width: 128, height: 74, quantity: 2 }
+  screen_room_mapping: todo
+  kitchen_north_south_segments_cm: { sink: 55, cabinet: 80, counter: 46 }
+  kitchen_segment_note: "三段口述约181cm，不等于已校核的厨房墙线坐标"
+  bathroom_pipe_enclosure_min_cm: [22, 22]
+  bathroom_pipe_material: "业主口述pve，具体材质待核，不自动改成PVC"
+  coordinate_reconciliation: todo
+  drawing_rule: "新增实测尺寸优先于旧名义尺寸；当前图为讨论示意，未将局部尺寸强行传播成整屋墙线"
+
+ventilation_field_update:
+  status: confirmed
+  source: "ChatGPT《门窗价格参考》业主原话"
+  range_hood: "无专用油烟机烟道；旧油烟机挂厨房窗，玻璃已有方洞"
+  gas_hose: "业主确认黄色软管为燃气管，型号/有效期/路径待核验"
+  risk_ref: SAF-0025

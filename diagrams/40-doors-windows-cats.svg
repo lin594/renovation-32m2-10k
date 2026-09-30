@@ -85,7 +85,7 @@
   <line x1="1145" y1="425" x2="1240" y2="425" stroke="#dc2626" stroke-width="6" stroke-dasharray="7 5"/>
   <text x="1192" y="474" class="small red center">向东完全开启：约0.4m进入走廊B</text>
   <text x="998" y="505" class="small">日常可按进出需要部分开启；关闭后恢复A/B走廊净空。</text>
-  <text x="998" y="530" class="small">门洞有效净宽目标约0.65m；轨道和停泊尺寸下单前复测。</text>
+  <text x="998" y="530" class="small">洞口67×198cm；净宽/停泊位按框轨及柜体重测。</text>
 </g>
 
 <text x="250" y="270" class="room">客厅</text><text x="250" y="291" class="roomsub">净4.0×3.0m</text>
@@ -97,9 +97,9 @@
 
 <rect x="970" y="120" width="370" height="210" rx="14" class="panel"/>
 <text x="994" y="158" class="note bold">门窗与三猫安全</text>
-<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨房/卫生间移门：待定制</text>
-<text x="994" y="252" class="note">所有外窗：防逃纱窗 TODO</text><text x="994" y="281" class="note">阳台猫抓板提高窗台可达性</text>
+<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨74×195 / 卫67×198cm：咨询中</text>
+<text x="994" y="252" class="note">纱窗5扇已定做；约10/2待确认</text><text x="994" y="281" class="note">95×47×2；90×47×1；128×74×2</text>
 <text x="994" y="310" class="note red">纱网、边框、锁扣和缝隙需整体验收</text>
 
-<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

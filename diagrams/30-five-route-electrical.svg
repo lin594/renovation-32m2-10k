@@ -26,21 +26,21 @@
 <text x="567" y="402" class="room">走廊B</text><text x="515" y="515" class="room">玄关 / 走廊A</text><text x="780" y="290" class="room">卧室</text><text x="780" y="505" class="room">公共走廊</text>
 
 <rect x="595" y="435" width="48" height="32" rx="4" fill="#fff" stroke="#111827" stroke-width="2"/>
-<text x="650" y="431" class="small bold">配电箱｜卧室门与入户门之间</text>
+<text x="650" y="461" class="small bold">配电箱</text>
 
 <path class="c1" d="M618 450 L618 350 L640 350 L640 205"/>
-<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="310" class="micro">B1：JZ-N2 + 床南；主干继续</text>
+<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="355" class="micro">B1：JZ-N2 / 床南</text>
 <circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">B2：卧室空调 + 床北</text>
 <path class="drop" d="M640 305 H760M640 205 H760"/>
-<text x="675" y="335" class="micro" fill="#7c3aed">① C1-BED：配电箱→北→卧室门头→西墙高位→B1→B2</text>
+<text x="110" y="625" class="small" fill="#7c3aed">① 卧室：配电箱向北 → 卧室门头 → 西墙高位B1 → B2。</text>
 
 <circle cx="790" cy="285" r="16" class="retired"/><path d="M780 275L800 295M800 275L780 295" class="retired"/>
 <text x="790" y="315" class="micro" text-anchor="middle">吊扇拆除｜无新供电</text>
 
 <path class="c2" d="M610 450 L610 335 L535 335 L535 275 L445 275 L445 180"/>
-<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">K1：主灯/入口开关</text>
+<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">K1：灯/开关</text>
 <circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">K2：西墙家电组</text>
-<text x="430" y="315" class="micro" fill="#ea580c">② C2-KIT：与①向北并行，①退出后继续到厨房门头</text>
+<text x="110" y="660" class="small" fill="#ea580c">② 厨房：与①向北并行，①退出后经厨房门头 → K1 → K2。</text>
 
 <path class="c4" d="M602 450 L602 530 L420 530 L420 485 L235 485"/>
 <path class="c3" d="M594 450 L594 520 L430 520 L430 475 L385 475 L385 455"/>
@@ -48,16 +48,16 @@
 <path class="c5" d="M586 450 L586 510 L440 510 L440 465 L485 465 L485 420"/>
 <text x="655" y="566" class="micro">玄关公共墙段，侧墙从靠顶到靠下建议：④ / ③ / ⑤；三路独立槽并排</text>
 
-<circle cx="520" cy="520" r="9" class="node"/><text x="530" y="505" class="micro">H1：设备架 + 玄关灯带</text>
+<circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">H1：设备架 / 灯带</text>
 <circle cx="385" cy="455" r="9" class="node"/><text x="335" y="438" class="micro">L1：洗烘/小厨电 / JZ-N2</text>
 <circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">W1：投影 / 沙发娱乐区 / 书桌（定位TBD）</text>
-<text x="145" y="475" class="micro" fill="#2563eb">③ C3-LIV：L1后先北→西；转弯墙段/长度TBD</text>
+<text x="110" y="695" class="small" fill="#2563eb">③ 客厅生活：H1 → L1后先北再西 → W1；虚线转弯/位置/长度TBD。</text>
 
 <circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">A1：客厅空调 + 冰箱</text>
-<text x="245" y="472" class="micro" fill="#dc2626">④ C4-AC-FR：与③共走墙边骨架，到空调/冰箱即结束</text>
+<text x="110" y="730" class="small" fill="#dc2626">④ 空调冰箱：独立回路，经客厅南侧到A1后分两个末端。</text>
 
-<circle cx="485" cy="420" r="9" class="node"/><text x="500" y="410" class="micro">BATH1：浴霸 / 镜柜 / 独立主灯</text>
-<text x="495" y="446" class="micro" fill="#0f766e">⑤ C5-BATH：公共墙段→通道/门头→卫生间南墙向东→门头进入</text>
+<circle cx="485" cy="420" r="9" class="node"/><text x="420" y="440" class="micro">BATH1</text>
+<text x="110" y="765" class="small" fill="#0f766e">⑤ 卫生间：公共墙段 → 通道/门头 → 卫生间南墙 → BATH1。</text>
 
 <rect x="990" y="120" width="550" height="410" rx="12" class="panel"/>
 <text x="1020" y="158" class="small bold">现场走槽规则</text>
@@ -84,7 +84,7 @@
 <text x="1020" y="872" class="small">A｜不冲突：拆杆；支架易拆则临时拆下并保留原孔，线槽保持统一高位。</text>
 <text x="1020" y="908" class="small">B｜冲突：优先整体调整罗马杆；若支架位置必须保留，则整段线槽统一降低。</text>
 <text x="1020" y="944" class="small">不要为了单个支架做“下去—绕过—再上来”的蛇形。</text>
-<text x="1020" y="980" class="small">明天先用一根2m底槽全屋比划，再正式钉槽。</text>
+<text x="1020" y="980" class="small">现场先用一根2m底槽全屋比划，再正式钉槽。</text>
 
 <line x1="110" y1="1045" x2="165" y2="1045" class="c1"/><text x="175" y="1050" class="micro">①卧室</text>
 <line x1="270" y1="1045" x2="325" y2="1045" class="c2"/><text x="335" y="1050" class="micro">②厨房</text>

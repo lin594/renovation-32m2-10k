@@ -77,21 +77,21 @@
   <rect x="406" y="336" width="88" height="108" class="tilepaint"/>
   <rect x="410" y="145" width="180" height="38" fill="#f3e8ff" fill-opacity=".82" stroke="#a855f7" stroke-width="2"/>
 </g>
-<text x="500" y="202" class="small center purple">厨房四周墙砖高约1.8m</text>
-<text x="500" y="219" class="micro center purple">含现有瓷砖灶台改色</text>
+<text x="500" y="176" class="small center purple">厨房四周墙砖高约1.8m</text>
+<text x="500" y="195" class="micro center purple">含现有瓷砖灶台改色</text>
 <text x="450" y="354" class="micro center purple">四周墙砖高约1.8m</text>
 
 <!-- Moisture treatment extents are indicative and must be measured on site. -->
-<rect x="115" y="145" width="270" height="370" rx="12" class="ceiling" data-surface="living-room-ceiling"/>
+<rect x="115" y="420" width="70" height="95" rx="12" class="ceiling" data-surface="living-room-ceiling"/>
 <path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-surface="suspected-damp-walls"/>
 <path d="M105 540V620M115 625H390" class="moisture" data-surface="balcony-non-window-surfaces"/>
-<text x="250" y="320" class="small center" fill="#92400e">客厅顶部拟做防潮/防水处理</text>
+<text x="250" y="320" class="small center" fill="#92400e">西南顶漏源待查；不整面封闭</text>
 <text x="112" y="438" class="micro blue" transform="rotate(-90 112 438)">西墙南部疑似受潮</text>
 <text x="388" y="418" class="micro blue" transform="rotate(-90 388 418)">东墙南部邻卫生间</text>
 <text x="415" y="286" class="micro blue">水槽墙</text>
-<text x="450" y="385" class="small center">卫生间自铺地砖</text>
-<text x="250" y="585" class="small center">菠萝格地板 + 鹅卵石</text>
-<text x="745" y="408" class="small center">干区：瓷砖上叠铺石塑木纹地板</text>
+<text x="450" y="435" class="micro center">地砖待铺</text>
+<text x="250" y="610" class="small center">菠萝格地板 + 鹅卵石（候选）</text>
+<text x="745" y="408" class="small center">干区石塑地板候选｜尚未定购</text>
 <text x="250" y="660" class="small center">三处罗马杆+窗帘已有｜换布、染色、拆分利用或回收待定</text>
 <text x="100" y="690" class="small purple">瓷砖改色粗基数约19.18㎡：待扣厨房窗洞，并补量灶台立面/侧面。</text>
 
@@ -111,6 +111,6 @@
 <text x="750" y="280" class="room">卧室</text><text x="750" y="301" class="roomsub">净3.0×3.0m</text>
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">饰面体系与施工门禁</text><text x="994" y="196" class="note">风格：宋氏美学 + 侘寂中古，暖黄色</text><text x="994" y="225" class="note">先修排水渗漏/查潮源，再封闭基层</text><text x="994" y="254" class="note">层高2.65m、无吊顶；先算净面积 A</text><text x="994" y="283" class="note">扣外窗前保守基数：A ≈ 134.70㎡</text><text x="994" y="312" class="note">底漆 = ceil(A÷50)：当前按3桶</text><text x="994" y="341" class="note">面漆理论值 = ceil(A÷30)</text><text x="994" y="370" class="note">本期保守采购：底漆3桶+面漆5桶</text><text x="994" y="399" class="note">工具1套；计划合计 ¥2012</text><text x="994" y="428" class="note">不等待外窗复测再决定第5桶</text><text x="994" y="457" class="note">面漆须同色同批；未开封余桶入库</text><text x="994" y="486" class="note">厨卫墙砖/灶台改色面积单独测算</text><text x="994" y="515" class="note red">卫生间防水不能只凭商品简称</text><line x1="994" y1="536" x2="1316" y2="536" stroke="#e2e8f0"/><line x1="998" y1="554" x2="1030" y2="554" stroke="#b88959" stroke-width="5"/><text x="1044" y="558" class="small">干区石塑木纹地板</text><line x1="998" y1="583" x2="1030" y2="583" stroke="#8bb8ba" stroke-width="5"/><text x="1044" y="587" class="small">卫生间自铺地砖</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#a855f7" stroke-width="5"/><text x="1044" y="616" class="small">既有白色瓷砖改色</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#0891b2" stroke-width="5"/><text x="1044" y="645" class="small">防潮/防水候选区域</text>
-<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">饰面体系与施工门禁</text><text x="994" y="196" class="note">风格：宋氏美学 + 侘寂中古，暖黄色</text><text x="994" y="225" class="note">先修排水渗漏/查潮源，再封闭基层</text><text x="994" y="254" class="note">9/28层高口述约2.7m；面积待复算</text><text x="994" y="283" class="note">旧2.8m面积基数不用于追加采购</text><text x="994" y="312" class="note">已购底漆3桶；面漆1875色4桶</text><text x="994" y="341" class="note">9/29厨卫及客厅局部墙固一遍</text><text x="994" y="370" class="note">截至9/29：S2防水尚未开刷</text><text x="994" y="399" class="note">含工具套装1套，已付 ¥1713</text><text x="994" y="428" class="note">先按实测与损耗复核，不预购第5桶</text><text x="994" y="457" class="note">面漆须同色同批；未开封余桶入库</text><text x="994" y="486" class="note">厨卫墙砖/灶台改色面积单独测算</text><text x="994" y="515" class="note red">卫生间防水不能只凭商品简称</text><line x1="994" y1="536" x2="1316" y2="536" stroke="#e2e8f0"/><line x1="998" y1="554" x2="1030" y2="554" stroke="#b88959" stroke-width="5"/><text x="1044" y="558" class="small">干区石塑木纹地板</text><line x1="998" y1="583" x2="1030" y2="583" stroke="#8bb8ba" stroke-width="5"/><text x="1044" y="587" class="small">卫生间自铺地砖</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#a855f7" stroke-width="5"/><text x="1044" y="616" class="small">既有白色瓷砖改色</text><line x1="998" y1="641" x2="1030" y2="641" stroke="#0891b2" stroke-width="5"/><text x="1044" y="645" class="small">防潮/防水候选区域</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

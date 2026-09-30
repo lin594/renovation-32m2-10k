@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-26"
+updated: "2026-09-30"
 status: planning
 
 design_direction:
@@ -9,7 +9,7 @@ design_direction:
   avoid: ["冷白", "高亮塑料感", "与整体冲突的现有窗帘风格"]
 
 existing_substrate:
-  wall_old_skin: "已基本铲平"
+  wall_old_skin: "多层旧腻子局部铲除、局部保留，坑洼与新旧界面待处理；不视为已验收基层"
   bathroom_walls: "四面墙约1.8m高已有白色瓷砖"
   kitchen_tiles: "四面墙约1.8m高已有白色瓷砖；现有灶台也是瓷砖"
   floors: "全屋现有瓷砖地板"
@@ -45,10 +45,10 @@ product_candidates:
   - { item: "刷漆工具套装", candidate: "小建刷新S2家工具套装", planned_price_cny_approx: 70, procurement_ref: BUY-0015 }
 
 latex_paint_quantity_model:
-  status: ordered_pending_delivery
+  status: blocked_by_remeasurement_after_2026_09_28
   task_ref: TASK-0017
   measurement_basis:
-    ceiling_height_m: 2.8
+    ceiling_height_m: 2.7
     suspended_ceiling: false
     door_height_m: 1.9
     kitchen_tile_height_m: 1.8
@@ -68,9 +68,9 @@ latex_paint_quantity_model:
   provisional_takeoff_m2:
     total_before_three_external_window_deductions: 123.99
     required_window_deduction_for_four_topcoat_buckets: 3.99
-    status: "当前未实测三处主要外窗高度；4桶面漆按卖家口径最多覆盖约120㎡两遍，因此下单前仍需客服确认"
+    status: "todo；旧2.8m模型历史估算。2.7m口述层高、新门窗尺寸与不涂区确认后重算；不得认为数量已验证"
   quantity_boundary:
-    primer: "3桶可按约150㎡一遍覆盖，当前足够"
+    primer: "已购3桶；按卖家约150㎡一遍口径，实际是否足够待净面积复算"
     topcoat: "4桶按约120㎡两遍覆盖；余量很小，依赖外窗扣减和实际施工损耗"
   procurement_decision:
     status: ordered
@@ -88,7 +88,7 @@ latex_paint_quantity_model:
   missing_measurements:
     - "客厅、卧室、厨房主要外窗实际高度及窗台高度"
     - "柜体、固定设备等明确不涂区域的最终尺寸"
-  note: "本轮不再按旧134.70㎡与5桶面漆采购；面积口径已切换为2.8m层高、阳台只刷顶、厨卫1.8m以下不刷"
+  note: "已购3桶底漆/4桶面漆保持账实；保留的面积数值为旧2.8m假设下的历史估算，9/28层高2.7m及新尺寸后待复算，不据此补购"
 
 tile_recolor_quantity_model:
   status: blocked_by_measurement
@@ -130,3 +130,12 @@ refinishing:
     reason: "现有风格与宋氏美学冲突"
     inventory_ref: INV-0008
     task_ref: TASK-0016
+
+field_update_2026_09_29:
+  status: confirmed
+  wall_primer_done: ["卫生间一遍", "厨房一遍", "客厅部分一遍"]
+  waterproof_s2: "todo；截至9/29 19:54尚未开刷"
+  ceiling_finish_candidate:
+    status: planned
+    owner_intent: "部分天花板考虑S2后腻子/挂网与乳胶漆，已向客服询问"
+    gate: "具体产品体系、范围和附着小样尚未核实；客服截图未逐项复核，不当作已完成或通用施工结论"

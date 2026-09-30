@@ -26,7 +26,7 @@
 - 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
 - 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气方案当前优先看 [30 五路明装路线图](diagrams/30-five-route-electrical.svg)、[31 九主节点接线与材料复算图](diagrams/31-electrical-node-schedule.svg) 与 [2026-09-30 明装电路整合方案（待确认）](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
 - 重要方案的现行/已替代关系见 [决策记录索引](docs/decisions/README.md)。
-- 最新第三方复核见 [2026-09-01 公开仓库审计](docs/reviews/2026-09-01-public-repository-audit.md)。
+- 本轮整合与一次性答复入口：[2026-09-30 多渠道核对及待确认清单](docs/reviews/2026-09-30-channel-reconciliation.md)。当前为整合稿，未决事项不等于施工已批准。
 
 ## 最容易修改的入口
 

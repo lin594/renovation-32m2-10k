@@ -82,7 +82,7 @@
 <rect x="320" y="290" width="80" height="80" class="fixed" /><text x="360" y="330" class="small center">餐桌</text>
 <rect x="400" y="190" width="60" height="60" class="fixed" data-appliance="dishwasher" data-status="owned-to-move" data-stack-on="wood-cabinet"/><text x="430" y="210" class="micro center">洗碗机｜已有</text><text x="430" y="226" class="micro center">叠放木柜/替代柜上</text><text x="430" y="242" class="micro center">承重待核</text>
 <rect x="600" y="130" width="200" height="130" class="fixed" /><text x="700" y="198" class="small center">双人床1.3×2.0</text>
-<rect x="820" y="130" width="80" height="300" class="fixed" /><text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣柜深0.8m｜帘子</text>
+<rect x="852" y="130" width="48" height="300" class="planned" /><text x="860" y="320" class="small center" transform="rotate(-90 860 320)">衣架深0.48m×高2.05m｜位置TBD</text>
 <rect x="600" y="260" width="200" height="40" class="planned" /><text x="700" y="287" class="small center">长窄柜/书桌｜尺寸待定</text>
 <rect x="410" y="330" width="40" height="58" class="planned" data-status="not-purchased"/><text x="430" y="373" class="micro center">马桶</text>
 <rect x="470" y="410" width="30" height="40" class="planned" data-status="not-purchased"/><text x="485" y="438" class="micro center">浴室柜</text>
@@ -98,5 +98,5 @@
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
 <rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">采购与摆放状态</text><text x="994" y="196" class="note">橙虚线：未购买、未定制或尺寸待定</text><text x="994" y="225" class="note">书桌已有，待做黑胡桃色小样改色</text><text x="994" y="254" class="note">椅子、沙发床和洗烘机尚未购买</text><text x="994" y="283" class="note">沙发床向东展开，兼作临时客卧</text><text x="994" y="312" class="note">紫虚线：入住后再决定的隐私帘</text><text x="994" y="341" class="note">洗碗机已有；叠放水槽北侧柜体上</text><text x="994" y="370" class="note">马桶、浴室柜尚未购买</text><text x="994" y="399" class="note">扫地机器人已有，停靠在沙发与书桌之间</text><text x="994" y="428" class="note">上方窄桌下部无前腿，不挡回充与取出</text><text x="994" y="457" class="note">主通道仍需保持约0.7m净宽</text><text x="994" y="486" class="note">卫生间移门不在本图画开启门扇</text><text x="994" y="515" class="note red">家具下单前必须现场复测</text><line x1="994" y1="536" x2="1316" y2="536" stroke="#e2e8f0"/><line x1="998" y1="554" x2="1030" y2="554" stroke="#64748b" stroke-width="5"/><text x="1044" y="558" class="small">已有/固定/明确摆位</text><line x1="998" y1="583" x2="1030" y2="583" stroke="#f97316" stroke-width="5"/><text x="1044" y="587" class="small">计划或未购买</text><line x1="998" y1="612" x2="1030" y2="612" stroke="#15803d" stroke-width="5"/><text x="1044" y="616" class="small">主要通行路径</text>
-<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜坐标和尺寸以 house.yaml 与现场复测为准，不替代施工放样或专项验收。</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-26"
+updated: "2026-09-30"
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -59,3 +59,10 @@ protected_scope:
   - "卫生间防水"
   - "马桶"
   - "基础用电"
+
+unpriced_commitments:
+  - { procurement_ref: BUY-0056, status: todo, issue: "批刀/刮板已购但金额未恢复，实际支出尚未完整入账" }
+  - { procurement_ref: BUY-0022, status: todo, issue: "五扇纱窗已定做，付款状态、订金/尾款/总价及安装费未知" }
+reserve_review:
+  status: todo
+  issue: "299元工具预留与已入账万用表等存在覆盖重叠；暂保留全额，不自动释放预算，待业主确认剩余需购物料或新的预留额"

@@ -87,7 +87,7 @@ content = <<~MARKDOWN
 
   保守公式：`#{money(overall)} − #{money(expenses)} − #{money(trip)}交通 − #{money(paint)}涂装 − #{money(contingency)}应急 = #{money(available_conservative)}`。
 
-  这只是剩余上限，不代表尚未报价的防水、地面、马桶、防猫纱窗、门和基础用电已经买得下。
+  这只是已入账口径的剩余上限，不代表尚未报价必需项已经买得下。批刀/刮板已购缺金额、纱窗已定做但总价/付款未知；299元工具预留仍待核减，当前金额不是可自由支配余额。
 
   数据质量提示：当前有 #{undated_entries} 笔历史账目未登记日期；金额汇总不受影响，但施工时间线仍不完整。
 
