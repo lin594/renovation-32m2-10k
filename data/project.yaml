@@ -144,8 +144,8 @@ field_progress:
       application_date: todo
       acceptance_status: blocked_pending_product_and_site_verification
       note: "遍数为业主估计；已涂刷不代表达到产品规定厚度、固化、附着或防水验收完成"
-    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补", "S2施工日期和卫生间闭水验收待补证据"]
-    observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划", "S2已涂刷区域已确认，尚未等同验收完成"]
+    not_completed: ["吊扇尚未拆除", "厨房水槽下铁管/接口漏点尚未处理", "阳台不规则窗玻璃缝隙尚待填补", "S2施工日期和卫生间闭水验收待补证据"]
+    observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划", "S2已涂刷区域及产品身份已确认，约一遍为业主估计，尚未等同验收完成"]
 finalization:
   status: blocked
   reason: "已收首轮答复；改为逐题QA，京东新增账目明细依业主要求延后；技术验收另需实测证据"

@@ -36,7 +36,7 @@ waterproof_or_moisture_zones:
   - { zone: "客厅西南角天花板", scope: "疑似顶楼雨漏；室内仅做清理、观察及明确点/缝的局部背水面堵漏", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
-  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管疑似渗漏；旧瓷砖砌水槽计划先做隐藏防水、后续不锈钢覆盖", status: in_progress, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0011, note: "业主报告已在现有瓷砖水槽内刷S2，未来由不锈钢水槽覆盖；先核铁管漏点实际修复状态。旧釉面砖彻底去油去垢并打毛/界面处理，小样确认附着后再把S2作为隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
+  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管及接缝漏点尚未处理；旧瓷砖砌水槽未来不锈钢覆盖", status: blocked_by_repair, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0011, note: "业主报告已在现有瓷砖水槽内刷S2，未来由不锈钢水槽覆盖；先核铁管漏点实际修复状态。旧釉面砖彻底去油去垢并打毛/界面处理，小样确认附着后再把S2作为隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
 
 product_candidates:
   - { item: "卫生间防水涂料", candidate: "业主确认已购并涂刷：三棵树柔韧型S2灰色18kg；桶身批次和技术参数仍待实物核验", procurement_ref: BUY-0010 }
