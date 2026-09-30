@@ -29,12 +29,14 @@ proposed_sequence:
   - "乳胶漆达到厂家允许安装和触碰的干燥状态后再穿线、装端子、装器具和扣盖"
 
 waterproof_or_moisture_zones:
-  - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: planned, risk_ref: SAF-0010 }
+  - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: in_progress, application_reported: true, coats: todo, cure_status: todo, flood_test: todo, risk_ref: SAF-0010, note: "业主报告已刷S2；准确施工日期/遍数待补。规定固化后、铺砖前做至少24h蓄水检查，当前不算验收完成" }
   - { zone: "阳台", scope: "除窗户外的墙面/顶面等区域", status: planned }
+  - { zone: "厨房西墙", scope: "业主报告已刷S2；准确涂刷范围、基层用途、产品适配、遍数及后续饰面待核", status: in_progress, application_reported: true, coats: todo, risk_ref: SAF-0010 }
+  - { zone: "客厅东南角及其他部分区域", scope: "业主报告已刷S2；具体边界、基层用途、产品适配、遍数及后续饰面待现场标注", status: in_progress, application_reported: true, coats: todo, risk_ref: SAF-0010 }
   - { zone: "客厅西南角天花板", scope: "疑似顶楼雨漏；室内仅做清理、观察及明确点/缝的局部背水面堵漏", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
-  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管疑似渗漏；旧瓷砖砌水槽计划先做隐藏防水、后续不锈钢覆盖", status: blocked_by_repair, risk_ref: SAF-0011, note: "先修铁管漏点。旧釉面砖彻底去油去垢并打毛/界面处理，小样确认附着后再把S2作为隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
+  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管疑似渗漏；旧瓷砖砌水槽计划先做隐藏防水、后续不锈钢覆盖", status: in_progress, application_reported: true, coats: todo, risk_ref: SAF-0011, note: "业主报告已在现有瓷砖水槽内刷S2，未来由不锈钢水槽覆盖；先核铁管漏点实际修复状态。旧釉面砖彻底去油去垢并打毛/界面处理，小样确认附着后再把S2作为隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
 
 product_candidates:
   - { item: "卫生间防水涂料", candidate: "三棵树柔韧型S2室内防水；京东常见18kg灰色卫生间/厨房通用规格", procurement_ref: BUY-0010 }

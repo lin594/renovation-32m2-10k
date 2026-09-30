@@ -100,7 +100,7 @@ active_tasks:
     phase: doors_windows
     item: "选择并购买卧室门"
     status: todo
-  - { id: TASK-0011, phase: waterproof_surfaces, item: "检查并修复厨房老铁下水渗漏；旧瓷砖水槽基层处理后以S2作隐藏二道防水，后续再定制304不锈钢内胆/整体包槽", status: todo, schedule_window: "2026-09-28定位漏点与基层；不锈钢覆盖后置" }
+  - { id: TASK-0011, phase: waterproof_surfaces, item: "跟进厨房排水疑似漏点修复；旧瓷砖水槽已报告刷S2，核验基层/涂层与后续304不锈钢内胆覆盖", status: in_progress, schedule_window: "2026-09-28定位漏点与基层；不锈钢覆盖后置" }
   - { id: TASK-0012, phase: waterproof_surfaces, item: "核对防水/墙固/腻子/底漆/面漆产品体系与用量", status: todo }
   - { id: TASK-0013, phase: waterproof_surfaces, item: "查明客厅西墙南部、东墙南部及西南角天花板疑似受潮/雨漏来源；顶楼屋面不由业主自行登高处理", status: todo, schedule_window: "2026-09-28室内排查；持续雨漏的屋面迎水面维修外包" }
   - { id: TASK-0014, phase: waterproof_surfaces, item: "复测石塑地板叠铺后的门槛和门扇净高", status: todo }
@@ -133,13 +133,19 @@ field_progress:
     status: confirmed
     source: "ChatGPT《线槽用量与施工顺序》19:54业主原话"
     completed: ["卫生间墙固一遍", "厨房墙固一遍", "客厅部分墙面墙固一遍"]
-    not_started: ["三棵树S2防水"]
-    note: "仅记录截至该消息的现场状态；未推定9/30以后已完成"
+    note: "仅记录截至9/29 19:54的现场状态；当时尚未开刷，不表示此后未施工"
   - date: "2026-09-30"
     status: confirmed
-    source: "本任务业主首轮答复"
-    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补"]
-    observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划"]
+    source: "本任务业主首轮答复及后续逐题QA"
+    application_reported:
+      material: "三棵树S2防水（桶身/批次/使用说明待实物核对）"
+      areas: ["厨房西墙", "卫生间地面", "客厅东南角及其他部分区域（范围待标注）", "厨房现有瓷砖水槽内（未来将由不锈钢水槽覆盖）"]
+      coats: todo
+      application_date: todo
+      acceptance_status: blocked_pending_product_and_site_verification
+      note: "已涂刷不代表规定遍数、厚度、固化、附着或防水验收完成"
+    not_completed: ["吊扇尚未拆除", "阳台不规则窗玻璃缝隙尚待填补", "S2施工遍数/日期及卫生间闭水验收待补证据"]
+    observations: ["近期雨后无渗漏", "纱窗房间对应和已付款已确认", "玄关柜等家具尚未购买、尚未详细规划", "S2已涂刷区域已确认，尚未等同验收完成"]
 finalization:
   status: blocked
   reason: "已收首轮答复；改为逐题QA，京东新增账目明细依业主要求延后；技术验收另需实测证据"
