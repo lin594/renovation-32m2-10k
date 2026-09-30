@@ -274,7 +274,7 @@ items:
       - "核对额定长度、每米功率、剪切单位、转弯方式、散热安装面和阻燃信息"
       - "保留厂家二脚插头，插入由墙壁开关控制并标注‘仅灯带’的高位专用插座"
       - "不剪插头硬接，不把建筑导线与灯带铜箔/软引线裸接"
-    control_status: "blocked；玄关零火控制或机械控制及N预留待确认，灯带长度为planned"
+    control_status: "confirmed：入户门与卧室门之间普通实体开关，不考虑智能控制；产品和导体配置仍待核，灯带长度为planned"
     planned_length_m: 2
     quantity_status: planned_pending_product_manual
     purchase_strategy: "按约2m成套成品选购；现场只微调安装位置，不改变厂家允许长度和端接方式"
