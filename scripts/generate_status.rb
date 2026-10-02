@@ -30,8 +30,10 @@ overall = budget.fetch("overall_budget_cny").to_f
 trip = gate.fetch("october_trip_reserve_cny").to_f
 paint = gate.fetch("paint_and_tools_plan_cny").to_f
 contingency = gate.fetch("contingency_cny").to_f
+future_purchase_reserve = gate.fetch("future_purchase_reserve_cny", 0).to_f
+future_purchase_reserves = Array(gate["future_purchase_reserves"])
 unpaid = Array(procurement["items"]).sum { |item| item.fetch("unpaid_balance_cny", 0).to_f }
-reserved = trip + paint + contingency + unpaid
+reserved = trip + paint + contingency + unpaid + future_purchase_reserve
 available_conservative = overall - expenses - reserved
 available_cash_view = overall - net_outflow - reserved
 
@@ -82,13 +84,15 @@ content = <<~MARKDOWN
   | 累计支出 | #{money(expenses)} |
   | 累计收入 | #{money(income)} |
   | 净现金流出 | #{money(net_outflow)} |
-  | 已规划预留及已知尾款（交通 + 涂装 + 应急 + 尾款） | #{money(reserved)} |
+  | 已规划预留及已知尾款（交通 + 涂装 + 应急 + 尾款 + 五项未来采购） | #{money(reserved)} |
   | **其余工作可用上限（保守，不用收入冲抵）** | **#{money(available_conservative)}** |
   | 计入回收收入后的现金视角 | #{money(available_cash_view)} |
 
-  保守公式：`#{money(overall)} − #{money(expenses)} − #{money(trip)}交通 − #{money(paint)}涂装 − #{money(contingency)}应急 − #{money(unpaid)}已知尾款 = #{money(available_conservative)}`。
+  保守公式：`#{money(overall)} − #{money(expenses)} − #{money(trip)}交通 − #{money(paint)}涂装 − #{money(contingency)}应急 − #{money(unpaid)}已知尾款 − #{money(future_purchase_reserve)}五项未来采购预留 = #{money(available_conservative)}`。
 
-  这只是已入账口径的剩余上限，不代表尚未报价必需项已经买得下。纱窗500元中已付200元计入支出、未付300元计入预留；不再单列299元工具预算。批刀/刮板缺价，以及业主暂缓补明细的京东新增约1000元均未扣全，当前金额不是可自由支配余额。
+  五项未来采购预留：#{future_purchase_reserves.map { |item| "#{item['item']}#{money(item['reserve_cny'].to_f)}" }.join("、")}，合计#{money(future_purchase_reserve)}。预留只是预算占位，不代表已经取得报价、下单或付款。
+
+  这只是已入账口径的剩余上限，不代表尚未报价必需项已经买得下。纱窗500元中已付200元计入支出、未付300元计入预留；不再单列299元工具预算。批刀/刮板缺价，以及业主暂缓补明细的京东新增约1000元均未扣全；若该约1000元最终确认且与现有账目不重复，保守口径将进一步下降约1000元。
 
   数据质量提示：当前有 #{undated_entries} 笔历史账目未登记日期；金额汇总不受影响，但施工时间线仍不完整。
 
@@ -114,8 +118,8 @@ content = <<~MARKDOWN
   ## 关键日期
 
   - 2026-09-27：远程备料与预约完成。
-  - 2026-09-28～10-04 22:00：当前两人主现场施工窗口。
-  - 2026-10-04 后至 2027 年 1 月中旬：零装修专项往返。
+  - 2026-09-28～10-04 23:59：当前两人主现场施工窗口；10/4 23:59施工硬截止。
+  - 2026-10-05 约01:00–02:00：离开装修房前往开封站；之后至2027年1月中旬零装修专项往返。
   - 2027-01-15：三猫理想入住；2027-02-07：硬截止。
 
   ## 当前不应被误解的事项
