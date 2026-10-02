@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-30"
+updated: "2026-10-03"
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -13,7 +13,15 @@ current_gate:
   paint_and_tools_plan_cny: 0
   paint_and_tools_reserve_note: "9/30业主确认不再单列工具预算；取消重复的299元工具预留，后续按真实支出和待付款统计，不代表工具已购齐"
   contingency_cny: 700
-  calculation: "其余工作可用上限 = overall_budget_cny - ledger累计支出 - 交通预留 - 涂装预留 - 应急金 - procurement已知未付尾款"
+  future_purchase_reserve_cny: 3050
+  future_purchase_reserves:
+    - { item: "油烟机", reserve_cny: 350 }
+    - { item: "燃气热水器", reserve_cny: 350 }
+    - { item: "350mm坑距马桶", reserve_cny: 350 }
+    - { item: "洗烘一体机", reserve_cny: 1000 }
+    - { item: "客厅空调", reserve_cny: 1000 }
+  future_purchase_reserve_note: "2026-10-03业主确认的预算占位；属于预算预留，不代表已报价、已下单或已付款"
+  calculation: "其余工作可用上限 = overall_budget_cny - ledger累计支出 - 交通预留 - 涂装预留 - 应急金 - procurement已知未付尾款 - 五项未来采购预留"
   income_policy: "保守门禁不使用回收收入冲抵支出；现金视角另在PROJECT_STATUS.md展示"
   generated_status_ref: "PROJECT_STATUS.md"
 
@@ -25,7 +33,7 @@ feasibility:
     - { id: BQ-01, item: "合格电工方案复核与通电前检测", quote_cny: null, status: unpriced, priority: safety_gate }
     - { id: BQ-02, item: "卫生间防水、瓷砖胶/砂浆和美缝辅料", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-03, item: "干区基本地面、踢脚线与压条", quote_cny: null, status: unpriced, priority: protected }
-    - { id: BQ-04, item: "350mm坑距马桶（含送装优先）", quote_cny: null, status: unpriced, priority: protected }
+    - { id: BQ-04, item: "350mm坑距马桶（含送装优先）", quote_cny: null, owner_budget_reserve_cny: 350, status: unpriced, priority: protected, note: "350元仅为业主预算预留，不替代含送装/辅料的实际报价" }
     - { id: BQ-05, item: "五扇已定做纱窗", quote_cny: 500, remaining_payable_cny: 300, status: confirmed, priority: protected, note: "每扇100元；200元已付入账，300元从采购尾款扣除；报价核算不重复扣整单500元，厨房窗固定封闭不加购纱窗；额外安装费仍待核" }
     - { id: BQ-06, item: "三扇门的最低可入住方案", quote_cny: null, status: unpriced, priority: essential_privacy }
     - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关、客厅空调/冰箱末端漏保及卫生间末端漏保等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
@@ -66,4 +74,4 @@ unpriced_commitments:
   - { status: todo, approximate_cny: 1000, source: "9/30业主称今晚京东新增购买约1000元", issue: "按业主要求暂不追明细、不入核实账本，后续补账时避免与既有订单重复" }
 reserve_review:
   status: done
-  issue: "取消299元独立工具预留；后续总体账目统计待业主提供新订单后继续"
+  issue: "10/3新增五项未来采购预算预留合计3050元：油烟机350、燃气热水器350、马桶350、洗烘1000、客厅空调1000；取消299元独立工具预留；后续总体账目统计待业主提供新订单后继续"

@@ -132,13 +132,25 @@ errors << "budget.yaml contingency_cny 应为700" unless budget["contingency_cny
 {
   "october_trip_reserve_cny" => 700,
   "paint_and_tools_plan_cny" => 0,
-  "contingency_cny" => 700
+  "contingency_cny" => 700,
+  "future_purchase_reserve_cny" => 3050
 }.each do |key, expected|
   budget_actual = budget_gate[key]
   schedule_actual = schedule_gate[key]
   errors << "budget.yaml current_gate.#{key} 应为 #{expected}，实际为 #{budget_actual.inspect}" unless budget_actual == expected
   errors << "schedule.yaml budget_gate.#{key} 应与预算一致" unless schedule_actual == expected
 end
+
+future_reserve_items = Array(budget_gate["future_purchase_reserves"])
+expected_future_reserves = {
+  "油烟机" => 350,
+  "燃气热水器" => 350,
+  "350mm坑距马桶" => 350,
+  "洗烘一体机" => 1000,
+  "客厅空调" => 1000
+}
+actual_future_reserves = future_reserve_items.to_h { |item| [item["item"], item["reserve_cny"]] }
+errors << "budget.yaml 五项未来采购预留明细应合计3050元并与业主确认一致" unless actual_future_reserves == expected_future_reserves && future_reserve_items.sum { |item| item["reserve_cny"].to_f } == 3050
 
 # 已付款只入现金账；已知尾款单独预留，避免整单和定金重复扣减。
 procurement.select { |item| item.key?("unpaid_balance_cny") }.each do |item|
