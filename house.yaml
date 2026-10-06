@@ -1,6 +1,6 @@
 # ============================================================================
 # 老房装修改造 · 户型与方案上下文数据包（机器可读）
-# version: 9    date: 2026-09-30
+# version: 10   date: 2026-10-06
 # 用途：将本文件整体转发给 AI / 设计师，即可在其基础上继续装修方案咨询
 # 坐标系：原点=客厅西北角；+x=南(图向下)；+y=东(图向右)；单位=米
 # ============================================================================
@@ -27,7 +27,7 @@ coordinate_system:
   door_height: 1.9
   ceiling_height: 2.7
   ceiling_height_status: confirmed
-  measurement_source: "2026-09-28业主现场口述；未复核照片中的标尺"
+  measurement_source: "2026-09-28至2026-10-01业主现场口述、订单截图与ChatGPT项目对话；未复核照片中的标尺"
   suspended_ceiling: false
   accuracy: "坐标为名义值（≈墙中线），实测存在±0.1级墙厚误差"
 
@@ -40,7 +40,7 @@ geometry:
 rooms:
   - { id: living,  name: "客厅",        x: [0, 4],   y: [0, 3], net: [4.0, 3.0], note: "净尺寸已确认" }
   - { id: balcony, name: "转角阳台",    x: [4, 5],   y: [0, 3], nominal: [1.0, 3.0], net_width: "~0.85(待实测)", note: "西+南两面近整面窗（非落地）" }
-  - { id: kitchen, name: "厨房",        x: [0, 2],   y: [3, 5], net: "东西2.0 × 南北<2.0" }
+  - { id: kitchen, name: "厨房",        x: [0, 2],   y: [3, 5], net: "东西2.0 × 南北<2.0", measured_clear_run_cm: 181, measurement_status: confirmed, note: "西墙由南向北约为水槽55cm+木柜80cm+北台面深46cm；累计约181cm，不等同墙体施工尺寸" }
   - { id: bath,    name: "卫生间",      x: [2, 3.2], y: [3, 4], net: "x<1.2, y<0.9", note: "外墙实测1.3×1.0；设计基准净≈1.05×0.75" }
   - { id: bedroom, name: "卧室",        x: [0, 3],   y: [5, 8], net: [3.0, 3.0], note: "净尺寸已确认" }
   - { id: hall_a,  name: "走廊A(玄关)", x: [3.2, 4], y: [3, 5], net_width: 1.05, measurement_status: confirmed, note: "2026-09-28口述约105cm；平面坐标仍是旧名义框架，须复测关联墙线后重定位" }
@@ -113,13 +113,35 @@ doors:
     old_door_status: removed
 
 windows:
-  - { wall: "x=0", span: "y[1,2]",     room: "客厅",   width: 1.0 }
-  - { wall: "x=0", span: "y[3.5,4.5]", room: "厨房",   width: 1.0, note: "油烟机挂此窗上；9/30 QA确认窗固定封闭，仅保留已封严排烟孔，不另做可开启纱窗" }
-  - { wall: "x=0", span: "y[6,7]",     room: "卧室",   width: 1.0, note: "床沿窗下" }
-  - { wall: "y=0", span: "x[4.05,4.95]", room: "阳台", note: "近整面非落地" }
-  - { wall: "x=5", span: "y[0.1,2.9]",  room: "阳台", note: "近整面非落地" }
+  - { id: W-LIV-N, wall: "x=0", span: "y[1,2]", room: "客厅", nominal_width_m: 1.0, cat_screen_order_cm: [95, 47], screen_quantity: 1, measurement_status: "纱窗下单尺寸confirmed；整窗洞口尺寸todo", note: "95×47cm是活动纱窗成品尺寸，不得乘二后写成已实测窗洞" }
+  - { id: W-KIT-N, wall: "x=0", span: "y[3.5,4.5]", room: "厨房", nominal_width_m: 1.0, measurement_status: "名义平面宽度；精确洞口todo", cat_screen_status: not_required, note: "油烟机挂此窗上；9/30 QA确认窗固定封闭，仅保留已封严排烟孔，不另做可开启纱窗" }
+  - { id: W-BED-N, wall: "x=0", span: "y[6,7]", room: "卧室", nominal_width_m: 1.0, cat_screen_order_cm: [95, 47], screen_quantity: 1, measurement_status: "纱窗下单尺寸confirmed；整窗洞口尺寸todo", note: "床沿窗下；95×47cm是活动纱窗成品尺寸" }
+  - { id: W-BAL-W, wall: "y=0", span: "x[4.05,4.95]", room: "阳台", cat_screen_order_cm: [90, 47], screen_quantity: 1, measurement_status: "纱窗下单尺寸confirmed；整窗洞口尺寸todo", note: "西窗活动区近整面非落地；上部固定玻璃不在纱窗范围" }
+  - { id: W-BAL-S, wall: "x=5", span: "y[0.1,2.9]", room: "阳台", cat_screen_order_cm: [128, 74], screen_quantity: 2, measurement_status: "纱窗下单尺寸confirmed；整窗洞口尺寸todo", note: "南窗近整面非落地" }
   - { wall: "x=2", span: "y[3.35,3.85]", rooms: "厨房↔卫生间", size: "0.5宽×0.5高", note: "高窗近顶，厨卫通风用" }
-  - { scope: "已定做五扇：卧室/客厅各1、阳台西1/南2；厨房窗固定封闭、排烟孔已封严", plan: "更换三猫家庭防逃纱窗", status: ordered, procurement_ref: BUY-0022, measure_window: "2026-09-28", installation_window: "业主9/28称4天后安装；暂推10/2，具体日期待商家确认", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
+  - { scope: "已定做五扇：卧室/客厅各1、阳台西1/南2；厨房窗固定封闭、排烟孔已封严", plan: "更换三猫家庭防逃纱窗", status: ordered_paid_installation_unknown, procurement_ref: BUY-0022, measure_window: "2026-09-28", installation_status: todo_confirm, note: "9/28曾预计约4天后安装，但截至10/6实际安装事实未确认，不沿用预计日期", requirement: "纱网、边框与锁扣均需防猫推开/抓破" }
+
+kitchen_existing:
+  status: confirmed
+  source: "2026-09-28至2026-10-01 ChatGPT项目对话中的业主现场口述与订单截图"
+  north_counter: { length_cm: 193, depth_cm: 46, height_cm: 65, construction: "既有瓷砖台面", measurement_status: confirmed }
+  west_wall_sequence_south_to_north:
+    - { zone: sink, length_cm: 55, status: confirmed }
+    - { zone: wooden_cabinet, length_cm: 80, height_cm: "约70多一点", height_measurement_status: estimated_by_owner, condition: moisture_damaged, disposition: "本阶段保留；修复、承重和防潮待核" }
+    - { zone: north_counter_depth, length_cm: 46, status: confirmed }
+  east_wall_niche: { depth_cm: 10, status: confirmed, intended_use: "盐、糖、香料等小瓶调料；不是小家电柜" }
+  storage_rule: "食物和干净器具不直接落地；低位物品使用托盘、架体或带盖箱二次承载"
+
+kitchen_layout_plan:
+  status: planned
+  source: "ChatGPT《厨房台面支撑方案比较》中业主明确的最新布局意向"
+  west_zone: ["京造台式洗碗机", "双层小家电架（上层电饭煲；下层高压锅/其他小家电）"]
+  east_zone: ["燃气灶", "随灶位微调的油烟机"]
+  retained_wooden_cabinet: true
+  dishwasher_height_gate: "设备底部须高于地面70cm；与保留木柜/操作台采用错层，开门净空现场用模板复核"
+  countertop_raise_options: ["40×60cm瓷砖×3", "40×80cm瓷砖×2"]
+  countertop_raise_decision: todo
+  note: "以上为已确认布局意向，不代表设备、架体或增高台面已经安装"
 
 electrical:
   current_state:
@@ -244,9 +266,13 @@ plumbing:   # 本轮描述的水路已完成，点位原则上不可改
     - "洗烘一体机排水管低位穿墙接卫生间防臭地漏"
     - "洗衣机地漏与马桶最终共用排水管道"
     - "现有洗碗机排水软管计划按设备说明直接排入水槽；水槽边固定、防脱落和软管路径待10月复测"
+  kitchen_drain_status:
+    leak_repair: { status: done, confirmed: "业主2026-10-06确认漏点已完全修补" }
+    drainage: { status: blocked, symptom: "修补后感觉堵塞；倒入2500ml管道疏通剂未改善", next_action: "2027年1月先定位堵点，再采用可检修的机械疏通或拆检方案", risk_ref: SAF-0011, task_ref: TASK-0035 }
+    evidence_note: "京东流水存在同容量‘全屋多功能清洁剂’，是否与业主所述管道疏通剂为同一商品待核；不据此改写交易品名"
   fixtures:
     - { name: "厨房水槽", location: "厨房西南角", rect: [1.2, 2, 3, 3.4] }
-    - { name: "洗碗机（已有）", location: "厨房水槽北侧二层木柜/替代柜上方", footprint_nominal: [0.6, 1.2, 3, 3.6], vertical_relation: "叠放在柜体上，不替代柜体", inventory_ref: INV-0013, task_ref: TASK-0033, note: "型号、尺寸、柜体承重、直排水槽软管和插座待复测" }
+    - { name: "京造台式洗碗机（已有）", location: "厨房西侧/西北侧候选；保留木柜或垫高北侧台面承载方式待复测", dimensions_mm: [440, 413, 424], door: "前门向下翻、拉篮抽出", dimension_source: "业主提供商品截图", vertical_relation: "设备底部须高于地面70cm；与西侧木柜/操作台错层避让开门", inventory_ref: INV-0013, task_ref: TASK-0033, note: "位置意向已确认；具体承重、水平、抗振、开门模板、直排水槽软管和插座仍待现场复核" }
     - { name: "洗烘一体滚筒洗衣机", location: "客厅东南角，东面贴卫生间西墙(y=3)", rect: [2.4, 3.2, 2.2, 3], procurement_status: not_purchased, procurement_ref: BUY-0003, note: "排水经y=3墙接入卫生间防臭地漏" }
 
 gas:
@@ -309,8 +335,8 @@ furniture_plan:   # rect格式 [x1,x2,y1,y2]，名义近似
     - { item: "灶台", location: "架空瓷砖台面上方、厨房东端靠北", note: "油烟机挂北窗上；与燃气管、待定支撑和瓷砖的净空待核验" }
     - { item: "壁龛(已有)", location: "厨房东墙(y=5)近北端", use: "放调料" }
     - { item: "水槽", rect: [1.2, 2, 3, 3.4], note: "现为瓷砖砌水槽/台体；本轮计划清洁、修补并以S2作隐藏二道防水，后续定制304不锈钢内胆/整体包槽覆盖。内胆由原砌体承重，S2不承担结构或粘结；排水检修口不得永久封死。台面宽度仍受滑门停泊位限制（见issues）" }
-    - { item: "二层木柜(已有)", location: "水槽与北墙现有台面之间", height_relation: "与现有台面平齐，洗碗机计划放在其上方", condition: "受潮略有损坏", decision: "预算允许时可换同位置替代柜；继续使用前须确认承重、水平、抗振和防潮" }
-    - { item: "洗碗机(已有)", footprint_nominal: [0.6, 1.2, 3, 3.6], location: "水槽北侧二层木柜/替代柜上方", vertical_relation: "叠放", inventory_ref: INV-0013, requirements: ["水槽进水处独立开关", "排水软管直接排入水槽并固定", "三孔常电+无PE标识", "设备级漏保候选"], status: "待搬运、复测和安装" }
+    - { item: "二层木柜(已有)", location: "厨房西侧、水槽与北墙现有台面之间", width_cm: 80, height: "约70多一点，未精测", condition: "受潮变形", decision: "本阶段保留；继续使用前须确认承重、水平、抗振并完成防潮/修复判断" }
+    - { item: "洗碗机(已有)", dimensions_mm: [440, 413, 424], location: "厨房西侧；放在保留木柜上或垫高北侧台面两案待复测", vertical_relation: "设备底部须高于地面70cm", door: "前门向下翻、拉篮抽出", inventory_ref: INV-0013, requirements: ["水槽进水处独立开关", "排水软管直接排入水槽并固定", "三孔常电+无PE标识", "承重、水平、抗振和下翻门模板复核"], status: "位置意向confirmed；具体承载方式todo" }
   bathroom:   # 全间按湿区(wet room)设计
     - { item: "排水立管", location: "西北角(2,3)" }
     - item: "马桶"
@@ -358,7 +384,7 @@ issues:   # AI分析发现的问题，待用户决策
   - { id: kitchen_counter_narrow, desc: "厨房滑门面板停厨房内侧压高窗，水槽台面仅~0.35m宽", proposal: "面板改停走廊B侧→台面~1.2m；代价走廊B局部净宽0.8→0.65" }
   - { id: kitchen_sink_overlay, desc: "旧瓷砖砌水槽外观差，本轮仅做基层修补+S2隐藏防水，后续定制304不锈钢内胆/整体包槽作为最终接水与易清洁表面；定制前须复测内口长宽深、翻边、排水和龙头孔位", status: planned_deferred }
   - { id: kitchen_upper_counter, desc: "架空台面候选三块40×60或两块40×80瓷砖；支撑待定，同时承载锅具/灶台并可能影响北墙燃气管", risk_refs: [SAF-0004, SAF-0007] }
-  - { id: dishwasher_cabinet_stack, desc: "洗碗机叠放在受潮二层木柜或同位置替代柜上；须先保证承重、水平、抗振、开门和软管固定", risk_ref: SAF-0022 }
+  - { id: dishwasher_cabinet_stack, desc: "洗碗机位于厨房西侧；保留受潮木柜或垫高北侧台面作为承载方式待复测。设备底部须高于70cm，并保证承重、水平、抗振、下翻门和软管固定", risk_ref: SAF-0022 }
   - { id: top_floor_rain_leak, desc: "9/30业主确认近期雨后无渗漏；排查发现阳台一块不规则窗玻璃有缝隙，计划玻璃胶/美缝剂填缝，业主QA确认尚未填补；材料适配和修复后复查待完成；历史天花板水迹不据此推定屋面漏水或已修好", risk_ref: SAF-0009 }
   - { id: no_protective_earth, desc: "已确认老小区户内仅有L/N、无可用PE且四楼无法独立增设；采用分级漏保降低风险，但不视为接地替代", risk_ref: SAF-0018 }
   - { id: balcony_door_narrow, desc: "阳台门有效开口仅0.7m（西扇），搬运大件受限" }
@@ -366,7 +392,7 @@ issues:   # AI分析发现的问题，待用户决策
 confirmed_facts:   # 已确认，无需再问
   - "方位: -x北 +x南 -y西 +y东"
   - "房屋位于四楼且为整栋楼顶层；业主不自行进行屋面或临边高处作业"
-  - "本轮涂刷面积按2.8m层高估算"
+  - "9/28现场口述层高约2.7m；旧2.8m估算不作为追加采购依据"
   - "客厅/卧室为净尺寸；走廊A实测净宽约1.05（旧墙线坐标待校核）；厨房净: 东西2.0×南北<2.0"
   - "卫生间净: x<1.2, y<0.9（外墙实测1.3×1.0）"
   - "入户门x[3.2,4]铰链x=4外开；卧室门修正为x≈[2.15,2.95]内开"
@@ -390,7 +416,7 @@ confirmed_facts:   # 已确认，无需再问
   - "卫生间移门装在走廊A侧；常闭，使用时向东滑并临时侵入走廊B约0.4m"
   - "走廊A长灯条照明整个走廊区域，B独立灯暂时取消；开关在入户门与卧室门之间"
   - "EVE V1可长期运行，放在玄关南侧设备架兼作Home Assistant主机、电子相册和显示器"
-  - "洗碗机为现有物资，计划安装在厨房水槽北侧并需要三孔插头和进水"
+  - "京造台式洗碗机为现有物资，商品截图尺寸约440×413×424mm、前门下翻；计划放厨房西侧并需要三孔插头和进水"
 
 open_questions:   # 当前待定，咨询时可优先回答这些
   - "卫生间吊顶内有无排风井/风道？"
@@ -399,8 +425,8 @@ open_questions:   # 当前待定，咨询时可优先回答这些
   - "厨房滑门面板是否改停走廊B侧以加宽水槽台面？"
   - "衣柜北段采用不常用区、缩短衣柜还是调整床位？"
   - "书桌/冰箱角落最终用途及是否需要保持人手可达？"
-  - "现有洗碗机的型号、机身/开门尺寸、进排水接口和水槽北侧可用净空是多少？"
-  - "受潮二层木柜当前承重、水平和稳定性是否足以承载洗碗机，还是需要同位置替代柜？"
+  - "现有洗碗机铭牌型号、额定功率、接口及前门完全下翻所需净空是多少？"
+  - "保留的受潮木柜当前承重、水平和稳定性是否足以承载洗碗机，还是改为垫高北侧台面承载？"
   - "玄关南侧光猫/Wi-Fi置物架的宽深、安装高度和供电点位是多少？"
   - "配电箱各器件完整型号、脱扣额定值、极数、漏电动作电流和分断能力是什么？"
   - "走廊A 220V灯带的具体型号、长度、剪切单位、成套电源接头和末端封帽是什么？"

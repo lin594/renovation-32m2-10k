@@ -88,7 +88,7 @@ content = <<~MARKDOWN
 
   保守公式：`#{money(overall)} − #{money(expenses)} − #{money(trip)}交通 − #{money(paint)}涂装 − #{money(contingency)}应急 − #{money(unpaid)}已知尾款 = #{money(available_conservative)}`。
 
-  这只是已入账口径的剩余上限，不代表尚未报价必需项已经买得下。纱窗500元中已付200元计入支出、未付300元计入预留；不再单列299元工具预算。批刀/刮板缺价，以及业主暂缓补明细的京东新增约1000元均未扣全，当前金额不是可自由支配余额。
+  这只是已入账口径的剩余上限，不代表尚未报价必需项已经买得下。纱窗500元已由200元定金和300元尾款全额入账；不再单列299元工具预算。10月京东流水已去重补录明确装修支出；三笔“等多件”退款残余共15.14元用途待确认，批刀/刮板与铸工胶仍缺价，当前金额不是可自由支配余额。
 
   数据质量提示：当前有 #{undated_entries} 笔历史账目未登记日期；金额汇总不受影响，但施工时间线仍不完整。
 
@@ -108,19 +108,22 @@ content = <<~MARKDOWN
 
   - 阶段：进行中 #{phase_counts.fetch('in_progress', 0)}，待开始 #{phase_counts.fetch('todo', 0)}，完成 #{phase_counts.fetch('done', 0)}。
   - 任务：进行中 #{task_counts.fetch('in_progress', 0)}，待办 #{task_counts.fetch('todo', 0)}，安全复核阻断 #{task_counts.fetch('blocked_by_safety_review', 0)}，完成 #{task_counts.fetch('done', 0)}，取消 #{task_counts.fetch('cancelled', 0)}。
-  - 采购：未购买 #{buy_counts.fetch('not_purchased', 0)}，部分已购 #{buy_counts.fetch('partially_purchased', 0)}，待定制 #{buy_counts.fetch('pending_custom_order', 0)}，已报价 #{buy_counts.fetch('quoted', 0)}，已下单 #{buy_counts.fetch('ordered', 0)}，已到货 #{buy_counts.fetch('delivered', 0)}，已验收 #{buy_counts.fetch('accepted', 0)}，已取消 #{buy_counts.fetch('cancelled', 0)}。
+  - 采购：未购买 #{buy_counts.fetch('not_purchased', 0)}，部分已购 #{buy_counts.fetch('partially_purchased', 0)}，待定制 #{buy_counts.fetch('pending_custom_order', 0)}，已报价 #{buy_counts.fetch('quoted', 0)}，已下单 #{buy_counts.fetch('ordered', 0)}，已到货 #{buy_counts.fetch('delivered', 0)}，已验收 #{buy_counts.fetch('accepted', 0)}，已退货 #{buy_counts.fetch('returned', 0)}，已取消 #{buy_counts.fetch('cancelled', 0)}。
   - 开放风险：#{open_risks} 项，其中 critical #{critical_open} 项。开放风险不是已发生事故，而是尚未关闭的决策或验收门禁。
 
   ## 关键日期
 
-  - 2026-09-27：远程备料与预约完成。
-  - 2026-09-28～10-04 22:00：当前两人主现场施工窗口。
-  - 2026-10-04 后至 2027 年 1 月中旬：零装修专项往返。
+  - 2026-09-28～10-04 22:00：两人主现场施工窗口已结束；实际完成一底一面。
+  - 2026-10-04 后至 2027 年 1 月中旬：零装修专项往返；电气、SPC、地面方案和部分涂装转收尾。
   - 2027-01-15：三猫理想入住；2027-02-07：硬截止。
 
   ## 当前不应被误解的事项
 
   - 图纸是讨论方案，不是电气施工、燃气或防水验收证明。
+  - 明装电气尚未完成；两只智能开关已因物流时效退货，当前手头为0。
+  - 厨房下水漏点已修完，但修补后疑似堵塞；倒入2500ml管道疏通剂仍无改善，转2027年1月定位和疏通。京东同容量商品名为多功能清洁剂，是否同一件待核。
+  - 乳胶漆只完成一底一面，400元工费不含第二遍面漆；角落施工不细。底漆3桶已用完、面漆4桶余2桶，2027年1月由业主处理缝隙/角落、必要打磨并补第二遍面漆。
+  - 卫生间已在闭水试验通过的S2防水层上铺2组×1.4kg环氧；环氧不替代防水，计划1月再购5kg增厚，仍须核层间附着、排水和防滑。
   - 本户只有 L/N、无可用 PE；分级漏保降低风险但不等于接地。
   - 未报价必需项仍可能使 ¥10,000 目标不可行，采购继续受预算门禁约束。
 MARKDOWN

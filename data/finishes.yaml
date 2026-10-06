@@ -1,6 +1,6 @@
 version: 1
-updated: "2026-09-30"
-status: planning
+updated: "2026-10-06"
+status: in_progress
 
 design_direction:
   primary: "宋氏美学"
@@ -15,12 +15,12 @@ existing_substrate:
   floors: "全屋现有瓷砖地板"
 
 preconditions:
-  - { item: "修复厨房水槽铁质排水管疑似渗漏", task_ref: TASK-0011, risk_ref: SAF-0011 }
+  - { item: "厨房下水漏点已修复；涂装收口或水槽内衬前先处理修补后疑似堵塞", status: blocked_by_drainage, task_ref: TASK-0035, risk_ref: SAF-0011 }
   - { item: "确认客厅西墙南部、东墙南部及西南角天花板受潮/疑似雨漏来源", task_ref: TASK-0013, risk_ref: SAF-0009 }
   - { item: "核对防水涂料、墙固、腻子、底漆和面漆的产品体系兼容性", task_ref: TASK-0012, risk_ref: SAF-0010 }
 
 proposed_sequence:
-  - "完成渗漏修复和潮湿来源诊断"
+  - "漏点修复已完成；先处理厨房下水疑似堵塞，并继续诊断其他潮湿来源"
   - "基层清理、除尘和必要修补"
   - "按确认后的产品体系施工墙固/界面剂与防水层"
   - "基层达到安装条件后先放样并固定空线槽底座，再按确认范围挂网和批腻子；保护盖板卡槽"
@@ -28,15 +28,31 @@ proposed_sequence:
   - "偏暖黄色面漆两遍（桶数按净乳胶漆面积÷30㎡后向上取整）"
   - "乳胶漆达到厂家允许安装和触碰的干燥状态后再穿线、装端子、装器具和扣盖"
 
+latex_paint_actual:
+  status: partial
+  evidence: confirmed_by_owner_2026_10_06
+  primer_coats: 1
+  topcoat_coats: 1
+  second_topcoat: todo
+  contractor_labor_cost_cny: 400
+  contractor_labor_expense_ref: EXP-0048
+  material_use: { primer_used_buckets: 3, primer_remaining_buckets: 0, topcoat_used_buckets: 2, topcoat_remaining_buckets: 2 }
+  workmanship_note: "油漆工角落施工不仔细"
+  january_touchup: "由业主精细处理缝隙和角落，必要处打磨，并完成第二遍面漆"
+  actual_scope: todo
+  application_dates: todo
+  material_consumption: "底漆3桶全部用完；面漆4桶使用2桶、剩2桶"
+  note: "当前实际为一底一面；面漆虽已使用2桶、剩余2桶，但遍数由业主明确确认，不按桶数反推为两面"
+
 waterproof_or_moisture_zones:
-  - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: in_progress, application_reported: true, coats: "约1遍（业主估计）", cure_status: todo, flood_test: todo, risk_ref: SAF-0010, note: "业主报告已刷S2；准确施工日期/遍数待补。规定固化后、铺砖前做至少24h蓄水检查，当前不算验收完成" }
+  - { zone: "卫生间地面", scope: "全地面；墙面已有瓷砖", status: completed_owner_confirmed, application_reported: true, coats: "约1遍（业主此前估计）", cure_status: completed_before_finish, flood_test: passed_owner_confirmed, flood_test_duration_hours: todo, risk_ref: SAF-0010, note: "业主10/6确认防水层闭水试验已完成并通过，随后施工环氧饰面；闭水时长、水位和照片仍待归档" }
   - { zone: "阳台", scope: "除窗户外的墙面/顶面等区域", status: planned }
   - { zone: "厨房西墙", scope: "业主报告已刷S2；准确涂刷范围、基层用途、产品适配、厚度及后续饰面待核；业主估计约1遍", status: in_progress, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0010 }
   - { zone: "客厅东南角及其他部分区域", scope: "业主报告已刷S2；具体边界、基层用途、产品适配、厚度及后续饰面待现场标注；业主估计约1遍", status: in_progress, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0010 }
   - { zone: "客厅西南角天花板", scope: "疑似顶楼雨漏；室内仅做清理、观察及明确点/缝的局部背水面堵漏", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅西墙南部", reason: "疑似受潮", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
   - { zone: "客厅东墙南部", reason: "可能受卫生间水影响", status: blocked_by_diagnosis, risk_ref: SAF-0009 }
-  - { zone: "厨房水槽/台体周边", reason: "老旧铁质下弯排水管及接缝漏点尚未处理；旧瓷砖砌水槽未来不锈钢覆盖", status: blocked_by_repair, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0011, note: "业主报告已在现有瓷砖水槽内刷S2，未来由不锈钢水槽覆盖；先核铁管漏点实际修复状态。旧釉面砖彻底去油去垢并打毛/界面处理，小样确认附着后再把S2作为隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
+  - { zone: "厨房水槽/台体周边", reason: "下水漏点已完全修补，但修补后疑似堵塞；旧瓷砖砌水槽未来不锈钢覆盖", status: blocked_by_drainage, application_reported: true, coats: "约1遍（业主估计）", risk_ref: SAF-0011, note: "业主报告已在现有瓷砖水槽内刷S2；漏点已修补，倒入2500ml管道疏通剂后堵塞未改善，计划1月定位处理。旧釉面砖的S2仅作隐藏二道防水；后续304不锈钢内胆/整体包槽作为最终接水和易清洁表面，S2不作最终饰面、不承担承重或不锈钢粘结。" }
 
 product_candidates:
   - { item: "卫生间防水涂料", candidate: "业主确认已购并涂刷：三棵树柔韧型S2灰色18kg；桶身批次和技术参数仍待实物核验", procurement_ref: BUY-0010 }
@@ -75,7 +91,7 @@ latex_paint_quantity_model:
     primer: "已购3桶；按卖家约150㎡一遍口径，实际是否足够待净面积复算"
     topcoat: "4桶按约120㎡两遍覆盖；余量很小，依赖外窗扣减和实际施工损耗"
   procurement_decision:
-    status: ordered
+    status: delivered_and_partially_used
     primer_buckets: 3
     topcoat_buckets: 4
     tool_sets: 1
@@ -87,6 +103,7 @@ latex_paint_quantity_model:
     tool_set_price_cny: 70
     tool_set_extra: "另赠2个托盘"
     delivery_check: ["底漆3桶", "1875面漆4桶", "工具套装1套", "核对4桶面漆批次", "桶身无破损/渗漏", "拍生产/批次/色号留档"]
+    actual_use: "底漆3桶全部用完；面漆使用2桶、剩余2桶；实际完成一遍底漆和一遍面漆"
   missing_measurements:
     - "客厅、卧室、厨房主要外窗实际高度及窗台高度"
     - "柜体、固定设备等明确不涂区域的最终尺寸"
@@ -108,18 +125,19 @@ tile_recolor_quantity_model:
 floor_plan:
   existing: "瓷砖地板"
   zones:
-    - { zone: "客厅/卧室/厨房/走廊等干区", finish: "现有瓷砖上铺石塑木纹地板", procurement_ref: BUY-0016, risk_ref: SAF-0012 }
-    - { zone: "卫生间", finish: "业主自行铺设瓷砖", procurement_ref: BUY-0017, risk_ref: SAF-0010 }
+    - { zone: "客厅/卧室/厨房/走廊等干区", finish: "现有瓷砖上铺石塑木纹地板", installation_status: not_started, procurement_ref: BUY-0016, risk_ref: SAF-0012 }
+    - { zone: "卫生间", finish: "原业主自行铺设瓷砖方案", installation_status: cancelled, procurement_ref: BUY-0017, retained_material: "30×30cm地砖12块，处置待定", risk_ref: SAF-0010 }
+    - { zone: "卫生间", finish: "米黄色环氧彩砂自流平地坪漆", procurement_status: delivered, application_status: completed, installed_quantity: "2组×1.4kg=2.8kg", substrate: "已完成并通过闭水试验的S2防水层", january_plan: "拟再购5kg增加厚度", procurement_ref: BUY-0059, followup_procurement_ref: BUY-0060, risk_ref: SAF-0026, note: "环氧为防水层之上的饰面，不替代防水层；跨月增涂体系待核" }
     - { zone: "阳台", finish: "菠萝格地板+鹅卵石", procurement_ref: BUY-0018 }
 
 refinishing:
   - item: "书桌"
     inventory_ref: INV-0009
     existing_finish: "浅色木板，具体基材待现场确认"
-    plan: "使用三棵树水性木器漆简单改为保留木纹的黑胡桃色"
+    plan: "使用已购朵乐黑胡桃色水性木蜡油2kg尝试保留木纹改色"
     sample: "桌底10×10cm隐蔽小样"
     acceptance: "小样附着合格才大面积施工；失败则保持原色"
-    status: planned_sample_first
+    status: purchased_sample_todo
     procurement_ref: BUY-0020
   - item: "厨房和卫生间既有白色瓷砖"
     scope: "厨房四面墙和卫生间四面墙约1.8m高，以及仍长期外露的厨房瓷砖灶台；旧瓷砖砌水槽不再纳入改色"

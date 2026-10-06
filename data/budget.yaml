@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-30"
+updated: "2026-10-06"
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -10,6 +10,7 @@ actuals_source: "data/ledger.csv"
 
 current_gate:
   october_trip_reserve_cny: 700
+  october_trip_reserve_note: "主窗口已结束，但交通实际金额尚未入账；在取得票据前继续按700元保守占用，不表示未来再安排一次往返"
   paint_and_tools_plan_cny: 0
   paint_and_tools_reserve_note: "9/30业主确认不再单列工具预算；取消重复的299元工具预留，后续按真实支出和待付款统计，不代表工具已购齐"
   contingency_cny: 700
@@ -23,10 +24,10 @@ feasibility:
   decision_deadline: "2026-09-26形成远程首版；2026-09-28现场复测后冻结"
   unpriced_essential_scope:
     - { id: BQ-01, item: "合格电工方案复核与通电前检测", quote_cny: null, status: unpriced, priority: safety_gate }
-    - { id: BQ-02, item: "卫生间防水、瓷砖胶/砂浆和美缝辅料", quote_cny: null, status: unpriced, priority: protected }
+    - { id: BQ-02, item: "卫生间环氧地坪跨月增厚的基层/底涂/防滑辅料", quote_cny: null, status: unpriced, priority: protected, note: "闭水试验通过后已铺2组×1.4kg环氧；1月拟再购5kg，层间附着、排水和防滑仍待核验" }
     - { id: BQ-03, item: "干区基本地面、踢脚线与压条", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-04, item: "350mm坑距马桶（含送装优先）", quote_cny: null, status: unpriced, priority: protected }
-    - { id: BQ-05, item: "五扇已定做纱窗", quote_cny: 500, remaining_payable_cny: 300, status: confirmed, priority: protected, note: "每扇100元；200元已付入账，300元从采购尾款扣除；报价核算不重复扣整单500元，厨房窗固定封闭不加购纱窗；额外安装费仍待核" }
+    - { id: BQ-05, item: "五扇已定做纱窗", quote_cny: 500, remaining_payable_cny: 0, status: paid_in_full, priority: protected, note: "每扇100元；定金200元和尾款300元均已入账。厨房窗固定封闭不加购纱窗；实际安装验收状态、额外安装费仍待核" }
     - { id: BQ-06, item: "三扇门的最低可入住方案", quote_cny: null, status: unpriced, priority: essential_privacy }
     - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关、客厅空调/冰箱末端漏保及卫生间末端漏保等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
   freeze_rule: "上述必需项形成含送装/辅料的可比总价前，不下不可退的非必要软装订单；若总价超过PROJECT_STATUS当前可用上限，先按defer_order降级，再调整范围或总预算，不挪用700元应急金掩盖缺口"
@@ -44,7 +45,7 @@ categories:
   - { id: furniture_storage, name: "家具与收纳", planned_cny: null }
   - { id: appliances, name: "家电", planned_cny: null }
   - { id: pet_safety, name: "猫咪安全与设施", planned_cny: null }
-  - { id: travel, name: "装修专项交通", planned_cny: 700, note: "计本次9/27夜出发、9/28到开封的主施工往返；10月4日主窗口结束后至1月中旬计划为零装修专项往返" }
+  - { id: travel, name: "装修专项交通", planned_cny: 700, note: "9/27夜出发、9/28到开封的主施工往返已发生，但实际金额未补账；10月4日后至1月中旬计划为零装修专项往返" }
   - { id: contingency, name: "不可预见费", planned_cny: 700 }
 
 defer_order:
@@ -62,8 +63,8 @@ protected_scope:
 
 unpriced_commitments:
   - { procurement_ref: BUY-0056, status: todo, issue: "批刀/刮板已购但金额未恢复，实际支出尚未完整入账" }
-  - { procurement_ref: BUY-0058, status: todo, issue: "铸工胶已购到货但金额、日期及数量未提供；与业主暂缓补录的京东约1000元明细可能重叠，金额确认前不重复计入" }
-  - { status: todo, approximate_cny: 1000, source: "9/30业主称今晚京东新增购买约1000元", issue: "按业主要求暂不追明细、不入核实账本，后续补账时避免与既有订单重复" }
+  - { procurement_ref: BUY-0058, status: todo, issue: "铸工胶已购到货但金额、日期及数量未提供；金额确认前不重复计入京东多件订单" }
+  - { status: todo, amount_cny: 15.14, source: "京东交易流水三笔部分退款后的等多件残余", issue: "2.39、2.85、9.90元对应留存商品用途不明；待业主确认是否装修相关，当前不计装修账" }
 reserve_review:
   status: done
-  issue: "取消299元独立工具预留；后续总体账目统计待业主提供新订单后继续"
+  issue: "取消299元独立工具预留；10/6京东流水已去重补账，退款及明显无关消费已排除"

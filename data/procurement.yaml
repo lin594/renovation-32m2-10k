@@ -1,7 +1,7 @@
 version: 1
-updated: "2026-09-30"
+updated: "2026-10-06"
 
-status_values: [not_purchased, partially_purchased, pending_custom_order, quoted, ordered, delivered, accepted, cancelled]
+status_values: [not_purchased, partially_purchased, pending_custom_order, quoted, ordered, delivered, accepted, returned, cancelled]
 
 items:
   - id: BUY-0001
@@ -88,17 +88,17 @@ items:
     room: multiple
     item: "防水涂料"
     candidate: "三棵树漆室内防水涂料 柔韧型S2，灰色18kg、卫生间/厨房通用（京东自营在售）"
-    status: ordered
+    status: delivered
     owner_confirmation: "9/30后续QA确认四处涂刷均使用此前下单的三棵树柔韧型S2灰色18kg"
     remaining_product_checks: ["对照到货桶身/合格证核批次及液粉组分", "核实推荐遍数/厚度、单位用量、施工与固化温度、贴砖兼容性", "确认18kg余料是否可分组分保存"]
-    order_date: "2026-09-28"
+    order_date: "2026-09-27"
     order_evidence: "京东订单截图确认S2防水已购；与其他三棵树辅材同批/多单采购，单品成交价未可靠拆分"
     ledger_refs: [EXP-0017, EXP-0018]
     quantity_note: "卫生间设计净地面约0.79㎡；若加约30cm墙根上翻，总施工面约1.87㎡。按三棵树聚合物水泥防水同类产品1mm厚约2.1–2.3kg/㎡量级估算，约需3.9–4.3kg；18kg对本卫生间单独使用明显偏大，不因包装大而无意义加厚。"
-    channel: "已于9/28京东下单；到货状态待确认"
-    order_timing: "9/28已下单；旧9/27下单和9/29施工日期不视为实际完成"
+    channel: "京东；交易流水日期2026-09-27"
+    order_timing: "9/27下单；9/29起已有实际涂刷记录，证明材料已到场投入使用"
     mixing_rule: "到货后读取桶身/合格证确认液粉组分、实际配比、遍数/厚度与固化时间；不要一次把18kg全部混合，只有标签明确允许时才按比例分批配料"
-  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "京东；2026-09-28订单截图确认已购", status: delivered, order_date: "2026-09-28", ledger_refs: [EXP-0017, EXP-0018], delivery_evidence: "9/29业主确认已刷厨卫及客厅局部一遍，证明至少已投入使用；剩余数量待盘点", note: "截图可确认18kg规格/多件订单，但无法可靠拆分每件成交价" }
+  - { id: BUY-0011, category: substrate, room: whole_house, item: "墙固/界面剂", channel: "京东；交易流水核正日期", status: delivered, order_date: "2026-09-27", ledger_refs: [EXP-0017, EXP-0018], delivery_evidence: "9/29业主确认已刷厨卫及客厅局部一遍，证明至少已投入使用；剩余数量待盘点", note: "截图可确认18kg规格/多件订单，但无法可靠拆分每件成交价" }
   - { id: BUY-0012, category: substrate, room: whole_house, item: "墙面腻子", channel: "到开封后再决定", status: not_purchased, note: "2026-09-28订单复核：腻子明确未购买，不得把三棵树辅材订单误记为含腻子" }
   - id: BUY-0013
     category: paint
@@ -110,13 +110,13 @@ items:
     unit: 桶
     actual_unit_price_cny: 149
     actual_total_cny: 447
-    quantity_status: ordered
+    quantity_status: consumed_all
     order_date: "2026-09-26"
     shipping_origin: "沈阳"
-    shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
+    shipment_status: "已到货；3桶底漆全部用完"
     delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
     seller_application_note: "每桶底漆约加1L纯净水；3桶合计准备至少3L纯净水"
-    status: ordered
+    status: delivered
 
   - id: BUY-0014
     category: paint
@@ -128,16 +128,16 @@ items:
     unit: 桶
     actual_unit_price_cny: 299
     actual_total_cny: 1196
-    quantity_status: ordered
+    quantity_status: partially_consumed
     target_color: "1875近可可蛋奶（墙面与天花板统一同色）"
     batch_requirement: "4桶同色同批次"
     order_date: "2026-09-26"
     shipping_origin: "沈阳"
-    shipment_status: "卖家确认2026-09-26下午发货，预计约3天到开封"
+    shipment_status: "已到货；4桶中已用2桶、剩余2桶"
     delivery_destination: "开封装修房（私人收件信息不进入公开仓库）"
     order_note: "4桶S2面漆全部为1875，墙面与天花板统一同色；仍需到货时核对批次与桶身信息"
     seller_application_note: "面漆原浆滚涂、不兑水；使用托盘；刷漆时关窗；室温15–25℃最适宜；底漆至第一遍面漆、第一遍至第二遍面漆均至少间隔2小时并以实际干燥状态为准；开工前联系赵哥"
-    status: ordered
+    status: delivered
 
   - id: BUY-0015
     category: tool
@@ -154,7 +154,7 @@ items:
     shipment_status: "与乳胶漆同票/同批物流发出，预计约3天到开封"
     status: ordered
 
-  - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", channel: "10月现场复测、线下比价后购买", status: not_purchased }
+  - { id: BUY-0016, category: flooring, room: dry_zones, item: "石塑木纹地板", channel: "原计划10月现场复测、线下比价后购买", status: not_purchased, installation_status: not_started, main_window_result: "未购买、未铺设；转后续收尾重新决策" }
   - id: BUY-0017
     category: flooring
     room: bathroom
@@ -167,25 +167,31 @@ items:
     actual_cost_cny: 18
     expense_ref: EXP-0007
     inventory_ref: INV-0010
-    note: "地砖已购但尚未铺贴；瓷砖胶/砂浆、美缝等铺贴辅料仍待确认和采购"
+    plan_status: cancelled
+    disposition: todo
+    note: "地砖已购但尚未铺贴；10月主窗口已放弃卫生间自铺地砖方案，材料保留、转用或处置待定"
   - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", priority: deferred_first_batch, status: not_purchased }
   - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, purchase_strategy: "9月仅买小样量；10月隐蔽小样通过后线下补足，失败则保留白砖", quantity_status: blocked_by_measurement, status: not_purchased }
   - id: BUY-0020
     category: coating
     room: living_room
     item: "书桌黑胡桃色改造材料"
-    candidate: "三棵树水性木器漆及所需配套底涂"
+    candidate: "朵乐黑胡桃色水性木蜡油2kg"
     target_effect: "保留木纹的黑胡桃色"
-    purchase_strategy: "先买小样量；桌底10×10cm附着小样通过后再补足"
-    status: not_purchased
-    note: "书桌已有且为浅色木板；具体基材未知，接受简单改色效果，小样失败则保持原色"
+    purchase_strategy: "已购2kg；仍须先做桌底10×10cm附着小样，通过后再施工"
+    status: ordered
+    purchase_date: "2026-10-02"
+    actual_total_cny: 31.80
+    ledger_ref: EXP-0045
+    note: "书桌已有且为浅色木板；到货和小样状态待确认，不能据下单推定已改色"
 
   - id: BUY-0021
     category: electrical_material
     room: whole_house
     item: "明装电路材料包"
     status: partially_purchased
-    purchase_strategy: "已购四分PVC线槽2m×10根=20m作为首批；先全屋放样和PCT-42实物试装，再按缺口补线槽/分线盒。空底槽在腻子/乳胶漆前先固定，最终穿线和扣盖在墙面干燥后进行。"
+    purchase_strategy: "已购四分PVC线槽、BVVB护套线、底盒、连接器、接线帽和部分面板/灯具；主窗口电气未完成，数量及余料须按实物复盘。"
+    ledger_refs: [EXP-0010, EXP-0019, EXP-0022, EXP-0023, EXP-0028, EXP-0029, EXP-0030, EXP-0034, EXP-0036, EXP-0037, EXP-0038, EXP-0039, EXP-0040, EXP-0041]
     planned_bom:
       - { item: "四分阻燃PVC明线槽", target_total_m: 40, purchased_m: 20, additional_m: 20, procurement_ref: BUY-0042, inventory_ref: INV-0014, status: purchased_first_batch, gate: "五路高位主干净约30m，节点/门头及施工余量后按40m准备；实际导线自然放入且盖板无需强压" }
       - { item: "更宽线槽/配套加宽分线件", quantity: "按PCT-42+6mm²实物试装结果补购", gate: "只在四分槽空间不足处升级，不全屋统一加宽" }
@@ -205,7 +211,8 @@ items:
     item: "全部外窗防猫纱窗"
     status: ordered
     measure_window: "2026-09-28"
-    installation_window: "9/28称4天后，暂推10/2；商家确切日期待确认"
+    installation_forecast_from_0928: "当时称4天后，曾预计约10/2；这是历史预计，不代表已安装"
+    installation_status: todo_confirm
     requirements: ["耐抓纱网", "框体牢固", "防误开锁扣", "无可钻缝隙", "保留应急开启"]
     budget_priority: protected
 
@@ -216,11 +223,11 @@ items:
     actual_unit_price_cny: 100
     actual_total_cny: 500
     paid_deposit_cny: 200
-    unpaid_balance_cny: 300
-    payment_status: partially_paid
-    ledger_ref: EXP-0024
+    unpaid_balance_cny: 0
+    payment_status: paid_in_full
+    ledger_refs: [EXP-0024, EXP-0049]
     room_mapping: ["95×47：卧室1扇、客厅1扇", "90×47：阳台西窗活动区1扇，不含上部固定玻璃", "128×74：阳台南窗2扇"]
-    note: "9/30业主确认；纱窗约半扇窗大小，整窗宽约为对应纱窗宽的2倍；尺寸方向及整窗洞口不直接推成施工坐标。厨房窗固定封闭、排烟孔已封严，不需另订该窗纱窗；安装费是否另计、框网锁扣规格待核；不视为防猫验收完成"
+    note: "10/6业主确认尾款300元已支付、总价500元已付清；纱窗约半扇窗大小，尺寸方向及整窗洞口不得由纱窗尺寸反推。厨房窗固定封闭、排烟孔已封严，不需另订；是否安装及框网锁扣状态仍待核，不视为防猫验收完成"
 
   - id: BUY-0023
     category: electrical_material
@@ -234,12 +241,17 @@ items:
     category: electrical_material
     room: whole_house
     item: "BVVB 2×2.5mm²两芯固定布线护套线"
-    status: not_purchased
+    status: delivered
     requirements: ["两卷各50m", "内芯为合规相线色+淡蓝色", "CCC及合格证", "不采用蓝线改色"]
     estimated_net_m: 63.5
     planned_cut_m: 85
     planned_quantity_m: 100
     planned_rolls: 2
+    ordered_quantity_m: 100
+    ordered_rolls: 2
+    delivery_evidence: "ChatGPT《电器点位初步对应》的订单截图整理为2卷×50m；10/3业主称所有电线和插座已经准备好"
+    physical_count_status: todo
+    ledger_ref: EXP-0039
     expected_remainder_m: 15
     quantity_status: planned_takeoff_pending_setout
     purchase_strategy: "按2卷×50m采购；当前净约63.5m，考虑JZ/机械开关BVVB化、盒内余线和现场绕行按80~85m下料。现场弹线实测若超过85m，先更新下料表，禁止用接头拼凑长直段"
@@ -363,7 +375,7 @@ items:
       - "使用目标C20/30mA RCBO-02下游常电三孔点位，PE端子未连接并持久标注本户无PE"
       - "不再默认增加同灵敏度设备级漏保"
       - "软管不得被柜体、门扇或洗碗机本体挤压"
-      - "受潮木柜继续使用前核对承重、水平、抗振和防潮；预算允许时替代柜仍安装在同一位置"
+      - "已决定本阶段保留受潮木柜；继续使用前核对承重、水平、抗振和防潮，也可在复测后改为垫高北侧台面承载"
     quantity_status: blocked_by_dishwasher_model_dimensions_and_sink_test
     risk_ref: SAF-0022
 
@@ -408,7 +420,7 @@ items:
     category: electrical_fixture
     room: whole_house
     item: "明装插座、开关和基础灯具包"
-    status: not_purchased
+    status: partially_purchased
     owner_candidates: ["德力西158系列明装10A五孔", "德力西CD815白色斜五孔暗装10A"]
     candidate_status: planned
     candidate_source: "ChatGPT《明装电路采购建议》业主0c208d11消息；明确称初步候选，不能推定已下单"
@@ -429,16 +441,24 @@ items:
       - { item: "厨房基础漫射灯", quantity: 1 }
       - { item: "卫生间防潮基础灯", quantity: 1, gate: "防护等级、位置和RCD下游连接经安全复核" }
     quantity_status: point_count_frozen_product_ratings_pending_nameplates
-    note: "走廊A约2m成套插头灯带另见BUY-0026；床下灯须使用厂家完整220V二脚插头成品，书桌任务灯和沙发背景灯具延期按入住体验选购。"
+    purchased_evidence: "业主订单截图确认三只四开28孔分控插座的房间分配为厨房2、客厅1；其余具体点位多为助手初排，仍待业主确认"
+    ledger_refs: [EXP-0029, EXP-0030, EXP-0039, EXP-0040]
+    note: "走廊A约2m成套插头灯带另见BUY-0026；床下灯须使用厂家完整220V二脚插头成品，书桌任务灯和沙发背景灯具延期按入住体验选购。三只分控插座的精确设备对应仍为todo。"
 
   - id: BUY-0041
     category: electrical_fixture
     room: multiple
     item: "京东京造JZ-N2零火双开智能开关"
-    status: not_purchased
+    status: returned
     planned_quantity: 2
+    ordered_quantity: 2
+    returned_quantity: 2
+    on_hand_quantity: 0
     unit_price_cny: 49.9
     planned_total_cny: 99.8
+    return_reason: "物流时效"
+    refund_status: "京东流水出现49.45元退款；订单级折扣/分摊未完整展示，暂不把9.90元同单残余计入装修账"
+    availability_status: unknown_after_logistics_return
     product_url: "https://item.jd.com/product/b4RAvNCE2utuCbYKomXWRg.html"
     owner_confirmed: ["商品型号JZ-N2", "零火双开", "Mesh 2.0", "单价49.9元", "客厅和卧室各1只"]
     requirements:
@@ -652,5 +672,32 @@ items:
     payment_status: amount_and_date_unknown
     actual_total_cny: null
     remaining_details: ["具体数量/包装规格", "购买日期和金额；按业主要求后续补账"]
-    planned_use: "业主计划明天修补砖砌水槽/管道接缝及铁管靠上方破损处；尚未施工，不代表该材料适配或修补有效"
+    planned_use: "厨房下水漏点已完全修补；修补后出现疑似堵塞，2500ml管道疏通剂未改善。铸工胶/修补带的实际使用与余量待盘点，1月先定位再决定后续用途"
     risk_ref: SAF-0011
+
+  - id: BUY-0059
+    category: floor_coating
+    room: bathroom
+    item: "米黄色环氧彩砂自流平地坪漆1.4kg"
+    status: delivered
+    purchase_date: "2026-10-03"
+    actual_total_cny: 75.33
+    quantity: 2
+    unit: "组（1.4kg/组）"
+    total_weight_kg: 2.8
+    ledger_ref: EXP-0047
+    installation_status: completed
+    substrate_status: "S2防水层闭水试验已完成并通过后施工"
+    suitability_status: installed_owner_confirmed
+    note: "卫生间自铺地砖方案放弃后的饰面；业主确认两组均已施工。环氧层不作为防水层替代"
+
+  - id: BUY-0060
+    category: floor_coating
+    room: bathroom
+    item: "环氧彩砂自流平地坪漆续购5kg"
+    status: not_purchased
+    planned_quantity_kg: 5
+    target_window: "2027年1月"
+    planned_use: "在现有2.8kg已施工层上增加厚度"
+    gate: "先核现有层固化、附着、防滑、排水坡度，以及厂家是否允许跨月加涂和所需打磨/底涂；未核验不得直接覆涂"
+    risk_ref: SAF-0026

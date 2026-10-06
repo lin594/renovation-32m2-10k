@@ -1,13 +1,13 @@
 version: 1
-updated: "2026-09-30"
+updated: "2026-10-06"
 timezone: Asia/Shanghai
-status: approved_execution_baseline
+status: main_window_closed_closeout_pending
 
 strategy:
-  name: "9/28–10/4主攻、1月单人收尾、主窗口后零装修专项往返"
-  objective: "在10000元总预算内，用9/28–10/4现场窗口完成高判断、高耦合工作，并在2027年1月完成三猫安全入住"
+  name: "9/28–10/4主窗口已结束、未完项转1月收尾、期间零装修专项往返"
+  objective: "在10000元总预算内收口10月实际结果，冻结未完电气/地面/门窗方案，并在2027年1月完成三猫安全入住"
   constraints:
-    - "2026-09-28至2026-10-04为当前主现场施工窗口"
+    - "2026-09-28至2026-10-04主现场施工窗口已经结束"
     - "9/27夜出发，9/28约07:56抵达开封；9/28上午直接进入复测和电气安全复核"
     - "2026-10-04现场总验收、保洁、留档并保留返程缓冲，不再新开不可中断施工"
     - "主窗口结束后至2027年1月中旬不安排北京—开封装修专项往返"
@@ -29,12 +29,21 @@ milestones:
     name: "主现场施工窗口结束"
     target_date: "2026-10-04"
     owner: 主负责人
-    acceptance:
+    result_status: closed_with_carryover
+    actual_result:
+      latex_paint: "partial：油漆工仅完成一遍底漆和一遍面漆且角落不细；1月由业主处理缝隙/角落、必要打磨并完成第二遍面漆"
+      electrical: "incomplete：材料已购较多，固定线路和专业终检未完成"
+      spc_flooring: "not_started"
+      bathroom_floor: "原自铺地砖方案取消；闭水试验通过后已完成2组×1.4kg环氧地坪，1月拟再购5kg增厚"
+      appliances: "未更换"
+      smart_switches: "两只因物流时效退货，现场0只"
+    original_acceptance_baseline:
       - "卫生间防水按产品要求固化并完成不少于24h蓄水试验；不通过则不铺砖"
       - "可施工区域完成局部基层、底漆和两遍面漆；持续受潮/雨漏区域允许明确跳过"
       - "明线回路、走向、端点编号和材料包已经完成或冻结；专业门禁未关闭的线路保持断开"
       - "石塑地板优先完成主要通行区；未完成部分已有首排示范、方向和编号"
       - "完成关键回路/漏保复查、渗漏状态确认、施工照片与尺寸留档、工具材料归位和垃圾清运"
+    closeout_note: "以上为窗口开始前的原验收基线，不代表均已完成。业主确认闭水试验通过，但时长、水位和照片未归档，不能反推已达到不少于24h；实际完成与结转范围以actual_result及10月收口记录为准。"
   - id: MS-CAT-IDEAL
     name: "三猫理想入住"
     target_date: "2027-01-15"
@@ -50,6 +59,8 @@ onsite_windows:
     end: "2026-10-04"
     departure_at: "2026-10-04T22:00:00+08:00"
     confirmation_status: confirmed
+    execution_status: ended
+    actual_closeout_status: partial
     people: 2
     main_leader_present: true
     trip_cost_budget_cny: 700
@@ -165,15 +176,16 @@ main_window_daily_plan:
 
 between_main_window_and_january:
   - "不安排装修专项往返，也不依赖代理人执行需要现场判断的施工"
-  - "厨卫门计划拼多多定制材料约100元/扇、1月自行拼装；纱窗已定做总价500元、已付200元，按9/28口述约10/2安装，确切日期待核实"
+  - "厨卫门计划拼多多定制材料约100元/扇、1月自行拼装；五扇纱窗总价500元已付清，实际安装和防猫验收状态待核"
   - "远程整理逐回路线图、地板编号、门窗验收和马桶购买清单"
+  - "收口遗留：乳胶漆缝隙/角落精细处理、必要打磨和第二遍面漆；明装电气与专业检测、SPC从零开始、卫生间环氧跨月增厚核验、厨房下水疏通、家电更换和两只智能开关补购"
   - "顶楼雨漏如仍持续，由物业/防水人员处理屋面迎水面；业主不自行登高"
 
 january_single_worker_sequence:
   - order: 1
     item: "检查墙面、天花板水迹、桌面、瓷砖漆和漏水痕迹"
   - order: 2
-    item: "按预先确认的方案自拼并安装厨卫门；卧室门方案待定；复查已装纱窗，补完未验收项并留档"
+    item: "按预先确认的方案自拼并安装厨卫门；卧室门方案待定；先确认纱窗是否已装，再完成防猫验收并留档"
   - order: 3
     item: "按主窗口示范完成剩余石塑地板、踢脚线和压条"
   - order: 4
@@ -192,7 +204,7 @@ budget_gate:
   contingency_cny: 700
   actuals_source: "data/ledger.csv"
   generated_status_ref: "PROJECT_STATUS.md"
-  note: "9/30取消单独299元工具预留；账本记实际支付，采购表记已知尾款；约1000元京东新购明细按业主要求延后补录"
+  note: "9/30取消单独299元工具预留；10/6已按京东流水补录明确装修支出并排除重复/退款/明显无关项；三笔等多件残余合计15.14元用途待确认，暂未计装修账"
   feasibility_status: unproven_until_essential_quotes
   quote_gate_ref: "data/budget.yaml#feasibility"
 
@@ -222,3 +234,11 @@ reconciliation_2026_09_30:
     - "10/3电气终检仍是目标，专业检测无法落实的线路保持断开"
     - "10/4 22:00离场；未完成非安全项编号留待1月，安全项保持blocked"
   owner_confirmation: "9/30确认两人施工至10/4 22:00，1月单人收尾、三猫理想1/15；后续逐题QA补齐最终范围；2/7保留为旧基线，未在本轮重新确认"
+
+closeout_2026_10_06:
+  status: confirmed_partial
+  source: "业主本任务确认"
+  completed: ["乳胶漆一遍底漆+一遍面漆；施工费400元", "卫生间防水层闭水试验通过", "卫生间环氧地坪2组×1.4kg施工", "厨房下水漏点修补", "纱窗尾款300元支付"]
+  carried_over: ["明装电气", "电气专业终检", "SPC地板", "家电更换", "乳胶漆缝隙/角落处理、必要打磨和第二遍面漆", "厨房下水疏通"]
+  plan_changes: ["卫生间自铺地砖取消；1月拟再购5kg环氧增加厚度，跨月复涂门禁待核", "两只智能开关因物流退货，计划1月入住前重新网购并施工"]
+  unknown: ["防猫纱窗实际安装验收状态", "卫生间闭水时长/水位/照片", "本轮部分电气材料实际余量", "2500ml管道疏通剂是否与京东同容量多功能清洁剂为同一商品"]

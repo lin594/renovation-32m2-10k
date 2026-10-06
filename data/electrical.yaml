@@ -1,7 +1,16 @@
 version: 1
-updated: "2026-09-30"
+updated: "2026-10-06"
 status: blocked
 drawing_property: "讨论图：五路分工与九个已编号主节点用于需求核对；L1至W1精确放样、机械灯控导体与PCT规格未闭合，不得据此施工、下料或宣称采购完结；通电仍须现场核验与合格电工复核"
+
+field_status:
+  as_of: "2026-10-06"
+  source: owner_confirmed
+  main_window_result: carried_over
+  surface_wiring: incomplete
+  commissioning: not_completed
+  material_state: "电线、插座及若干连接/明盒材料已备；实际安装量与余量待盘点"
+  energization_rule: "未完成绝缘、极性、保护器匹配、插座接线及各级漏保动作检测的新增固定线路保持断开"
 
 open_items:
   - id: ELEC-LIVING-ROUTE
@@ -196,7 +205,13 @@ smart_switches:
     quantity: 2
     unit_price_cny: 49.9
     connectivity: "Mesh 2.0"
-    status: planned_confirmed_by_owner_pending_physical_spec_check
+    status: selected_but_returned_not_on_hand
+    ordered_quantity: 2
+    returned_quantity: 2
+    on_hand_quantity: 0
+    return_reason: "物流时效"
+    availability: unknown_after_logistics_return
+    repurchase_plan: "2027年1月入住前重新网购，到场后施工；仍可重购JZ-N2或选择满足同一门禁的替代型号"
     product_url: "https://item.jd.com/product/b4RAvNCE2utuCbYKomXWRg.html"
   installation_gate:
     - "到货后按实物说明确认L、N、L1、L2端子及端子允许导体截面，必须可靠接受2.5mm²导体；不削细导体硬塞"
@@ -318,7 +333,7 @@ surface_device_takeoff:
     hall_a_strip_controlled: { quantity: 1, note: "不计入18组通用插座；高位专用并标注仅灯带" }
     bedroom_underbed_light_controlled: { quantity: 1, type: "10A二孔", note: "专用照明连接点，不计入18组通用插座；标注仅床下灯" }
   switch_faceplates:
-    jz_n2_zero_neutral_dual: { quantity: 2, unit_price_cny: 49.9, scope: "客厅1、卧室1", returns_per_device: 2, gate: "实物端子须接受2.5mm²，盒深及LED负载范围通过" }
+    jz_n2_zero_neutral_dual: { quantity: 2, target_quantity: 2, on_hand_quantity: 0, procurement_status: returned, unit_price_cny: 49.9, scope: "客厅1、卧室1", returns_per_device: 2, gate: "补购/替代实物端子须接受2.5mm²，盒深及LED负载范围通过" }
     other_lighting_positions: { quantity: 3, scope: "走廊A（覆盖A/B）、厨房、卫生间", box: "≥50mm深86明装盒", gate: "卫生间功能键数按浴霸/镜灯说明冻结" }
   fixed_fixtures:
     living_diffuse_ceiling: 1

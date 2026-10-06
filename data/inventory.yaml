@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-09-29"
+updated: "2026-10-06"
 
 items:
   - id: INV-0001
@@ -38,8 +38,9 @@ items:
     quantity: 1
     unit: 个
     location: 厨房
-    condition: moisture_damaged
-    planned_use: "保留、修复或更换待定"
+    condition: moisture_damaged_and_deformed
+    dimensions: { length_cm: 80, height_cm: "约70多一点，未精测" }
+    planned_use: "本阶段保留并作为主备菜区；修复、承重、水平和防潮仍待核验"
 
   - id: INV-0004
     category: fixed_fixture
@@ -113,7 +114,8 @@ items:
     location: "已购，具体存放位置待现场盘点"
     condition: new_uninstalled
     acquisition_cost_ref: EXP-0007
-    planned_use: "卫生间地面自行铺贴"
+    planned_use: "原卫生间自铺地砖方案已取消；保留、转用或处置待定"
+    plan_status: cancelled
     procurement_ref: BUY-0017
 
   - id: INV-0011
@@ -141,10 +143,13 @@ items:
     item: "洗碗机"
     quantity: 1
     unit: 台
-    location: "现有物资，待搬运并叠放在厨房水槽北侧二层木柜/替代柜上方"
-    condition: owned_pending_model_and_function_check
+    brand: "京东京造"
+    dimensions_mm: [440, 413, 424]
+    door: "前门向下翻、拉篮抽出"
+    location: "现有物资；计划布置在厨房西侧/西北侧，具体承载位置待复测"
+    condition: owned_pending_function_check
     planned_use: "复用，不采购新机"
-    requirements: ["实测机身与开门尺寸", "水槽进水处独立开关供水", "排水软管按说明直接排入水槽并可靠固定", "RCBO-02常电三孔插座并标注本户无PE", "设备级漏保候选", "复核受潮木柜或替代柜的承重、抗振和防潮"]
+    requirements: ["设备底部高于地面70cm并用模板复核下翻门净空", "水槽进水处独立开关供水", "排水软管按说明直接排入水槽并可靠固定", "RCBO-02常电三孔插座并标注本户无PE", "设备级漏保候选", "复核保留木柜或垫高北台面的承重、水平、抗振和防潮"]
     task_ref: TASK-0033
     risk_ref: SAF-0022
 
@@ -179,6 +184,49 @@ items:
     condition: "new_uninstalled"
     quantity_status: "业主确认已购买并到货；数量和包装规格待核"
     cost_status: "购买金额和日期未知，后续补账"
-    planned_use: "计划修补厨房砖砌水槽/排水管接缝及铁管靠上方破损处；修补后仍须观察是否渗漏"
+    planned_use: "厨房下水漏点已完全修补；修补后出现排水疑似堵塞，后续材料仅在定位堵塞原因后再决定是否使用"
     procurement_ref: BUY-0058
     risk_ref: SAF-0011
+
+  - id: INV-0017
+    category: paint
+    item: "小建刷新S2底漆与1875面漆"
+    original_quantity: { primer_buckets: 3, topcoat_buckets: 4 }
+    unit: 桶
+    location: "开封装修现场；具体余料存放位置待盘点"
+    condition: partially_consumed
+    actual_application: "由油漆工完成一遍底漆和一遍面漆，角落施工不仔细；施工费另记EXP-0048"
+    used_quantity: { primer_buckets: 3, topcoat_buckets: 2 }
+    remaining_quantity: { primer_buckets: 0, topcoat_buckets: 2 }
+    acquisition_cost_ref: EXP-0008
+    procurement_refs: [BUY-0013, BUY-0014]
+    planned_use: "2027年1月由业主精细处理缝隙/角落，必要处打磨后完成第二遍面漆"
+    note: "数量由业主10/6确认；补刷前检查储存、结皮、气味和批次一致性"
+
+  - id: INV-0018
+    category: electrical_material
+    item: "本轮已备明装电气材料包"
+    location: "开封装修现场；逐项余量待盘点"
+    condition: new_or_partially_used
+    confirmed_contents:
+      - "BVVB 2×2.5mm²：订单截图整理为2卷×50m；实物余量待盘点"
+      - "PVC单联86明装底盒10只"
+      - "2进2出连接器5只、CH-2连接器20只、P6接线帽50只"
+      - "蓝色绝缘胶带10卷、厨房四开28孔明装拓展插座"
+    excluded: "两只JZ-N2智能开关已因物流时效退货，现场数量为0"
+    acquisition_cost_refs: [EXP-0028, EXP-0036, EXP-0037, EXP-0038, EXP-0039, EXP-0040, EXP-0041]
+    planned_use: "电气未施工完成；未来使用仍受产品规格、无PE、过流保护、端子适配和专业检测门禁约束"
+
+  - id: INV-0019
+    category: installed_finish
+    item: "卫生间环氧彩砂自流平地面"
+    installed_quantity: 2
+    unit: "组（1.4kg/组）"
+    installed_weight_kg: 2.8
+    location: 卫生间地面
+    condition: installed_pending_long_term_observation
+    substrate: "已完成并通过闭水试验的S2防水层"
+    acquisition_cost_ref: EXP-0047
+    procurement_ref: BUY-0059
+    planned_follow_up: "2027年1月拟再购5kg增加厚度；跨月复涂体系须先核验"
+    risk_ref: SAF-0026
