@@ -62,8 +62,6 @@ protected_scope:
   - "基础用电"
 
 unpriced_commitments:
-  - { procurement_ref: BUY-0056, status: todo, issue: "批刀/刮板已购但金额未恢复，实际支出尚未完整入账" }
-  - { procurement_ref: BUY-0058, status: todo, issue: "铸工胶已购到货但金额、日期及数量未提供；金额确认前不重复计入京东多件订单" }
   - { status: todo, amount_cny: 15.14, source: "京东交易流水三笔部分退款后的等多件残余", issue: "2.39、2.85、9.90元对应留存商品用途不明；待业主确认是否装修相关，当前不计装修账" }
 reserve_review:
   status: done
