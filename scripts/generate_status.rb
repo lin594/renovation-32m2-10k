@@ -38,7 +38,7 @@ available_cash_view = overall - net_outflow - reserved
 expense_by_category = ledger.select { |row| row["flow"] == "expense" }
   .group_by { |row| row["category"] }
   .transform_values { |rows| rows.sum { |row| row["amount_cny"].to_f } }
-  .sort_by { |_category, amount| -amount }
+  .sort_by { |category, amount| [-amount, category] }
 
 phase_counts = Array(project["phases"]).group_by { |phase| phase["status"] }.transform_values(&:length)
 task_counts = Array(project["active_tasks"]).group_by { |task| task["status"] }.transform_values(&:length)
@@ -72,7 +72,7 @@ content = <<~MARKDOWN
   <!-- 本文件由 scripts/generate_status.rb 自动生成，请修改 data/ 真源后运行 make status。 -->
   # 项目状态
 
-  数据日期：#{data_date}。实际收支唯一真源：[data/ledger.csv](data/ledger.csv)。
+  数据日期：#{data_date}。实际收支唯一真源：[data/ledger.csv](data/ledger.csv)。下一步执行顺序见 [NEXT_ACTIONS.md](NEXT_ACTIONS.md)。
 
   ## 资金快照
 
@@ -120,6 +120,10 @@ content = <<~MARKDOWN
   ## 当前不应被误解的事项
 
   - 图纸是讨论方案，不是电气施工、燃气或防水验收证明。
+  - 厨房新增垫高台面方案已撤销；保留既有193×46×65cm台面，洗碗机由保留木柜或独立支架承载，待复测后二选一。
+  - 厨房固定窗已确认与客厅、卧室整窗同尺寸，但具体宽高仍TBD；95×47cm是纱窗成品尺寸，不能乘二反推窗洞。
+  - 厨卫门仅暂定阳光板，厚度、框轨、阻燃/防潮和报价待核；卧室门本阶段不做。
+  - 阳台暂定30×30cm格栅模块并在适合墙面试贴猫抓板贴纸；先做3×3试排、排水/防滑和耐潮小样。
   - 明装电气尚未完成；两只智能开关已因物流时效退货，当前手头为0。
   - 厨房下水漏点已修完，但修补后疑似堵塞；倒入2500ml管道疏通剂仍无改善，转2027年1月定位和疏通。京东同容量商品名为多功能清洁剂，是否同一件待核。
   - 乳胶漆只完成一底一面，400元工费不含第二遍面漆；角落施工不细。底漆3桶已用完、面漆4桶余2桶，2027年1月由业主处理缝隙/角落、必要打磨并补第二遍面漆。

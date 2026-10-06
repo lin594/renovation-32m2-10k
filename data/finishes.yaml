@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 status: in_progress
 
 design_direction:
@@ -128,7 +128,7 @@ floor_plan:
     - { zone: "客厅/卧室/厨房/走廊等干区", finish: "现有瓷砖上铺石塑木纹地板", installation_status: not_started, procurement_ref: BUY-0016, risk_ref: SAF-0012 }
     - { zone: "卫生间", finish: "原业主自行铺设瓷砖方案", installation_status: cancelled, procurement_ref: BUY-0017, retained_material: "30×30cm地砖12块，处置待定", risk_ref: SAF-0010 }
     - { zone: "卫生间", finish: "米黄色环氧彩砂自流平地坪漆", procurement_status: delivered, application_status: completed, installed_quantity: "2组×1.4kg=2.8kg", substrate: "已完成并通过闭水试验的S2防水层", january_plan: "拟再购5kg增加厚度", procurement_ref: BUY-0059, followup_procurement_ref: BUY-0060, risk_ref: SAF-0026, note: "环氧为防水层之上的饰面，不替代防水层；跨月增涂体系待核" }
-    - { zone: "阳台", finish: "菠萝格地板+鹅卵石", procurement_ref: BUY-0018 }
+    - { zone: "阳台", finish: "30×30cm拼接格栅/菠萝格地板", installation_status: planned, procurement_ref: BUY-0018, risk_ref: SAF-0028, note: "目的为架空留排水通道并可单块掀开清理；具体材质、防滑、排水坡向和铺排待核，不再采用鹅卵石方案" }
 
 refinishing:
   - item: "书桌"
@@ -145,6 +145,13 @@ refinishing:
     color: todo
     procurement_ref: BUY-0019
     risk_ref: SAF-0013
+  - item: "阳台周边墙面"
+    scope: "可贴墙面，避开窗框、检修口、活动构件和持续潮湿基层"
+    plan: "暂定猫抓板贴纸；先做小样，再决定覆盖范围"
+    acceptance: "粘结、耐潮、气味、可清洁性和猫抓后无大面积翘边"
+    status: planned_sample_first
+    procurement_ref: BUY-0061
+    risk_ref: SAF-0028
   - item: "罗马杆和窗帘"
     plan: "改造、处理或旧物利用"
     reason: "现有风格与宋氏美学冲突"

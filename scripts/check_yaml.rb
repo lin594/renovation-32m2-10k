@@ -75,6 +75,7 @@ validate_unique_ids.call(documents.dig("procurement.yaml", "items"), "procuremen
 validate_unique_ids.call(documents.dig("risks.yaml", "risks"), "risks.yaml risks")
 validate_unique_ids.call(project["active_tasks"], "project.yaml active_tasks")
 validate_unique_ids.call(project["completed_work"], "project.yaml completed_work")
+validate_unique_ids.call(project["next_actions"], "project.yaml next_actions")
 
 risks_document = documents.fetch("risks.yaml", {})
 validate_enum.call(risks_document["risks"], "severity", Array(risks_document["severity_order"]), "risks.yaml")
@@ -84,6 +85,16 @@ procurement_document = documents.fetch("procurement.yaml", {})
 validate_enum.call(procurement_document["items"], "status", Array(procurement_document["status_values"]), "procurement.yaml")
 validate_enum.call(project["phases"], "status", Array(project["phase_status_values"]), "project.yaml phases")
 validate_enum.call(project["active_tasks"], "status", Array(project["task_status_values"]), "project.yaml active_tasks")
+validate_enum.call(project["next_actions"], "status", Array(project["action_status_values"]), "project.yaml next_actions")
+validate_enum.call(project["next_actions"], "priority", Array(project["action_priority_values"]), "project.yaml next_actions")
+Array(project["next_actions"]).each do |action|
+  %w[id status priority domain room action completion_rule evidence_required].each do |field|
+    errors << "project.yaml next_actions #{action['id']} 缺少 #{field}" if action[field].to_s.strip.empty?
+  end
+  if action["status"] == "blocked" && action["blocker"].to_s.strip.empty?
+    errors << "project.yaml next_actions #{action['id']} 为blocked但未说明blocker"
+  end
+end
 
 targets = {
   "cost_ref" => ledger_ids,

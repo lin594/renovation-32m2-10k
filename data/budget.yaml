@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 currency: CNY
 
 # 总预算包含已完成工程、10月装修往返、硬装、基础家具家电和入住前收尾。
@@ -28,7 +28,7 @@ feasibility:
     - { id: BQ-03, item: "干区基本地面、踢脚线与压条", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-04, item: "350mm坑距马桶（含送装优先）", quote_cny: null, status: unpriced, priority: protected }
     - { id: BQ-05, item: "五扇已定做纱窗", quote_cny: 500, remaining_payable_cny: 0, status: paid_in_full, priority: protected, note: "每扇100元；定金200元和尾款300元均已入账。厨房窗固定封闭不加购纱窗；实际安装验收状态、额外安装费仍待核" }
-    - { id: BQ-06, item: "三扇门的最低可入住方案", quote_cny: null, status: unpriced, priority: essential_privacy }
+    - { id: BQ-06, item: "厨房与卫生间两扇阳光板门候选", quote_cny: null, status: unpriced, priority: essential_privacy, note: "卧室门本阶段延期；旧约100元/扇估价不适用于新材质，须按板厚、框轨、封边和安装方式重新询价" }
     - { id: BQ-07, item: "BVVB/PCT/检修盒/线槽/插座开关、客厅空调/冰箱末端漏保及卫生间末端漏保等基础用电材料", quote_cny: null, status: unpriced, priority: protected }
   freeze_rule: "上述必需项形成含送装/辅料的可比总价前，不下不可退的非必要软装订单；若总价超过PROJECT_STATUS当前可用上限，先按defer_order降级，再调整范围或总预算，不挪用700元应急金掩盖缺口"
   pass_formula: "PROJECT_STATUS当前可用上限 - sum(尚未入账且未计入尾款预留的必需项含税/送装/辅料金额) >= 0"
@@ -52,7 +52,7 @@ defer_order:
   - "洗烘一体机"
   - "浴室柜"
   - "顶天立地衣柜架"
-  - "阳台菠萝格与鹅卵石、沙发、宽带和非必要软装"
+  - "阳台30×30cm格栅地板与猫抓板贴纸、沙发、宽带和非必要软装"
 
 protected_scope:
   - "防猫纱窗"

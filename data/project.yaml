@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 project: "32㎡二手房翻新至可入住"
 owner_role: "业主兼实际策划人"
 status: in_progress
@@ -88,7 +88,7 @@ active_tasks:
     status: in_progress
   - id: TASK-0007
     phase: doors_windows
-    item: "按走廊A侧安装、向东临时侵入走廊B约0.4m的规则完成卫生间移门详图，并完成厨房移门详图与定制"
+    item: "深化并定制阳光板厨卫门：卫生间门装走廊A侧、向东临时侵入走廊B约0.4m；厨房门停泊位待复核"
     status: todo
   - id: TASK-0008
     phase: utilities
@@ -100,8 +100,9 @@ active_tasks:
     status: in_progress
   - id: TASK-0010
     phase: doors_windows
-    item: "选择并购买卧室门"
-    status: todo
+    item: "卧室门本阶段暂不制作，保留洞口供未来复测"
+    status: cancelled
+    cancel_reason: "业主2026-10-07明确卧室门暂时不做"
   - { id: TASK-0011, phase: waterproof_surfaces, item: "厨房下水漏点修补", status: done, main_window_result: completed, outcome: "业主确认管道已完全修补；修补后出现排水疑似堵塞，转TASK-0035处理", schedule_window: "10月主窗口完成" }
   - { id: TASK-0012, phase: waterproof_surfaces, item: "核对防水/墙固/腻子/底漆/面漆产品体系与用量", status: todo }
   - { id: TASK-0013, phase: waterproof_surfaces, item: "查明客厅西墙南部、东墙南部及西南角天花板疑似受潮/雨漏来源；顶楼屋面不由业主自行登高处理", status: todo, schedule_window: "2026-09-28室内排查；持续雨漏的屋面迎水面维修外包" }
@@ -114,7 +115,7 @@ active_tasks:
   - { id: TASK-0020, phase: waterproof_surfaces, item: "完成可施工区域局部基层修补、底漆和两遍面漆", status: in_progress, main_window_result: partial, actual: "油漆工仅完成一遍底漆和一遍面漆，施工费400元，且角落施工不仔细；底漆3桶全部用完，面漆4桶余2桶", remaining_work: ["2027年1月由业主精细处理缝隙和角落", "必要处打磨", "完成第二遍面漆"], schedule_window: "1月DIY精细收口" }
   - { id: TASK-0021, phase: utilities, item: "完成或冻结明线回路、走向、端点编号和材料包", status: in_progress, main_window_result: incomplete, remaining_scope: todo, schedule_window: "转后续收尾；专业门禁未关闭的线路保持断开" }
   - { id: TASK-0022, phase: waterproof_surfaces, item: "完成石塑地板主要区域；未完成部分留下首排示范和编号", status: todo, main_window_result: not_started, schedule_window: "10月未铺；转2027年1月收尾前重新确认采购与基层条件" }
-  - { id: TASK-0023, phase: doors_windows, item: "厨卫门已复测并询价；五扇纱窗已定做且500元付清，但是否安装及防猫验收状态未知；厨卫门计划1月自拼安装", status: in_progress, schedule_window: "纱窗到场先核安装事实并完成防猫验收；厨卫门1月自拼安装，约100元/扇，未确认下单" }
+  - { id: TASK-0023, phase: doors_windows, item: "厨卫门洞已复测，门板暂定阳光板；五扇纱窗已定做且500元付清，但是否安装及防猫验收状态未知", status: in_progress, schedule_window: "纱窗到场先核安装事实并完成防猫验收；厨卫阳光板门1月前先冻结板厚、框轨、封边、防潮与报价，卧室门延期" }
   - { id: TASK-0024, phase: commissioning, item: "由一名非主负责人按冻结图纸完成1月单人收尾", status: todo, schedule_window: "2027年1月中旬至2027-02-07" }
   - { id: TASK-0025, phase: commissioning, item: "完成三猫入住门槛验收", status: todo, schedule_window: "理想2027-01-15；最迟2027-02-07" }
   - { id: TASK-0026, phase: utilities, item: "补购并安装两只智能开关：客厅和卧室各1只；原JZ-N2两只因物流时效退货，当前手头0只", status: todo, blocker: "两只智能开关已退货、现场无货；替代型号或重新购买待定，不能据此推定商品缺货", procurement_ref: BUY-0041, schedule_window: "转后续收尾；到货后仍须核端子、盒深、LED负载并完成专业终检" }
@@ -126,7 +127,7 @@ active_tasks:
   - { id: TASK-0032, phase: utilities, item: "核对两台空调、冰箱及洗烘机铭牌；为MCB-04下游客厅空调和冰箱选择双极TEST/RESET末端漏保", status: todo, schedule_window: "2026-09-28核对；2026-10-01冻结" }
   - id: TASK-0033
     phase: fixtures_appliances
-    item: "复测并安装西侧/西北侧现有京造台式洗碗机；设备底部须高于地面70cm，冻结保留木柜或垫高北台面的承重、下翻门净空、独立进水开关、直排水槽和无PE三孔保护方案"
+    item: "复测并安装西侧/西北侧现有京造台式洗碗机；设备底部须高于地面70cm，冻结保留木柜或独立支架的承重、下翻门净空、独立止水、直排水槽和无PE三孔保护方案"
     status: todo
     schedule_window: "2026年9月核对型号；2026-09-28复测并尽量搬运；厨房回路验收后安装"
   - id: TASK-0034
@@ -142,6 +143,12 @@ active_tasks:
     status: todo
     schedule_window: "2027年1月"
     risk_ref: SAF-0011
+  - id: TASK-0036
+    phase: waterproof_surfaces
+    item: "深化阳台30×30cm拼接格栅地板和周边猫抓板贴纸；保留排水、清洁、窗框与检修净空"
+    status: todo
+    schedule_window: "2027年1月采购前完成小样与排布"
+    risk_ref: SAF-0028
 
 field_progress:
   - date: "2026-09-29"
@@ -170,6 +177,98 @@ field_progress:
     changed_plan: ["卫生间自铺地砖方案放弃；环氧地坪已施工，计划1月再购5kg增加厚度", "两只智能开关因物流时效退货，计划1月入住前重新网购并施工"]
     new_issue: "厨房下水修补后疑似堵塞；倒入2500ml管道疏通剂后未改善，计划1月处理。京东流水中的2500ml商品名为多功能家具清洁剂，是否同一商品待核"
     kitchen_facts: ["北台面193×46×65cm", "西墙三段约水槽55cm+保留木柜80cm+北台深46cm", "东墙壁龛深10cm", "计划西侧放洗碗机和电饭煲架、东侧放灶台"]
+  - date: "2026-10-07"
+    status: confirmed
+    source: "业主本任务确认"
+    changed_plan: ["取消厨房架空瓷砖层及所有垫高北台面的变体", "卧室门本阶段暂不做", "厨房门和卫生间门暂定阳光板", "阳台暂定30×30cm拼接格栅/菠萝格地板，周边墙面暂定猫抓板贴纸"]
+    new_fact: "厨房外窗与客厅、卧室外窗同尺寸；具体洞口宽高仍待实测，厨房窗继续固定封闭且不加纱窗"
+
+action_status_values: [ready, blocked, waiting, deferred]
+action_priority_values: [P0, P1, P2]
+next_actions:
+  - { id: ACT-001, priority: P0, status: ready, domain: plumbing, room: kitchen, action: "定位厨房下水修补后的堵点，优先拆检存水弯/可拆接头或机械疏通，不再继续盲倒药剂", completion_rule: "连续放水和水槽满盆排水均顺畅，无返水、冒泡或渗漏，并保留测试视频", evidence_required: ["拆检前后照片", "连续放水视频", "使用工具/更换件记录"], task_ref: TASK-0035, risk_ref: SAF-0011 }
+  - id: ACT-002
+    priority: P0
+    status: blocked
+    domain: electrical
+    room: whole_house
+    action: "按20及21–24/26图现场放样五路主干、中文节点和末端点位，记录逐段长度与高度"
+    completion_rule: "每段路线、转弯、节点坐标、标高和终点均有带卷尺照片；所有TBD已填写或继续标阻断"
+    evidence_required: ["逐段尺寸表", "带卷尺全景照片", "节点与点位编号照片"]
+    blocker: "需2027年1月到场复测；当前图中建议点位不是下料尺寸"
+    task_ref: TASK-0002
+  - id: ACT-003
+    priority: P0
+    status: blocked
+    domain: electrical
+    room: whole_house
+    action: "由合格电工完成绝缘、极性、保护器匹配、漏保动作和无PE标识验收"
+    completion_rule: "五回路均有仪表实测值、测试日期和责任人；未通过回路保持断开"
+    evidence_required: ["绝缘实测", "漏保动作实测", "极性与保护器记录", "配电箱及无PE标识照片"]
+    blocker: "线路、保护器和末端产品尚未全部冻结/安装"
+    task_ref: TASK-0029
+    risk_ref: SAF-0001
+  - id: ACT-004
+    priority: P0
+    status: blocked
+    domain: electrical
+    room: bathroom
+    action: "取得浴霸和镜柜铭牌/说明书，冻结卫01下游连接方式、RCD位置和喷溅防护"
+    completion_rule: "设备功率、防护等级、连接方式、位置与双极≤30mA保护方案全部明确并经电工复核"
+    evidence_required: ["设备铭牌", "说明书关键页", "湿区距离照片", "电工复核记录"]
+    blocker: "设备实物资料和现场距离缺失"
+    task_ref: TASK-0031
+    risk_refs: [SAF-0003, SAF-0021]
+  - id: ACT-005
+    priority: P1
+    status: blocked
+    domain: plumbing_electrical
+    room: kitchen
+    action: "复测洗碗机并落实水槽冷水分支+独立止水、按说明直排水槽、承载支架和无PE常电点"
+    completion_rule: "进排水可独立关闭/拆检，软管固定可靠，下翻门不碰撞，承载水平稳定，插座安全门禁通过"
+    evidence_required: ["铭牌与接口", "下翻门模板", "独立止水照片", "排水固定照片", "承载水平测试"]
+    blocker: "铭牌、软管说明、承载方式和现场尺寸待复核；不得另设新增垫高台面"
+    task_ref: TASK-0033
+    risk_ref: SAF-0022
+  - { id: ACT-006, priority: P1, status: ready, domain: pet_safety, room: whole_house, action: "确认五扇纱窗是否已经安装，并完成框、网、锁扣、防钻缝和应急开启验收", completion_rule: "五扇逐一编号留照，猫无法推开/钻缝，成人可应急开启；未通过则三猫不入住", evidence_required: ["每扇全景", "锁扣近照", "缝隙尺度", "推拉测试"], task_ref: TASK-0003, risk_ref: SAF-0008 }
+  - id: ACT-007
+    priority: P1
+    status: waiting
+    domain: doors_windows
+    room: kitchen_bathroom
+    action: "为74×195cm厨房洞和67×198cm卫生间洞选择阳光板厚度、框料、封边与轨道并重新询价"
+    completion_rule: "两扇门均有可执行下单图、开启/停泊净空、材料清单、含辅料报价和安装顺序"
+    evidence_required: ["门洞复测", "阳光板/框轨规格", "报价截图", "开启净空示意"]
+    blocker: "材质仅暂定，旧100元/扇估价已失效；卧室门不在本阶段"
+    task_ref: TASK-0007
+  - id: ACT-008
+    priority: P1
+    status: blocked
+    domain: floor_coating
+    room: bathroom
+    action: "检查现有2.8kg环氧层后，向厂家确认跨月追加5kg所需清洁、打磨、底涂、厚度与固化窗口"
+    completion_rule: "厂家体系、现有层状态、排水与防滑通过后才采购；追加后无脱层、明显积水和锐边"
+    evidence_required: ["现有层近照", "积水/防滑观察", "厂家答复", "追加施工记录"]
+    blocker: "现有层固化、附着、排水和厂家跨月重涂要求未核"
+    risk_ref: SAF-0026
+    procurement_ref: BUY-0060
+  - { id: ACT-009, priority: P2, status: ready, domain: coating, room: kitchen_bathroom, action: "分别在厨卫白色瓷砖隐蔽处做改色体系小样，记录清洁、底涂、面涂、附着和耐水结果", completion_rule: "小样完全固化后通过划格/胶带附着、擦洗和泼水观察，再决定颜色与全量采购", evidence_required: ["小样位置", "产品体系", "施工日期", "固化后测试照片"], task_ref: TASK-0015, risk_ref: SAF-0013 }
+  - { id: ACT-010, priority: P2, status: ready, domain: balcony_finish, room: balcony, action: "试排3×3块30×30cm格栅地板并做猫抓板贴纸小样，验证排水、清洁、防滑、净空和耐潮", completion_rule: "模块可单块掀开且不堵积水/柜门/移门；墙贴小样无明显气味、翘边或可吞咽碎片", evidence_required: ["坡向和积水点", "3×3试排", "掀开清洁演示", "墙贴小样观察"], task_ref: TASK-0036, risk_ref: SAF-0028 }
+  - id: ACT-011
+    priority: P1
+    status: waiting
+    domain: electrical
+    room: living_bedroom
+    action: "入住前补购客厅、卧室各一只零火双开智能开关，并核2.5mm²端子、盒深和LED负载"
+    completion_rule: "实物参数和试装通过；网络失效时双键仍能本地控制目标灯具，且不影响任何常电插座"
+    evidence_required: ["端子说明", "盒深试装", "灯具负载", "离线功能测试"]
+    blocker: "原两只因物流时效退货，现场0只"
+    task_ref: TASK-0026
+    risk_ref: SAF-0023
+  - { id: ACT-012, priority: P1, status: deferred, domain: coating, room: whole_house, action: "2027年1月由业主处理乳胶漆缝隙/角落、必要打磨，并完成第二遍面漆", completion_rule: "余漆状态和接茬小样通过；角落、缝隙与可见墙面在自然光/灯光下无明显漏刷、流挂或松层", evidence_required: ["余漆开桶状态", "接茬小样", "处理前后同机位照片"], task_ref: TASK-0020, risk_ref: SAF-0027 }
+  - { id: ACT-013, priority: P2, status: deferred, domain: doors_windows, room: bedroom, action: "卧室门本阶段不做；保留洞口和未来复测条件", completion_rule: "本阶段采购清单、1月工序和预算均不再依赖卧室门", evidence_required: ["洞口留存照片"], task_ref: TASK-0010 }
+  - { id: ACT-014, priority: P2, status: ready, domain: budget, room: whole_house, action: "确认京东三笔‘等多件’部分退款后的2.39元、2.85元、9.90元留存商品，并补充批刀/刮板与铸工胶的实际付款金额", completion_rule: "15.14元残余逐笔明确商品与装修相关性；相关项入账、无关项保留排除依据，缺价材料取得付款凭证或明确未付款", evidence_required: ["三笔订单详情截图", "批刀/刮板付款记录", "铸工胶付款记录"] }
+
 finalization:
   status: blocked
   reason: "10月主窗口已结束；明装电气、SPC、厨房下水疏通、乳胶漆局部补缝和环氧跨月增厚方案仍待收口，技术验收另需实测证据"

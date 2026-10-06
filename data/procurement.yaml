@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 
 status_values: [not_purchased, partially_purchased, pending_custom_order, quoted, ordered, delivered, accepted, returned, cancelled]
 
@@ -7,11 +7,11 @@ items:
   - id: BUY-0001
     category: door
     room: kitchen
-    item: "厨房隐藏移门"
+    item: "厨房阳光板推拉门（暂定）"
     status: pending_custom_order
-    requirements: ["9/28口述门洞宽74cm×高195cm", "上滑轨单扇推拉；轨道及停泊位与高窗/水槽台面协调", "可检修"]
-    order_status_note: "9/30计划拼多多定制材料后自行拼装；约100元/扇，未确认下单；2027年1月入住收尾时安装"
-    estimated_total_cny: 100
+    requirements: ["9/28口述门洞宽74cm×高195cm", "阳光板板厚、框料、封边与耐热清洁性待选", "上滑轨单扇推拉；轨道及停泊位与高窗/水槽台面协调", "可检修"]
+    order_status_note: "10/7材质暂定阳光板；此前约100元/扇估价不再作为有效报价，未确认下单"
+    estimated_total_cny: null
     assembly: "DIY拼接；轨道/安装辅件是否含价待核"
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
@@ -19,11 +19,11 @@ items:
   - id: BUY-0002
     category: door
     room: bathroom
-    item: "卫生间移门（走廊A侧安装）"
+    item: "卫生间阳光板移门（暂定，走廊A侧安装）"
     status: pending_custom_order
-    requirements: ["9/28口述门洞宽67cm×高198cm", "有效净宽须扣除框轨/重叠/浴室柜后重测，旧65cm目标待重算", "安装在走廊A侧", "常闭不占走廊B", "向东开启时可临时侵入走廊B约0.4m", "允许按进出需要部分开启", "耐潮"]
-    note: "9/30计划拼多多定制材料后自行拼装；约100元/扇，未确认下单；先复测轨道、门板和停泊尺寸"
-    estimated_total_cny: 100
+    requirements: ["9/28口述门洞宽67cm×高198cm", "阳光板板厚、框料、封边、隐私与防潮清洁性待选", "有效净宽须扣除框轨/重叠/浴室柜后重测，旧65cm目标待重算", "安装在走廊A侧", "常闭不占走廊B", "向东开启时可临时侵入走廊B约0.4m", "允许按进出需要部分开启"]
+    note: "10/7材质暂定阳光板；此前约100元/扇估价不再作为有效报价，先复测轨道、门板和停泊尺寸"
+    estimated_total_cny: null
     assembly: "2027年1月DIY拼接；轨道/安装辅件是否含价待核"
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
@@ -76,8 +76,9 @@ items:
     category: door
     room: bedroom
     item: "卧室门"
-    status: not_purchased
-    requirements: ["匹配约0.8m门洞", "按北移约5cm后的实测门洞下单", "开启后不影响卧室主通行"]
+    status: cancelled
+    requirements: ["未来如恢复，匹配约0.8m门洞", "按北移约5cm后的实测门洞下单", "开启后不影响卧室主通行"]
+    cancel_reason: "业主2026-10-07确认卧室门暂时不做；洞口保留"
     task_ref: TASK-0010
     measure_window: "2026-10-01"
     installation_window: "2027年1月中旬"
@@ -170,7 +171,7 @@ items:
     plan_status: cancelled
     disposition: todo
     note: "地砖已购但尚未铺贴；10月主窗口已放弃卫生间自铺地砖方案，材料保留、转用或处置待定"
-  - { id: BUY-0018, category: flooring, room: balcony, item: "菠萝格地板和鹅卵石", priority: deferred_first_batch, status: not_purchased }
+  - { id: BUY-0018, category: flooring, room: balcony, item: "30×30cm拼接格栅/菠萝格地板", priority: deferred_first_batch, status: not_purchased, module_cm: [30, 30], purpose: "架空留排水通道并可单块掀开清理", requirements: ["具体材质/SKU待确认", "防滑、耐潮、无明显异味", "不阻断原地面坡度和排水路径", "可掀开清理积水与污物", "复核阳台柜门和推拉门净空"], task_ref: TASK-0036 }
   - { id: BUY-0019, category: coating, room: kitchen_bathroom, item: "既有白色瓷砖改色漆及配套底涂", scope: "厨卫四面墙约1.8m高+厨房现有瓷砖灶台", color: todo, purchase_strategy: "9月仅买小样量；10月隐蔽小样通过后线下补足，失败则保留白砖", quantity_status: blocked_by_measurement, status: not_purchased }
   - id: BUY-0020
     category: coating
@@ -375,9 +376,19 @@ items:
       - "使用目标C20/30mA RCBO-02下游常电三孔点位，PE端子未连接并持久标注本户无PE"
       - "不再默认增加同灵敏度设备级漏保"
       - "软管不得被柜体、门扇或洗碗机本体挤压"
-      - "已决定本阶段保留受潮木柜；继续使用前核对承重、水平、抗振和防潮，也可在复测后改为垫高北侧台面承载"
+      - "已决定本阶段保留受潮木柜；继续使用前核对承重、水平、抗振和防潮，不合格则另设独立支架；架空瓷砖层与垫高北台面方案已取消"
     quantity_status: blocked_by_dishwasher_model_dimensions_and_sink_test
     risk_ref: SAF-0022
+
+  - id: BUY-0061
+    category: wall_finish
+    room: balcony
+    item: "阳台周边猫抓板贴纸"
+    status: not_purchased
+    planned_scope: "阳台周边可贴墙面；避开窗框、检修口、活动构件和持续潮湿基层"
+    purchase_strategy: "先买小样，核粘结、耐潮、气味、可清洁性和猫抓后再扩量"
+    task_ref: TASK-0036
+    risk_ref: SAF-0028
 
   - id: BUY-0036
     category: electrical_protection

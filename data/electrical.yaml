@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 status: blocked
 drawing_property: "讨论图：五路分工与九个已编号主节点用于需求核对；L1至W1精确放样、机械灯控导体与PCT规格未闭合，不得据此施工、下料或宣称采购完结；通电仍须现场核验与合格电工复核"
 
@@ -260,15 +260,15 @@ branch_nodes:
   count_scope: "9仅计已编号主节点；走廊B独立灯暂时取消，局部分配不计在该数字内；不是完整分线点总量"
   endpoint_distribution_rule: "全屋拓扑只给9个主节点编号；K2/L1/W1送出的2.5mm²支线到设备簇后，可在本地可检修明盒内继续分给相邻插座，不再升级为全屋主节点"
   examples:
-    - { id: B1, circuit: RCBO-01, connector: "PCT-62×1", outputs: ["B2主干", "卧室JZ-N2供电", "床南常电"] }
-    - { id: B2, circuit: RCBO-01, connector: "PCT-42×1", outputs: ["卧室空调", "床北常电"], trunk_end: true }
-    - { id: K1, circuit: RCBO-02, connector: "PCT-42×1", outputs: ["K2主干", "厨房照明支路"], note: "机械开关L/Lsw与N配置待确认；未确认导体颜色及N预留前不得按此候选接线" }
-    - { id: K2, circuit: RCBO-02, connector: "PCT-42×1", outputs: ["厨房西南设备组", "台面/油烟机/预留设备组"], trunk_end: true }
-    - { id: H1, circuit: RCBO-03, connector: "PCT-62×1", outputs: ["L1主干", "玄关设备架", "玄关灯带/开关支路"] }
-    - { id: L1, circuit: RCBO-03, connector: "PCT-62×1", outputs: ["W1主干", "洗烘/小厨电局部组", "客厅JZ-N2供电"] }
-    - { id: W1, circuit: RCBO-03, connector: "PCT-62×1", outputs: ["高位投影仪", "沙发娱乐区", "书桌区域"], trunk_end: true }
-    - { id: A1, circuit: MCB-04, connector: "PCT-42×1", outputs: ["客厅空调", "冰箱"], trunk_end: true }
-    - { id: BATH1, circuit: MCB-05, connector: "PCT-62×1", outputs: ["浴霸", "浴室柜/镜灯", "卫生间独立主灯/机械开关支路"], trunk_end: true }
+    - { id: B1, display_id: "卧01", name: "卧室门侧主节点", circuit: RCBO-01, connector: "PCT-62×1", outputs: ["B2主干", "卧室JZ-N2供电", "床南常电"] }
+    - { id: B2, display_id: "卧02", name: "卧室北侧末端节点", circuit: RCBO-01, connector: "PCT-42×1", outputs: ["卧室空调", "床北常电"], trunk_end: true }
+    - { id: K1, display_id: "厨01", name: "厨房门侧照明节点", circuit: RCBO-02, connector: "PCT-42×1", outputs: ["K2主干", "厨房照明支路"], note: "机械开关L/Lsw与N配置待确认；未确认导体颜色及N预留前不得按此候选接线" }
+    - { id: K2, display_id: "厨02", name: "厨房西墙设备节点", circuit: RCBO-02, connector: "PCT-42×1", outputs: ["厨房西南设备组", "台面/油烟机/预留设备组"], trunk_end: true }
+    - { id: H1, display_id: "玄01", name: "玄关设备架节点", circuit: RCBO-03, connector: "PCT-62×1", outputs: ["L1主干", "玄关设备架", "玄关灯带/开关支路"] }
+    - { id: L1, display_id: "客01", name: "客厅入口生活节点", circuit: RCBO-03, connector: "PCT-62×1", outputs: ["W1主干", "洗烘/小厨电局部组", "客厅JZ-N2供电"] }
+    - { id: W1, display_id: "客02", name: "客厅西侧生活节点", circuit: RCBO-03, connector: "PCT-62×1", outputs: ["高位投影仪", "沙发娱乐区", "书桌区域"], trunk_end: true }
+    - { id: A1, display_id: "客03", name: "客厅空调冰箱专路节点", circuit: MCB-04, connector: "PCT-42×1", outputs: ["客厅空调", "冰箱"], trunk_end: true }
+    - { id: BATH1, display_id: "卫01", name: "卫浴设备末端节点", circuit: MCB-05, connector: "PCT-62×1", outputs: ["浴霸", "浴室柜/镜灯", "卫生间独立主灯/机械开关支路"], trunk_end: true }
 
 outlet_groups:
   total_planned: 18

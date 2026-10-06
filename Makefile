@@ -1,7 +1,7 @@
 PYTHON ?= python3
 RUBY ?= ruby
 
-.PHONY: check diagrams gallery status summary test
+.PHONY: check diagrams gallery status actions generated summary test
 
 diagrams:
 	$(PYTHON) scripts/generate_diagrams.py
@@ -15,7 +15,12 @@ test:
 status:
 	$(RUBY) scripts/generate_status.rb
 
-check: status
+actions:
+	$(RUBY) scripts/generate_actions.rb
+
+generated: status diagrams gallery actions
+
+check: status actions
 	$(RUBY) scripts/check_yaml.rb
 	$(PYTHON) scripts/check_project.py
 	$(MAKE) test
