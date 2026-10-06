@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-06"
+updated: "2026-10-07"
 
 items:
   - id: INV-0001
@@ -179,11 +179,14 @@ items:
 
   - id: INV-0016
     category: plumbing_repair_material
-    item: "铸工胶"
+    item: "铸工胶2支装"
+    quantity: 1
+    unit: "组（2支）"
     location: "已到货；现场具体存放处待盘点"
     condition: "new_uninstalled"
-    quantity_status: "业主确认已购买并到货；数量和包装规格待核"
-    cost_status: "购买金额和日期未知，后续补账"
+    quantity_status: "2026-10-07订单截图确认1组2支装"
+    cost_status: "成交总价13.20元；购买日期截图未显示"
+    acquisition_cost_ref: EXP-0052
     planned_use: "厨房下水漏点已完全修补；修补后出现排水疑似堵塞，后续材料仅在定位堵塞原因后再决定是否使用"
     procurement_ref: BUY-0058
     risk_ref: SAF-0011
@@ -230,3 +233,37 @@ items:
     procurement_ref: BUY-0059
     planned_follow_up: "2027年1月拟再购5kg增加厚度；跨月复涂体系须先核验"
     risk_ref: SAF-0026
+
+  - id: INV-0020
+    category: tool
+    item: "刮腻子工具三件套"
+    contents: ["碳钢抹子", "碳钢油灰刀", "刮板"]
+    quantity: 1
+    unit: 套
+    location: "已签收；具体存放处待盘点"
+    condition: new
+    acquisition_cost_ref: EXP-0051
+    procurement_ref: BUY-0056
+    planned_use: "墙面局部批刮、缝隙和角落补修"
+
+  - id: INV-0021
+    category: painting_consumable
+    item: "美纹纸胶带20mm×100m"
+    quantity: 1
+    unit: 卷
+    location: "已签收；具体存放处待盘点"
+    condition: new
+    acquisition_cost_ref: EXP-0050
+    procurement_ref: BUY-0063
+    planned_use: "乳胶漆补刷、边角收口和局部遮蔽保护"
+
+  - id: INV-0022
+    category: tool
+    item: "600mm铝合金加厚强磁水平尺"
+    quantity: 1
+    unit: 把
+    location: "已到货；具体存放处待盘点"
+    condition: new
+    acquisition_cost_ref: EXP-0053
+    procurement_ref: BUY-0062
+    planned_use: "线槽、台面、地面及家具安装时检查水平/垂直"

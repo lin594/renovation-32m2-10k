@@ -50,3 +50,7 @@ EXP-0046,2026-10-02,expense,tool,whole_house,欧莱德无刷电钻工具箱套�
 EXP-0047,2026-10-03,expense,flooring,bathroom,米黄色环氧彩砂自流平地坪漆1.4kg×2,京东,75.33,paid,consumed,交易流水显示1.4kg规格；业主确认共2组并已在完成闭水试验的防水层上施工完毕
 EXP-0048,,expense,labor,whole_house,乳胶漆油漆工施工费,油漆工,400.00,paid,partial,业主确认仅完成一遍底漆和一遍面漆，且角落施工不仔细；付款日期和方式待补
 EXP-0049,,expense,windows,whole_house,五扇防猫纱窗尾款,纱窗商家,300.00,paid,ordered,业主确认尾款已付；与EXP-0024定金200元合计500元；付款日期待补，安装验收状态仍待核
+EXP-0050,,expense,material,whole_house,美纹纸胶带20mm×100m,拼多多,4.25,paid,inventory,订单截图显示已签收待确认收货；购买日期未显示
+EXP-0051,2026-09-28,expense,tool,whole_house,刮腻子工具三件套,拼多多,14.80,paid,inventory,碳钢抹子+碳钢油灰刀+刮板；10/7订单截图恢复成交价并显示已签收
+EXP-0052,,expense,material,kitchen,铸工胶2支装,拼多多,13.20,paid,inventory,高强度金属修补胶；订单截图显示待评价；购买日期未显示
+EXP-0053,,expense,tool,whole_house,600mm铝合金加厚强磁水平尺,拼多多,9.01,paid,inventory,订单截图显示待评价；购买日期未显示
