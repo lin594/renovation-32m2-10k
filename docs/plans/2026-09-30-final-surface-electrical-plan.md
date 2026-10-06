@@ -3,7 +3,7 @@
 **版本：2026-09-30（九主节点收敛版）**  
 **状态：blocked；讨论图。五路分工与9个已编号主节点保留；客厅精确放样、灯控导体及PCT规格尚未闭合，不得按现图施工、下料或宣称采购完结。**
 
-本文件是本轮强电明装的讨论入口。平面路线看 [30 五路讨论墙面走槽图](../../diagrams/30-five-route-electrical.svg)，每个主节点的进出线和材料复算看 [31 九主节点接线与材料复算图](../../diagrams/31-electrical-node-schedule.svg) 与 [节点接线表](2026-09-30-electrical-node-and-takeoff.md)。
+本文件是本轮强电明装的讨论入口。平面路线看 [20 全屋电气路线总图](../../diagrams/20-electrical-overview.svg)，每个主节点的进出线和材料复算看 [27 电气节点与材料专项](../../diagrams/27-electrical-nodes.svg) 与 [节点接线表](2026-09-30-electrical-node-and-takeoff.md)。
 
 ## 1. 已确认条件与计划边界
 

@@ -4,7 +4,7 @@
 - 2026-09-30整合复核：客厅L1到W1已按9/30 QA确定先北后沿未来隔帘线西穿、兼顾主照明，精确放样待做；走廊B独立灯暂取消，改由走廊A长灯条覆盖；玄关普通实体开关已确定，机械灯控导体适配仍待核；详见当前方案中的blocked清单。PCT仅是待实物核验候选，理论数量不是可采购证明。
 - 日期：2026-09-29；2026-09-30修订
 - 施工入口：[2026-09-30 最终明装电路施工方案](../plans/2026-09-30-final-surface-electrical-plan.md)
-- 配套图：[30 五路最终墙面走槽图](../../diagrams/30-five-route-electrical.svg) / [31 九主节点接线与材料复算图](../../diagrams/31-electrical-node-schedule.svg)
+- 配套图：[20 全屋电气路线总图](../../diagrams/20-electrical-overview.svg) / [27 电气节点与材料专项](../../diagrams/27-electrical-nodes.svg)
 
 ## 决定
 

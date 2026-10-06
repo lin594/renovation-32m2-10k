@@ -6,13 +6,13 @@
 
 仓库同时服务两类读者：人可以从本页、图纸和状态页快速理解方案；程序和 AI 可以从结构化数据中校验账目、采购、工期、风险和空间冲突。
 
-## 先看前后对比
+## 先看总体与重点空间
 
-| 改造前：固定边界与已有点位 | 目标方案：家具、功能和动线 |
+| 全屋协调：边界、布局与动线 | 厨房协调：设备、柜体与接口 |
 |---|---|
-| [![改造前现状图](diagrams/00-existing-survey.svg)](diagrams/00-existing-survey.svg) | [![改造后目标布置图](diagrams/10-furniture-circulation.svg)](diagrams/10-furniture-circulation.svg) |
+| [![全屋协调总图](diagrams/00-overall-coordination.svg)](diagrams/00-overall-coordination.svg) | [![厨房协调图](diagrams/01-kitchen-coordination.svg)](diagrams/01-kitchen-coordination.svg) |
 
-目标方案的核心变化包括：拆除四扇旧门、全屋明装电路、卫生间蹲厕改马桶、厨卫与墙地面低成本翻新、防猫纱窗、客厅沙发床临时客卧、玄关家庭中枢，以及水槽北侧复用现有洗碗机。
+目标方案的核心变化包括：拆除四扇旧门、全屋明装电路、卫生间蹲厕改马桶、厨卫与墙地面低成本翻新、防猫纱窗、客厅沙发床临时客卧、玄关家庭中枢，以及在厨房西侧复用现有洗碗机。
 
 图纸直接使用 SVG；中文由浏览器字体渲染，不再提交缺少中文字形、无法阅读的 PNG 预览。当前仓库只保留一套现行图纸，旧方案通过 Git 历史查看。
 
@@ -20,11 +20,13 @@
 
 ## 当前状态
 
-- 施工策略：2026-09-28～10-04 双人主攻；此后零装修专项往返；2027 年 1 月单人收尾。
+- 施工状态：2026-09-28～10-04 双人主窗口已结束；实际完成乳胶漆一底一面。明装电气、SPC、家电更换和原计划第二遍面漆未完成，转入后续收尾。
+- 采购变化：电线、插座和若干施工材料已购；两只智能开关因物流时效退货、当前手头为0。卫生间原自铺地砖方案取消，闭水试验通过后已铺2组×1.4kg环氧地坪，1月拟再购5kg增厚；跨月复涂、排水和防滑仍待核验。
+- 厨房下水漏点已修复，但随后疑似堵塞；2500ml管道疏通剂未改善，计划2027年1月定位后机械疏通或拆检。京东流水中同容量商品名为多功能清洁剂，两者是否同一件仍待确认。
 - 安全边界：老小区户内已确认只有 L/N、无可用 PE；采用分级漏保降低风险，但不把漏保写成接地替代。
 - 入住门槛：三猫理想入住日 2027-01-15，硬截止 2027-02-07；防猫、地面、固化、用电和保洁任一项未通过就延期。
 - 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
-- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气方案当前优先看 [30 五路明装路线图](diagrams/30-five-route-electrical.svg)、[31 九主节点接线与材料复算图](diagrams/31-electrical-node-schedule.svg) 与 [2026-09-30 明装电路整合方案（待确认）](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
+- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气方案当前优先看 [20 全屋电气路线总图](diagrams/20-electrical-overview.svg)、[27 电气节点与材料专项](diagrams/27-electrical-nodes.svg) 与 [2026-09-30 明装电路整合方案（待确认）](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
 - 重要方案的现行/已替代关系见 [决策记录索引](docs/decisions/README.md)。
 - 本轮整合与一次性答复入口：[2026-09-30 多渠道核对及待确认清单](docs/reviews/2026-09-30-channel-reconciliation.md)。当前为整合稿，未决事项不等于施工已批准。
 

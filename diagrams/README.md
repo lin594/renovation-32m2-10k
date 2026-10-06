@@ -1,18 +1,29 @@
 # 图纸索引
 
-所有SVG均由 `scripts/generate_diagrams.py` 生成，执行 `make diagrams` 可重建。
+所有 SVG 均由 `scripts/generate_diagrams.py` 生成，执行 `make diagrams` 可重建。图纸只保留当前有效版本；旧方案通过 Git 历史追溯。
 
-| 编号 | 图纸 | 用途 |
-|---|---|---|
-| 00 | [现状测量图](00-existing-survey.svg) | 固定边界和原始点位 |
-| 10 | [家具与动线图](10-furniture-circulation.svg) | 家具、通道、临时客卧 |
-| 20 | [给排水与燃气图](20-plumbing-gas.svg) | 水、排水、燃气 |
-| **30** | [五路墙面走槽讨论图](30-five-route-electrical.svg) | 五路真实墙面路径、9主节点 |
-| **31** | [九主节点接线与材料复算图](31-electrical-node-schedule.svg) | PCT选型、九节点进出线、材料 |
-| 40 | [门窗与猫安全图](40-doors-windows-cats.svg) | 门窗、纱窗、防逃 |
-| 50 | [厨卫详图](50-kitchen-bath-details.svg) | 厨卫尺寸和冲突 |
-| 60 | [墙地面饰面图](60-finishes-materials.svg) | 防水、涂装、地面 |
+## 编号规则
 
-2026-09-29以前30～37号强电SVG的**旧内容**已经退役，可通过Git历史追溯但不得作为现行施工依据。图号本身重新从30使用：30=现行五路路线，31=现行九主节点/材料，32～37留空。
+图号第一位表示一级系列：`0X 整体`、`1X 水气`、`2X 电气`、`3X 瓦作`、`4X 涂装`、`5X 木作`。
 
-现行文字真源为 [明装电路整合方案（待确认）](../docs/plans/2026-09-30-final-surface-electrical-plan.md) 和 [ADR 0011](../docs/decisions/0011-five-route-electrical-freeze.md)。关键语义：6mm²是前三路主干；2.5mm²是末端护套支线；全屋只编号9个主节点。
+图号第二位表示空间或用途：`X0 全屋`、`X1 厨房`、`X2 卫生间`、`X3 客厅`、`X4 卧室`、`X5 阳台`、`X6 玄关走廊`、`X7 通用专项`、`X8 表`、`X9 验收`。只生成当前有信息价值的图，不为空号建立占位文件。
+
+整体图负责空间协调，专业图负责本专业做法；跨专业内容只保留接口和参见关系，同一事实只设一个图纸主责。
+
+## 现行图纸
+
+| 系列 | 图号 | 图纸 | 唯一主责 |
+|---|---:|---|---|
+| 整体 | 00 | [全屋协调总图](00-overall-coordination.svg) | 现状边界、总体布局与主要动线 |
+| 整体 | 01 | [厨房协调图](01-kitchen-coordination.svg) | 厨房设备、柜体、门和跨专业接口协调 |
+| 整体 | 02 | [卫生间协调图](02-bathroom-coordination.svg) | 洁具、湿区、门和跨专业接口协调 |
+| 整体 | 07 | [门窗与猫安全专项](07-openings-pet-safety.svg) | 洞口、开启关系、防逃边界与验收门槛 |
+| 水气 | 10 | [全屋水气总图](10-water-gas-overview.svg) | 给水、热水、排水、燃气及排烟关系 |
+| 电气 | **20** | [全屋电气路线总图](20-electrical-overview.svg) | 五路墙面路径、回路边界与实际未完状态 |
+| 电气 | **27** | [电气节点与材料专项](27-electrical-nodes.svg) | 九主节点、端子候选与材料复算 |
+| 瓦作 | 30 | [全屋瓦作总图](30-masonry-overview.svg) | 基层、防水、闭水、地面与收边 |
+| 涂装 | 40 | [全屋涂装总图](40-coating-overview.svg) | 墙固、乳胶漆、环氧及其他涂层状态 |
+| 木作 | 50 | [全屋木作总图](50-woodwork-overview.svg) | 柜体、台面支撑、家具与定制件 |
+| 木作 | 58 | [门窗表](58-door-window-schedule.svg) | 门窗、纱窗的尺寸、材料与实施状态 |
+
+现行电气文字真源为 [明装电路整合方案（待确认）](../docs/plans/2026-09-30-final-surface-electrical-plan.md) 和 [ADR 0011](../docs/decisions/0011-five-route-electrical-freeze.md)。平面路线以 20 为入口，节点和材料以 27 为入口；两图均为讨论图，不是施工或通电验收证明。
