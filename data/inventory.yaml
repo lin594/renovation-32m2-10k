@@ -254,7 +254,7 @@ items:
     location: "已签收；具体存放处待盘点"
     condition: new
     acquisition_cost_ref: EXP-0050
-    procurement_ref: BUY-0061
+    procurement_ref: BUY-0063
     planned_use: "乳胶漆补刷、边角收口和局部遮蔽保护"
 
   - id: INV-0022
