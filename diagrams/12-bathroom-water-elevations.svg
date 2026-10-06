@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bathroom-water-elevations" role="img">
+<title>12 水气｜卫生间给排水展开</title>
+<desc>入户水、冷热分支、洁具接口、洗衣机穿墙排水及西北立管；讨论图</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">12 水气｜卫生间给排水展开</text>
+<text x="70" y="78" class="subtitle">入户水、冷热分支、洁具接口、洗衣机穿墙排水及西北立管；讨论图</text>
+
+<rect x="55" y="112" width="635" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">平面｜给排水关系与洁具接口</text>
+<rect x="155" y="185" width="300" height="420" fill="#e7f5f8" stroke="#1f2937" stroke-width="6"/>
+<circle cx="155" cy="185" r="12" fill="#0f766e"/><text x="173" y="180" class="small green">西北唯一排水立管</text>
+<circle cx="155" cy="235" r="10" fill="#0284c7"/><text x="173" y="240" class="small blue">西墙偏北入户冷水</text>
+<rect x="205" y="205" width="135" height="205" rx="48" class="planned"/><text x="272" y="285" class="small center">马桶</text><text x="272" y="307" class="micro center">坑距约350mm</text><text x="272" y="327" class="micro center">目标深约580mm</text>
+<rect x="345" y="475" width="100" height="115" class="planned"/><text x="395" y="520" class="small center">浴室柜</text><text x="395" y="542" class="micro center">冷水已确认</text><text x="395" y="562" class="micro red center">热水/排水TBD</text>
+<circle cx="220" cy="535" r="10" fill="#0f766e"/><text x="235" y="540" class="micro green">防臭地漏</text>
+<path class="water" d="M155 235H272V205M155 235V520H345M155 235V165H505" marker-end="url(#blue-arrow)"/>
+<path class="water" d="M155 235H95" marker-end="url(#blue-arrow)"/><text x="62" y="220" class="micro blue">穿西墙→</text><text x="62" y="236" class="micro blue">客厅洗衣机</text>
+<text x="480" y="160" class="micro blue">穿北墙→厨房热水器冷水</text>
+<path class="hot" d="M505 185H180V455" marker-end="url(#arrow)"/><text x="490" y="205" class="micro red" text-anchor="end">热水器回水→淋浴冷热</text>
+<path class="drain" d="M272 350L155 185M220 535L155 185" stroke-dasharray="7 5"/>
+<path class="drain" d="M95 485H220V535" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="72" y="465" class="micro green">洗衣机低位</text><text x="72" y="481" class="micro green">穿墙排水</text>
+<path d="M420 580L180 220" stroke="#64748b" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)"/><text x="470" y="610" class="micro">设计向西北找坡｜实际排水待验</text>
+
+<rect x="720" y="112" width="625" height="570" rx="14" class="panel"/>
+<text x="745" y="150" class="note bold">西墙 / 北墙展开｜完成面标高均TBD</text>
+<line x1="760" y1="340" x2="1305" y2="340" stroke="#475569" stroke-width="5"/>
+<rect x="790" y="205" width="115" height="115" class="planned"/><text x="848" y="250" class="small center">浴室柜</text><text x="848" y="273" class="micro center blue">冷水 confirmed</text><text x="848" y="296" class="micro red center">热水/排水 TBD</text>
+<rect x="990" y="195" width="120" height="125" fill="#d8f2f6" stroke="#0284c7" stroke-width="2"/><text x="1050" y="240" class="small center">淋浴</text><text x="1050" y="263" class="micro center">冷热接口</text><text x="1050" y="286" class="micro center">高度TBD</text>
+<rect x="1185" y="225" width="90" height="95" rx="30" class="planned"/><text x="1230" y="275" class="small center">马桶</text>
+<text x="760" y="370" class="micro">西墙：浴室柜冷水事实已确认；不得提前把热水或排水画成已完成。</text>
+<line x1="760" y1="615" x2="1305" y2="615" stroke="#475569" stroke-width="5"/>
+<rect x="790" y="425" width="115" height="175" fill="#ecfeff" stroke="#0f766e" stroke-width="3"/><text x="848" y="475" class="small center">23×23cm</text><text x="848" y="499" class="small center">L型PVC包管</text><text x="848" y="523" class="micro center">planned</text><text x="848" y="548" class="micro center">最小净22×22</text>
+<path class="drain" d="M848 425V390"/><text x="930" y="430" class="micro green">立管必须保留检修条件</text>
+<text x="930" y="475" class="small">共管关系</text><text x="930" y="500" class="micro">洗衣机→防臭地漏→与马桶末端共用排水</text><text x="930" y="525" class="micro red">满流/返水/异味必须联合测试</text><text x="930" y="550" class="micro red">湿区穿墙后恢复防水并留照片</text>
+
+<rect x="55" y="705" width="1290" height="70" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="80" y="733" class="small red">状态：讨论图。管径、接口螺纹、完成面高度、浴室柜热水/排水、实际找坡均TBD；不得据本图封墙或采购错误配件。</text>
+<text x="80" y="758" class="small red">环氧层不替代找坡/排水验收；浴霸与镜灯电气只作跨专业接口，参见22/27，所有湿区用电须位于≤30mA双极保护下游。</text>
+
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
+</svg>

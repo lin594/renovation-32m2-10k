@@ -41,8 +41,8 @@
   <pattern id="tile" width="22" height="22" patternUnits="userSpaceOnUse">
     <rect width="22" height="22" fill="#dceff0"/><path d="M0 0H22V22H0Z" fill="none" stroke="#8bb8ba" stroke-width="1"/>
   </pattern>
-  <pattern id="deck-pebble" width="30" height="20" patternUnits="userSpaceOnUse">
-    <rect width="30" height="20" fill="#d6b98a"/><path d="M0 10H30M10 0V20M20 0V20" stroke="#8b6542" stroke-width="1.5"/><circle cx="25" cy="5" r="3" fill="#a8a29e"/>
+  <pattern id="deck-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <rect width="30" height="30" fill="#d6b98a"/><path d="M0 0H30V30H0ZM5 0V30M15 0V30M25 0V30" fill="none" stroke="#8b6542" stroke-width="1.5"/>
   </pattern>
   <style>
     .moisture{fill:none;stroke:#0891b2;stroke-width:8;stroke-dasharray:9 6}
@@ -76,6 +76,7 @@
 <path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-coating-gate="damp-source-review"/>
 <text x="250" y="322" class="small center" fill="#92400e">持续受潮处不封闭涂刷</text>
 <text x="500" y="178" class="small purple center">厨卫瓷砖改色｜计划</text>
+<path d="M105 545V620M115 625H390" stroke="#16a34a" stroke-width="5" stroke-dasharray="6 5" data-coating="balcony-cat-scratch-sticker"/><text x="250" y="608" class="small green center">四周适合墙面猫抓板贴纸｜先小样</text>
 
 <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
 <path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H500M600 130V345M600 425V530M600 430H900M100 530H250"/>

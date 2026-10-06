@@ -25,8 +25,8 @@
 - 厨房下水漏点已修复，但随后疑似堵塞；2500ml管道疏通剂未改善，计划2027年1月定位后机械疏通或拆检。京东流水中同容量商品名为多功能清洁剂，两者是否同一件仍待确认。
 - 安全边界：老小区户内已确认只有 L/N、无可用 PE；采用分级漏保降低风险，但不把漏保写成接地替代。
 - 入住门槛：三猫理想入住日 2027-01-15，硬截止 2027-02-07；防猫、地面、固化、用电和保洁任一项未通过就延期。
-- 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
-- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)；电气方案当前优先看 [20 全屋电气路线总图](diagrams/20-electrical-overview.svg)、[27 电气节点与材料专项](diagrams/27-electrical-nodes.svg) 与 [2026-09-30 明装电路整合方案（待确认）](docs/plans/2026-09-30-final-surface-electrical-plan.md)。
+- 资金、任务和采购的实时汇总见 [PROJECT_STATUS.md](PROJECT_STATUS.md)；可执行顺序和验收证据见 [下一步行动指南](NEXT_ACTIONS.md)。
+- 现行图纸职责见 [diagrams/README.md](diagrams/README.md)。水气以 [10 全屋系统图](diagrams/10-water-gas-overview.svg) 为入口，厨房/卫生间分别看 [11](diagrams/11-kitchen-water-gas-elevations.svg) 与 [12](diagrams/12-bathroom-water-elevations.svg)；电气以 [20 全屋路线总图](diagrams/20-electrical-overview.svg) 为入口，按 21–24/26 展开房间点位，再以 [27 节点与材料专项](diagrams/27-electrical-nodes.svg) 核对端子和材料。
 - 重要方案的现行/已替代关系见 [决策记录索引](docs/decisions/README.md)。
 - 本轮整合与一次性答复入口：[2026-09-30 多渠道核对及待确认清单](docs/reviews/2026-09-30-channel-reconciliation.md)。当前为整合稿，未决事项不等于施工已批准。
 
@@ -41,9 +41,10 @@
 | 阶段和任务 | `data/project.yaml` |
 | 工期与入住门槛 | `data/schedule.yaml` |
 | 风险与安全门禁 | `data/risks.yaml` |
+| 下一步行动、优先级与验收证据 | `data/project.yaml#next_actions`（运行 `make actions` 生成阅读页） |
 | 新增现场照片 | `python3 scripts/photo.py import ...`；目录为 `data/photos.csv` |
 
-完整字段说明和示例见 [人类编辑指南](docs/editing-guide.md)。`PROJECT_STATUS.md` 和 SVG 都是派生文件，不应手改。
+完整字段说明和示例见 [人类编辑指南](docs/editing-guide.md)。`PROJECT_STATUS.md`、`NEXT_ACTIONS.md` 和 SVG 都是派生文件，不应手改。
 
 ## 记一笔账
 
@@ -62,8 +63,10 @@ python3 scripts/ledger.py expense \
 
 ```bash
 make status     # 从账本和 YAML 生成 PROJECT_STATUS.md
+make actions    # 从项目任务生成 NEXT_ACTIONS.md
 make diagrams   # 从生成器重建现行 SVG
 make gallery    # 从照片目录重建按房间图库
+make generated  # 重建以上全部派生文件
 make check      # 数据、引用、预算、照片、图纸和测试的完整校验
 ```
 

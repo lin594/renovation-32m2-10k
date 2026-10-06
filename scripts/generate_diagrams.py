@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from html import escape
 from pathlib import Path
 from typing import Callable
 
@@ -279,10 +280,95 @@ def water_gas_overview() -> str:
         "洗碗机：水槽进水独立开关+软管直排水槽",
         "厨房漏点已完全修补；修补后疑似堵塞",
         "2500ml管道疏通剂无改善；1月定位处理",
-        "!燃气管遮盖和检修仍需验收确认",
+        "!燃气管、阀门保持可见可检修；不再做架空遮盖",
         "!封闭饰面前应做联合排水测试",
     ], [("#0284c7", "冷水"), ("#dc2626", "热水"), ("#0f766e", "排水"), ("#ea580c", "燃气")])
     return document("water-gas-overview", "10 水气｜全屋系统图", "给水、热水、排水、燃气与两类排烟的全屋关系", plan_base(False, True) + routes + room_labels() + side)
+
+
+def kitchen_water_gas_elevations() -> str:
+    body = r'''
+<rect x="55" y="112" width="650" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">平面｜固定关系与洗碗机接口</text>
+<rect x="115" y="185" width="470" height="410" fill="#fffdf8" stroke="#1f2937" stroke-width="5"/>
+<rect x="115" y="185" width="470" height="105" class="fixed"/><text x="350" y="275" class="small center">既有北台面 193×46×65cm｜保留</text>
+<path d="M245 185H455" class="win"/><path d="M245 185H455" class="winc"/>
+<text x="350" y="172" class="micro center">固定窗｜与客厅/卧室整窗同尺寸｜宽×高TBD｜无纱窗</text>
+<rect x="125" y="468" width="95" height="105" fill="#dff3f7" stroke="#0284c7" stroke-width="2"/><text x="172" y="515" class="small center">水槽</text><text x="172" y="535" class="micro center">宽约55cm</text>
+<rect x="235" y="415" width="115" height="145" class="planned"/><text x="292" y="455" class="small center">洗碗机</text><text x="292" y="476" class="micro center">440×413×424</text><text x="292" y="497" class="micro center">底部&gt;70cm</text><text x="292" y="518" class="micro center">承载二选一TBD</text>
+<rect x="485" y="205" width="80" height="70" fill="#fee2e2" stroke="#ea580c" stroke-width="2"/><text x="525" y="237" class="small center">灶台</text><text x="525" y="257" class="micro center">东侧planned</text>
+<path class="water" d="M172 450V400H292V415" marker-end="url(#blue-arrow)"/>
+<circle cx="242" cy="400" r="8" fill="#fff" stroke="#0284c7" stroke-width="3"/><text x="250" y="388" class="micro blue">冷水三通</text>
+<rect x="268" y="390" width="22" height="20" fill="#fff" stroke="#0284c7" stroke-width="2"/><text x="302" y="407" class="micro blue">独立止水阀｜可检修</text>
+<path class="drain" d="M292 425V375H202V468" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="310" y="368" class="micro green">排水软管按说明直排水槽并可靠固定</text>
+<path class="gas" d="M582 220H550" marker-end="url(#arrow)"/><path class="gas" d="M582 220V195H138V350" marker-end="url(#arrow)"/>
+<text x="405" y="315" class="micro orange">燃气：东/北入口→灶；另一支沿北墙约2m→西墙热水器</text>
+<circle cx="160" cy="555" r="8" fill="#0f766e"/><text x="360" y="585" class="micro green center">水槽旧排水检修口：漏点已修补；修补后疑似堵塞，2500ml疏通剂无改善</text>
+
+<rect x="735" y="112" width="610" height="570" rx="14" class="panel"/>
+<text x="760" y="150" class="note bold">北墙 / 西墙展开｜接口和检修门禁</text>
+<line x1="775" y1="330" x2="1295" y2="330" stroke="#475569" stroke-width="5"/>
+<rect x="820" y="190" width="170" height="100" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="905" y="225" class="small center">固定窗</text><text x="905" y="248" class="micro center">同客/卧尺寸；宽高TBD</text><text x="905" y="270" class="micro center">油烟机排烟孔另设</text>
+<rect x="1080" y="230" width="110" height="80" fill="#fee2e2" stroke="#ea580c" stroke-width="2"/><text x="1135" y="270" class="small center">灶/烟机区</text>
+<text x="775" y="357" class="micro">北墙：燃气阀/管全程可见可检修；不得用新增台面或封板遮盖</text>
+<line x1="775" y1="615" x2="1295" y2="615" stroke="#475569" stroke-width="5"/>
+<rect x="805" y="390" width="145" height="120" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><text x="878" y="430" class="small center">燃气热水器</text><text x="878" y="452" class="micro center">冷水 / 热水 / 燃气</text><text x="878" y="474" class="micro center">独立烟管→室外</text>
+<path class="gas" d="M878 510V550"/><path class="water" d="M840 510V570"/><path class="hot" d="M915 510V570"/>
+<ellipse cx="1110" cy="510" rx="85" ry="18" fill="#dff3f7" stroke="#0284c7" stroke-width="2"/><rect x="1025" y="510" width="170" height="90" fill="#effafd" stroke="#0284c7" stroke-width="2"/><text x="1110" y="555" class="small center">水槽 / 检修口</text>
+<text x="775" y="645" class="micro red">排烟分离：油烟机排烟与热水器烟管不得共管；管径、坡度、接头及终端按设备说明/燃气公司复核。</text>
+
+<rect x="55" y="705" width="1290" height="70" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="80" y="733" class="small red">状态：本图为讨论图。冷水分支、止水、排水软管固定、支架、接口管径/标高均未施工或未验收；电源只作为接口，参见20/21/27。</text>
+<text x="80" y="758" class="small red">先疏通并满盆排水复核，再装洗碗机；不得继续盲倒药剂。风险：SAF-0001 / 0005 / 0011 / 0022 / 0025。</text>
+'''
+    return document(
+        "kitchen-water-gas-elevations",
+        "11 水气｜厨房给排水、燃气与排烟展开",
+        "厨房固定几何、洗碗机进排水、燃气/热水器与两类排烟接口；讨论图",
+        body,
+    )
+
+
+def bathroom_water_elevations() -> str:
+    body = r'''
+<rect x="55" y="112" width="635" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">平面｜给排水关系与洁具接口</text>
+<rect x="155" y="185" width="300" height="420" fill="#e7f5f8" stroke="#1f2937" stroke-width="6"/>
+<circle cx="155" cy="185" r="12" fill="#0f766e"/><text x="173" y="180" class="small green">西北唯一排水立管</text>
+<circle cx="155" cy="235" r="10" fill="#0284c7"/><text x="173" y="240" class="small blue">西墙偏北入户冷水</text>
+<rect x="205" y="205" width="135" height="205" rx="48" class="planned"/><text x="272" y="285" class="small center">马桶</text><text x="272" y="307" class="micro center">坑距约350mm</text><text x="272" y="327" class="micro center">目标深约580mm</text>
+<rect x="345" y="475" width="100" height="115" class="planned"/><text x="395" y="520" class="small center">浴室柜</text><text x="395" y="542" class="micro center">冷水已确认</text><text x="395" y="562" class="micro red center">热水/排水TBD</text>
+<circle cx="220" cy="535" r="10" fill="#0f766e"/><text x="235" y="540" class="micro green">防臭地漏</text>
+<path class="water" d="M155 235H272V205M155 235V520H345M155 235V165H505" marker-end="url(#blue-arrow)"/>
+<path class="water" d="M155 235H95" marker-end="url(#blue-arrow)"/><text x="62" y="220" class="micro blue">穿西墙→</text><text x="62" y="236" class="micro blue">客厅洗衣机</text>
+<text x="480" y="160" class="micro blue">穿北墙→厨房热水器冷水</text>
+<path class="hot" d="M505 185H180V455" marker-end="url(#arrow)"/><text x="490" y="205" class="micro red" text-anchor="end">热水器回水→淋浴冷热</text>
+<path class="drain" d="M272 350L155 185M220 535L155 185" stroke-dasharray="7 5"/>
+<path class="drain" d="M95 485H220V535" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="72" y="465" class="micro green">洗衣机低位</text><text x="72" y="481" class="micro green">穿墙排水</text>
+<path d="M420 580L180 220" stroke="#64748b" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow)"/><text x="470" y="610" class="micro">设计向西北找坡｜实际排水待验</text>
+
+<rect x="720" y="112" width="625" height="570" rx="14" class="panel"/>
+<text x="745" y="150" class="note bold">西墙 / 北墙展开｜完成面标高均TBD</text>
+<line x1="760" y1="340" x2="1305" y2="340" stroke="#475569" stroke-width="5"/>
+<rect x="790" y="205" width="115" height="115" class="planned"/><text x="848" y="250" class="small center">浴室柜</text><text x="848" y="273" class="micro center blue">冷水 confirmed</text><text x="848" y="296" class="micro red center">热水/排水 TBD</text>
+<rect x="990" y="195" width="120" height="125" fill="#d8f2f6" stroke="#0284c7" stroke-width="2"/><text x="1050" y="240" class="small center">淋浴</text><text x="1050" y="263" class="micro center">冷热接口</text><text x="1050" y="286" class="micro center">高度TBD</text>
+<rect x="1185" y="225" width="90" height="95" rx="30" class="planned"/><text x="1230" y="275" class="small center">马桶</text>
+<text x="760" y="370" class="micro">西墙：浴室柜冷水事实已确认；不得提前把热水或排水画成已完成。</text>
+<line x1="760" y1="615" x2="1305" y2="615" stroke="#475569" stroke-width="5"/>
+<rect x="790" y="425" width="115" height="175" fill="#ecfeff" stroke="#0f766e" stroke-width="3"/><text x="848" y="475" class="small center">23×23cm</text><text x="848" y="499" class="small center">L型PVC包管</text><text x="848" y="523" class="micro center">planned</text><text x="848" y="548" class="micro center">最小净22×22</text>
+<path class="drain" d="M848 425V390"/><text x="930" y="430" class="micro green">立管必须保留检修条件</text>
+<text x="930" y="475" class="small">共管关系</text><text x="930" y="500" class="micro">洗衣机→防臭地漏→与马桶末端共用排水</text><text x="930" y="525" class="micro red">满流/返水/异味必须联合测试</text><text x="930" y="550" class="micro red">湿区穿墙后恢复防水并留照片</text>
+
+<rect x="55" y="705" width="1290" height="70" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="80" y="733" class="small red">状态：讨论图。管径、接口螺纹、完成面高度、浴室柜热水/排水、实际找坡均TBD；不得据本图封墙或采购错误配件。</text>
+<text x="80" y="758" class="small red">环氧层不替代找坡/排水验收；浴霸与镜灯电气只作跨专业接口，参见22/27，所有湿区用电须位于≤30mA双极保护下游。</text>
+'''
+    return document(
+        "bathroom-water-elevations",
+        "12 水气｜卫生间给排水展开",
+        "入户水、冷热分支、洁具接口、洗衣机穿墙排水及西北立管；讨论图",
+        body,
+    )
 
 
 def electrical_low_voltage() -> str:
@@ -782,11 +868,11 @@ def openings_pet_safety() -> str:
 <!-- Entry door: existing -->
 <path d="M600 530H680M600 450A80 80 0 0 1 680 530" fill="none" stroke="#7c3aed" stroke-width="3"/><text x="650" y="548" class="small purple">入户门｜已有</text>
 <!-- Bedroom door: not purchased -->
-<path d="M600 425H680M600 345A80 80 0 0 1 680 425" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="7 5"/><text x="645" y="335" class="small orange">卧室门｜待选购</text>
+<path d="M600 425H680" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="7 5"/><text x="645" y="335" class="small" fill="#64748b">卧室门｜本阶段不做</text>
 <!-- Kitchen slider: closed representation only -->
-<path d="M520 323H600M440 317H510" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="7 5"/><text x="540" y="308" class="small orange">厨房移门｜待定制</text>
+<path d="M520 323H600M440 317H510" fill="none" stroke="#f97316" stroke-width="4" stroke-dasharray="7 5"/><text x="540" y="308" class="small orange">厨房阳光板门｜暂定</text>
 <!-- Bath slider: mounted on Hall A side; closed normally, slides east for use. -->
-<path d="M405 457H475" fill="none" stroke="#f97316" stroke-width="5"/><text x="438" y="480" class="small orange center">卫生间移门｜常闭</text>
+<path d="M405 457H475" fill="none" stroke="#f97316" stroke-width="5"/><text x="438" y="480" class="small orange center">卫生间阳光板门｜暂定</text>
 <g data-state="bath-slider-open-east" data-intrusion-m="0.4">
   <rect x="500" y="330" width="45" height="120" fill="#fee2e2" fill-opacity=".58" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
   <path d="M475 457H545" fill="none" stroke="#dc2626" stroke-width="5" stroke-dasharray="7 5"/>
@@ -797,12 +883,13 @@ def openings_pet_safety() -> str:
 <path d="M250 523H325M325 537H400" fill="none" stroke="#7c3aed" stroke-width="4"/><text x="300" y="511" class="small purple">阳台推拉门｜西扇有效约0.7m</text>
 <!-- Cat screens and scratch boards -->
 <path d="M200 126H300" class="cat"/><text x="250" y="112" class="micro green center">客厅95×47cm</text>
-<text x="500" y="112" class="micro orange center">厨房固定窗｜无纱窗｜洞口待量</text>
+<text x="500" y="112" class="micro orange center">厨房固定窗｜同客/卧尺寸｜宽高TBD</text>
 <path d="M700 126H800" class="cat"/><text x="750" y="112" class="micro green center">卧室95×47cm</text>
 <path d="M96 535V625" class="cat"/><path d="M110 634H390" class="cat"/>
 <path d="M106 542V622" class="cat"/><path d="M112 624H388" class="cat"/>
 <text x="82" y="585" class="micro green center" transform="rotate(-90 82 585)">西窗90×47cm</text>
 <text x="250" y="650" class="small green center">南窗128×74cm×2｜窗下猫抓板</text>
+<path d="M105 545V620M115 625H385" stroke="#16a34a" stroke-width="2" stroke-dasharray="3 5"/><text x="250" y="675" class="micro green center">阳台四周适合墙面暂定猫抓板贴纸｜先做耐潮小样</text>
 <!-- Bathroom slider customization inset: temporary Hall B intrusion is accepted. -->
 <g data-detail="bath-slider-constraint">
   <rect x="980" y="360" width="340" height="190" rx="10" fill="#fffaf0" stroke="#f59e0b" stroke-width="1.5"/>
@@ -820,7 +907,7 @@ def openings_pet_safety() -> str:
     side_top = '''
 <rect x="970" y="120" width="370" height="210" rx="14" class="panel"/>
 <text x="994" y="158" class="note bold">门窗与三猫安全</text>
-<text x="994" y="194" class="note">卧室门：待选购</text><text x="994" y="223" class="note">厨74×195 / 卫67×198cm：1月自拼</text>
+<text x="994" y="194" class="note">卧室门：本阶段不做</text><text x="994" y="223" class="note">厨74×195 / 卫67×198cm：阳光板暂定</text>
 <text x="994" y="252" class="note">纱窗5扇：卧1/客1/阳台3；安装状态待核</text><text x="994" y="281" class="note">95×47×2；90×47×1；128×74×2</text>
 <text x="994" y="310" class="note red">纱网、边框、锁扣和缝隙需整体验收</text>
 '''
@@ -838,12 +925,12 @@ def kitchen_bath_detail_parts() -> tuple[str, str]:
   <rect x="235" y="198" width="85" height="72" class="planned" data-furniture="two-tier-appliance-rack"/><text x="277" y="220" class="small center">双层架</text><text x="277" y="240" class="micro center">上：电饭煲</text><text x="277" y="257" class="micro center">下：高压锅</text>
   <rect x="420" y="205" width="82" height="58" fill="#fee2e2" stroke="#b45309" stroke-width="2" data-appliance="gas-stove"/><text x="461" y="230" class="small center">东侧灶台</text><text x="461" y="250" class="micro center">烟机随位微调</text>
 </g>
-<text x="330" y="214" class="micro orange">增高面候选：</text><text x="330" y="232" class="micro orange">40×60×3 或</text><text x="330" y="250" class="micro orange">40×80×2（未定）</text>
+<text x="330" y="214" class="micro">既有北台面保留</text><text x="330" y="232" class="micro red">新增垫高台面已撤销</text><text x="330" y="250" class="micro">不再作为承载方案</text>
 <rect x="120" y="470" width="80" height="110" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="525" class="small center">水槽55cm</text>
 <rect x="120" y="310" width="80" height="160" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2" data-furniture="retained-wood-cabinet"/><text x="160" y="375" class="small center">保留木柜</text><text x="160" y="395" class="micro center">宽80cm</text><text x="160" y="413" class="micro center">高约70+cm</text><text x="160" y="431" class="micro red center">受潮变形待核</text>
 <rect x="500" y="305" width="20" height="140" fill="#fef3c7" stroke="#d97706" stroke-width="2" data-fixture="east-niche"/><text x="494" y="375" class="micro orange" text-anchor="end">东墙壁龛深10cm</text><text x="494" y="392" class="micro orange" text-anchor="end">只放小瓶调料</text>
 <path class="dim" d="M100 190H82M100 290H82M100 470H82M100 590H82M88 190V590"/><text x="74" y="400" class="dimtext" transform="rotate(-90 74 400)">西墙南北：水槽55 + 木柜80 + 北台深46 ≈181cm</text>
-<text x="215" y="330" class="small">西侧设备区｜位置为planned</text><text x="215" y="352" class="micro">保留木柜；洗碗机可落木柜或垫高北台面</text><text x="215" y="374" class="micro red">承重/水平/抗振/开门模板仍待核</text><text x="215" y="396" class="micro">进水独立开关；排水直入水槽并固定</text>
+<text x="215" y="330" class="small">西侧设备区｜位置为planned</text><text x="215" y="352" class="micro">保留木柜或独立支架，二选一待复测</text><text x="215" y="374" class="micro red">承重/水平/抗振/开门模板仍待核</text><text x="215" y="396" class="micro">冷水分支+独立止水；排水直入水槽并固定</text>
 <path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
 <path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
 <circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
@@ -863,9 +950,10 @@ def kitchen_bath_detail_parts() -> tuple[str, str]:
 </g>
 <g transform="translate(120 625)">
   <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" stroke-width="5"/>
-  <rect x="20" y="-70" width="360" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-  <line x1="50" y1="-50" x2="50" y2="0" stroke="#64748b" stroke-width="5"/><line x1="350" y1="-50" x2="350" y2="0" stroke="#64748b" stroke-width="5"/>
-  <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原砖固定；台面深0.46m、高0.65m</text>
+  <rect x="20" y="-55" width="140" height="55" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/>
+  <rect x="240" y="-55" width="140" height="55" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="90" y="-25" class="small center">保留木柜</text><text x="310" y="-25" class="small center">独立支架TBD</text>
+  <text x="200" y="22" class="small center">洗碗机底部需高于地面70cm；两种承载方式复测后二选一</text>
 </g>
 <text x="85" y="687" class="small red">安全门禁：布局已明确，安装未确认；燃气净空、台面/木柜承重、排水和无PE保护均未关闭。</text>
 '''
@@ -908,8 +996,9 @@ def kitchen_coordination() -> str:
         "木柜本阶段保留，受潮/承重待核",
         "洗碗机底部须高于地面70cm",
         "门洞74×195cm；外窗固定、无纱窗",
-        "完整水气路线见10；木作见50",
-        "台面支撑与燃气检修仍blocked",
+        "外窗与客/卧整窗同尺寸；宽高TBD",
+        "水气展开见11；木作见50",
+        "设备支撑与燃气检修仍blocked",
     ])
     return document("kitchen-coordination", "01 整体｜厨房协调图", "厨房固定几何、设备布局、竖向关系和跨专业净空", kitchen + side)
 
@@ -926,7 +1015,7 @@ def bathroom_coordination() -> str:
         "候选马桶深约58cm，须成品复测",
         "浴室柜30×40cm仍为候选",
         "西北排水立管、全间按湿区协调",
-        "水气接口见10；瓦作见30；涂层见40",
+        "水气展开见12；瓦作见30；涂层见40",
     ])
     return document("bathroom-coordination", "02 整体｜卫生间协调图", "卫生间洁具占位、门洞运行、湿区边界和关键净空", shifted + side)
 
@@ -939,8 +1028,8 @@ FINISH_DEFS = r'''
   <pattern id="tile" width="22" height="22" patternUnits="userSpaceOnUse">
     <rect width="22" height="22" fill="#dceff0"/><path d="M0 0H22V22H0Z" fill="none" stroke="#8bb8ba" stroke-width="1"/>
   </pattern>
-  <pattern id="deck-pebble" width="30" height="20" patternUnits="userSpaceOnUse">
-    <rect width="30" height="20" fill="#d6b98a"/><path d="M0 10H30M10 0V20M20 0V20" stroke="#8b6542" stroke-width="1.5"/><circle cx="25" cy="5" r="3" fill="#a8a29e"/>
+  <pattern id="deck-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <rect width="30" height="30" fill="#d6b98a"/><path d="M0 0H30V30H0ZM5 0V30M15 0V30M25 0V30" fill="none" stroke="#8b6542" stroke-width="1.5"/>
   </pattern>
   <style>
     .moisture{fill:none;stroke:#0891b2;stroke-width:8;stroke-dasharray:9 6}
@@ -962,7 +1051,7 @@ def finishes_materials() -> str:
   <rect x="600" y="130" width="300" height="300" fill="url(#wood)"/>
 </g>
 <rect x="400" y="330" width="100" height="120" fill="#e7d4b5" stroke="#b45309" stroke-width="2" data-finish="bathroom-epoxy" data-status="installed"/>
-<rect x="100" y="530" width="300" height="100" fill="url(#deck-pebble)" data-finish="balcony-deck-pebble"/>
+<rect x="100" y="530" width="300" height="100" fill="url(#deck-grid)" data-finish="balcony-30x30-grid-deck"/>
 
 <!-- Existing white wall tiles and counter are a separate recoloring system, not latex paint. -->
 <g data-finish="tile-recolor">
@@ -983,7 +1072,7 @@ def finishes_materials() -> str:
 <text x="388" y="418" class="micro blue" transform="rotate(-90 388 418)">东墙南部邻卫生间</text>
 <text x="415" y="286" class="micro blue">水槽墙</text>
 <text x="450" y="405" class="micro center">环氧已铺2×1.4kg</text><text x="450" y="423" class="micro center">闭水通过后施工</text><text x="450" y="441" class="micro orange center">1月拟加5kg｜先核层间</text>
-<text x="250" y="610" class="small center">菠萝格地板 + 鹅卵石（候选）</text>
+<text x="250" y="610" class="small center">30×30cm格栅地板｜暂定、可掀开排水</text>
 <text x="745" y="408" class="small center">干区SPC｜未购买、未开工</text>
 <text x="250" y="660" class="small center">三处罗马杆+窗帘已有｜换布、染色、拆分利用或回收待定</text>
 <text x="100" y="690" class="small purple">瓷砖改色粗基数约19.18㎡：待扣厨房窗洞，并补量灶台立面/侧面。</text>
@@ -1015,11 +1104,11 @@ def masonry_overview() -> str:
 </g>
 <rect x="400" y="330" width="100" height="120" fill="#cffafe" stroke="#0891b2" stroke-width="4" data-system="bathroom-s2-waterproof" data-status="flood-test-passed"/>
 <text x="450" y="382" class="small center">S2防水层</text><text x="450" y="402" class="micro center">闭水通过</text><text x="450" y="422" class="micro purple center">表层环氧见40</text>
-<rect x="100" y="530" width="300" height="100" fill="url(#deck-pebble)" opacity=".50" data-system="balcony-floor-candidate"/>
+<rect x="100" y="530" width="300" height="100" fill="url(#deck-grid)" opacity=".65" data-system="balcony-30x30-grid-floor"/>
 <path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-system="substrate-review"/>
 <text x="250" y="322" class="small center" fill="#92400e">受潮/漏源复核后再封闭基层</text>
 <text x="745" y="405" class="small center">干区SPC｜未购买、未开工</text>
-<text x="250" y="610" class="small center">阳台木地板+鹅卵石仍为候选</text>
+<text x="250" y="610" class="small center">阳台30×30cm格栅模块｜暂定</text>
 '''
     side = sidebar("30图只管基层与地面", [
         "卫生间S2防水层闭水试验已通过",
@@ -1028,8 +1117,8 @@ def masonry_overview() -> str:
         "环氧是防水层上饰面，状态见40",
         "干区SPC未购买、未开工",
         "门槛、平整度、收边仍需复测",
-        "厨房墙地砖基层/架空台面待深化",
-        "阳台地面方案尚未冻结",
+        "厨房不新增垫高台面；保留既有台面",
+        "阳台先做3×3模块试排与排水测试",
         "!瓦作验收不能由涂层观感替代",
     ], [("#0891b2", "防水/基层复核"), ("#b88959", "计划地面系统")])
     body = FINISH_DEFS + room_fields(True) + layers + base_walls() + windows() + room_labels() + side
@@ -1054,6 +1143,7 @@ def coating_overview() -> str:
 <path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-coating-gate="damp-source-review"/>
 <text x="250" y="322" class="small center" fill="#92400e">持续受潮处不封闭涂刷</text>
 <text x="500" y="178" class="small purple center">厨卫瓷砖改色｜计划</text>
+<path d="M105 545V620M115 625H390" stroke="#16a34a" stroke-width="5" stroke-dasharray="6 5" data-coating="balcony-cat-scratch-sticker"/><text x="250" y="608" class="small green center">四周适合墙面猫抓板贴纸｜先小样</text>
 '''
     side = sidebar("40图只管涂层", [
         "实际一底一面；油漆工400元，角落不细",
@@ -1074,17 +1164,18 @@ def woodwork_overview() -> str:
 {rect(0.55,2.45,7.52,8,"planned",'data-woodwork="wardrobe-frame"')}<text x="876" y="280" class="small center" transform="rotate(-90 876 280)">卧室塑料衣架+帘｜未购买</text>
 <rect x="410" y="195" width="42" height="76" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2" data-woodwork="retained-kitchen-cabinet"/><text x="431" y="215" class="micro center">保留</text><text x="431" y="231" class="micro center">木柜</text><text x="431" y="248" class="micro red center">受潮</text>
 <rect x="458" y="195" width="65" height="50" class="planned" data-woodwork="kitchen-appliance-rack"/><text x="490" y="217" class="micro center">双层电器架</text>
-<path d="M520 323H600M405 457H475M600 345H680" fill="none" stroke="#f97316" stroke-width="5" stroke-dasharray="7 5" data-woodwork="planned-doors"/>
-<text x="540" y="307" class="micro orange">厨房门</text><text x="440" y="480" class="micro orange center">卫生间门</text><text x="644" y="335" class="micro orange">卧室门</text>
+<path d="M520 323H600M405 457H475" fill="none" stroke="#f97316" stroke-width="5" stroke-dasharray="7 5" data-woodwork="planned-polycarbonate-doors"/>
+<path d="M600 345H680" fill="none" stroke="#94a3b8" stroke-width="4" stroke-dasharray="7 5" data-woodwork="bedroom-door-deferred"/>
+<text x="540" y="307" class="micro orange">厨房阳光板门</text><text x="440" y="480" class="micro orange center">卫生间阳光板门</text><text x="644" y="335" class="micro">卧室门延期</text>
 <rect x="102" y="300" width="45" height="80" class="planned" data-woodwork="robot-over-table"/><text x="154" y="350" class="micro orange">扫地机上方窄桌</text>
 '''
     side = sidebar("50图只管木作与定制件", [
         "厨房约80cm旧木柜本阶段保留",
         "木柜受潮变形；承重/水平/防潮待核",
         "西侧双层架：上电饭煲、下高压锅",
-        "架空瓷砖台面属瓦作，参见30",
-        "厨卫门计划1月自拼，尚未下单",
-        "卧室门未购买",
+        "洗碗机用保留木柜或独立支架，待选",
+        "厨卫阳光板门暂定，规格/框轨待核",
+        "卧室门本阶段不做",
         "已有书桌拟做黑胡桃木蜡油小样",
         "卧室衣架/帘与客厅窄桌均未购买",
         "门窗洞口与猫安全见07；尺寸表见58",
@@ -1095,14 +1186,14 @@ def woodwork_overview() -> str:
 
 def door_window_schedule() -> str:
     rows = [
-        ("门", "厨房门洞", "74×195cm", "已实测；门扇/轨道未定制"),
-        ("门", "卫生间门洞", "67×198cm", "已实测；有效净宽TBD"),
-        ("门", "卧室门", "洞口名义80cm", "旧门已拆；新门未购买"),
+        ("门", "厨房门洞", "74×195cm", "已实测；阳光板门暂定，框轨TBD"),
+        ("门", "卫生间门洞", "67×198cm", "已实测；阳光板门暂定，有效净宽TBD"),
+        ("门", "卧室门", "洞口名义80cm", "旧门已拆；本阶段不做"),
         ("窗", "客厅纱窗", "95×47cm×1", "已定做；安装验收待核"),
         ("窗", "卧室纱窗", "95×47cm×1", "已定做；安装验收待核"),
         ("窗", "阳台西窗", "90×47cm×1", "已定做；活动区对应待验收"),
         ("窗", "阳台南窗", "128×74cm×2", "已定做；两扇映射待验收"),
-        ("窗", "厨房外窗", "精确洞口TBD", "固定封闭、无纱窗；排烟孔已封严"),
+        ("窗", "厨房外窗", "与客厅/卧室整窗同尺寸；宽高TBD", "固定封闭、无纱窗；不得由纱窗反推"),
     ]
     parts = [
         '<rect x="70" y="115" width="1260" height="585" rx="14" class="panel"/>',
@@ -1130,7 +1221,7 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
   .drop{fill:none;stroke:#64748b;stroke-width:3;stroke-dasharray:7 5}.retired{fill:none;stroke:#94a3b8;stroke-width:3;stroke-dasharray:6 5}
 </style>
 <rect width="1600" height="1120" fill="#fbfaf7"/>
-<text x="60" y="52" class="title">20 电气｜全屋路线图（2026-10-06收口）</text>
+<text x="60" y="52" class="title">20 电气｜全屋路线图（2026-10-07整理）</text>
 <text x="60" y="80" class="sub">实际：电气未完成；两只智能开关因物流退货、现场0只，计划1月重购。路线仍为讨论图，不能据图施工。</text>
 
 <rect x="90" y="120" width="320" height="430" fill="#f7ead7"/>
@@ -1149,18 +1240,18 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 <text x="650" y="461" class="small bold">配电箱</text>
 
 <path class="c1" d="M618 450 L618 350 L640 350 L640 205"/>
-<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="355" class="micro">B1：卧室智能开关点位（缺件）/ 床南</text>
-<circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">B2：卧室空调 + 床北</text>
+<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="355" class="micro">卧01（B1）：双开点位（现场0只）/ 床南</text>
+<circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">卧02（B2）：卧室空调 + 床北</text>
 <path class="drop" d="M640 305 H760M640 205 H760"/>
-<text x="110" y="625" class="small" fill="#7c3aed">① 卧室：配电箱向北 → 卧室门头 → 西墙高位B1 → B2。</text>
+<text x="110" y="625" class="small" fill="#7c3aed">① 卧室：配电箱向北 → 卧室门头 → 西墙高位卧01 → 卧02；展开见24。</text>
 
 <circle cx="790" cy="285" r="16" class="retired"/><path d="M780 275L800 295M800 275L780 295" class="retired"/>
 <text x="790" y="315" class="micro" text-anchor="middle">吊扇拆除｜无新供电</text>
 
 <path class="c2" d="M610 450 L610 335 L535 335 L535 275 L445 275 L445 180"/>
-<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">K1：灯/开关</text>
-<circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">K2：西墙家电组</text>
-<text x="110" y="660" class="small" fill="#ea580c">② 厨房：与①向北并行，①退出后经厨房门头 → K1 → K2。</text>
+<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">厨01（K1）：灯/开关</text>
+<circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">厨02（K2）：西墙家电组</text>
+<text x="110" y="660" class="small" fill="#ea580c">② 厨房：与①向北并行，①退出后经厨房门头 → 厨01 → 厨02；展开见21。</text>
 
 <path class="c4" d="M602 450 L602 530 L420 530 L420 485 L235 485"/>
 <path class="c3" d="M594 450 L594 520 L430 520 L430 475 L385 475 L385 455"/>
@@ -1168,23 +1259,23 @@ FIVE_ROUTE_ELECTRICAL_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width="1
 <path class="c5" d="M586 450 L586 510 L440 510 L440 465 L485 465 L485 420"/>
 <text x="655" y="566" class="micro">玄关公共墙段，侧墙从靠顶到靠下建议：④ / ③ / ⑤；三路独立槽并排</text>
 
-<circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">H1：设备架 / 灯带</text>
-<circle cx="385" cy="455" r="9" class="node"/><text x="318" y="438" class="micro">L1：洗烘/小厨电 / 客厅智能开关点位（缺件）</text>
-<circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">W1：投影 / 沙发娱乐区 / 书桌（定位TBD）</text>
-<text x="110" y="695" class="small" fill="#2563eb">③ L1先北再沿未来隔帘线西穿→W1；兼顾主照明，标高/位置TBD。</text>
+<circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">玄01（H1）：设备架 / 灯带</text>
+<circle cx="385" cy="455" r="9" class="node"/><text x="318" y="438" class="micro">客01（L1）：洗烘/小厨电 / 双开点位（现场0只）</text>
+<circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">客02（W1）：投影 / 沙发 / 书桌（定位TBD）</text>
+<text x="110" y="695" class="small" fill="#2563eb">③ 客01先北再沿未来隔帘线西穿→客02；兼顾主照明，标高/位置TBD；展开见23/26。</text>
 
-<circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">A1：客厅空调 + 冰箱</text>
+<circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">客03（A1）：客厅空调 + 冰箱</text>
 <text x="110" y="730" class="small" fill="#dc2626">④ 空调冰箱：独立回路，经客厅南侧到A1后分两个末端。</text>
 
-<circle cx="485" cy="420" r="9" class="node"/><text x="420" y="440" class="micro">BATH1</text>
-<text x="110" y="765" class="small" fill="#0f766e">⑤ 卫生间：公共墙段 → 通道/门头 → 卫生间南墙 → BATH1。</text>
+<circle cx="485" cy="420" r="9" class="node"/><text x="420" y="440" class="micro">卫01（BATH1）</text>
+<text x="110" y="765" class="small" fill="#0f766e">⑤ 卫生间：公共墙段 → 通道/门头 → 卫生间南墙 → 卫01；展开见22。</text>
 
 <rect x="990" y="120" width="550" height="410" rx="12" class="panel"/>
 <text x="1020" y="158" class="small bold">现场走槽规则</text>
 <text x="1020" y="192" class="small">1. 主干钉在侧墙高位；默认上沿距顶约50mm，可统一调到30～80mm。</text>
 <text x="1020" y="224" class="small">2. 北向①②；南向③④⑤。公共段不交叉，保持固定上下顺序。</text>
 <text x="1020" y="256" class="small">3. 90°转弯、续槽、绕门框：直接拼线槽，不加盒。</text>
-<text x="1020" y="288" class="small">4. 只有导体接续/分叉/缩径才形成 B1…BATH1 电气节点。</text>
+<text x="1020" y="288" class="small">4. 只有导体接续/分叉/缩径才形成卧01…卫01电气节点。</text>
 <text x="1020" y="320" class="small">5. 四分槽优先承载单回路；③④⑤公共段基线为三根独立槽并排。</text>
 <text x="1020" y="352" class="small">6. 底槽先钉，腻子可收到底槽边，但不要堵盖板卡槽；最终穿线后再扣盖。</text>
 <text x="1020" y="384" class="small">7. 每段底槽内部标 C1-BED / C2-KIT / C3-LIV / C4-AC-FR / C5-BATH。</text>
@@ -1231,19 +1322,19 @@ ELECTRICAL_NODE_SCHEDULE_SVG = r"""<svg xmlns="http://www.w3.org/2000/svg" width
  .warn{fill:#fff7ed;stroke:#f59e0b;stroke-width:1.4}.ok{fill:#f0fdf4;stroke:#16a34a;stroke-width:1.4}
 </style>
 <rect width="1600" height="1110" fill="#fbfaf7"/>
-<text x="55" y="52" class="title">27 电气｜主节点与材料图｜10/6收口讨论图</text>
+<text x="55" y="52" class="title">27 电气｜主节点与材料图｜10/7中文编号整理</text>
 <text x="55" y="80" class="sub">电气未完成；智能开关2只已退货、现场0只，计划1月重购。PCT须由具体SKU证实6mm²适配，当前仍blocked，不得据图端接。</text>
 <rect x="55" y="110" width="1490" height="44" class="head"/>
 <text x="70" y="138" class="h">节点</text><text x="150" y="138" class="h">端子</text><text x="350" y="138" class="h">输入</text><text x="590" y="138" class="h">输出</text><text x="1280" y="138" class="h">说明</text>
-<rect x="55" y="154" width="1490" height="62" class="main"/><text x="70" y="192" class="h">B1</text><text x="150" y="192" class="t">PCT-62×1</text><text x="350" y="192" class="t">C1 6mm² L/N</text><text x="590" y="192" class="t">B2主干 / 卧室智能开关点位（缺件） / 床南常电</text><text x="1280" y="192" class="t">6mm继续</text>
-<rect x="55" y="216" width="1490" height="62" class="main"/><text x="70" y="254" class="h">B2</text><text x="150" y="254" class="t">PCT-42×1</text><text x="350" y="254" class="t">B1 6mm² L/N</text><text x="590" y="254" class="t">卧室空调 / 床北常电</text><text x="1280" y="254" class="t">主干结束</text>
-<rect x="55" y="278" width="1490" height="70" class="main"/><text x="70" y="320" class="h">K1</text><text x="150" y="320" class="t">PCT-42×1</text><text x="350" y="320" class="t">C2 6mm² L/N</text><text x="590" y="307" class="t">K2主干 / 厨房照明支路</text><text x="590" y="332" class="s">L/Lsw、蓝芯重标及N预留待专业确认，不得照此端接</text><text x="1280" y="320" class="t">6mm继续</text>
-<rect x="55" y="348" width="1490" height="62" class="main"/><text x="70" y="386" class="h">K2</text><text x="150" y="386" class="t">PCT-42×1</text><text x="350" y="386" class="t">K1 6mm² L/N</text><text x="590" y="386" class="t">厨房西南设备组 / 台面·油烟机·预留设备组</text><text x="1280" y="386" class="t">两条2.5支线</text>
-<rect x="55" y="410" width="1490" height="62" class="main"/><text x="70" y="448" class="h">H1</text><text x="150" y="448" class="t">PCT-62×1</text><text x="350" y="448" class="t">C3 6mm² L/N</text><text x="590" y="448" class="t">L1主干 / 玄关设备架 / 玄关灯带·开关</text><text x="1280" y="448" class="t">6mm继续</text>
-<rect x="55" y="472" width="1490" height="62" class="main"/><text x="70" y="510" class="h">L1</text><text x="150" y="510" class="t">PCT-62×1</text><text x="350" y="510" class="t">H1 6mm² L/N</text><text x="590" y="510" class="t">W1主干 / 洗烘·小厨电 / 客厅智能开关点位（缺件）</text><text x="1280" y="510" class="t">6mm继续</text>
-<rect x="55" y="534" width="1490" height="70" class="main"/><text x="70" y="576" class="h">W1</text><text x="150" y="576" class="t">PCT-62×1</text><text x="350" y="576" class="t">L1 6mm² L/N</text><text x="590" y="563" class="t">2.5→投影 / 2.5→沙发娱乐区 / 2.5→书桌</text><text x="590" y="588" class="s">沙发区本地分扫地机低位+置物台上部；书桌本地分上下插座</text><text x="1280" y="576" class="t">主干结束</text>
-<rect x="55" y="604" width="1490" height="62" class="main"/><text x="70" y="642" class="h">A1</text><text x="150" y="642" class="t">PCT-42×1</text><text x="350" y="642" class="t">C4 BVVB 2×2.5</text><text x="590" y="642" class="t">客厅空调 / 冰箱</text><text x="1280" y="642" class="t">独立第④路</text>
-<rect x="55" y="666" width="1490" height="70" class="main"/><text x="70" y="708" class="h">BATH1</text><text x="150" y="708" class="t">PCT-62×1</text><text x="350" y="708" class="t">C5 BVVB 2×2.5</text><text x="590" y="695" class="t">浴霸 / 镜柜 / 独立主灯·机械开关</text><text x="590" y="720" class="s">必须位于卫生间≤30mA剩余电流保护下游</text><text x="1280" y="708" class="t">独立第⑤路</text>
+<rect x="55" y="154" width="1490" height="62" class="main"/><text x="70" y="192" class="h">卧01(B1)</text><text x="150" y="192" class="t">PCT-62×1</text><text x="350" y="192" class="t">C1 6mm² L/N</text><text x="590" y="192" class="t">卧02主干 / 卧室双开点位（现场0只） / 床南常电</text><text x="1280" y="192" class="t">6mm继续</text>
+<rect x="55" y="216" width="1490" height="62" class="main"/><text x="70" y="254" class="h">卧02(B2)</text><text x="150" y="254" class="t">PCT-42×1</text><text x="350" y="254" class="t">卧01 6mm² L/N</text><text x="590" y="254" class="t">卧室空调 / 床北常电</text><text x="1280" y="254" class="t">主干结束</text>
+<rect x="55" y="278" width="1490" height="70" class="main"/><text x="70" y="320" class="h">厨01(K1)</text><text x="150" y="320" class="t">PCT-42×1</text><text x="350" y="320" class="t">C2 6mm² L/N</text><text x="590" y="307" class="t">厨02主干 / 厨房照明支路</text><text x="590" y="332" class="s">L/Lsw、蓝芯重标及N预留待专业确认，不得照此端接</text><text x="1280" y="320" class="t">6mm继续</text>
+<rect x="55" y="348" width="1490" height="62" class="main"/><text x="70" y="386" class="h">厨02(K2)</text><text x="150" y="386" class="t">PCT-42×1</text><text x="350" y="386" class="t">厨01 6mm² L/N</text><text x="590" y="386" class="t">厨房西南设备组 / 台面·油烟机·预留设备组</text><text x="1280" y="386" class="t">两条2.5支线</text>
+<rect x="55" y="410" width="1490" height="62" class="main"/><text x="70" y="448" class="h">玄01(H1)</text><text x="150" y="448" class="t">PCT-62×1</text><text x="350" y="448" class="t">C3 6mm² L/N</text><text x="590" y="448" class="t">客01主干 / 玄关设备架 / 玄关灯带·开关</text><text x="1280" y="448" class="t">6mm继续</text>
+<rect x="55" y="472" width="1490" height="62" class="main"/><text x="70" y="510" class="h">客01(L1)</text><text x="150" y="510" class="t">PCT-62×1</text><text x="350" y="510" class="t">玄01 6mm² L/N</text><text x="590" y="510" class="t">客02主干 / 洗烘·小厨电 / 客厅双开点位（现场0只）</text><text x="1280" y="510" class="t">6mm继续</text>
+<rect x="55" y="534" width="1490" height="70" class="main"/><text x="70" y="576" class="h">客02(W1)</text><text x="150" y="576" class="t">PCT-62×1</text><text x="350" y="576" class="t">客01 6mm² L/N</text><text x="590" y="563" class="t">2.5→投影 / 2.5→沙发娱乐区 / 2.5→书桌</text><text x="590" y="588" class="s">沙发区本地分扫地机低位+置物台上部；书桌本地分上下插座</text><text x="1280" y="576" class="t">主干结束</text>
+<rect x="55" y="604" width="1490" height="62" class="main"/><text x="70" y="642" class="h">客03(A1)</text><text x="150" y="642" class="t">PCT-42×1</text><text x="350" y="642" class="t">C4 BVVB 2×2.5</text><text x="590" y="642" class="t">客厅空调 / 冰箱</text><text x="1280" y="642" class="t">独立第④路</text>
+<rect x="55" y="666" width="1490" height="70" class="main"/><text x="70" y="708" class="h">卫01</text><text x="150" y="708" class="t">PCT-62×1</text><text x="350" y="708" class="t">C5 BVVB 2×2.5</text><text x="590" y="695" class="t">浴霸 / 镜柜 / 独立主灯·机械开关</text><text x="590" y="720" class="s">旧ID BATH1；必须位于卫生间≤30mA剩余电流保护下游</text><text x="1280" y="708" class="t">独立第⑤路</text>
 <rect x="55" y="770" width="720" height="260" rx="10" class="warn"/>
 <text x="75" y="805" class="h">末端局部分配：供电尚未全部闭合</text>
 <text x="75" y="840" class="t">厨房：K2两条2.5支线到两个设备簇后，本地分相邻插座。</text>
@@ -1266,13 +1357,168 @@ def electrical_nodes() -> str:
     return ELECTRICAL_NODE_SCHEDULE_SVG
 
 
+def electrical_room_sheet(
+    role: str,
+    title_value: str,
+    room_name: str,
+    circuit: str,
+    route: str,
+    nodes: list[tuple[str, str, list[str]]],
+    points: list[str],
+    lighting: list[str],
+    gates: list[str],
+) -> str:
+    node_parts: list[str] = []
+    node_y = 205
+    previous_y: int | None = None
+    for display_id, legacy_id, outputs in nodes:
+        if previous_y is not None:
+            node_parts.append(
+                f'<path d="M250 {previous_y + 48}V{node_y - 18}" class="power" marker-end="url(#blue-arrow)"/>'
+            )
+        node_parts.extend(
+            [
+                f'<rect x="95" y="{node_y - 18}" width="310" height="68" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>',
+                f'<text x="115" y="{node_y + 7}" class="note bold">{escape(display_id)}（{escape(legacy_id)}）</text>',
+                f'<text x="115" y="{node_y + 30}" class="small">{escape(" / ".join(outputs))}</text>',
+            ]
+        )
+        previous_y = node_y
+        node_y += 118
+
+    point_parts: list[str] = []
+    point_y = 180
+    for index, point in enumerate(points, start=1):
+        point_parts.append(
+            f'<rect x="850" y="{point_y - 20}" width="455" height="38" rx="6" class="planned"/>'
+            f'<text x="868" y="{point_y + 5}" class="small">{index:02d}｜{escape(point)}｜建议点位·未施工</text>'
+        )
+        point_y += 46
+
+    notes: list[str] = []
+    y = max(530, node_y + 8)
+    notes.append(f'<text x="90" y="{y}" class="small bold">照明 / 控制</text>')
+    for item in lighting:
+        y += 23
+        notes.append(f'<text x="110" y="{y}" class="small">• {escape(item)}</text>')
+
+    gate_parts: list[str] = []
+    gate_y = 718
+    for gate in gates[:2]:
+        gate_parts.append(f'<text x="80" y="{gate_y}" class="small red">• {escape(gate)}</text>')
+        gate_y += 24
+
+    body = f'''
+<rect x="55" y="112" width="760" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">{escape(room_name)}路线与中文节点</text>
+<text x="80" y="177" class="small blue">回路：{escape(circuit)}｜路线：{escape(route)}</text>
+<path d="M95 205H65V160" class="power"/><text x="80" y="202" class="micro blue">来自副保护盒</text>
+{''.join(node_parts)}
+{''.join(notes)}
+<rect x="840" y="112" width="505" height="570" rx="14" class="panel"/>
+<text x="865" y="150" class="note bold">末端点位表｜位置/标高均TBD</text>
+{''.join(point_parts)}
+<text x="865" y="655" class="micro">虚线橙框=建议点位；现场用卷尺放样、拍照、填标高后才转施工图。</text>
+<rect x="55" y="696" width="1290" height="72" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+{''.join(gate_parts)}
+'''
+    return document(role, title_value, f"{room_name}明装电气节点、末端点位与照明控制；讨论图", body)
+
+
+def kitchen_electrical() -> str:
+    return electrical_room_sheet(
+        "kitchen-electrical",
+        "21 电气｜厨房节点与点位图",
+        "厨房",
+        "RCBO-02 → 副箱2P C20",
+        "配电箱向北，与卧室路并行；过厨房门头到厨01，再沿墙到厨02",
+        [
+            ("厨01 门侧照明节点", "K1", ["厨02主干", "厨房主灯/普通开关"]),
+            ("厨02 西墙设备节点", "K2", ["西南设备组", "台面/烟机/预留设备组"]),
+        ],
+        ["燃气热水器常电", "油烟机", "台面电器", "洗碗机三孔常电（不接智能开关）"],
+        ["基础漫射灯：普通实体开关", "台面任务灯入住后按需，优先成套插接式低压灯"],
+        ["本户无PE：三孔面板PE端保持未连接并持久标识；严禁N/PE短接。", "厨01机械开关导体配置、各设备插头/功率及点位净空未核，通电前由电工验收。"],
+    )
+
+
+def bathroom_electrical() -> str:
+    return electrical_room_sheet(
+        "bathroom-electrical",
+        "22 电气｜卫生间节点与点位图",
+        "卫生间",
+        "MCB-05 → 副箱2P C20 → 卫生间2P≤30mA保护",
+        "沿玄关公共段向西，在通道脱离后经卫生间门头进入卫01",
+        [("卫01 卫浴设备末端节点", "BATH1", ["浴霸", "镜柜/镜灯", "防潮主灯/机械开关"])],
+        ["浴霸高位连接点", "浴室柜/镜灯连接点", "防潮基础灯", "门外或干区机械开关（功能键数TBD）"],
+        ["不新增通用插座", "所有卫生间负载均位于同一2P≤30mA剩余电流保护下游"],
+        ["浴霸/镜柜铭牌、防护等级、喷溅距离和接线方式未核，不得仅凭图端接。", "无PE且属湿区：主箱/门外RCD二选一须由电工确认，绝缘和漏保动作实测后才通电。"],
+    )
+
+
+def living_electrical() -> str:
+    return electrical_room_sheet(
+        "living-electrical",
+        "23 电气｜客厅节点与点位图",
+        "客厅",
+        "RCBO-03生活路 + MCB-04空调冰箱专路；两路不得混接",
+        "客01先北，再沿未来隔帘线向西到客02；客03沿南侧最短墙边",
+        [
+            ("客01 入口生活节点", "L1", ["客02主干", "洗烘/小厨电", "客厅双开"]),
+            ("客02 西侧生活节点", "W1", ["投影", "沙发/扫地机", "书桌"]),
+            ("客03 空调冰箱节点", "A1", ["客厅空调", "冰箱"]),
+        ],
+        ["洗烘一体机", "洗烘旁小厨电×2", "书桌下常电", "书桌上常电", "投影仪", "沙发上部充电", "扫地机低位常电", "客厅空调末端漏保", "冰箱末端漏保", "客厅双开暗盒（非插座）"],
+        ["双开第1键→客厅主灯；第2键→餐区双头射灯", "沙发背景灯插常电；不得切断扫地机或其他通用插座"],
+        ["客01→客02路线/标高、隔帘关系仍待现场弹线；智能双开现场0只，1月重购。", "空调和冰箱须各用≤30mA、L/N双极切断、带TEST/RESET的末端漏保；铭牌待核。"],
+    )
+
+
+def bedroom_electrical() -> str:
+    return electrical_room_sheet(
+        "bedroom-electrical",
+        "24 电气｜卧室节点与点位图",
+        "卧室",
+        "RCBO-01 → 副箱2P C20",
+        "配电箱向北，经卧室门头入室，贴西墙高位由卧01到卧02",
+        [
+            ("卧01 门侧主节点", "B1", ["卧02主干", "卧室双开", "床南常电"]),
+            ("卧02 北侧末端节点", "B2", ["卧室空调", "床北常电"]),
+        ],
+        ["卧室空调专用点", "床北常电", "床南常电", "床下灯10A二孔专用受控点（不计通用插座）"],
+        ["双开第1键→卧室主灯；第2键→仅床下灯专用点", "旧吊扇/调速器退役：原暗线两端绝缘，旧盒盖空白盖板"],
+        ["床侧常电不得受智能开关控制；智能双开现场0只，1月到货后核端子/盒深。", "本户无PE；空调插头10A/16A、铭牌与现有连接方式未核，专业测试前保持断开。"],
+    )
+
+
+def hall_electrical() -> str:
+    return electrical_room_sheet(
+        "hall-electrical",
+        "26 电气｜玄关走廊节点与点位图",
+        "玄关 / 走廊A、B",
+        "RCBO-03 → 副箱2P C20",
+        "配电箱向南，经玄关南墙高位到玄01，再继续客厅；三条南向线槽并排不混线",
+        [("玄01 设备架节点", "H1", ["客01主干", "设备架常电", "长灯带/普通开关"])],
+        ["壁挂设备架≥4位常电", "高位专用受控插座：仅走廊灯带", "入户门与卧室门之间普通实体开关", "走廊B不设独立灯"],
+        ["约2m厂家成套插头灯带覆盖走廊A/B", "光猫、路由器、EVE V保持常电，不受照明开关控制"],
+        ["设备架需通风、可检修、强弱电分区；灯带保留厂家插头/整流接头/尾塞。", "南向④/③/⑤为三路独立线槽与独立L/N；不得共享中性线或端子。"],
+    )
+
+
 OUTPUTS = {
     "00-overall-coordination.svg": ("overall-coordination", "00 整体｜全屋协调图", overall_coordination),
     "01-kitchen-coordination.svg": ("kitchen-coordination", "01 整体｜厨房协调图", kitchen_coordination),
     "02-bathroom-coordination.svg": ("bathroom-coordination", "02 整体｜卫生间协调图", bathroom_coordination),
     "07-openings-pet-safety.svg": ("openings-pet-safety", "07 整体｜门窗与猫安全图", openings_pet_safety),
     "10-water-gas-overview.svg": ("water-gas-overview", "10 水气｜全屋系统图", water_gas_overview),
+    "11-kitchen-water-gas-elevations.svg": ("kitchen-water-gas-elevations", "11 水气｜厨房给排水、燃气与排烟展开", kitchen_water_gas_elevations),
+    "12-bathroom-water-elevations.svg": ("bathroom-water-elevations", "12 水气｜卫生间给排水展开", bathroom_water_elevations),
     "20-electrical-overview.svg": ("electrical-overview", "20 电气｜全屋路线图", electrical_overview),
+    "21-kitchen-electrical.svg": ("kitchen-electrical", "21 电气｜厨房节点与点位图", kitchen_electrical),
+    "22-bathroom-electrical.svg": ("bathroom-electrical", "22 电气｜卫生间节点与点位图", bathroom_electrical),
+    "23-living-electrical.svg": ("living-electrical", "23 电气｜客厅节点与点位图", living_electrical),
+    "24-bedroom-electrical.svg": ("bedroom-electrical", "24 电气｜卧室节点与点位图", bedroom_electrical),
+    "26-hall-electrical.svg": ("hall-electrical", "26 电气｜玄关走廊节点与点位图", hall_electrical),
     "27-electrical-nodes.svg": ("electrical-nodes", "27 电气｜主节点与材料图", electrical_nodes),
     "30-masonry-overview.svg": ("masonry-overview", "30 瓦作｜全屋基层与地面图", masonry_overview),
     "40-coating-overview.svg": ("coating-overview", "40 涂装｜全屋涂层状态图", coating_overview),

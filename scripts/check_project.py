@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
     "README.md",
     "PROJECT_STATUS.md",
+    "NEXT_ACTIONS.md",
     "AGENTS.md",
     "house.yaml",
     "data/budget.yaml",
@@ -48,7 +49,14 @@ REQUIRED = (
     "diagrams/02-bathroom-coordination.svg",
     "diagrams/07-openings-pet-safety.svg",
     "diagrams/10-water-gas-overview.svg",
+    "diagrams/11-kitchen-water-gas-elevations.svg",
+    "diagrams/12-bathroom-water-elevations.svg",
     "diagrams/20-electrical-overview.svg",
+    "diagrams/21-kitchen-electrical.svg",
+    "diagrams/22-bathroom-electrical.svg",
+    "diagrams/23-living-electrical.svg",
+    "diagrams/24-bedroom-electrical.svg",
+    "diagrams/26-hall-electrical.svg",
     "diagrams/27-electrical-nodes.svg",
     "diagrams/30-masonry-overview.svg",
     "diagrams/40-coating-overview.svg",
@@ -308,7 +316,10 @@ def main() -> int:
     validate_svgs(errors)
     expenses, income, net_outflow = ledger_summary(rows)
     validate_public_layout(errors)
-    validate_local_markdown_links(errors, ("README.md", "media/photos/README.md"))
+    validate_local_markdown_links(
+        errors,
+        ("README.md", "PROJECT_STATUS.md", "NEXT_ACTIONS.md", "diagrams/README.md", "media/photos/README.md"),
+    )
     validate_photos(errors)
     validate_status_page(errors, expenses, income, net_outflow)
 

@@ -10,7 +10,7 @@
   .drop{fill:none;stroke:#64748b;stroke-width:3;stroke-dasharray:7 5}.retired{fill:none;stroke:#94a3b8;stroke-width:3;stroke-dasharray:6 5}
 </style>
 <rect width="1600" height="1120" fill="#fbfaf7"/>
-<text x="60" y="52" class="title">20 电气｜全屋路线图（2026-10-06收口）</text>
+<text x="60" y="52" class="title">20 电气｜全屋路线图（2026-10-07整理）</text>
 <text x="60" y="80" class="sub">实际：电气未完成；两只智能开关因物流退货、现场0只，计划1月重购。路线仍为讨论图，不能据图施工。</text>
 
 <rect x="90" y="120" width="320" height="430" fill="#f7ead7"/>
@@ -29,18 +29,18 @@
 <text x="650" y="461" class="small bold">配电箱</text>
 
 <path class="c1" d="M618 450 L618 350 L640 350 L640 205"/>
-<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="355" class="micro">B1：卧室智能开关点位（缺件）/ 床南</text>
-<circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">B2：卧室空调 + 床北</text>
+<circle cx="640" cy="305" r="9" class="node"/><text x="654" y="355" class="micro">卧01（B1）：双开点位（现场0只）/ 床南</text>
+<circle cx="640" cy="205" r="9" class="node"/><text x="654" y="191" class="micro">卧02（B2）：卧室空调 + 床北</text>
 <path class="drop" d="M640 305 H760M640 205 H760"/>
-<text x="110" y="625" class="small" fill="#7c3aed">① 卧室：配电箱向北 → 卧室门头 → 西墙高位B1 → B2。</text>
+<text x="110" y="625" class="small" fill="#7c3aed">① 卧室：配电箱向北 → 卧室门头 → 西墙高位卧01 → 卧02；展开见24。</text>
 
 <circle cx="790" cy="285" r="16" class="retired"/><path d="M780 275L800 295M800 275L780 295" class="retired"/>
 <text x="790" y="315" class="micro" text-anchor="middle">吊扇拆除｜无新供电</text>
 
 <path class="c2" d="M610 450 L610 335 L535 335 L535 275 L445 275 L445 180"/>
-<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">K1：灯/开关</text>
-<circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">K2：西墙家电组</text>
-<text x="110" y="660" class="small" fill="#ea580c">② 厨房：与①向北并行，①退出后经厨房门头 → K1 → K2。</text>
+<circle cx="535" cy="285" r="9" class="node"/><text x="548" y="292" class="micro">厨01（K1）：灯/开关</text>
+<circle cx="445" cy="180" r="9" class="node"/><text x="458" y="171" class="micro">厨02（K2）：西墙家电组</text>
+<text x="110" y="660" class="small" fill="#ea580c">② 厨房：与①向北并行，①退出后经厨房门头 → 厨01 → 厨02；展开见21。</text>
 
 <path class="c4" d="M602 450 L602 530 L420 530 L420 485 L235 485"/>
 <path class="c3" d="M594 450 L594 520 L430 520 L430 475 L385 475 L385 455"/>
@@ -48,23 +48,23 @@
 <path class="c5" d="M586 450 L586 510 L440 510 L440 465 L485 465 L485 420"/>
 <text x="655" y="566" class="micro">玄关公共墙段，侧墙从靠顶到靠下建议：④ / ③ / ⑤；三路独立槽并排</text>
 
-<circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">H1：设备架 / 灯带</text>
-<circle cx="385" cy="455" r="9" class="node"/><text x="318" y="438" class="micro">L1：洗烘/小厨电 / 客厅智能开关点位（缺件）</text>
-<circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">W1：投影 / 沙发娱乐区 / 书桌（定位TBD）</text>
-<text x="110" y="695" class="small" fill="#2563eb">③ L1先北再沿未来隔帘线西穿→W1；兼顾主照明，标高/位置TBD。</text>
+<circle cx="520" cy="520" r="9" class="node"/><text x="445" y="578" class="micro">玄01（H1）：设备架 / 灯带</text>
+<circle cx="385" cy="455" r="9" class="node"/><text x="318" y="438" class="micro">客01（L1）：洗烘/小厨电 / 双开点位（现场0只）</text>
+<circle cx="125" cy="260" r="9" class="node" stroke-dasharray="4 3"/><text x="142" y="245" class="micro">客02（W1）：投影 / 沙发 / 书桌（定位TBD）</text>
+<text x="110" y="695" class="small" fill="#2563eb">③ 客01先北再沿未来隔帘线西穿→客02；兼顾主照明，标高/位置TBD；展开见23/26。</text>
 
-<circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">A1：客厅空调 + 冰箱</text>
+<circle cx="235" cy="485" r="9" class="node"/><text x="155" y="513" class="micro">客03（A1）：客厅空调 + 冰箱</text>
 <text x="110" y="730" class="small" fill="#dc2626">④ 空调冰箱：独立回路，经客厅南侧到A1后分两个末端。</text>
 
-<circle cx="485" cy="420" r="9" class="node"/><text x="420" y="440" class="micro">BATH1</text>
-<text x="110" y="765" class="small" fill="#0f766e">⑤ 卫生间：公共墙段 → 通道/门头 → 卫生间南墙 → BATH1。</text>
+<circle cx="485" cy="420" r="9" class="node"/><text x="420" y="440" class="micro">卫01（BATH1）</text>
+<text x="110" y="765" class="small" fill="#0f766e">⑤ 卫生间：公共墙段 → 通道/门头 → 卫生间南墙 → 卫01；展开见22。</text>
 
 <rect x="990" y="120" width="550" height="410" rx="12" class="panel"/>
 <text x="1020" y="158" class="small bold">现场走槽规则</text>
 <text x="1020" y="192" class="small">1. 主干钉在侧墙高位；默认上沿距顶约50mm，可统一调到30～80mm。</text>
 <text x="1020" y="224" class="small">2. 北向①②；南向③④⑤。公共段不交叉，保持固定上下顺序。</text>
 <text x="1020" y="256" class="small">3. 90°转弯、续槽、绕门框：直接拼线槽，不加盒。</text>
-<text x="1020" y="288" class="small">4. 只有导体接续/分叉/缩径才形成 B1…BATH1 电气节点。</text>
+<text x="1020" y="288" class="small">4. 只有导体接续/分叉/缩径才形成卧01…卫01电气节点。</text>
 <text x="1020" y="320" class="small">5. 四分槽优先承载单回路；③④⑤公共段基线为三根独立槽并排。</text>
 <text x="1020" y="352" class="small">6. 底槽先钉，腻子可收到底槽边，但不要堵盖板卡槽；最终穿线后再扣盖。</text>
 <text x="1020" y="384" class="small">7. 每段底槽内部标 C1-BED / C2-KIT / C3-LIV / C4-AC-FR / C5-BATH。</text>

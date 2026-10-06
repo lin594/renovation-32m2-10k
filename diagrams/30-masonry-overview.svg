@@ -41,8 +41,8 @@
   <pattern id="tile" width="22" height="22" patternUnits="userSpaceOnUse">
     <rect width="22" height="22" fill="#dceff0"/><path d="M0 0H22V22H0Z" fill="none" stroke="#8bb8ba" stroke-width="1"/>
   </pattern>
-  <pattern id="deck-pebble" width="30" height="20" patternUnits="userSpaceOnUse">
-    <rect width="30" height="20" fill="#d6b98a"/><path d="M0 10H30M10 0V20M20 0V20" stroke="#8b6542" stroke-width="1.5"/><circle cx="25" cy="5" r="3" fill="#a8a29e"/>
+  <pattern id="deck-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <rect width="30" height="30" fill="#d6b98a"/><path d="M0 0H30V30H0ZM5 0V30M15 0V30M25 0V30" fill="none" stroke="#8b6542" stroke-width="1.5"/>
   </pattern>
   <style>
     .moisture{fill:none;stroke:#0891b2;stroke-width:8;stroke-dasharray:9 6}
@@ -69,11 +69,11 @@
 </g>
 <rect x="400" y="330" width="100" height="120" fill="#cffafe" stroke="#0891b2" stroke-width="4" data-system="bathroom-s2-waterproof" data-status="flood-test-passed"/>
 <text x="450" y="382" class="small center">S2防水层</text><text x="450" y="402" class="micro center">闭水通过</text><text x="450" y="422" class="micro purple center">表层环氧见40</text>
-<rect x="100" y="530" width="300" height="100" fill="url(#deck-pebble)" opacity=".50" data-system="balcony-floor-candidate"/>
+<rect x="100" y="530" width="300" height="100" fill="url(#deck-grid)" opacity=".65" data-system="balcony-30x30-grid-floor"/>
 <path d="M100 365V525M400 330V525M400 250V330" class="moisture" data-system="substrate-review"/>
 <text x="250" y="322" class="small center" fill="#92400e">受潮/漏源复核后再封闭基层</text>
 <text x="745" y="405" class="small center">干区SPC｜未购买、未开工</text>
-<text x="250" y="610" class="small center">阳台木地板+鹅卵石仍为候选</text>
+<text x="250" y="610" class="small center">阳台30×30cm格栅模块｜暂定</text>
 
 <path class="wall" d="M100 130H900V430H600V530H400V630H100Z"/>
 <path class="iw" d="M400 130V450M400 330H520M500 330V450M400 450H405M475 450H500M600 130V345M600 425V530M600 430H900M100 530H250"/>
@@ -91,6 +91,6 @@
 <text x="750" y="280" class="room">卧室</text><text x="750" y="301" class="roomsub">净3.0×3.0m</text>
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">30图只管基层与地面</text><text x="994" y="196" class="note">卫生间S2防水层闭水试验已通过</text><text x="994" y="225" class="note">闭水时长/水位/照片仍待归档</text><text x="994" y="254" class="note">原卫生间自铺地砖方案已取消</text><text x="994" y="283" class="note">环氧是防水层上饰面，状态见40</text><text x="994" y="312" class="note">干区SPC未购买、未开工</text><text x="994" y="341" class="note">门槛、平整度、收边仍需复测</text><text x="994" y="370" class="note">厨房墙地砖基层/架空台面待深化</text><text x="994" y="399" class="note">阳台地面方案尚未冻结</text><text x="994" y="428" class="note red">瓦作验收不能由涂层观感替代</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#0891b2" stroke-width="5"/><text x="1044" y="524" class="small">防水/基层复核</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#b88959" stroke-width="5"/><text x="1044" y="553" class="small">计划地面系统</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">30图只管基层与地面</text><text x="994" y="196" class="note">卫生间S2防水层闭水试验已通过</text><text x="994" y="225" class="note">闭水时长/水位/照片仍待归档</text><text x="994" y="254" class="note">原卫生间自铺地砖方案已取消</text><text x="994" y="283" class="note">环氧是防水层上饰面，状态见40</text><text x="994" y="312" class="note">干区SPC未购买、未开工</text><text x="994" y="341" class="note">门槛、平整度、收边仍需复测</text><text x="994" y="370" class="note">厨房不新增垫高台面；保留既有台面</text><text x="994" y="399" class="note">阳台先做3×3模块试排与排水测试</text><text x="994" y="428" class="note red">瓦作验收不能由涂层观感替代</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#0891b2" stroke-width="5"/><text x="1044" y="524" class="small">防水/基层复核</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#b88959" stroke-width="5"/><text x="1044" y="553" class="small">计划地面系统</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

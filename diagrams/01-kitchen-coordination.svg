@@ -43,12 +43,12 @@
   <rect x="235" y="198" width="85" height="72" class="planned" data-furniture="two-tier-appliance-rack"/><text x="277" y="220" class="small center">双层架</text><text x="277" y="240" class="micro center">上：电饭煲</text><text x="277" y="257" class="micro center">下：高压锅</text>
   <rect x="420" y="205" width="82" height="58" fill="#fee2e2" stroke="#b45309" stroke-width="2" data-appliance="gas-stove"/><text x="461" y="230" class="small center">东侧灶台</text><text x="461" y="250" class="micro center">烟机随位微调</text>
 </g>
-<text x="330" y="214" class="micro orange">增高面候选：</text><text x="330" y="232" class="micro orange">40×60×3 或</text><text x="330" y="250" class="micro orange">40×80×2（未定）</text>
+<text x="330" y="214" class="micro">既有北台面保留</text><text x="330" y="232" class="micro red">新增垫高台面已撤销</text><text x="330" y="250" class="micro">不再作为承载方案</text>
 <rect x="120" y="470" width="80" height="110" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="525" class="small center">水槽55cm</text>
 <rect x="120" y="310" width="80" height="160" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2" data-furniture="retained-wood-cabinet"/><text x="160" y="375" class="small center">保留木柜</text><text x="160" y="395" class="micro center">宽80cm</text><text x="160" y="413" class="micro center">高约70+cm</text><text x="160" y="431" class="micro red center">受潮变形待核</text>
 <rect x="500" y="305" width="20" height="140" fill="#fef3c7" stroke="#d97706" stroke-width="2" data-fixture="east-niche"/><text x="494" y="375" class="micro orange" text-anchor="end">东墙壁龛深10cm</text><text x="494" y="392" class="micro orange" text-anchor="end">只放小瓶调料</text>
 <path class="dim" d="M100 190H82M100 290H82M100 470H82M100 590H82M88 190V590"/><text x="74" y="400" class="dimtext" transform="rotate(-90 74 400)">西墙南北：水槽55 + 木柜80 + 北台深46 ≈181cm</text>
-<text x="215" y="330" class="small">西侧设备区｜位置为planned</text><text x="215" y="352" class="micro">保留木柜；洗碗机可落木柜或垫高北台面</text><text x="215" y="374" class="micro red">承重/水平/抗振/开门模板仍待核</text><text x="215" y="396" class="micro">进水独立开关；排水直入水槽并固定</text>
+<text x="215" y="330" class="small">西侧设备区｜位置为planned</text><text x="215" y="352" class="micro">保留木柜或独立支架，二选一待复测</text><text x="215" y="374" class="micro red">承重/水平/抗振/开门模板仍待核</text><text x="215" y="396" class="micro">冷水分支+独立止水；排水直入水槽并固定</text>
 <path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
 <path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
 <circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
@@ -68,11 +68,12 @@
 </g>
 <g transform="translate(120 625)">
   <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" stroke-width="5"/>
-  <rect x="20" y="-70" width="360" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-  <line x1="50" y1="-50" x2="50" y2="0" stroke="#64748b" stroke-width="5"/><line x1="350" y1="-50" x2="350" y2="0" stroke="#64748b" stroke-width="5"/>
-  <text x="200" y="-78" class="small center">架空瓷砖层（高度/支撑待定）</text><text x="200" y="22" class="small center">原砖固定；台面深0.46m、高0.65m</text>
+  <rect x="20" y="-55" width="140" height="55" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/>
+  <rect x="240" y="-55" width="140" height="55" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="90" y="-25" class="small center">保留木柜</text><text x="310" y="-25" class="small center">独立支架TBD</text>
+  <text x="200" y="22" class="small center">洗碗机底部需高于地面70cm；两种承载方式复测后二选一</text>
 </g>
 <text x="85" y="687" class="small red">安全门禁：布局已明确，安装未确认；燃气净空、台面/木柜承重、排水和无PE保护均未关闭。</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">01图只回答空间协调</text><text x="994" y="196" class="note">固定几何：193×46×65cm北台面</text><text x="994" y="225" class="note">西墙尺寸链：55+80+46≈181cm</text><text x="994" y="254" class="note">西侧：洗碗机+双层小家电架</text><text x="994" y="283" class="note">东侧：灶台；壁龛深10cm</text><text x="994" y="312" class="note">木柜本阶段保留，受潮/承重待核</text><text x="994" y="341" class="note">洗碗机底部须高于地面70cm</text><text x="994" y="370" class="note">门洞74×195cm；外窗固定、无纱窗</text><text x="994" y="399" class="note">完整水气路线见10；木作见50</text><text x="994" y="428" class="note">台面支撑与燃气检修仍blocked</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">01图只回答空间协调</text><text x="994" y="196" class="note">固定几何：193×46×65cm北台面</text><text x="994" y="225" class="note">西墙尺寸链：55+80+46≈181cm</text><text x="994" y="254" class="note">西侧：洗碗机+双层小家电架</text><text x="994" y="283" class="note">东侧：灶台；壁龛深10cm</text><text x="994" y="312" class="note">木柜本阶段保留，受潮/承重待核</text><text x="994" y="341" class="note">洗碗机底部须高于地面70cm</text><text x="994" y="370" class="note">门洞74×195cm；外窗固定、无纱窗</text><text x="994" y="399" class="note">外窗与客/卧整窗同尺寸；宽高TBD</text><text x="994" y="428" class="note">水气展开见11；木作见50</text><text x="994" y="457" class="note">设备支撑与燃气检修仍blocked</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

@@ -19,11 +19,20 @@
 | 整体 | 02 | [卫生间协调图](02-bathroom-coordination.svg) | 洁具、湿区、门和跨专业接口协调 |
 | 整体 | 07 | [门窗与猫安全专项](07-openings-pet-safety.svg) | 洞口、开启关系、防逃边界与验收门槛 |
 | 水气 | 10 | [全屋水气总图](10-water-gas-overview.svg) | 给水、热水、排水、燃气及排烟关系 |
+| 水气 | 11 | [厨房给排水、燃气与排烟展开](11-kitchen-water-gas-elevations.svg) | 洗碗机进排水、水槽检修、热水器/灶具及两类排烟接口 |
+| 水气 | 12 | [卫生间给排水展开](12-bathroom-water-elevations.svg) | 入户水、洁具接口、洗衣机穿墙排水与西北立管 |
 | 电气 | **20** | [全屋电气路线总图](20-electrical-overview.svg) | 五路墙面路径、回路边界与实际未完状态 |
+| 电气 | **21** | [厨房节点与点位图](21-kitchen-electrical.svg) | 厨01/厨02、四个设备点及厨房照明 |
+| 电气 | **22** | [卫生间节点与点位图](22-bathroom-electrical.svg) | 卫01、湿区设备连接和剩余电流保护门禁 |
+| 电气 | **23** | [客厅节点与点位图](23-living-electrical.svg) | 客01/客02/客03、十个末端及双路边界 |
+| 电气 | **24** | [卧室节点与点位图](24-bedroom-electrical.svg) | 卧01/卧02、床侧/空调点及双开控制 |
+| 电气 | **26** | [玄关走廊节点与点位图](26-hall-electrical.svg) | 玄01、设备架常电和A/B走廊灯带 |
 | 电气 | **27** | [电气节点与材料专项](27-electrical-nodes.svg) | 九主节点、端子候选与材料复算 |
 | 瓦作 | 30 | [全屋瓦作总图](30-masonry-overview.svg) | 基层、防水、闭水、地面与收边 |
 | 涂装 | 40 | [全屋涂装总图](40-coating-overview.svg) | 墙固、乳胶漆、环氧及其他涂层状态 |
 | 木作 | 50 | [全屋木作总图](50-woodwork-overview.svg) | 柜体、台面支撑、家具与定制件 |
 | 木作 | 58 | [门窗表](58-door-window-schedule.svg) | 门窗、纱窗的尺寸、材料与实施状态 |
 
-现行电气文字真源为 [明装电路整合方案（待确认）](../docs/plans/2026-09-30-final-surface-electrical-plan.md) 和 [ADR 0011](../docs/decisions/0011-five-route-electrical-freeze.md)。平面路线以 20 为入口，节点和材料以 27 为入口；两图均为讨论图，不是施工或通电验收证明。
+现行电气文字真源为 [明装电路整合方案（待确认）](../docs/plans/2026-09-30-final-surface-electrical-plan.md) 和 [ADR 0011](../docs/decisions/0011-five-route-electrical-freeze.md)。平面路线以 20 为入口，各房间按 21–24/26 展开，节点材料以 27 为入口。房间图已经换成“卧01、厨01、客01、卫01”等中文现场标签，但保留括号内旧 ID 供数据追溯。
+
+所有新展开图仍是讨论图：`建议点位`、`TBD` 和 `未施工` 必须经现场卷尺放样、产品铭牌核对和相应专业验收后，才可升级为施工图。水气图中的完整系统关系由 10 主责，厨房/卫生间接口分别由 11/12 主责。
