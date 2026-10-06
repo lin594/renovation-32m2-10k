@@ -723,7 +723,7 @@ items:
     gate: "先核现有层固化、附着、防滑、排水坡度，以及厂家是否允许跨月加涂和所需打磨/底涂；未核验不得直接覆涂"
     risk_ref: SAF-0026
 
-  - id: BUY-0061
+  - id: BUY-0063
     category: painting_consumable
     room: whole_house
     item: "美纹纸胶带20mm×100m"
