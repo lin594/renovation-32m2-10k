@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="kitchen-water-gas-elevations" role="img">
+<title>11 水气｜厨房给排水、燃气与排烟展开</title>
+<desc>厨房固定几何、洗碗机进排水、燃气/热水器与两类排烟接口；讨论图</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">11 水气｜厨房给排水、燃气与排烟展开</text>
+<text x="70" y="78" class="subtitle">厨房固定几何、洗碗机进排水、燃气/热水器与两类排烟接口；讨论图</text>
+
+<rect x="55" y="112" width="650" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">平面｜固定关系与洗碗机接口</text>
+<rect x="115" y="185" width="470" height="410" fill="#fffdf8" stroke="#1f2937" stroke-width="5"/>
+<rect x="115" y="185" width="470" height="105" class="fixed"/><text x="350" y="275" class="small center">既有北台面 193×46×65cm｜保留</text>
+<path d="M245 185H455" class="win"/><path d="M245 185H455" class="winc"/>
+<text x="350" y="172" class="micro center">固定窗｜与客厅/卧室整窗同尺寸｜宽×高TBD｜无纱窗</text>
+<rect x="125" y="468" width="95" height="105" fill="#dff3f7" stroke="#0284c7" stroke-width="2"/><text x="172" y="515" class="small center">水槽</text><text x="172" y="535" class="micro center">宽约55cm</text>
+<rect x="235" y="415" width="115" height="145" class="planned"/><text x="292" y="455" class="small center">洗碗机</text><text x="292" y="476" class="micro center">440×413×424</text><text x="292" y="497" class="micro center">底部&gt;70cm</text><text x="292" y="518" class="micro center">承载二选一TBD</text>
+<rect x="485" y="205" width="80" height="70" fill="#fee2e2" stroke="#ea580c" stroke-width="2"/><text x="525" y="237" class="small center">灶台</text><text x="525" y="257" class="micro center">东侧planned</text>
+<path class="water" d="M172 450V400H292V415" marker-end="url(#blue-arrow)"/>
+<circle cx="242" cy="400" r="8" fill="#fff" stroke="#0284c7" stroke-width="3"/><text x="250" y="388" class="micro blue">冷水三通</text>
+<rect x="268" y="390" width="22" height="20" fill="#fff" stroke="#0284c7" stroke-width="2"/><text x="302" y="407" class="micro blue">独立止水阀｜可检修</text>
+<path class="drain" d="M292 425V375H202V468" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="310" y="368" class="micro green">排水软管按说明直排水槽并可靠固定</text>
+<path class="gas" d="M582 220H550" marker-end="url(#arrow)"/><path class="gas" d="M582 220V195H138V350" marker-end="url(#arrow)"/>
+<text x="405" y="315" class="micro orange">燃气：东/北入口→灶；另一支沿北墙约2m→西墙热水器</text>
+<circle cx="160" cy="555" r="8" fill="#0f766e"/><text x="360" y="585" class="micro green center">水槽旧排水检修口：漏点已修补；修补后疑似堵塞，2500ml疏通剂无改善</text>
+
+<rect x="735" y="112" width="610" height="570" rx="14" class="panel"/>
+<text x="760" y="150" class="note bold">北墙 / 西墙展开｜接口和检修门禁</text>
+<line x1="775" y1="330" x2="1295" y2="330" stroke="#475569" stroke-width="5"/>
+<rect x="820" y="190" width="170" height="100" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/><text x="905" y="225" class="small center">固定窗</text><text x="905" y="248" class="micro center">同客/卧尺寸；宽高TBD</text><text x="905" y="270" class="micro center">油烟机排烟孔另设</text>
+<rect x="1080" y="230" width="110" height="80" fill="#fee2e2" stroke="#ea580c" stroke-width="2"/><text x="1135" y="270" class="small center">灶/烟机区</text>
+<text x="775" y="357" class="micro">北墙：燃气阀/管全程可见可检修；不得用新增台面或封板遮盖</text>
+<line x1="775" y1="615" x2="1295" y2="615" stroke="#475569" stroke-width="5"/>
+<rect x="805" y="390" width="145" height="120" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><text x="878" y="430" class="small center">燃气热水器</text><text x="878" y="452" class="micro center">冷水 / 热水 / 燃气</text><text x="878" y="474" class="micro center">独立烟管→室外</text>
+<path class="gas" d="M878 510V550"/><path class="water" d="M840 510V570"/><path class="hot" d="M915 510V570"/>
+<ellipse cx="1110" cy="510" rx="85" ry="18" fill="#dff3f7" stroke="#0284c7" stroke-width="2"/><rect x="1025" y="510" width="170" height="90" fill="#effafd" stroke="#0284c7" stroke-width="2"/><text x="1110" y="555" class="small center">水槽 / 检修口</text>
+<text x="775" y="645" class="micro red">排烟分离：油烟机排烟与热水器烟管不得共管；管径、坡度、接头及终端按设备说明/燃气公司复核。</text>
+
+<rect x="55" y="705" width="1290" height="70" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="80" y="733" class="small red">状态：本图为讨论图。冷水分支、止水、排水软管固定、支架、接口管径/标高均未施工或未验收；电源只作为接口，参见20/21/27。</text>
+<text x="80" y="758" class="small red">先疏通并满盆排水复核，再装洗碗机；不得继续盲倒药剂。风险：SAF-0001 / 0005 / 0011 / 0022 / 0025。</text>
+
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
+</svg>

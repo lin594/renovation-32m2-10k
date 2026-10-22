@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
     "README.md",
     "PROJECT_STATUS.md",
+    "NEXT_ACTIONS.md",
     "AGENTS.md",
     "house.yaml",
     "data/budget.yaml",
@@ -43,14 +44,24 @@ REQUIRED = (
     "docs/decisions/README.md",
     "diagrams/README.md",
     "media/photos/README.md",
-    "diagrams/00-existing-survey.svg",
-    "diagrams/10-furniture-circulation.svg",
-    "diagrams/20-plumbing-gas.svg",
-    "diagrams/30-five-route-electrical.svg",
-    "diagrams/31-electrical-node-schedule.svg",
-    "diagrams/40-doors-windows-cats.svg",
-    "diagrams/50-kitchen-bath-details.svg",
-    "diagrams/60-finishes-materials.svg",
+    "diagrams/00-overall-coordination.svg",
+    "diagrams/01-kitchen-coordination.svg",
+    "diagrams/02-bathroom-coordination.svg",
+    "diagrams/07-openings-pet-safety.svg",
+    "diagrams/10-water-gas-overview.svg",
+    "diagrams/11-kitchen-water-gas-elevations.svg",
+    "diagrams/12-bathroom-water-elevations.svg",
+    "diagrams/20-electrical-overview.svg",
+    "diagrams/21-kitchen-electrical.svg",
+    "diagrams/22-bathroom-electrical.svg",
+    "diagrams/23-living-electrical.svg",
+    "diagrams/24-bedroom-electrical.svg",
+    "diagrams/26-hall-electrical.svg",
+    "diagrams/27-electrical-nodes.svg",
+    "diagrams/30-masonry-overview.svg",
+    "diagrams/40-coating-overview.svg",
+    "diagrams/50-woodwork-overview.svg",
+    "diagrams/58-door-window-schedule.svg",
 )
 LEDGER_ID = re.compile(r"^(EXP|INC)-\d{4}$")
 LEDGER_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -305,7 +316,10 @@ def main() -> int:
     validate_svgs(errors)
     expenses, income, net_outflow = ledger_summary(rows)
     validate_public_layout(errors)
-    validate_local_markdown_links(errors, ("README.md", "media/photos/README.md"))
+    validate_local_markdown_links(
+        errors,
+        ("README.md", "PROJECT_STATUS.md", "NEXT_ACTIONS.md", "diagrams/README.md", "media/photos/README.md"),
+    )
     validate_photos(errors)
     validate_status_page(errors, expenses, income, net_outflow)
 

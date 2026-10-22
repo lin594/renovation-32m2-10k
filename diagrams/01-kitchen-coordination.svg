@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="kitchen-coordination" role="img">
+<title>01 整体｜厨房协调图</title>
+<desc>厨房固定几何、设备布局、竖向关系和跨专业净空</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">01 整体｜厨房协调图</text>
+<text x="70" y="78" class="subtitle">厨房固定几何、设备布局、竖向关系和跨专业净空</text>
+
+<rect x="60" y="115" width="620" height="610" rx="14" class="panel"/>
+<text x="85" y="155" class="note bold">厨房：实测平面 + 错层设备布局</text>
+<rect x="120" y="190" width="400" height="400" fill="#fbf3d9" stroke="#1f2937" stroke-width="5"/>
+<rect x="120" y="190" width="400" height="100" class="fixed"/><text x="320" y="278" class="small center">原北台面：193×46cm｜高65cm</text>
+<g data-layout="kitchen-west-appliances-east-stove" data-status="planned">
+  <rect x="130" y="198" width="92" height="72" class="planned" data-appliance="dishwasher"/><text x="176" y="220" class="small center">京造洗碗机</text><text x="176" y="240" class="micro center">440×413×424mm</text><text x="176" y="257" class="micro center">下翻门｜底部&gt;70cm</text>
+  <rect x="235" y="198" width="85" height="72" class="planned" data-furniture="two-tier-appliance-rack"/><text x="277" y="220" class="small center">双层架</text><text x="277" y="240" class="micro center">上：电饭煲</text><text x="277" y="257" class="micro center">下：高压锅</text>
+  <rect x="420" y="205" width="82" height="58" fill="#fee2e2" stroke="#b45309" stroke-width="2" data-appliance="gas-stove"/><text x="461" y="230" class="small center">东侧灶台</text><text x="461" y="250" class="micro center">烟机随位微调</text>
+</g>
+<text x="330" y="214" class="micro">既有北台面保留</text><text x="330" y="232" class="micro red">新增垫高台面已撤销</text><text x="330" y="250" class="micro">不再作为承载方案</text>
+<rect x="120" y="470" width="80" height="110" fill="#effafd" stroke="#16829a" stroke-width="2"/><text x="160" y="525" class="small center">水槽55cm</text>
+<rect x="120" y="310" width="80" height="160" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2" data-furniture="retained-wood-cabinet"/><text x="160" y="375" class="small center">保留木柜</text><text x="160" y="395" class="micro center">宽80cm</text><text x="160" y="413" class="micro center">高约70+cm</text><text x="160" y="431" class="micro red center">受潮变形待核</text>
+<rect x="500" y="305" width="20" height="140" fill="#fef3c7" stroke="#d97706" stroke-width="2" data-fixture="east-niche"/><text x="494" y="375" class="micro orange" text-anchor="end">东墙壁龛深10cm</text><text x="494" y="392" class="micro orange" text-anchor="end">只放小瓶调料</text>
+<path class="dim" d="M100 190H82M100 290H82M100 470H82M100 590H82M88 190V590"/><text x="74" y="400" class="dimtext" transform="rotate(-90 74 400)">西墙南北：水槽55 + 木柜80 + 北台深46 ≈181cm</text>
+<text x="215" y="330" class="small">西侧设备区｜位置为planned</text><text x="215" y="352" class="micro">保留木柜或独立支架，二选一待复测</text><text x="215" y="374" class="micro red">承重/水平/抗振/开门模板仍待核</text><text x="215" y="396" class="micro">冷水分支+独立止水；排水直入水槽并固定</text>
+<path class="gas" d="M515 225H470"/><text x="505" y="300" class="small orange" text-anchor="end">燃气灶直连</text>
+<path class="gas" d="M515 225V175H135V465"/><text x="310" y="172" class="small orange center">热水器支路沿北墙约2m，再沿西墙向南</text>
+<circle cx="135" cy="465" r="8" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/><text x="210" y="452" class="small orange">水槽上方竖向投影</text>
+<g data-view="kitchen-west-wall-elevation">
+  <rect x="535" y="305" width="125" height="285" rx="8" fill="#fffdf8" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="597" y="328" class="small bold center">厨房西墙立面</text>
+  <line x1="550" y1="340" x2="550" y2="570" stroke="#475569" stroke-width="4"/>
+  <line x1="550" y1="570" x2="648" y2="570" stroke="#475569" stroke-width="3"/>
+  <rect x="565" y="370" width="70" height="82" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="2" data-placement="water-heater-above-sink"/>
+  <text x="600" y="405" class="micro orange center">燃气</text><text x="600" y="420" class="micro orange center">热水器</text>
+  <path d="M600 457V480" stroke="#ea580c" stroke-width="2" marker-end="url(#arrow)"/>
+  <ellipse cx="600" cy="500" rx="35" ry="9" fill="#dff3f7" stroke="#16829a" stroke-width="2"/>
+  <rect x="565" y="500" width="70" height="55" fill="#effafd" stroke="#16829a" stroke-width="2"/>
+  <text x="600" y="532" class="small center">水槽</text>
+  <text x="600" y="466" class="micro orange center">水槽正上方</text>
+  <text x="597" y="584" class="micro red center">不在二层木柜上方</text>
+</g>
+<g transform="translate(120 625)">
+  <line x1="0" y1="0" x2="400" y2="0" stroke="#475569" stroke-width="5"/>
+  <rect x="20" y="-55" width="140" height="55" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2"/>
+  <rect x="240" y="-55" width="140" height="55" fill="#fff7ed" stroke="#f97316" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="90" y="-25" class="small center">保留木柜</text><text x="310" y="-25" class="small center">独立支架TBD</text>
+  <text x="200" y="22" class="small center">洗碗机底部需高于地面70cm；两种承载方式复测后二选一</text>
+</g>
+<text x="85" y="687" class="small red">安全门禁：布局已明确，安装未确认；燃气净空、台面/木柜承重、排水和无PE保护均未关闭。</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">01图只回答空间协调</text><text x="994" y="196" class="note">固定几何：193×46×65cm北台面</text><text x="994" y="225" class="note">西墙尺寸链：55+80+46≈181cm</text><text x="994" y="254" class="note">西侧：洗碗机+双层小家电架</text><text x="994" y="283" class="note">东侧：灶台；壁龛深10cm</text><text x="994" y="312" class="note">木柜本阶段保留，受潮/承重待核</text><text x="994" y="341" class="note">洗碗机底部须高于地面70cm</text><text x="994" y="370" class="note">门洞74×195cm；外窗固定、无纱窗</text><text x="994" y="399" class="note">外窗与客/卧整窗同尺寸；宽高TBD</text><text x="994" y="428" class="note">水气展开见11；木作见50</text><text x="994" y="457" class="note">设备支撑与燃气检修仍blocked</text>
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
+</svg>

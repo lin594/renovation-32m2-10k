@@ -25,13 +25,13 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
           python-version: "3.12"
-      - name: 生成派生文件并校验
+      - name: 生成派生文件
+        run: make generated
+      - name: 校验派生文件已提交
         run: |
-          make status
-          make diagrams
-          make gallery
-          git diff --exit-code -- PROJECT_STATUS.md diagrams media/photos/README.md
-          make check
+          git diff --exit-code -- PROJECT_STATUS.md NEXT_ACTIONS.md diagrams media/photos/README.md
+      - name: 校验数据、图纸与测试
+        run: make check
       - name: 写入 Actions 摘要
         run: cat PROJECT_STATUS.md >> "$GITHUB_STEP_SUMMARY"
 

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="bedroom-electrical" role="img">
+<title>24 电气｜卧室节点与点位图</title>
+<desc>卧室明装电气节点、末端点位与照明控制；讨论图</desc>
+
+<defs>
+  <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="12" height="12" fill="#f1f5f9"/><line y2="12" stroke="#cbd5e1" stroke-width="4"/>
+  </pattern>
+  <pattern id="danger" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="10" height="10" fill="#fff1f2"/><line y2="10" stroke="#fecaca" stroke-width="3"/>
+  </pattern>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#334155"/></marker>
+  <marker id="blue-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2563eb"/></marker>
+  <style>
+    text{font-family:"Source Han Sans SC","Heiti SC","Arial Unicode MS",sans-serif}
+    .wall{fill:none;stroke:#1f2937;stroke-width:7;stroke-linecap:square;stroke-linejoin:miter}
+    .iw{fill:none;stroke:#475569;stroke-width:5;stroke-linecap:square}
+    .win{stroke:#0284c7;stroke-width:8}.winc{stroke:#e0f2fe;stroke-width:2.5}
+    .title{font-size:30px;font-weight:750;fill:#172033}.subtitle{font-size:14px;fill:#64748b}
+    .room{font-size:18px;font-weight:750;fill:#334155;text-anchor:middle}.roomsub{font-size:12px;fill:#64748b;text-anchor:middle}
+    .note{font-size:14px;fill:#334155}.small{font-size:12px;fill:#526175}.micro{font-size:10px;fill:#64748b}
+    .panel{fill:#fff;stroke:#d6dae1;stroke-width:1.5}.fixed{fill:#fffdf8;stroke:#64748b;stroke-width:2}
+    .planned{fill:#fff7ed;stroke:#f97316;stroke-width:2;stroke-dasharray:7 5}
+    .water{fill:none;stroke:#0284c7;stroke-width:4}.hot{fill:none;stroke:#dc2626;stroke-width:4}
+    .drain{fill:none;stroke:#0f766e;stroke-width:5}.gas{fill:none;stroke:#ea580c;stroke-width:4}
+    .power{fill:none;stroke:#2563eb;stroke-width:3}.network{fill:none;stroke:#7c3aed;stroke-width:3;stroke-dasharray:7 5}
+    .danger{fill:#fff1f2;stroke:#dc2626;stroke-width:2}.cat{fill:none;stroke:#16a34a;stroke-width:6;stroke-dasharray:8 5}
+    .dim{fill:none;stroke:#64748b;stroke-width:1.5}.dimtext{font-size:12px;fill:#475569;text-anchor:middle}
+    .center{text-anchor:middle}.bold{font-weight:700}.orange{fill:#c2410c}.red{fill:#b91c1c}.blue{fill:#1d4ed8}.green{fill:#15803d}.purple{fill:#6d28d9}
+  </style>
+</defs>
+
+<rect width="1400" height="850" fill="#fbfaf7"/>
+<text x="70" y="52" class="title">24 电气｜卧室节点与点位图</text>
+<text x="70" y="78" class="subtitle">卧室明装电气节点、末端点位与照明控制；讨论图</text>
+
+<rect x="55" y="112" width="760" height="570" rx="14" class="panel"/>
+<text x="80" y="150" class="note bold">卧室路线与中文节点</text>
+<text x="80" y="177" class="small blue">回路：RCBO-01 → 副箱2P C20｜路线：配电箱向北，经卧室门头入室，贴西墙高位由卧01到卧02</text>
+<path d="M95 205H65V160" class="power"/><text x="80" y="202" class="micro blue">来自副保护盒</text>
+<rect x="95" y="187" width="310" height="68" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="115" y="212" class="note bold">卧01 门侧主节点（B1）</text><text x="115" y="235" class="small">卧02主干 / 卧室双开 / 床南常电</text><path d="M250 253V305" class="power" marker-end="url(#blue-arrow)"/><rect x="95" y="305" width="310" height="68" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="115" y="330" class="note bold">卧02 北侧末端节点（B2）</text><text x="115" y="353" class="small">卧室空调 / 床北常电</text>
+<text x="90" y="530" class="small bold">照明 / 控制</text><text x="110" y="553" class="small">• 双开第1键→卧室主灯；第2键→仅床下灯专用点</text><text x="110" y="576" class="small">• 旧吊扇/调速器退役：原暗线两端绝缘，旧盒盖空白盖板</text>
+<rect x="840" y="112" width="505" height="570" rx="14" class="panel"/>
+<text x="865" y="150" class="note bold">末端点位表｜位置/标高均TBD</text>
+<rect x="850" y="160" width="455" height="38" rx="6" class="planned"/><text x="868" y="185" class="small">01｜卧室空调专用点｜建议点位·未施工</text><rect x="850" y="206" width="455" height="38" rx="6" class="planned"/><text x="868" y="231" class="small">02｜床北常电｜建议点位·未施工</text><rect x="850" y="252" width="455" height="38" rx="6" class="planned"/><text x="868" y="277" class="small">03｜床南常电｜建议点位·未施工</text><rect x="850" y="298" width="455" height="38" rx="6" class="planned"/><text x="868" y="323" class="small">04｜床下灯10A二孔专用受控点（不计通用插座）｜建议点位·未施工</text>
+<text x="865" y="655" class="micro">虚线橙框=建议点位；现场用卷尺放样、拍照、填标高后才转施工图。</text>
+<rect x="55" y="696" width="1290" height="72" rx="10" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="80" y="718" class="small red">• 床侧常电不得受智能开关控制；智能双开现场0只，1月到货后核端子/盒深。</text><text x="80" y="742" class="small red">• 本户无PE；空调插头10A/16A、铭牌与现有连接方式未核，专业测试前保持断开。</text>
+
+<text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
+</svg>

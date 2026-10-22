@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="plumbing-gas" role="img">
-<title>20 给排水与燃气图</title>
-<desc>冷热水、排水、地漏、马桶坑位与燃气双支路</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850" data-diagram-role="woodwork-overview" role="img">
+<title>50 木作｜全屋木作布置图</title>
+<desc>柜体、家具、门扇、置物架及定制件的当前状态</desc>
 
 <defs>
   <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -31,8 +31,8 @@
 </defs>
 
 <rect width="1400" height="850" fill="#fbfaf7"/>
-<text x="70" y="52" class="title">20 给排水与燃气图</text>
-<text x="70" y="78" class="subtitle">冷热水、排水、地漏、马桶坑位与燃气双支路</text>
+<text x="70" y="52" class="title">50 木作｜全屋木作布置图</text>
+<text x="70" y="78" class="subtitle">柜体、家具、门扇、置物架及定制件的当前状态</text>
 
 <rect x="100" y="130" width="300" height="400" fill="#f7ead7" opacity="0.68"/>
 <rect x="100" y="530" width="300" height="100" fill="#e6f3e8" opacity="0.68"/>
@@ -53,21 +53,14 @@
 <path d="M600 450V530" stroke="#f1f5f9" stroke-width="10"/>
 <path d="M250 530H400" stroke="#e6f3e8" stroke-width="10"/>
 <path class="win" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/><path class="winc" d="M200 130H300M450 130H550M700 130H800M100 535V625M110 630H390M435 330H485"/>
-<circle cx="400" cy="350" r="9" fill="#0284c7"/><text x="386" y="345" class="small blue" text-anchor="end">入户水</text>
-<path class="water" d="M400 350V365H430M400 350V430H480M400 350V290H425M400 350H360V410" marker-end="url(#blue-arrow)"/>
-<text x="438" y="365" class="micro blue">马桶冷水</text><text x="484" y="432" class="micro blue">浴室柜冷水</text><text x="326" y="408" class="micro blue">洗衣机冷水</text>
-<rect x="405" y="195" width="55" height="58" class="fixed" data-appliance="dishwasher"/><text x="432" y="216" class="micro center">洗碗机</text><text x="432" y="234" class="micro center">已有</text>
-<path class="water" d="M420 290V253" marker-end="url(#blue-arrow)" data-dishwasher-water="sink-feed-independent-switch"/><path class="drain" d="M445 253V285H420" stroke-dasharray="6 4" marker-end="url(#arrow)" data-dishwasher-drain="direct-to-sink"/><text x="465" y="273" class="micro green">软管直排水槽并固定</text>
-<path class="hot" d="M425 280V340H450V400M450 340H480"/>
-<text x="435" y="270" class="small red">热水器出水回卫生间</text>
-<circle cx="400" cy="330" r="11" fill="#0f766e"/><text x="414" y="326" class="small green">排水立管</text>
-<circle cx="430" cy="430" r="9" fill="#0f766e"/><text x="444" y="434" class="small green">扬子纯铜防臭地漏</text>
-<path class="drain" d="M360 410H430V430M430 365L400 330M430 430L400 330" stroke-dasharray="8 5"/>
-<circle cx="430" cy="365" r="7" fill="#fff" stroke="#0f766e" stroke-width="3"/><text x="440" y="382" class="micro">马桶坑位：距北墙0.35m</text>
-<circle cx="598" cy="165" r="10" fill="#ea580c"/><text x="610" y="160" class="small orange">燃气入口</text>
-<path class="gas" d="M588 165H550" marker-end="url(#arrow)"/><text x="518" y="181" class="small orange">燃气灶直连支路</text>
-<path class="gas" d="M588 165V145H420V270" marker-end="url(#arrow)"/><text x="500" y="136" class="small orange center">热水器支路：沿北墙向西约2m</text>
-<rect x="405" y="255" width="42" height="62" rx="4" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><text x="454" y="283" class="small orange">燃气热水器</text>
+<rect x="100" y="380" width="130" height="70" class="fixed" data-woodwork="existing-desk"/><text x="165" y="402" class="small center">已有书桌</text><text x="165" y="420" class="micro center">木蜡油小样待做</text>
+<rect x="852" y="185" width="48" height="190" class="planned" data-woodwork="wardrobe-frame"/><text x="876" y="280" class="small center" transform="rotate(-90 876 280)">卧室塑料衣架+帘｜未购买</text>
+<rect x="410" y="195" width="42" height="76" fill="#e8d7bd" stroke="#8b5e3c" stroke-width="2" data-woodwork="retained-kitchen-cabinet"/><text x="431" y="215" class="micro center">保留</text><text x="431" y="231" class="micro center">木柜</text><text x="431" y="248" class="micro red center">受潮</text>
+<rect x="458" y="195" width="65" height="50" class="planned" data-woodwork="kitchen-appliance-rack"/><text x="490" y="217" class="micro center">双层电器架</text>
+<path d="M520 323H600M405 457H475" fill="none" stroke="#f97316" stroke-width="5" stroke-dasharray="7 5" data-woodwork="planned-polycarbonate-doors"/>
+<path d="M600 345H680" fill="none" stroke="#94a3b8" stroke-width="4" stroke-dasharray="7 5" data-woodwork="bedroom-door-deferred"/>
+<text x="540" y="307" class="micro orange">厨房阳光板门</text><text x="440" y="480" class="micro orange center">卫生间阳光板门</text><text x="644" y="335" class="micro">卧室门延期</text>
+<rect x="102" y="300" width="45" height="80" class="planned" data-woodwork="robot-over-table"/><text x="154" y="350" class="micro orange">扫地机上方窄桌</text>
 
 <text x="250" y="270" class="room">客厅</text><text x="250" y="291" class="roomsub">净4.0×3.0m</text>
 <text x="500" y="225" class="room">厨房</text><text x="500" y="246" class="roomsub">约2.0×&lt;2.0m</text>
@@ -75,6 +68,6 @@
 <text x="750" y="280" class="room">卧室</text><text x="750" y="301" class="roomsub">净3.0×3.0m</text>
 <text x="550" y="390" class="room">走廊B</text><text x="500" y="492" class="room">玄关 / 走廊A</text>
 <text x="250" y="586" class="room">转角阳台</text><text x="750" y="482" class="room">公共走廊（非套内）</text>
-<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">本图只回答管线连接</text><text x="994" y="196" class="note">蓝：冷水；红：热水回路</text><text x="994" y="225" class="note">绿：排水及唯一立管</text><text x="994" y="254" class="note">橙：燃气入口和两条支路</text><text x="994" y="283" class="note">地漏已安装，包含于500元服务</text><text x="994" y="312" class="note">洗碗机：水槽进水独立开关+软管直排水槽</text><text x="994" y="341" class="note">水泥/沙子/堵漏王用于固定改管</text><text x="994" y="370" class="note red">燃气管遮盖和检修仍需验收确认</text><text x="994" y="399" class="note red">封闭饰面前应做联合排水测试</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#0284c7" stroke-width="5"/><text x="1044" y="524" class="small">冷水</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#dc2626" stroke-width="5"/><text x="1044" y="553" class="small">热水</text><line x1="998" y1="578" x2="1030" y2="578" stroke="#0f766e" stroke-width="5"/><text x="1044" y="582" class="small">排水</text><line x1="998" y1="607" x2="1030" y2="607" stroke="#ea580c" stroke-width="5"/><text x="1044" y="611" class="small">燃气</text>
+<rect x="970" y="120" width="370" height="560" rx="14" class="panel"/><text x="994" y="160" class="note bold">50图只管木作与定制件</text><text x="994" y="196" class="note">厨房约80cm旧木柜本阶段保留</text><text x="994" y="225" class="note">木柜受潮变形；承重/水平/防潮待核</text><text x="994" y="254" class="note">西侧双层架：上电饭煲、下高压锅</text><text x="994" y="283" class="note">洗碗机用保留木柜或独立支架，待选</text><text x="994" y="312" class="note">厨卫阳光板门暂定，规格/框轨待核</text><text x="994" y="341" class="note">卧室门本阶段不做</text><text x="994" y="370" class="note">已有书桌拟做黑胡桃木蜡油小样</text><text x="994" y="399" class="note">卧室衣架/帘与客厅窄桌均未购买</text><text x="994" y="428" class="note">门窗洞口与猫安全见07；尺寸表见58</text><text x="994" y="457" class="note red">固定、承重和开启净空均需现场复测</text><line x1="994" y1="502" x2="1316" y2="502" stroke="#e2e8f0"/><line x1="998" y1="520" x2="1030" y2="520" stroke="#64748b" stroke-width="5"/><text x="1044" y="524" class="small">已有木作</text><line x1="998" y1="549" x2="1030" y2="549" stroke="#f97316" stroke-width="5"/><text x="1044" y="553" class="small">计划木作/门窗</text>
 <text x="100" y="800" class="small">当前讨论图｜北↑ 东→｜墙线仍为名义示意；9/28新尺寸优先，关联墙线待复测。非施工放样或验收图。</text>
 </svg>

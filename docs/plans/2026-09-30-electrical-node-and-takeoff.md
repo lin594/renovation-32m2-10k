@@ -1,7 +1,7 @@
 # 2026-09-30 明装电路九主节点讨论表与预算复核
 
 **配套主方案：** [明装电路讨论方案](2026-09-30-final-surface-electrical-plan.md)
-**配套图：** [30 五路讨论墙面走槽图](../../diagrams/30-five-route-electrical.svg) / [31 九主节点接线与材料复算图](../../diagrams/31-electrical-node-schedule.svg)
+**配套图：** [20 全屋电气路线总图](../../diagrams/20-electrical-overview.svg) / [27 电气节点与材料专项](../../diagrams/27-electrical-nodes.svg)
 
 **状态：blocked；讨论图。** L1→W1走墙路线TBD、走廊B灯供电未分配、灯控导体及PCT规格未确认；不得据本表施工、下料或宣称采购完结。
 

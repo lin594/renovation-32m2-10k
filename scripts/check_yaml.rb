@@ -75,6 +75,7 @@ validate_unique_ids.call(documents.dig("procurement.yaml", "items"), "procuremen
 validate_unique_ids.call(documents.dig("risks.yaml", "risks"), "risks.yaml risks")
 validate_unique_ids.call(project["active_tasks"], "project.yaml active_tasks")
 validate_unique_ids.call(project["completed_work"], "project.yaml completed_work")
+validate_unique_ids.call(project["next_actions"], "project.yaml next_actions")
 
 risks_document = documents.fetch("risks.yaml", {})
 validate_enum.call(risks_document["risks"], "severity", Array(risks_document["severity_order"]), "risks.yaml")
@@ -84,6 +85,16 @@ procurement_document = documents.fetch("procurement.yaml", {})
 validate_enum.call(procurement_document["items"], "status", Array(procurement_document["status_values"]), "procurement.yaml")
 validate_enum.call(project["phases"], "status", Array(project["phase_status_values"]), "project.yaml phases")
 validate_enum.call(project["active_tasks"], "status", Array(project["task_status_values"]), "project.yaml active_tasks")
+validate_enum.call(project["next_actions"], "status", Array(project["action_status_values"]), "project.yaml next_actions")
+validate_enum.call(project["next_actions"], "priority", Array(project["action_priority_values"]), "project.yaml next_actions")
+Array(project["next_actions"]).each do |action|
+  %w[id status priority domain room action completion_rule evidence_required].each do |field|
+    errors << "project.yaml next_actions #{action['id']} 缺少 #{field}" if action[field].to_s.strip.empty?
+  end
+  if action["status"] == "blocked" && action["blocker"].to_s.strip.empty?
+    errors << "project.yaml next_actions #{action['id']} 为blocked但未说明blocker"
+  end
+end
 
 targets = {
   "cost_ref" => ledger_ids,
@@ -150,7 +161,7 @@ expected_future_reserves = {
   "客厅空调" => 1000
 }
 actual_future_reserves = future_reserve_items.to_h { |item| [item["item"], item["reserve_cny"]] }
-errors << "budget.yaml 五项未来采购预留明细应合计3050元并与业主确认一致" unless actual_future_reserves == expected_future_reserves && future_reserve_items.sum { |item| item["reserve_cny"].to_f } == 3050
+errors << "budget.yaml 五项未来采购预留明细应名称唯一、合计3050元并与业主确认一致" unless future_reserve_items.length == 5 && actual_future_reserves == expected_future_reserves && future_reserve_items.sum { |item| item["reserve_cny"].to_f } == 3050
 
 # 已付款只入现金账；已知尾款单独预留，避免整单和定金重复扣减。
 procurement.select { |item| item.key?("unpaid_balance_cny") }.each do |item|
@@ -272,7 +283,8 @@ errors << "卧室床下灯必须另计10A二孔专用照明连接点" unless dev
 errors << "BUY-0041应记录两只JZ-N2和99.8元计划总价" unless procurement_by_id.dig("BUY-0041", "planned_quantity") == 2 && procurement_by_id.dig("BUY-0041", "planned_total_cny") == 99.8
 errors << "BUY-0024应同步BVVB净63.5m、下料85m、采购100m" unless procurement_by_id.dig("BUY-0024", "estimated_net_m") == 63.5 && procurement_by_id.dig("BUY-0024", "planned_cut_m") == 85 && procurement_by_id.dig("BUY-0024", "planned_quantity_m") == 100
 errors << "PCT-42/PCT-62采购应各冻结10只" unless electrical.dig("cable_plan", "buy_now").to_s.include?("PCT-42二进四出") && electrical.dig("cable_plan", "buy_now").to_s.include?("PCT-62二进六出") && electrical.dig("cable_plan", "buy_now").to_s.include?("10")
-errors << "采购表应包含插座、开关和六个基础灯具的末端材料包" unless procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("普通插座面板") && procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("餐区双头可调明装射灯") && procurement_by_id.dig("BUY-0040", "status") == "not_purchased"
+buy_0040_status = procurement_by_id.dig("BUY-0040", "status")
+errors << "采购表应包含插座、开关和六个基础灯具的末端材料包，并保留真实采购进度" unless procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("普通插座面板") && procurement_by_id.dig("BUY-0040", "planned_bom").to_s.include?("餐区双头可调明装射灯") && %w[not_purchased partially_purchased].include?(buy_0040_status)
 errors << "照明线旧1.5mm²采购项应取消" unless procurement_by_id.dig("BUY-0023", "status") == "cancelled"
 errors << "应新增冰箱漏保型插座采购项" unless procurement_by_id.dig("BUY-0035", "item").to_s.include?("冰箱漏保型插座")
 
