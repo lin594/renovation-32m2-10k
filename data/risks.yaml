@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-07"
+updated: "2026-10-23"
 
 severity_order: [critical, high, medium, low]
 status_values: [open, investigating, mitigated, accepted, closed]
@@ -288,10 +288,11 @@ risks:
     severity: high
     status: open
     confirmed_fact: "卫生间自铺地砖方案已放弃；业主确认购买并完成2组×1.4kg米黄色环氧彩砂自流平施工，基层为已完成并通过闭水试验的S2防水层；计划2027年1月再购5kg增加厚度"
-    concern: "现有层的附着、防滑、排水坡度和固化观察尚未归档；跨月增涂可能涉及表面污染、打磨、底涂、层间附着和总厚度问题"
-    guardrail: "环氧饰面不得替代S2防水层、闭水检查或排水坡度；未核对准确SKU说明、适用基层和防滑要求前不得继续增厚施工"
-    next_action: "先记录现有层固化、附着、防滑、积水点和裂纹；向厂家核对跨月加涂5kg所需清洁、打磨、底涂、重涂间隔与总厚度，并留三猫入住前的充分固化与清洁窗口"
+    concern: "现有层的附着、防滑、排水坡度和固化观察尚未归档；10/23另有水性环氧地坪漆待收货订单，与原环氧彩砂自流平不是已确认的同一体系；跨体系重涂可能脱层、起泡或影响湿区防滑"
+    guardrail: "环氧饰面不得替代S2防水层、闭水检查或排水坡度；未取得原层与新购水性环氧材料的准确SKU、厂家兼容及湿区适用性说明前禁止直接覆涂"
+    next_action: "10/26顺路现场记录现有层固化、附着、防滑、积水点和裂纹；分别向厂家核对两体系兼容性、表面处理、底涂、重涂间隔及总厚度；不兼容则退换或另选方案，并留充分固化与清洁窗口"
     procurement_ref: BUY-0059
+    new_order_ref: BUY-0064
 
   - id: SAF-0027
     domain: paint_finish
