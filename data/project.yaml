@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-07"
+updated: "2026-10-23"
 project: "32㎡二手房翻新至可入住"
 owner_role: "业主兼实际策划人"
 status: in_progress
@@ -267,7 +267,7 @@ next_actions:
     risk_ref: SAF-0023
   - { id: ACT-012, priority: P1, status: deferred, domain: coating, room: whole_house, action: "2027年1月由业主处理乳胶漆缝隙/角落、必要打磨，并完成第二遍面漆", completion_rule: "余漆状态和接茬小样通过；角落、缝隙与可见墙面在自然光/灯光下无明显漏刷、流挂或松层", evidence_required: ["余漆开桶状态", "接茬小样", "处理前后同机位照片"], task_ref: TASK-0020, risk_ref: SAF-0027 }
   - { id: ACT-013, priority: P2, status: deferred, domain: doors_windows, room: bedroom, action: "卧室门本阶段不做；保留洞口和未来复测条件", completion_rule: "本阶段采购清单、1月工序和预算均不再依赖卧室门", evidence_required: ["洞口留存照片"], task_ref: TASK-0010 }
-  - { id: ACT-014, priority: P2, status: ready, domain: budget, room: whole_house, action: "确认京东三笔‘等多件’部分退款后的2.39元、2.85元、9.90元留存商品，并补充批刀/刮板与铸工胶的实际付款金额", completion_rule: "15.14元残余逐笔明确商品与装修相关性；相关项入账、无关项保留排除依据，缺价材料取得付款凭证或明确未付款", evidence_required: ["三笔订单详情截图", "批刀/刮板付款记录", "铸工胶付款记录"] }
+  - { id: ACT-014, priority: P2, status: ready, domain: budget, room: whole_house, action: "确认京东三笔‘等多件’部分退款后的2.39元、2.85元、9.90元留存商品，并补充美纹纸、铸工胶、水平尺的购买日期", completion_rule: "15.14元残余逐笔明确商品与装修相关性；相关项入账、无关项保留排除依据。批刀/刮板与铸工胶金额已由拼多多订单确认；三笔缺失日期取得付款凭证后补齐，无法恢复时保留todo，不猜测日期", evidence_required: ["京东三笔订单详情截图", "拼多多美纹纸、铸工胶、水平尺含日期的付款记录"] }
 
 finalization:
   status: blocked
