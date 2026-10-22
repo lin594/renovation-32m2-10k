@@ -657,12 +657,17 @@ items:
   - id: BUY-0056
     category: tool
     room: whole_house
-    item: "批刀和刮板"
-    status: ordered
+    item: "刮腻子工具三件套（碳钢抹子+碳钢油灰刀+刮板）"
+    status: delivered
     purchase_date: "2026-09-28"
     channel: "拼多多"
-    quantity_status: "已买、在途；成交价当前聊天记录无法可靠恢复"
-    note: "仅记录购买状态，不写虚构价格；后续拿到订单明细再补账。"
+    quantity: 1
+    unit: 套
+    actual_total_cny: 14.80
+    ledger_ref: EXP-0051
+    inventory_ref: INV-0020
+    delivery_evidence: "2026-10-07订单截图显示已签收、待确认收货"
+    note: "用于墙面局部批刮和2027年1月补修；订单截图恢复了此前缺失的成交价。"
 
   - id: BUY-0057
     category: material
@@ -677,12 +682,17 @@ items:
   - id: BUY-0058
     category: plumbing_repair_material
     room: kitchen
-    item: "铸工胶（用于厨房水槽/排水管漏点的计划修补）"
+    item: "铸工胶2支装（高强度金属修补胶）"
     status: delivered
-    delivery_evidence: "业主本轮确认已购买并到货"
-    payment_status: amount_and_date_unknown
-    actual_total_cny: null
-    remaining_details: ["具体数量/包装规格", "购买日期和金额；按业主要求后续补账"]
+    channel: "拼多多"
+    quantity: 1
+    unit: "组（2支）"
+    actual_total_cny: 13.20
+    ledger_ref: EXP-0052
+    inventory_ref: INV-0016
+    delivery_evidence: "2026-10-07订单截图显示待评价；此前已确认购买并到货"
+    payment_status: paid_date_unknown
+    remaining_details: ["购买日期；截图未显示下单日期"]
     planned_use: "厨房下水漏点已完全修补；修补后出现疑似堵塞，2500ml管道疏通剂未改善。铸工胶/修补带的实际使用与余量待盘点，1月先定位再决定后续用途"
     risk_ref: SAF-0011
 
@@ -712,3 +722,33 @@ items:
     planned_use: "在现有2.8kg已施工层上增加厚度"
     gate: "先核现有层固化、附着、防滑、排水坡度，以及厂家是否允许跨月加涂和所需打磨/底涂；未核验不得直接覆涂"
     risk_ref: SAF-0026
+
+  - id: BUY-0063
+    category: painting_consumable
+    room: whole_house
+    item: "美纹纸胶带20mm×100m"
+    status: delivered
+    channel: "拼多多"
+    quantity: 1
+    unit: 卷
+    actual_total_cny: 4.25
+    ledger_ref: EXP-0050
+    inventory_ref: INV-0021
+    delivery_evidence: "2026-10-07订单截图显示已签收、待确认收货"
+    planned_use: "乳胶漆补刷、边角收口和局部遮蔽保护"
+    note: "商品页标注20mm宽、100m长；购买日期截图未显示。"
+
+  - id: BUY-0062
+    category: tool
+    room: whole_house
+    item: "600mm铝合金加厚强磁水平尺"
+    status: delivered
+    channel: "拼多多"
+    quantity: 1
+    unit: 把
+    actual_total_cny: 9.01
+    ledger_ref: EXP-0053
+    inventory_ref: INV-0022
+    delivery_evidence: "2026-10-07订单截图显示待评价"
+    planned_use: "线槽、台面、地面及家具安装时检查水平/垂直"
+    note: "订单规格显示60厘米；购买日期截图未显示。"
