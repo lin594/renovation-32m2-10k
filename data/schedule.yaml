@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-07"
+updated: "2026-10-23"
 timezone: Asia/Shanghai
 status: main_window_closed_closeout_pending
 
@@ -9,7 +9,7 @@ strategy:
   constraints:
     - "2026-09-28至2026-10-04主现场施工窗口已经结束"
     - "9/27夜出发，9/28约07:56抵达开封；9/28上午直接进入复测和电气安全复核"
-    - "2026-10-04现场总验收、保洁、留档并保留返程缓冲，不再新开不可中断施工"
+    - "10/3确认的计划：2026-10-04 23:59施工硬截止，21:30起转入终验、保洁、留档和垃圾清运，10/5约01:00–02:00离开装修房前往开封站；窗口已结束，实际离场时间待补"
     - "主窗口结束后至2027年1月中旬不安排北京—开封装修专项往返"
     - "2027年1月中旬仅一名非主负责人DIY，且只执行已经定型、编号和示范的工作"
     - "业主恐高，不自行上屋顶或进行临边高处作业；顶楼疑似雨漏的迎水面维修交物业/防水人员"
@@ -57,8 +57,11 @@ onsite_windows:
   october_main:
     start: "2026-09-28"
     end: "2026-10-04"
-    departure_at: "2026-10-04T22:00:00+08:00"
+    construction_hard_stop_at: "2026-10-04T23:59:00+08:00"
+    departure_window: "2026-10-05T01:00:00+08:00/2026-10-05T02:00:00+08:00"
     confirmation_status: confirmed
+    timing_status: planned
+    timing_note: "10/3业主确认的截止和离场计划；不代表已证实实际执行到该时刻"
     execution_status: ended
     actual_closeout_status: partial
     people: 2
@@ -66,7 +69,7 @@ onsite_windows:
     trip_cost_budget_cny: 700
     priority: "先漏水/防水/电气门禁与关键路径，再追求完成度；不得为赶工压缩固化或蓄水时间"
   no_special_trip:
-    starts_after_departure: "2026-10-04"
+    starts_after_departure: "2026-10-05"
     ends_on_january_return: "2027-01中旬"
     planned_renovation_roundtrips: 0
     proxy_construction_planned: false
@@ -165,13 +168,14 @@ main_window_daily_plan:
       - "合格电工完成绝缘、极性、保护器匹配、插座接线和各级漏保动作等终检；无法完成专业检测的回路保持断开"
     electrical_stop_rule: "专业检测与记录完成前，新建固定线路不得通电；万用表不能替代绝缘电阻与漏保动作专业检测"
   - date: "2026-10-04"
-    focus: "总验收、保洁、留档与返程缓冲"
+    focus: "12:00后完成必要电气终装；21:30起终验、保洁、留档；23:59施工硬截止"
     tasks:
-      - "不再安排不可中断的新施工"
-      - "关键回路/漏保复查、渗漏与卫生间状态确认"
-      - "形成门窗、材料和未完事项清单"
-      - "施工照片、尺寸、线路编号和剩余材料留档"
-      - "工具归位、垃圾清运、离场前关水并断非必要电"
+      - "12:00后只做已冻结的必要明装电路、灯具、开关插座和面板终装，不再现场扩展线路设计"
+      - "21:30起停止扩展安装，转入关键回路/漏保复查、渗漏与卫生间状态确认"
+      - "22:30后不再开新孔、不再拌料或启动湿作业"
+      - "形成门窗、材料和未完事项清单；施工照片、尺寸、线路编号和剩余材料留档"
+      - "工具归位、垃圾清运，离场前关燃气总阀/不需要保留的水源并断非必要电"
+      - "23:59后绝不继续装修施工；仅允许洗漱、整理行李并按01:00–02:00窗口前往开封站"
       - "非安全关键未完项统一转入1月收尾"
 
 between_main_window_and_january:
@@ -202,9 +206,10 @@ budget_gate:
   october_trip_reserve_cny: 700
   paint_and_tools_plan_cny: 0
   contingency_cny: 700
+  future_purchase_reserve_cny: 3050
   actuals_source: "data/ledger.csv"
   generated_status_ref: "PROJECT_STATUS.md"
-  note: "9/30取消单独299元工具预留；10/6已按京东流水补录明确装修支出并排除重复/退款/明显无关项；三笔等多件残余合计15.14元用途待确认，暂未计装修账"
+  note: "10/3确认五项未来采购预留3050元；9/30取消单独299元工具预留；10/6已按京东流水补录明确装修支出并排除重复/退款/明显无关项；三笔等多件残余合计15.14元用途待确认，暂未计装修账"
   feasibility_status: unproven_until_essential_quotes
   quote_gate_ref: "data/budget.yaml#feasibility"
 

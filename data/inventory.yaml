@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-07"
+updated: "2026-10-23"
 
 items:
   - id: INV-0001
@@ -180,11 +180,12 @@ items:
   - id: INV-0016
     category: plumbing_repair_material
     item: "铸工胶2支装"
-    quantity: 1
+    original_quantity: 1
+    remaining_quantity: null
     unit: "组（2支）"
     location: "已到货；现场具体存放处待盘点"
-    condition: "new_uninstalled"
-    quantity_status: "2026-10-07订单截图确认1组2支装"
+    condition: "usage_unknown"
+    quantity_status: "confirmed：2026-10-07订单截图确认购入1组2支装；todo：实际使用与余量待盘点，不视为现存整组可用"
     cost_status: "成交总价13.20元；购买日期截图未显示"
     acquisition_cost_ref: EXP-0052
     planned_use: "厨房下水漏点已完全修补；修补后出现排水疑似堵塞，后续材料仅在定位堵塞原因后再决定是否使用"
