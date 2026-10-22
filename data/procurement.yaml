@@ -1,5 +1,5 @@
 version: 1
-updated: "2026-10-07"
+updated: "2026-10-23"
 
 status_values: [not_purchased, partially_purchased, pending_custom_order, quoted, ordered, delivered, accepted, returned, cancelled]
 
@@ -752,3 +752,30 @@ items:
     delivery_evidence: "2026-10-07订单截图显示待评价"
     planned_use: "线槽、台面、地面及家具安装时检查水平/垂直"
     note: "订单规格显示60厘米；购买日期截图未显示。"
+
+  - id: BUY-0064
+    category: floor_coating
+    room: bathroom
+    item: "米黄色水性环氧地坪漆三合一20平方米套餐10斤"
+    status: ordered
+    channel: "京东"
+    order_date: null
+    actual_total_cny: 67.56
+    ledger_ref: EXP-0055
+    delivery_expected_date: "2026-10-25"
+    suitability_status: blocked_pending_old_new_coating_compatibility
+    note: "10/23订单截图显示待收货；不同于原环氧彩砂自流平2.8kg和计划续购的BUY-0060；原层与新材料的跨体系兼容性未经厂家确认，禁止直接加涂；收货及付款日期待核"
+    risk_ref: SAF-0026
+
+  - id: BUY-0065
+    category: adhesive
+    room: whole_house
+    item: "百奥邦免钉胶130ml×1"
+    status: ordered
+    channel: "京东"
+    order_date: null
+    actual_total_cny: 3.41
+    ledger_ref: EXP-0054
+    delivery_expected_date: "2026-10-25"
+    planned_use: "到货核对实际用途、基层和粘结说明后再决定使用位置"
+    note: "10/23订单截图显示待收货；实际付款日期、用途和现场收货情况待10/26核对"

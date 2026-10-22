@@ -22,7 +22,8 @@ sections = [
 domain_labels = {
   "plumbing" => "水路", "electrical" => "电气", "plumbing_electrical" => "水电",
   "pet_safety" => "防猫", "doors_windows" => "门窗", "floor_coating" => "地面涂层",
-  "coating" => "涂装", "balcony_finish" => "阳台", "budget" => "账目"
+  "coating" => "涂装", "balcony_finish" => "阳台", "budget" => "账目",
+  "onsite_inspection_budget" => "现场巡检与对账"
 }.freeze
 room_labels = {
   "kitchen" => "厨房", "bathroom" => "卫生间", "whole_house" => "全屋",
@@ -72,6 +73,7 @@ sections.each do |status, heading|
     references.concat(Array(action["risk_refs"]))
     references << action["risk_ref"] if action["risk_ref"]
     references << action["procurement_ref"] if action["procurement_ref"]
+    references << action["new_order_ref"] if action["new_order_ref"]
     references.compact!
     references.uniq!
     lines << "- 关联编号：#{references.join('、')}" unless references.empty?

@@ -54,3 +54,5 @@ EXP-0050,,expense,material,whole_house,美纹纸胶带20mm×100m,拼多多,4.25,
 EXP-0051,2026-09-28,expense,tool,whole_house,刮腻子工具三件套,拼多多,14.80,paid,inventory,碳钢抹子+碳钢油灰刀+刮板；10/7订单截图恢复成交价并显示已签收
 EXP-0052,,expense,material,kitchen,铸工胶2支装,拼多多,13.20,paid,inventory,高强度金属修补胶；订单截图显示待评价；购买日期未显示
 EXP-0053,,expense,tool,whole_house,600mm铝合金加厚强磁水平尺,拼多多,9.01,paid,inventory,订单截图显示待评价；购买日期未显示
+EXP-0054,,expense,material,whole_house,百奥邦免钉胶130ml×1,京东,3.41,paid,ordered,10/23订单截图显示待收货和订单金额3.41元；实际付款日期待流水核对；预计10/25送达；未验收；关联BUY-0065
+EXP-0055,,expense,flooring,bathroom,米黄色水性环氧地坪漆三合一20平方米套餐10斤,京东,67.56,paid,ordered,10/23订单截图显示待收货和订单金额67.56元；实际付款日期待流水核对；预计10/25送达；与已施工环氧彩砂不是确认兼容体系；未核前不可覆涂；关联BUY-0064
